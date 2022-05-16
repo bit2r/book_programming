@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>3 . 조건부 실행 | 데이터 과학 프로그래밍</title>
+<meta name="author" content="한국 알(R) 사용자회">
+<meta name="description" content="3.1 부울 표현식 부울 표현식(boolean expression)은 참(TRUE) 혹은 거짓(FALSE)를 지닌 표현식이다. 다음 예제는 == 연산자를 사용하여 두 개 피연산자를 비교하여 값이 동일하면 참(TRUE), 그렇지 않으면 거짓(FALSE)을 산출한다. 5 == 5 ## [1] TRUE 5 == 6 ## [1] FALSE 참(TRUE)과...">
+<meta name="generator" content="bookdown 0.26 with bs4_book()">
+<meta property="og:title" content="3 . 조건부 실행 | 데이터 과학 프로그래밍">
+<meta property="og:type" content="book">
+<meta property="og:description" content="3.1 부울 표현식 부울 표현식(boolean expression)은 참(TRUE) 혹은 거짓(FALSE)를 지닌 표현식이다. 다음 예제는 == 연산자를 사용하여 두 개 피연산자를 비교하여 값이 동일하면 참(TRUE), 그렇지 않으면 거짓(FALSE)을 산출한다. 5 == 5 ## [1] TRUE 5 == 6 ## [1] FALSE 참(TRUE)과...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="3 . 조건부 실행 | 데이터 과학 프로그래밍">
+<meta name="twitter:description" content="3.1 부울 표현식 부울 표현식(boolean expression)은 참(TRUE) 혹은 거짓(FALSE)를 지닌 표현식이다. 다음 예제는 == 연산자를 사용하여 두 개 피연산자를 비교하여 값이 동일하면 참(TRUE), 그렇지 않으면 거짓(FALSE)을 산출한다. 5 == 5 ## [1] TRUE 5 == 6 ## [1] FALSE 참(TRUE)과...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">데이터 과학 프로그래밍</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">기계와의 경쟁 1</a></li>
+<li><a class="" href="r-intro.html"><span class="header-section-number">1</span> 프로그래밍 학습 이유</a></li>
+<li><a class="" href="r-var.html"><span class="header-section-number">2</span> 변수, 표현식, 문장</a></li>
+<li><a class="active" href="r-cont.html"><span class="header-section-number">3</span> 조건부 실행</a></li>
+<li><a class="" href="r-func.html"><span class="header-section-number">4</span> 함수</a></li>
+<li><a class="" href="r-iter.html"><span class="header-section-number">5</span> 반복(Iteration)</a></li>
+<li><a class="" href="r-string.html"><span class="header-section-number">6</span> 문자열</a></li>
+<li><a class="" href="r-file.html"><span class="header-section-number">7</span> 파일</a></li>
+<li><a class="" href="r-list.html"><span class="header-section-number">8</span> 리스트 (List)</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="r-cont" class="section level1" number="3">
+<h1>
+<span class="header-section-number">3 . </span> 조건부 실행<a class="anchor" aria-label="anchor" href="#r-cont"><i class="fas fa-link"></i></a>
+</h1>
+<div id="r-cont-boolean" class="section level2" number="3.1">
+<h2>
+<span class="header-section-number">3.1</span> 부울 표현식<a class="anchor" aria-label="anchor" href="#r-cont-boolean"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>부울 표현식(boolean expression)</strong>은 참(TRUE) 혹은 거짓(FALSE)를 지닌 표현식이다.
+다음 예제는 <code>==</code> 연산자를 사용하여 두 개 피연산자를 비교하여 값이 동일하면 참(TRUE),
+그렇지 않으면 거짓(FALSE)을 산출한다.</p>
+<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fl">5</span> <span class="op">==</span> <span class="fl">5</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fl">5</span> <span class="op">==</span> <span class="fl">6</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<p>참(TRUE)과 거짓(FALSE)은 논리형(logical) 자료형(type)에 속하는 특별한 값으로 문자열은 아니다.</p>
+<div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "logical"</code></pre>
+<div class="sourceCode" id="cb95"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/typeof.html">typeof</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "logical"</code></pre>
+<p><code>==</code> 연산자는 <strong>비교 연산자(comparison operators)</strong> 중 하나이고, 다른 연산자는 다음과 같다.</p>
+<ul>
+<li>x != y <code>#</code> x는 y와 값이 같지 않다.</li>
+<li>x &gt; y <code>#</code> x는 y보다 크다.</li>
+<li>x &lt; y <code>#</code> x는 y보다 작다.</li>
+<li>x &gt;= y <code>#</code> x는 y보다 크거나 같다.</li>
+<li>x &lt;= y <code>#</code> x는 y보다 작거나 같다.</li>
+<li>x == y <code>#</code> x는 y와 같다.</li>
+<li>x != y <code>#</code> x는 y와 개체가 동일하지 않다.</li>
+</ul>
+<p>상기 연산자가 친숙할지 모르지만, R 기호는 수학 기호와 다르다.
+일반적인 오류로 비교를 해서 동일하다는 의미로 <code>==</code> 연산자 대신에 <code>=</code> 를 사용하는 것이다.
+R에서 대입연산자로 <code>&lt;-</code>을 사용하지만, <code>=</code> 으로 사용해도 프로그램은 돌아간다.
+<code>=</code> 연산자는 대입 연산자이고, <code>==</code> 연산자는 비교 연산자다.
+<code>=&lt;</code>, <code>=&gt;</code> 같은 비교 연산자는 R에는 없다.</p>
+</div>
+<div id="r-cont-logical-operator" class="section level2" number="3.2">
+<h2>
+<span class="header-section-number">3.2</span> 논리 연산자<a class="anchor" aria-label="anchor" href="#r-cont-logical-operator"><i class="fas fa-link"></i></a>
+</h2>
+<p>세개 <strong>논리 연산자(logical operators)</strong>: <code>&amp;</code>, <code>||</code>, <code>!</code> 이 있다.
+논리 연산자 의미는 수식기호 의미와 유사하다.
+영어로 표현하면 <code>&amp;</code>은 <code>and</code>, <code>||</code>은 <code>or</code>, <code>!</code>은 <code>not</code>이 된다. 예를 들어,</p>
+<ul>
+<li><code>x &gt; 0 &amp; x &lt; 10</code></li>
+</ul>
+<p>x 가 0 보다 크다. 그리고(and), 10 보다 작으면 참이다.</p>
+<p><code>n % 2 == 0 or n % 3 == 0</code> 은 두 조건문 중의 하나만 참이 되면,
+즉, 숫자가 2 혹은(<code>or</code>) 3으로 나누어지면 참이다.</p>
+<p>마지막으로 <code>!</code> 연산자는 부울 연산 표현식을 부정한다.
+<code>x &gt; y</code> 가 거짓이면, <code>! (x &gt; y)</code>은 참이다. 즉, x이 y 보다 작거나 같으면 참이다.</p>
+<p>엄밀히 말해서, 논리 연산자의 두 피연산자는 모두 부울 표현식이지만, R에서 그다지 엄격하지는 않다.
+0 이 아닌 임의의 숫자 모두 “참(TRUE)”으로 해석된다.
+일반적으로 참(TRUE)이면 <code>1</code>, 그렇지 않는 경우 <code>0</code>으로 표현해서 사용한다.</p>
+<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fl">17</span> <span class="op">&amp;</span> <span class="cn">TRUE</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p>이러한 유연함이 유용할 수 있으나, 혼란을 줄 수도 있으니 유의해서 사용해야 한다.
+무슨 일을 하고 있는지 정확하게 알지 못한다면 피하는게 상책이다.</p>
+</div>
+<div id="r-cont-run" class="section level2" number="3.3">
+<h2>
+<span class="header-section-number">3.3</span> 조건문 실행<a class="anchor" aria-label="anchor" href="#r-cont-run"><i class="fas fa-link"></i></a>
+</h2>
+<p>유용한 프로그램을 작성하기 위해서 거의 항상 조건을 확인하고 조건에 따라 프로그램 실행을 바꿀 수 있어야 한다.
+<strong>조건문(Conditional statements)</strong>은 그러한 능력을 부여한다.
+가장 간단한 형태는 <code>if</code> 문이다.</p>
+<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">'x 는 양수'</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
+<p><code>if</code>문 뒤에 불 표현식(boolean expression)을 조건(condition)이라고 한다.</p>
+<div class="inline-figure"><img src="assets/images/cont-if.png" style="width:100.0%"></div>
+<p>만약 조건문이 참이면, 첫번째 괄호로 둘러싼 문장이 실행된다.
+만약 조건문이 거짓이면, 첫번째 괄호로 둘러싼 문장의 실행을 건너뛴다.</p>
+<p><code>if</code>문은 함수 정의, <code>for</code> 반복문과 동일한 구조를 가진다.
+<code>if</code>문은 <code>(</code>으로 시작되고, <code>)</code>으로 끝나는 헤더 머리부문과 괄호(<code>{</code>, <code>}</code>)로 둘러싼 몸통 블록(block)으로 구성된다.
+<code>if</code>문처럼 문장이 한 줄 이상에 걸쳐 작성되기 때문에 <strong>복합 문장(compound statements)</strong>이라고 한다.</p>
+<p><code>if</code>문 몸통 부문에 작성되는 실행 문장 숫자에 제한은 없으나 최소한 한 줄은 있어야 한다.
+때때로, 몸통 부문에 어떤 문장도 없는 경우가 있다.
+아직 코드를 작성하지 않아서 자리만 잡아 놓는 경우로, 그냥 놔두면 된다. 즉, 아무것도 작성하지 않고 괄호 내부를 텅비워든다.
+파이썬의 경우 아무것도 수행하지 않는 <code>pass</code>문을 넣어야 되는 것과 대비된다.</p>
+<div class="sourceCode" id="cb100"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span>
+  <span class="co"># 아무것도 작성하지 않고 자리만 잡아둔다. 나중에 코드를 채워넣는다.</span>
+<span class="op">}</span></code></pre></div>
+<p><code>if</code>문을 R 인터프리터에서 타이핑하고 엔터를 치게 되면,
+명령 프롬프트가 <code>+</code>로 바뀐다.
+따라서 다음과 같이 <code>if</code>문 몸통 부분을 작성중에 있다는 것을 나타낸다.</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="r-cont.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb101-2"><a href="r-cont.html#cb101-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span></span>
+<span id="cb101-3"><a href="r-cont.html#cb101-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="cf">if</span> (x <span class="sc">&lt;</span> <span class="dv">10</span>) {</span>
+<span id="cb101-4"><a href="r-cont.html#cb101-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> <span class="fu">print</span>(<span class="st">'작다'</span>)</span>
+<span id="cb101-5"><a href="r-cont.html#cb101-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> }</span>
+<span id="cb101-6"><a href="r-cont.html#cb101-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"작다"</span></span></code></pre></div>
+</div>
+<div id="r-cont-alternative" class="section level2" number="3.4">
+<h2>
+<span class="header-section-number">3.4</span> 대안 실행<a class="anchor" aria-label="anchor" href="#r-cont-alternative"><i class="fas fa-link"></i></a>
+</h2>
+<p><code>if</code>문의 두 번째 형태는 <strong>대안 실행(alternative execution)</strong>이다.
+대안 실행의 경우 두 가지 경우의 수가 존재하고, 조건이 어느 방향으로 실행할 것인지 결정한다.
+구문(Syntax)은 아래와 같다.</p>
+<div class="sourceCode" id="cb102"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="va">x</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">2</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span><span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"x는 짝수"</span><span class="op">)</span>
+<span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"x는 홀수"</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
+<p>x를 2로 나누었을 때, 0 이되면, x는 짝수이고, 프로그램은 짝수(“x는 짝수”)라는 결과 메시지를 출력한다.
+만약 조건이 거짓이라면, 두 번째 몸통 부문 문장이 실행된다.</p>
+<div class="figure">
+<img src="assets/images/cont-if-else.png" style="width:100.0%" alt=""><p class="caption"><code>if-else</code>문</p>
+</div>
+<p>조건은 참 혹은 거짓이어서, 대안 중 하나만 정확하게 실행된다.
+대안을 <strong>분기(Branch)</strong>라고도 하는데 이유는 실행 흐름이 분기되기 때문이다.</p>
+</div>
+<div id="r-cont-chained" class="section level2" number="3.5">
+<h2>
+<span class="header-section-number">3.5</span> 연쇄 조건문<a class="anchor" aria-label="anchor" href="#r-cont-chained"><i class="fas fa-link"></i></a>
+</h2>
+<p>때때로, 두 가지 이상의 경우의 수가 있으며, 두 가지 이상의 분기가 필요하다.
+이와 같은 연산을 표현하는 방식이 <strong>연쇄 조건문(chained conditional)</strong>이다.</p>
+<div class="sourceCode" id="cb103"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="va">x</span> <span class="op">&lt;</span> <span class="va">y</span><span class="op">)</span><span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"x는 y보다 작다"</span><span class="op">)</span>
+<span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="va">y</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"x는 y보다 크다"</span><span class="op">)</span>
+<span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"x와 y는 같다"</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
+<p>“else if”로 연쇄 조건문을 표현하는데 주목한다. 이번에도 단 한번의 분기만 실행된다.</p>
+<div class="inline-figure">
+<img src="assets/images/cond-if-chained.png" alt="연쇄 조건문">{width = 100%}</div>
+<p><code>if else</code> 문의 갯수에 제한은 없다.
+<code>else</code> 절이 있다면, 거기서 끝마쳐야 하지만, 연쇄 조건문에 필히 있어야 하는 것은 아니다.</p>
+<div class="sourceCode" id="cb104"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="va">choice</span> <span class="op">==</span> <span class="st">'a'</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Bad guess"</span><span class="op">)</span>
+<span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span><span class="op">(</span><span class="va">choice</span> <span class="op">==</span> <span class="st">'b'</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"Good guess"</span><span class="op">)</span>
+<span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="va">choice</span> <span class="op">==</span> <span class="st">'c'</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">'Close, but not correct'</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
+<p>각 조건은 순서대로 점검한다. 만약 첫 번째가 거짓이면, 다음을 점검하고 계속 점검해 나간다.
+순서대로 진행 중에 하나의 조건이 참이면, 해당 분기가 수행되고, <code>if</code>문 전체는 종료된다.
+설사 하나 이상의 조건이 참이라고 하더라도, 첫 번째 참 분기만 수행된다.</p>
+</div>
+<div id="r-cont-nested" class="section level2" number="3.6">
+<h2>
+<span class="header-section-number">3.6</span> 중첩 조건문<a class="anchor" aria-label="anchor" href="#r-cont-nested"><i class="fas fa-link"></i></a>
+</h2>
+<p>하나의 조건문이 조건문 내부에 중첩될 수 있다.
+다음과 같이 삼분 예제를 작성할 수 있다.</p>
+<div class="sourceCode" id="cb105"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="va">x</span> <span class="op">&lt;</span> <span class="va">y</span><span class="op">)</span><span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"x는 y보다 작다"</span><span class="op">)</span>
+<span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
+  <span class="kw">if</span> <span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="va">y</span><span class="op">)</span> <span class="op">{</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"x는 y보다 크다"</span><span class="op">)</span>
+  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"x와 y는 같다"</span><span class="op">)</span>
+  <span class="op">}</span>
+<span class="op">}</span></code></pre></div>
+<p>바깥 조건문에는 두 개의 분기가 있다.
+첫 분기는 간단한 문장을 담고 있다.
+두 번째 분기는 자체가 두 개의 분기를 가지고 있는 또 다른 <code>if</code>문을 담고 있다.
+자체로 둘다 조건문이지만, 두 분기 모두 간단한 문장이다.</p>
+<div class="inline-figure">
+<img src="assets/images/cond-if-nested.png" alt="중첩 조건문">{width = 100%}</div>
+<p>괄호를 사용하는 것이 구조를 명확히 하지만, <strong>중첩 조건문의 경우 가독성이 급격히 저하된다.
+일반적으로, 가능하면 중첩 조건문을 피하는 것을 권장한다.</strong></p>
+<p>논리 연산자를 사용하여 중첩 조건문을 간략히 할 수 있다.
+예를 들어, 단일 조건문으로 가지고 앞의 코드를 다음과 같이 재작성할 수 있다.</p>
+<div class="sourceCode" id="cb106"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="fl">0</span> <span class="op">&lt;</span> <span class="va">x</span><span class="op">)</span> <span class="op">{</span>
+  <span class="kw">if</span> <span class="op">(</span><span class="va">x</span> <span class="op">&lt;</span> <span class="fl">10</span><span class="op">)</span> <span class="op">{</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">'x는 한자리 양수.'</span><span class="op">)</span>
+  <span class="op">}</span>
+<span class="op">}</span></code></pre></div>
+<p><code>print</code>문은 두 개 조건문을 통과될 때만 실행돼서, <code>&amp;</code> 연산자와 동일한 효과를 거둘 수 있다.</p>
+<div class="sourceCode" id="cb107"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="fl">0</span> <span class="op">&lt;</span> <span class="va">x</span> <span class="op">&amp;</span> <span class="va">x</span> <span class="op">&lt;</span> <span class="fl">10</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"x는 한자리 양수."</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
+</div>
+<div id="r-cont-try-catch" class="section level2" number="3.7">
+<h2>
+<span class="header-section-number">3.7</span> try와 catch를 활용한 예외 처리<a class="anchor" aria-label="anchor" href="#r-cont-try-catch"><i class="fas fa-link"></i></a>
+</h2>
+<p>함수 <code><a href="https://rdrr.io/r/base/readline.html">readline()</a></code>와 <code><a href="https://rdrr.io/r/base/integer.html">as.integer()</a></code>을 사용하여 앞에서 사용자가 타이핑한 숫자를 읽어 정수로 파싱하는 프로그램 코드를 살펴보았다.
+또한 이렇게 코딩하는 것이 얼마나 위험한 것인지도 살펴보았다.</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="r-cont.html#cb108-1" aria-hidden="true" tabindex="-1"></a>speed <span class="ot">&lt;-</span> <span class="fu">readline</span>(<span class="at">prompt=</span>prompts)</span>
+<span id="cb108-2"><a href="r-cont.html#cb108-2" aria-hidden="true" tabindex="-1"></a>속도가 얼마나 됩니까? 뭐라고 하셨나요<span class="sc">!!!</span></span>
+<span id="cb108-3"><a href="r-cont.html#cb108-3" aria-hidden="true" tabindex="-1"></a><span class="fu">as.integer</span>(speed) <span class="sc">+</span> <span class="dv">5</span></span>
+<span id="cb108-4"><a href="r-cont.html#cb108-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">NA</span></span></code></pre></div>
+<p>R 인터프리터에서 상기 문장을 실행하면,
+인터프리터에서 새로운 프롬프트로 되고, “이런(oops)” 잠시 후에, 다음 문장 실행으로 넘어간다.</p>
+<p>하지만, 만약 코드가 R 스크립트로 실행이 되어 오류가 발생하면,
+역추적해서 그 지점에서 즉시 멈추게 된다. 다음에 오는 문장은 실행하지 않는다.</p>
+<p>화씨 온도를 섭씨 온도로 변환하는 간단한 프로그램이 있다.
+다소 길이가 긴데, R 콘솔에서 실행하는 코드와 쉘에서 실행할 때 사용자 입력을 받는 것을 달리 처리하기 위함이다. 또한, 한글을 넣게 되면 오류가 발생하니, 프롬프트 메시지는 영어로 처리한다.</p>
+<div class="sourceCode" id="cb109"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># fahrenheit.R</span>
+<span class="kw">if</span> <span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span><span class="op">(</span><span class="op">)</span> <span class="op">)</span><span class="op">{</span>
+  <span class="va">inp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span><span class="op">(</span>prompt <span class="op">=</span> <span class="st">"Enter Fahrenheit Temperature: "</span><span class="op">)</span>
+  <span class="va">fahr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">inp</span><span class="op">)</span>
+  <span class="va">cel</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">fahr</span> <span class="op">-</span> <span class="fl">32.0</span><span class="op">)</span> <span class="op">*</span> <span class="fl">5.0</span> <span class="op">/</span> <span class="fl">9.0</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">cel</span><span class="op">)</span>
+<span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Enter Fahrenheit Temperature: "</span><span class="op">)</span>
+  <span class="va">inp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span><span class="op">(</span><span class="st">"stdin"</span>, n<span class="op">=</span><span class="fl">1</span><span class="op">)</span>
+  <span class="va">fahr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">inp</span><span class="op">)</span>
+  <span class="va">cel</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">fahr</span> <span class="op">-</span> <span class="fl">32.0</span><span class="op">)</span> <span class="op">*</span> <span class="fl">5.0</span> <span class="op">/</span> <span class="fl">9.0</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">cel</span><span class="op">)</span>
+<span class="op">}</span></code></pre></div>
+<p>이 코드를 실행해서 적절하지 않은 입력값을 넣게 되면, 다소 불친절한 오류 메시지와 함께 간단히 작동을 멈춘다.</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="r-cont.html#cb110-1" aria-hidden="true" tabindex="-1"></a>D<span class="sc">:</span>\docs\r4inf\code<span class="sc">&gt;</span> Rscript fahrenheit.R</span>
+<span id="cb110-2"><a href="r-cont.html#cb110-2" aria-hidden="true" tabindex="-1"></a>Enter Fahrenheit Temperature<span class="sc">:</span> <span class="dv">72</span></span>
+<span id="cb110-3"><a href="r-cont.html#cb110-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">22.22222</span></span>
+<span id="cb110-4"><a href="r-cont.html#cb110-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb110-5"><a href="r-cont.html#cb110-5" aria-hidden="true" tabindex="-1"></a>D<span class="sc">:</span>\docs\r4inf\code<span class="sc">&gt;</span> Rscript fahrenheit.R</span>
+<span id="cb110-6"><a href="r-cont.html#cb110-6" aria-hidden="true" tabindex="-1"></a>Enter Fahrenheit Temperature<span class="sc">:</span> fred</span>
+<span id="cb110-7"><a href="r-cont.html#cb110-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">NA</span></span>
+<span id="cb110-8"><a href="r-cont.html#cb110-8" aria-hidden="true" tabindex="-1"></a>()<span class="sc">:</span></span>
+<span id="cb110-9"><a href="r-cont.html#cb110-9" aria-hidden="true" tabindex="-1"></a>   <span class="cn">NA</span></span></code></pre></div>
+<p>이런 종류의 예측하거나, 예측하지 못한 오류를 다루기 위해서 R에는
+“try / except”로 불리는 조건 실행 구조가 내장되어 있다.
+<code>try</code>와 <code>except</code>의 기본적인 생각은 일부 명령문에 문제가 있다는 것을 사전에 알고 있고,
+만약 그 때문에 오류가 발생하게 된다면 대신 프로그램에 추가해서 명령문을 실행한다는 것이다.
+<code>except</code> 블록의 문장은 오류가 없다면 실행되지 않는다.</p>
+<p>문장 실행에 대해서 R <code>try</code>, <code>except</code> 기능을 보험으로 생각할 수도 있다.</p>
+<p>온도 변환기 프로그램을 다음과 같이 재작성한다.</p>
+<div class="sourceCode" id="cb111"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span><span class="op">(</span><span class="op">)</span> <span class="op">)</span><span class="op">{</span>
+  <span class="va">inp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span><span class="op">(</span>prompt <span class="op">=</span> <span class="st">"Enter Fahrenheit Temperature: "</span><span class="op">)</span>
+  <span class="va">fahr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">inp</span><span class="op">)</span>
+  <span class="va">cel</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">fahr</span> <span class="op">-</span> <span class="fl">32.0</span><span class="op">)</span> <span class="op">*</span> <span class="fl">5.0</span> <span class="op">/</span> <span class="fl">9.0</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">cel</span><span class="op">)</span>
+<span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Enter Fahrenheit Temperature: "</span><span class="op">)</span>
+  <span class="va">inp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span><span class="op">(</span><span class="st">"stdin"</span>, n<span class="op">=</span><span class="fl">1</span><span class="op">)</span>
+
+  <span class="kw"><a href="https://rdrr.io/r/base/conditions.html">tryCatch</a></span><span class="op">(</span><span class="op">{</span>
+    <span class="va">fahr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">inp</span><span class="op">)</span>
+    <span class="va">cel</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">fahr</span> <span class="op">-</span> <span class="fl">32.0</span><span class="op">)</span> <span class="op">*</span> <span class="fl">5.0</span> <span class="op">/</span> <span class="fl">9.0</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">cel</span><span class="op">)</span>
+  <span class="op">}</span>,
+  error <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">err</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"ERROR: "</span>, <span class="va">err</span><span class="op">)</span><span class="op">)</span>
+  <span class="op">)</span>
+<span class="op">}</span></code></pre></div>
+<p>R은 tryCatch 블록 문장을 우선 실행한다.
+만약 모든 것이 순조롭다면, <code>error</code> 블록을 건너뛰고, 다음 코드를 실행한다.
+만약 <code>tryCatch</code> 블록에서 <code>error</code>가 발생하면,
+R은 <code>tryCatch</code> 블록에서 빠져 나와 <code>error</code> 문장을 수행한다.</p>
+<p><code>tryCatch</code>문으로 예외사항을 다루는 것을 예외 처리한다(catching an exception)고 부른다.
+예제에서 <code>error</code> 절에서는 단순히 오류 메시지를 출력만 한다.
+대체로, 예외 처리를 통해서 오류를 고치거나, 재시작하거나, 최소한 프로그램이 정상적으로 종료될 수 있게 한다.</p>
+</div>
+<div id="r-cont-short-circuit" class="section level2" number="3.8">
+<h2>
+<span class="header-section-number">3.8</span> 논리 연산식의 단락(Short circuit) 평가<a class="anchor" aria-label="anchor" href="#r-cont-short-circuit"><i class="fas fa-link"></i></a>
+</h2>
+<p><code>x &gt;= 2 &amp; (x/y) &gt; 2</code> 와 같은 논리 표현식을 R에서 처리할 때, 왼쪽에서부터 오른쪽으로 표현식을 평가한다.
+<code>&amp;</code> 정의 때문에 x 가 2보다 작다면, <code>x &gt;= 2</code>은 거짓(FALSE)으로,
+전체적으로 <code>(x/y) &gt; 2</code> 이 참(TRUE) 혹은 거짓(FALSE) 이냐에 관계없이 거짓(FALSE)이 된다.</p>
+<p>나머지 논리 표현식을 평가해도 나아지는 것이 없다고 R이 자동으로 탐지할 때,
+평가를 멈추고 나머지 논리 표현식에 대한 연산도 중지한다.
+최종값이 이미 결정되었기 때문에 더 이상의 논리 표현식의 평가가 멈출 때, 이를 <strong>단락(Short-circuiting) 평가</strong>라고 한다.</p>
+<p>좋은 점처럼 보일 수 있지만, 단락 행동은 가디언 패턴(guardian pattern)으로 불리는 좀 더 똑똑한 기술로 연계된다.
+R 인터프리터의 다음 코드를 살펴보자.</p>
+<div class="sourceCode" id="cb112"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">6</span>
+<span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">2</span>
+<span class="va">x</span> <span class="op">&gt;=</span> <span class="fl">2</span> <span class="op">&amp;</span> <span class="op">(</span><span class="va">x</span><span class="op">/</span><span class="va">y</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">2</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb114"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span>
+<span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">0</span>
+<span class="va">x</span> <span class="op">&gt;=</span> <span class="fl">2</span> <span class="op">&amp;</span> <span class="op">(</span><span class="va">x</span><span class="op">/</span><span class="va">y</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">2</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb116"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">6</span>
+<span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">0</span>
+<span class="va">x</span> <span class="op">&gt;=</span> <span class="fl">2</span> <span class="op">&amp;</span> <span class="op">(</span><span class="va">x</span><span class="op">/</span><span class="va">y</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">2</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p>세번째 연산은 일반적으로 실패하는데 이유는 (x/y) 연산을 평가할 때 y 가 0 이어서 실행오류가 발생된다. 하지만, R에서는 0으로 나누게 되면 <code>Inf</code>가 되어 계산결과는 참이 되어 전체적으로 참이 된다.
+하지만, 두 번째 예제의 경우 거짓(FALSE)하지 않는데 이유는 x &gt;= 2 이 거짓(FALSE) 으로, 전체가 거짓(FALSE)이 되어 단락(Short-circuiting) 평가 규칙에 의해 (x/y) 평가는 실행되지 않게 된다.</p>
+<p>평가 오류를 발생하기 전에 가디언(gardian) 평가식을 전략적으로 배치해서 논리 표현식을 다음과 같이 구성한다.</p>
+<div class="sourceCode" id="cb118"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">1</span>
+<span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">0</span>
+<span class="va">x</span> <span class="op">&gt;=</span> <span class="fl">2</span> <span class="op">&amp;</span> <span class="va">y</span> <span class="op">!=</span> <span class="fl">0</span> <span class="op">&amp;</span> <span class="op">(</span><span class="va">x</span><span class="op">/</span><span class="va">y</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">2</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb120"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">6</span>
+<span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">0</span>
+<span class="va">x</span> <span class="op">&gt;=</span> <span class="fl">2</span> <span class="op">&amp;</span> <span class="va">y</span> <span class="op">!=</span> <span class="fl">0</span> <span class="op">&amp;</span> <span class="op">(</span><span class="va">x</span><span class="op">/</span><span class="va">y</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">2</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb122"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x</span> <span class="op">&gt;=</span> <span class="fl">2</span> <span class="op">&amp;</span> <span class="op">(</span><span class="va">x</span><span class="op">/</span><span class="va">y</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">2</span> <span class="op">&amp;</span> <span class="va">y</span> <span class="op">!=</span> <span class="fl">0</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<p>첫 번째 논리 표현식은 <code>x &gt;= 2</code> 이 거짓(FALSE) 이라 <code>&amp;</code>에서 멈춘다.
+두 번째 논리 표현식은 <code>x &gt;= 2</code> 이 참(TRUE), <code>y != 0</code> 은 거짓(FALSE) 이라 <code>(x/y)</code>까지 갈 필요가 없다.
+세 번째 논리 표현식은 <code>(x/y)</code> 연산이 끝난 후에 <code>y != 0</code> 이 수행되어서 오류가 발생한다.</p>
+<p>두 번째 표현식에서 y 가 0 이 아닐 때만, (x/y)을 실행하도록 <code>y != 0</code> 이 가디언(gardian) 역할을 수행한다고 말할 수 있다.</p>
+</div>
+<div id="r-cont-debugging" class="section level2" number="3.9">
+<h2>
+<span class="header-section-number">3.9</span> 디버깅<a class="anchor" aria-label="anchor" href="#r-cont-debugging"><i class="fas fa-link"></i></a>
+</h2>
+<p>오류가 발생했을 때, 파이썬 화면에 출력되는 역추적(traceback)에는 상당한 정보가 담겨있다. 하지만,특히 스택에 많은 프레임이 있는 경우 엄청나게 보여 엄두가 나지 않을 수도 있다. 대체로 가장 유용한 정보는 다음과 같은 것이 있다.</p>
+<ul>
+<li>어떤 종류의 오류인가.</li>
+<li>어디서 발생했는가.</li>
+</ul>
+<p>구문 오류는 대체로 발견하기 쉽지만, 몇 가지는 애매하다. 파이썬의 경우 공백(space)과 탭(tab)의 차이가 눈에 보이지 않아 통상 무시하고 넘어가기 쉽기 때문에 공백 오류를 잡아내기가 까다롭다. R로 텍스트 데이터를 분석할 경우 눈에는 보이지 않지만 공백문자(White space) 문자가 여러가지 문제를 일으키는 경우가 많다. 특히 한글 인코딩과 결합될 경우 더욱 그렇다.</p>
+<p>대체로 오류 메시지는 문제가 어디에서 발견되었는지를 지칭하지만, 실제 오류는 코드 앞에 종종 선행하는 줄에 있을 수 있다.</p>
+<p>동일한 문제가 실행 오류에도 있다. 데시벨(decibels)로 신호 대비 잡음비를 계산한다고 가정하자. 공식은 <span class="math inline">\(SNR_{db} = 10 \log_{10} (P_{signal} / P_{noise})\)</span> 이다.
+R에서 아래와 같이 작성할 수 있다.</p>
+<div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">signal_power</span> <span class="op">&lt;-</span> <span class="fl">9</span>
+<span class="va">noise_power</span> <span class="op">&lt;-</span> <span class="fl">10</span>
+<span class="va">ratio</span> <span class="op">&lt;-</span> <span class="va">signal_power</span> <span class="op">/</span> <span class="va">noise_power</span>
+<span class="va">decibels</span> <span class="op">&lt;-</span> <span class="fl">10</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="va">ratio</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">decibels</span><span class="op">)</span></code></pre></div>
+<p><code>signal_power</code> 와 <code>noise_power</code> 를 부동 소수점값으로 표현되어 R코드에는 문제가 없지만, 파이썬 2로 실행하게 되면 다음과 같은 오류가 나온다.</p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="r-cont.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Traceback</span> (most recent call last)<span class="sc">:</span></span>
+<span id="cb125-2"><a href="r-cont.html#cb125-2" aria-hidden="true" tabindex="-1"></a>File <span class="st">"snr.py"</span>, line <span class="dv">5</span>, <span class="cf">in</span> ?</span>
+<span id="cb125-3"><a href="r-cont.html#cb125-3" aria-hidden="true" tabindex="-1"></a>decibels <span class="ot">=</span> <span class="dv">10</span> <span class="sc">*</span> <span class="fu">math.log10</span>(ratio)</span>
+<span id="cb125-4"><a href="r-cont.html#cb125-4" aria-hidden="true" tabindex="-1"></a>OverflowError<span class="sc">:</span> math range error</span></code></pre></div>
+<p>오류 메지지가 5번째 줄에 있다고 지칭하지만, 잘못된 것은 없다. 실제 오류를
+발견하기위해서,출력값이0인ratio값을print문을사용해서출력하는것이
+도움이 된다. 문제는 4번째 줄에 있는데, 왜냐하면 두 정수를 나눌 때 내림 나눗
+셈을 했기 때문입니다.</p>
+<p>대체로, 오류 메시지는 문제가 어디에서 발견되었는지를 알려주지만,
+종종 문제의 원인이 어디에서 발생했는지는 알려주지 않는다.</p>
+</div>
+<div id="r-cont-terminology" class="section level2" number="3.10">
+<h2>
+<span class="header-section-number">3.10</span> 용어 정의<a class="anchor" aria-label="anchor" href="#r-cont-terminology"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li>몸통 부문(body)**: 복합 문장 내부에 일련의 문장문</li>
+<li>부울 표현식(boolean expression)**: 참(TRUE) 혹은 거짓(FALSE)의 값을 가지는 표현식</li>
+<li>분기(branch)**: 조건문에서 대안 문장의 한 흐름</li>
+<li>연쇄 조건문(chained conditional)**: 일련의 대안 분기가 있는 조건문</li>
+<li>비교 연산자(comparison operator)**: 피연산자를 ==, !=, &gt;, &lt;, &gt;=, &lt;=로 비교하는 연산자</li>
+<li>조건문(conditional statement)**: 조건에 따라 명령의 흐름을 제어하는 명령문</li>
+<li>조건(condition)**: 조건문에서 어느 분기를 실행할지 결정하는 불 표현식</li>
+<li>복합문(compound statement)**: 머리부문(head)과 몸통부문(body)으로 구성된 문장. 머리부문은 콜론(:)으로 끝나며, 몸통부문은 머리부문을 기준으로 들여쓰기로 구별된다.</li>
+<li>가디언 패턴(guardian pattern)**: 단락(short circuit) 행동을 잘 이용하도록 논리 표현식을 구성하는 것</li>
+<li>논리 연산자(logical operator)**: 불 표현식을 결합하는 연산자 중의 하나 (and, or, not)</li>
+<li>중첩 조건문(nested conditional)**: 하나의 조건문이 다른 조건문 분기에 나타나는 조건문.</li>
+<li>역추적(traceback)**: 예외 사항이 발생했을 때 실행되고, 출력되는 함수 리스트</li>
+<li>단락(short circuit)**: 나머지 표현식 평가를 할 필요없이 최종 결과를 알기 때문에, 파이썬이 논리 표현식 평가를 진행하는 중간에 평가를 멈출 때.</li>
+</ul>
+</div>
+<div id="r-cont-ex" class="section level2" number="3.11">
+<h2>
+<span class="header-section-number">3.11</span> 연습문제<a class="anchor" aria-label="anchor" href="#r-cont-ex"><i class="fas fa-link"></i></a>
+</h2>
+<ol style="list-style-type: decimal">
+<li>40시간 이상 일할 경우 시급을 1.5배 더 종업원에게 지급하는 봉급계산 프로그램을 다시 작성하세요.</li>
+</ol>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="r-cont.html#cb126-1" aria-hidden="true" tabindex="-1"></a>시간을 입력하시오<span class="sc">:</span> <span class="fl">35.51</span></span>
+<span id="cb126-2"><a href="r-cont.html#cb126-2" aria-hidden="true" tabindex="-1"></a>시급을 입력하시오<span class="sc">:</span> <span class="dv">7530</span></span>
+<span id="cb126-3"><a href="r-cont.html#cb126-3" aria-hidden="true" tabindex="-1"></a>알바비<span class="sc">:</span> <span class="dv">263550</span></span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>
+<code>tryCatch</code>를 사용하여 봉급계산 프로그램을 다시 작성하세요.
+숫자가 아닌 입력값을 잘 처리해서 숫자 아닌 입력값이 들어왔을 때 메시지를 출력하고 정상적으로 프로그램을 종료하도록 합니다.
+다음이 프로그램 출력 결과를 보여줍니다.</li>
+</ol>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="r-cont.html#cb127-1" aria-hidden="true" tabindex="-1"></a>시간을 입력하시오<span class="sc">:</span> <span class="fl">35.51</span></span>
+<span id="cb127-2"><a href="r-cont.html#cb127-2" aria-hidden="true" tabindex="-1"></a>시급을 입력하시오<span class="sc">:</span> 칠만원</span>
+<span id="cb127-3"><a href="r-cont.html#cb127-3" aria-hidden="true" tabindex="-1"></a>오류, 다시 숫자를 입력하세요</span>
+<span id="cb127-4"><a href="r-cont.html#cb127-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb127-5"><a href="r-cont.html#cb127-5" aria-hidden="true" tabindex="-1"></a>시급을 입력하시오<span class="sc">:</span> 7만원</span>
+<span id="cb127-6"><a href="r-cont.html#cb127-6" aria-hidden="true" tabindex="-1"></a>오류, 다시 숫자를 입력하세요</span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>0.0과 1.0 사이의 점수를 출력하는 프로그램을 작성하세요.
+만약 점수가 범위 밖이면 오류를 출력합니다.
+만약 점수가 0.0과 1.0 사이라면, 다음의 테이블에 따라 등급을 출력합니다.</li>
+</ol>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="r-cont.html#cb128-1" aria-hidden="true" tabindex="-1"></a>점수    등급</span>
+<span id="cb128-2"><a href="r-cont.html#cb128-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;=</span> <span class="fl">0.9</span>   A</span>
+<span id="cb128-3"><a href="r-cont.html#cb128-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;=</span> <span class="fl">0.8</span>   B</span>
+<span id="cb128-4"><a href="r-cont.html#cb128-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;=</span> <span class="fl">0.7</span>   C</span>
+<span id="cb128-5"><a href="r-cont.html#cb128-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;=</span> <span class="fl">0.6</span>   D</span>
+<span id="cb128-6"><a href="r-cont.html#cb128-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span> <span class="fl">0.6</span>    F</span>
+<span id="cb128-7"><a href="r-cont.html#cb128-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-8"><a href="r-cont.html#cb128-8" aria-hidden="true" tabindex="-1"></a>점수를 입력하시오<span class="sc">:</span> <span class="fl">0.95</span></span>
+<span id="cb128-9"><a href="r-cont.html#cb128-9" aria-hidden="true" tabindex="-1"></a>A</span>
+<span id="cb128-10"><a href="r-cont.html#cb128-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-11"><a href="r-cont.html#cb128-11" aria-hidden="true" tabindex="-1"></a>점수를 입력하시오<span class="sc">:</span> 만점</span>
+<span id="cb128-12"><a href="r-cont.html#cb128-12" aria-hidden="true" tabindex="-1"></a>올바른 점수가 아닙니다.</span>
+<span id="cb128-13"><a href="r-cont.html#cb128-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-14"><a href="r-cont.html#cb128-14" aria-hidden="true" tabindex="-1"></a>점수를 입력하시오<span class="sc">:</span> <span class="fl">10.0</span></span>
+<span id="cb128-15"><a href="r-cont.html#cb128-15" aria-hidden="true" tabindex="-1"></a>올바른 점수가 아닙니다.</span>
+<span id="cb128-16"><a href="r-cont.html#cb128-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-17"><a href="r-cont.html#cb128-17" aria-hidden="true" tabindex="-1"></a>점수를 입력하시오<span class="sc">:</span> <span class="fl">0.75</span></span>
+<span id="cb128-18"><a href="r-cont.html#cb128-18" aria-hidden="true" tabindex="-1"></a>C</span>
+<span id="cb128-19"><a href="r-cont.html#cb128-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-20"><a href="r-cont.html#cb128-20" aria-hidden="true" tabindex="-1"></a>점수를 입력하시오<span class="sc">:</span> <span class="fl">0.5</span></span>
+<span id="cb128-21"><a href="r-cont.html#cb128-21" aria-hidden="true" tabindex="-1"></a>F</span></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>상기 보이는 것처럼 반복적으로 프로그램을 실행해서 다양한 다른 입력값을 테스트해 보세요.</li>
+</ol>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="r-var.html"><span class="header-section-number">2</span> 변수, 표현식, 문장</a></div>
+<div class="next"><a href="r-func.html"><span class="header-section-number">4</span> 함수</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#r-cont"><span class="header-section-number">3</span> 조건부 실행</a></li>
+<li><a class="nav-link" href="#r-cont-boolean"><span class="header-section-number">3.1</span> 부울 표현식</a></li>
+<li><a class="nav-link" href="#r-cont-logical-operator"><span class="header-section-number">3.2</span> 논리 연산자</a></li>
+<li><a class="nav-link" href="#r-cont-run"><span class="header-section-number">3.3</span> 조건문 실행</a></li>
+<li><a class="nav-link" href="#r-cont-alternative"><span class="header-section-number">3.4</span> 대안 실행</a></li>
+<li><a class="nav-link" href="#r-cont-chained"><span class="header-section-number">3.5</span> 연쇄 조건문</a></li>
+<li><a class="nav-link" href="#r-cont-nested"><span class="header-section-number">3.6</span> 중첩 조건문</a></li>
+<li><a class="nav-link" href="#r-cont-try-catch"><span class="header-section-number">3.7</span> try와 catch를 활용한 예외 처리</a></li>
+<li><a class="nav-link" href="#r-cont-short-circuit"><span class="header-section-number">3.8</span> 논리 연산식의 단락(Short circuit) 평가</a></li>
+<li><a class="nav-link" href="#r-cont-debugging"><span class="header-section-number">3.9</span> 디버깅</a></li>
+<li><a class="nav-link" href="#r-cont-terminology"><span class="header-section-number">3.10</span> 용어 정의</a></li>
+<li><a class="nav-link" href="#r-cont-ex"><span class="header-section-number">3.11</span> 연습문제</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>데이터 과학 프로그래밍</strong>" was written by 한국 알(R) 사용자회. It was last built on 2022-05-16.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

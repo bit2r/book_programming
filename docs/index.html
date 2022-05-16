@@ -65,7 +65,14 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="active" href="index.html">기계와의 경쟁 1</a></li>
-<li><a class="" href="r-intro.html"><span class="header-section-number">1</span> 왜 프로그래밍을 배워야 하는가?</a></li>
+<li><a class="" href="r-intro.html"><span class="header-section-number">1</span> 프로그래밍 학습 이유</a></li>
+<li><a class="" href="r-var.html"><span class="header-section-number">2</span> 변수, 표현식, 문장</a></li>
+<li><a class="" href="r-cont.html"><span class="header-section-number">3</span> 조건부 실행</a></li>
+<li><a class="" href="r-func.html"><span class="header-section-number">4</span> 함수</a></li>
+<li><a class="" href="r-iter.html"><span class="header-section-number">5</span> 반복(Iteration)</a></li>
+<li><a class="" href="r-string.html"><span class="header-section-number">6</span> 문자열</a></li>
+<li><a class="" href="r-file.html"><span class="header-section-number">7</span> 파일</a></li>
+<li><a class="" href="r-list.html"><span class="header-section-number">8</span> 리스트 (List)</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -146,7 +153,7 @@
 
   <div class="chapter-nav">
 <div class="empty"></div>
-<div class="next"><a href="r-intro.html"><span class="header-section-number">1</span> 왜 프로그래밍을 배워야 하는가?</a></div>
+<div class="next"><a href="r-intro.html"><span class="header-section-number">1</span> 프로그래밍 학습 이유</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav"><li><a class="nav-link" href="#%EA%B8%B0%EA%B3%84%EC%99%80%EC%9D%98-%EA%B2%BD%EC%9F%81-joongang-yuval">기계와의 경쟁 1</a></li></ul>
@@ -173,6 +180,34 @@
   </div>
 
 </div></div>
-</footer>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
 </body>
 </html>

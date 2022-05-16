@@ -4,7 +4,9 @@ editor_options:
   chunk_output_type: console
 ---
 
-# 왜 프로그래밍을 배워야 하는가? {#r-intro}
+
+
+# 프로그래밍 학습 이유 {#r-intro}
 
 컴퓨터 프로그램을 만드는 행위(프로그래밍)는 매우 창의적이며 향후 뿌린 것 이상으로 얻을 것이 많다. 
 프로그램을 만드는 이유는 어려운 자료분석 문제를 해결하려는 것에서부터 다른사람의 문제를 해결해주는데 재미를 느끼는 것까지 다양한 이유가 있다. 
@@ -481,26 +483,6 @@ and the tent fell down on the clown and the car
 ```r
 # 0. 환경설정 ------
 library(tidyverse)
-```
-
-```
-## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
-```
-
-```
-## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
-## ✓ tibble  3.1.6     ✓ dplyr   1.0.8
-## ✓ tidyr   1.2.0     ✓ stringr 1.4.0
-## ✓ readr   2.1.2     ✓ forcats 0.5.1
-```
-
-```
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()
-```
-
-```r
 library(stringr)
 
 text_dat <- readLines("data/ch01-text.txt")
@@ -523,19 +505,15 @@ bind_cols("word" = uniq_word, "freq"=res_v) %>% arrange(desc(freq))
 
 ```
 ## # A tibble: 11 × 2
-##    word   freq
-##    <chr> <dbl>
-##  1 the       7
-##  2 car       3
-##  3 and       3
-##  4 clown     2
-##  5 ran       2
-##  6 tent      2
-##  7 after     1
-##  8 into      1
-##  9 fell      1
-## 10 down      1
-## 11 on        1
+##   word   freq
+##   <chr> <dbl>
+## 1 the       7
+## 2 car       3
+## 3 and       3
+## 4 clown     2
+## 5 ran       2
+## 6 tent      2
+## # … with 5 more rows
 ```
 
 ```r

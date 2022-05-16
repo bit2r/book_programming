@@ -5,9 +5,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-```{r setup, echo = FALSE, message = FALSE}
-source("_common.R")
-```
+
 
 # 반복(Iteration) {#r-iter}
 
@@ -16,7 +14,8 @@ source("_common.R")
 대입문의 흔한 패턴은 변수를 갱신하는 대입문이다. 
 변수의 새로운 값은 이전 값에 의존한다.
 
-``` {r r-iter-update, eval = FALSE}
+
+```r
 x <- x + 1
 ```
 
@@ -25,14 +24,16 @@ x <- x + 1
 만약 존재하지 않는 변수를 갱신하면, 오류가 발생한다. 
 왜냐하면 x에 값을 대입하기 전에 R이 오른쪽을 먼저 평가하기 때문이다.
 
-``` {r r-iter-update-error, eval=FALSE}
+
+```r
 x <- x + 1
 Error: object 'x' not found
 ```
 
 변수를 갱신하기 전에 간단한 변수 대입으로 통상 먼저 초기화(initialize)한다.
 
-``` {r r-iter-update-ok}
+
+```r
 x <- 0
 x <- x + 1
 ```
@@ -50,14 +51,29 @@ x <- x + 1
 R에서 반복의 한 형태가 `while`문이다.
 다음은 5 에서부터 거꾸로 세어서 마지막에 "Blastoff(발사)!"를 출력하는 간단한 프로그램이다.
 
-``` {r r-iter-while}
+
+```r
 n <- 5
 while(n > 0) {
   print(n)
   n <- n -1
 }
+```
 
+```
+## [1] 5
+## [1] 4
+## [1] 3
+## [1] 2
+## [1] 1
+```
+
+```r
 print("Blastoff(발사)!")
+```
+
+```
+## [1] "Blastoff(발사)!"
 ```
 
 마치 영어를 읽듯이 `while`을 읽어 내려갈 수 있다. 
@@ -99,7 +115,8 @@ print("Blastoff(발사)!")
 
 다음 루프는 명백하게 무한 루프(infinite loop)가 되는데 이유는 `while`문 논리 표현식이 단순히 논리 상수 참(TRUE)으로 되어 있기 때문이다. 
 
-``` {r r-iter-break, eval=FALSE}
+
+```r
 n <- 10
 
 while(TRUE) {
@@ -119,7 +136,8 @@ print('Done!')
 
 예를 들어, 사용자가 done을 입력하기 전까지 사용자로부터 입력값을 받는다고 가정해서 프로그램 코드를 다음과 같이 작성한다.
 
-``` {r r-iter-break-input, eval=FALSE}
+
+```r
 while(TRUE) {
   line <- readline(prompt = '> ')
   if(line == 'done') {
@@ -136,7 +154,8 @@ while(TRUE) {
 그렇지 않은 경우 프로그램은 사용자가 무엇을 입력하든 메아리처럼 입력한 것을 그대로 출력하고
 다시 루프 처음으로 되돌아 간다. 다음 예제로 실행한 결과가 있다.
 
-``` {r r-iter-break-input-run, eval=FALSE}
+
+```r
 > hello there
 hello there
 > finished
@@ -159,7 +178,8 @@ Error: object 'done' not found
 사용자가 "done"을 입력할 때까지 입력값을 그대로 복사하여 출력하는 루프 예제가 있다. 
 하지만 R 주석문처럼 해쉬(#)로 시작하는 줄은 출력하지 않느다.
 
-``` {r r-iter-break-input-next, eval=FALSE}
+
+```r
 while(TRUE) {
   line <- readline(prompt = '> ')
   if(substr(line,1,1) == "#") {
@@ -175,7 +195,8 @@ while(TRUE) {
 
 `next`문이 추가된 새로운 프로그램을 샘플로 실행했다.
 
-``` {r r-iter-break-input-next-run, eval=FALSE}
+
+```r
 > hello there
 [1] hello there
 > # don't print this
@@ -199,7 +220,8 @@ while(TRUE) {
 
 `for`문이 있고, 루프 몸통 부문으로 구성된다는 점에서 `for`루프 구문은 `while`루프 구문과 비슷하다.
 
-``` {r r-iter-for-loop, eval = FALSE}
+
+```r
 friends <- c('Joseph', 'Glenn', 'Sally')
 
 for(friend in friends) {
@@ -212,7 +234,8 @@ for(friend in friends) {
 R 용어로, 변수 `friends`는 3개의 문자열을 가지는 벡터이며,
 `for` 루프는 벡터내 원소를 하나씩 하나씩 찾아서 벡터에 있는 3개 문자열 각각에 대해 출력을 실행하여 다음 결과를 얻게 된다.
 
-``` {r r-iter-for-loop-run, eval = FALSE}
+
+```r
 Happy New Year: Joseph 
 Happy New Year: Glenn 
 Happy New Year: Sally 
@@ -224,7 +247,8 @@ Happy New Year: Sally
 
 `for` 루프를 살펴보면, `for`와 `in`은 R 예약어이고 `friend`와 `friends`는 변수이다.
 
-``` {r r-iter-for-loop-syntax, eval = FALSE}
+
+```r
 for(friend in friends) {
   cat('Happy New Year:', friend, "\n")
 }
@@ -252,13 +276,18 @@ for(friend in friends) {
 
 예를 들어, 벡터의 항목을 세기(counting) 위해서 다음과 같이 `for` 루프를 작성한다.
 
-``` {r r-iter-for-loop-count}
+
+```r
 count <- 0
 for(itervar in c(3, 41, 12, 9, 74, 15)){
   count <- count + 1
 }
 
 cat('Count: ', count)
+```
+
+```
+## Count:  6
 ```
 
 루프가 시작하기 전에 변수 `count`를 0 으로 설정하고, 숫자 목록을 훑어 갈 `for` 루프를 작성한다.
@@ -275,13 +304,18 @@ cat('Count: ', count)
 
 숫자 집합의 갯수를 세는 또 다른 비슷한 루프는 다음과 같다.
 
-``` {r r-iter-for-loop-sum}
+
+```r
 total <- 0
 for(itervar in c(3, 41, 12, 9, 74, 15)){
   total <- total + itervar
 }
 
 cat('Total: ', total)
+```
+
+```
+## Total:  154
 ```
 
 상기 루프에서, 반복 변수(iteration variable)가 사용되었다. 
@@ -303,7 +337,8 @@ cat('Total: ', total)
 
 리스트, 벡터나 열(sequence)에서 가장 큰 값을 찾기 위해서, 다음과 같이 루프를 작성한다.
 
-``` {r r-iter-for-loop-min-max, eval=FALSE}
+
+```r
 largest <- NA
 
 cat('Before:', largest, "\n")
@@ -319,7 +354,8 @@ for(itervar in c(3, 41, 12, 9, 74, 15)){
 
 프로그램을 실행하면, 출력은 다음과 같다.
 
-``` {r r-iter-for-loop-min-max-run, eval=FALSE}
+
+```r
 Loop: 3 3 
 Largest: 3 
 Loop: 41 41 
@@ -346,7 +382,8 @@ Largest: 74
 
 최소값을 계산하기 위해서는 코드가 매우 유사하지만 작은 변화가 있다.
 
-``` {r r-iter-for-loop-min, eval=FALSE}
+
+```r
 smallest <- NA
 
 cat('Before:', smallest, "\n")
@@ -367,7 +404,8 @@ for(itervar in c(3, 41, 12, 9, 74, 15)){
 
 다음은 R 내장 min() 함수의 간략 버전이다. `getAnywhere(min)`, `.Primitive("min")`을 입력해도 원소스코드를 볼 수는 없다. `names(methods:::.BasicFunsList)` 명령어를 통해 `.Primitive()` 함수를 파악할 수 있다.
 
-``` {r r-iter-for-min-function, eval=FALSE}
+
+```r
 min <- function(values) {
   smallest <- NA
   for(value in values){
@@ -421,7 +459,8 @@ min <- function(values) {
 만약 숫자가 아닌 다른 것을 입력하게되면, `tryCatch`를 사용하여 사용자 실수를 탐지해서
 오류 메시지를 출력하고 다음 숫자로 건너 뛰게 하세요.
 
-``` {r r-iter-ex01, eval=FALSE}
+
+```r
 Enter a number: 4
 Enter a number: 5
 Enter a number: bad data

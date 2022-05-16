@@ -4,15 +4,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>1 . 왜 프로그래밍을 배워야 하는가? | 데이터 과학 프로그래밍</title>
+<title>1 . 프로그래밍 학습 이유 | 데이터 과학 프로그래밍</title>
 <meta name="author" content="한국 알(R) 사용자회">
 <meta name="description" content="컴퓨터 프로그램을 만드는 행위(프로그래밍)는 매우 창의적이며 향후 뿌린 것 이상으로 얻을 것이 많다. 프로그램을 만드는 이유는 어려운 자료분석 문제를 해결하려는 것에서부터 다른사람의 문제를 해결해주는데 재미를 느끼는 것까지 다양한 이유가 있다. 이 책을 통해서 모든 사람이 어떻게 프로그램을 만드는지를 알고, 프로그램이 어떻게 만드는지를 알게 되면,...">
 <meta name="generator" content="bookdown 0.26 with bs4_book()">
-<meta property="og:title" content="1 . 왜 프로그래밍을 배워야 하는가? | 데이터 과학 프로그래밍">
+<meta property="og:title" content="1 . 프로그래밍 학습 이유 | 데이터 과학 프로그래밍">
 <meta property="og:type" content="book">
 <meta property="og:description" content="컴퓨터 프로그램을 만드는 행위(프로그래밍)는 매우 창의적이며 향후 뿌린 것 이상으로 얻을 것이 많다. 프로그램을 만드는 이유는 어려운 자료분석 문제를 해결하려는 것에서부터 다른사람의 문제를 해결해주는데 재미를 느끼는 것까지 다양한 이유가 있다. 이 책을 통해서 모든 사람이 어떻게 프로그램을 만드는지를 알고, 프로그램이 어떻게 만드는지를 알게 되면,...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="1 . 왜 프로그래밍을 배워야 하는가? | 데이터 과학 프로그래밍">
+<meta name="twitter:title" content="1 . 프로그래밍 학습 이유 | 데이터 과학 프로그래밍">
 <meta name="twitter:description" content="컴퓨터 프로그램을 만드는 행위(프로그래밍)는 매우 창의적이며 향후 뿌린 것 이상으로 얻을 것이 많다. 프로그램을 만드는 이유는 어려운 자료분석 문제를 해결하려는 것에서부터 다른사람의 문제를 해결해주는데 재미를 느끼는 것까지 다양한 이유가 있다. 이 책을 통해서 모든 사람이 어떻게 프로그램을 만드는지를 알고, 프로그램이 어떻게 만드는지를 알게 되면,...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -65,7 +65,14 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">기계와의 경쟁 1</a></li>
-<li><a class="active" href="r-intro.html"><span class="header-section-number">1</span> 왜 프로그래밍을 배워야 하는가?</a></li>
+<li><a class="active" href="r-intro.html"><span class="header-section-number">1</span> 프로그래밍 학습 이유</a></li>
+<li><a class="" href="r-var.html"><span class="header-section-number">2</span> 변수, 표현식, 문장</a></li>
+<li><a class="" href="r-cont.html"><span class="header-section-number">3</span> 조건부 실행</a></li>
+<li><a class="" href="r-func.html"><span class="header-section-number">4</span> 함수</a></li>
+<li><a class="" href="r-iter.html"><span class="header-section-number">5</span> 반복(Iteration)</a></li>
+<li><a class="" href="r-string.html"><span class="header-section-number">6</span> 문자열</a></li>
+<li><a class="" href="r-file.html"><span class="header-section-number">7</span> 파일</a></li>
+<li><a class="" href="r-list.html"><span class="header-section-number">8</span> 리스트 (List)</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -76,7 +83,7 @@
 </div>
   </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="r-intro" class="section level1" number="1">
 <h1>
-<span class="header-section-number">1 . </span> 왜 프로그래밍을 배워야 하는가?<a class="anchor" aria-label="anchor" href="#r-intro"><i class="fas fa-link"></i></a>
+<span class="header-section-number">1 . </span> 프로그래밍 학습 이유<a class="anchor" aria-label="anchor" href="#r-intro"><i class="fas fa-link"></i></a>
 </h1>
 <p>컴퓨터 프로그램을 만드는 행위(프로그래밍)는 매우 창의적이며 향후 뿌린 것 이상으로 얻을 것이 많다.
 프로그램을 만드는 이유는 어려운 자료분석 문제를 해결하려는 것에서부터 다른사람의 문제를 해결해주는데 재미를 느끼는 것까지 다양한 이유가 있다.
@@ -472,17 +479,8 @@ R 인터프리터를 호출해서 “hello.R” 파일로부터 소스코드를 
 바로 사용을 할 수 있도록 준비했기 때문에 여러분의 수고도 덜 수 있다.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># 0. 환경설정 ------</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></code></pre></div>
-<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
-<pre><code>## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
-## ✓ tibble  3.1.6     ✓ dplyr   1.0.8
-## ✓ tidyr   1.2.0     ✓ stringr 1.4.0
-## ✓ readr   2.1.2     ✓ forcats 0.5.1</code></pre>
-<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()</code></pre>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://stringr.tidyverse.org">stringr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://stringr.tidyverse.org">stringr</a></span><span class="op">)</span>
 
 <span class="va">text_dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span><span class="op">(</span><span class="st">"data/ch01-text.txt"</span><span class="op">)</span>
 <span class="va">split_word</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_split.html">str_split</a></span><span class="op">(</span><span class="va">text_dat</span>, <span class="st">" "</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="va">.</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>
@@ -501,20 +499,16 @@ R 인터프리터를 호출해서 “hello.R” 파일로부터 소스코드를 
 
 <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_cols</a></span><span class="op">(</span><span class="st">"word"</span> <span class="op">=</span> <span class="va">uniq_word</span>, <span class="st">"freq"</span><span class="op">=</span><span class="va">res_v</span><span class="op">)</span> <span class="op"><a href="https://stringr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">freq</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 11 × 2
-##    word   freq
-##    &lt;chr&gt; &lt;dbl&gt;
-##  1 the       7
-##  2 car       3
-##  3 and       3
-##  4 clown     2
-##  5 ran       2
-##  6 tent      2
-##  7 after     1
-##  8 into      1
-##  9 fell      1
-## 10 down      1
-## 11 on        1</code></pre>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+##   word   freq
+##   &lt;chr&gt; &lt;dbl&gt;
+## 1 the       7
+## 2 car       3
+## 3 and       3
+## 4 clown     2
+## 5 ran       2
+## 6 tent      2
+## # … with 5 more rows</code></pre>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># 검증 -----</span>
 
 <span class="va">text_v</span> <span class="op">&lt;-</span> <span class="st">"the clown ran after the car and the car ran into the tent and the tent fell down on the clown and the car"</span>
@@ -572,10 +566,10 @@ R 코드를 명확하게 작성해서 의사소통 해야 한다.
 <p>초보 R 프로그래머는 R이 오류에 대해서는 인정사정 보지 않는다고 생각한다.
 R이 모든 사람을 좋아하는 것 같지만, R은 개인적으로만 사람들을 알고, 분노를 간직하고 있다.
 이러한 사실로 인해서 R은 여러분이 완벽하게 작성된 프로그램을 받아서 “잘 맞지 않는군요”라고 거절하여 고통을 준다.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="r-intro.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">primt</span>(<span class="st">"안녕 세상!"</span>)</span>
-<span id="cb26-2"><a href="r-intro.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">primt</span>(<span class="st">"안녕 세상!"</span>)</span>
-<span id="cb26-3"><a href="r-intro.html#cb26-3" aria-hidden="true" tabindex="-1"></a>나는 R이 싫어<span class="sc">!</span></span>
-<span id="cb26-4"><a href="r-intro.html#cb26-4" aria-hidden="true" tabindex="-1"></a>밖으로 나오면, 가르쳐 줄께<span class="sc">!!!</span></span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="r-intro.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">primt</span>(<span class="st">"안녕 세상!"</span>)</span>
+<span id="cb22-2"><a href="r-intro.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">primt</span>(<span class="st">"안녕 세상!"</span>)</span>
+<span id="cb22-3"><a href="r-intro.html#cb22-3" aria-hidden="true" tabindex="-1"></a>나는 R이 싫어<span class="sc">!</span></span>
+<span id="cb22-4"><a href="r-intro.html#cb22-4" aria-hidden="true" tabindex="-1"></a>밖으로 나오면, 가르쳐 줄께<span class="sc">!!!</span></span></code></pre></div>
 <p>R과 다퉈봐야 얻을 것은 없어요.
 R은 도구고 감정이 없다.
 여러분이 필요로 할 때마다 여러분에게 봉사하고 기쁨을 주기 위해서 존재할 뿐이다.
@@ -715,8 +709,8 @@ R은 구문오류가 발생한 줄을 찾아 정확한 위치를 알려준다.
 <li>구문오류(“Syntax Error”)는 어떻게 고칩니까?</li>
 <li>다음 코드에서 잘못된 점을 설명하세요.</li>
 </ol>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="r-intro.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">primt</span>(<span class="st">"헬로 월드!"</span>)</span>
-<span id="cb27-2"><a href="r-intro.html#cb27-2" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">primt</span>(<span class="st">"헬로 월드!"</span>) <span class="sc">:</span> could not find <span class="cf">function</span> <span class="st">"primt"</span></span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="r-intro.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">primt</span>(<span class="st">"헬로 월드!"</span>)</span>
+<span id="cb23-2"><a href="r-intro.html#cb23-2" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">primt</span>(<span class="st">"헬로 월드!"</span>) <span class="sc">:</span> could not find <span class="cf">function</span> <span class="st">"primt"</span></span></code></pre></div>
 <ol start="9" style="list-style-type: decimal">
 <li>다음 프로그램에서 출력되는 것은 무엇입니까?
 <ol style="list-style-type: decimal">
@@ -727,7 +721,7 @@ R은 구문오류가 발생한 줄을 찾아 정확한 위치를 알려준다.
 </ol>
 </li>
 </ol>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">43</span>
 <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">+</span> <span class="fl">1</span>
 <span class="va">x</span></code></pre></div>
@@ -737,11 +731,11 @@ R은 구문오류가 발생한 줄을 찾아 정확한 위치를 알려준다.
 
   <div class="chapter-nav">
 <div class="prev"><a href="index.html">기계와의 경쟁 1</a></div>
-<div class="next"><a href="references.html">References</a></div>
+<div class="next"><a href="r-var.html"><span class="header-section-number">2</span> 변수, 표현식, 문장</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#r-intro"><span class="header-section-number">1</span> 왜 프로그래밍을 배워야 하는가?</a></li>
+<li><a class="nav-link" href="#r-intro"><span class="header-section-number">1</span> 프로그래밍 학습 이유</a></li>
 <li><a class="nav-link" href="#r-intro-motivation"><span class="header-section-number">1.1</span> 창의성과 동기</a></li>
 <li><a class="nav-link" href="#r-intro-hardware-architecture"><span class="header-section-number">1.2</span> 컴퓨터 하드웨어 아키텍처</a></li>
 <li><a class="nav-link" href="#r-intro-programming"><span class="header-section-number">1.3</span> 프로그래밍 이해하기</a></li>
@@ -779,6 +773,34 @@ R은 구문오류가 발생한 줄을 찾아 정확한 위치를 알려준다.
   </div>
 
 </div></div>
-</footer>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
 </body>
 </html>

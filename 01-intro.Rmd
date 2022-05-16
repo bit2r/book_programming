@@ -4,7 +4,11 @@ editor_options:
   chunk_output_type: console
 ---
 
-# 왜 프로그래밍을 배워야 하는가? {#r-intro}
+```{r setup, echo = FALSE, message = FALSE}
+source("_common.R")
+```
+
+# 프로그래밍 학습 이유 {#r-intro}
 
 컴퓨터 프로그램을 만드는 행위(프로그래밍)는 매우 창의적이며 향후 뿌린 것 이상으로 얻을 것이 많다. 
 프로그램을 만드는 이유는 어려운 자료분석 문제를 해결하려는 것에서부터 다른사람의 문제를 해결해주는데 재미를 느끼는 것까지 다양한 이유가 있다. 

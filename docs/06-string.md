@@ -5,9 +5,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-```{r setup, echo = FALSE, message = FALSE}
-source("_common.R")
-```
+
 
 # 문자열 {#r-string}
 
@@ -16,7 +14,8 @@ source("_common.R")
 문자열은 여러 문자들의 순열(sequence)이다. 
 꺾쇠 연산자로 한번에 하나씩 문자에 접근한다.
 
-``` {r r-string-seq}
+
+```r
 fruit <- 'banana'
 fruit_letter <- strsplit(fruit, "")
 
@@ -29,8 +28,13 @@ letter <- fruit_letter[[1]][1]
 
 하지만, 여러분이 기대한 것은 출력됨이 확인된다.
 
-``` {r r-string-seq-output}
+
+```r
 letter
+```
+
+```
+## [1] "b"
 ```
 
 파이썬 사용자에게 'banana'의 첫 분자는 a가 아니라 b다.
@@ -49,26 +53,41 @@ letter
 정수가 아닌 경우 다음과 같은 결과를 얻게 된다. 문제는 R에서 `1.5`를 내려서 `1`로 처리한다는 점이다.
 경우에 따라서는 반올림으로 판단해서 `2`가 될 수도 있어 오해의 소지가 있기 때문에 무조건 정수로 표현한다.
 
-``` {r r-string-integer}
+
+```r
 fruit_letter[[1]][1.5]
+```
+
+```
+## [1] "b"
 ```
 
 ## `length()` 함수 사용 문자열 길이 {#r-string-length}
 
 `length()` 함수는 문자열의 문자 갯수를 반환하는 내장함수다.
 
-``` {r r-string-length}
+
+```r
 fruit <- 'banana'
 fruit_letter <- strsplit(fruit, "")
 
 length(fruit_letter[[1]])
 ```
 
+```
+## [1] 6
+```
+
 문자열의 가장 마지막 문자를 얻기 위해서, 아래와 같이 시도하려 싶을 것이다.
 
-``` {r r-string-last}
+
+```r
 len <- length(fruit_letter[[1]])
 fruit_letter[[1]][len]
+```
+
+```
+## [1] "a"
 ```
 
 파이썬에서는 인덱스 오류 (IndexError)가 발생하는데 이유는 'banana' 에 6번 인텍스 문자가 없기 때문이다.
@@ -84,13 +103,23 @@ fruit_letter[[1]][len]
 이런 처리 패턴을 **순회법(traversal)**라고 한다.
 순회법을 작성하는 한 방법이 `while` 루프다.
 
-``` {r r-string-traversal}
+
+```r
 index <- 1
 while(index <= length(fruit_letter[[1]])){
   letter <- fruit_letter[[1]][index]
   print(letter)
   index <- index + 1
 }
+```
+
+```
+## [1] "b"
+## [1] "a"
+## [1] "n"
+## [1] "a"
+## [1] "n"
+## [1] "a"
 ```
 
 while 루프가 문자열을 운행하여 문자열을 한줄에 한 글자씩 화면에 출력한다.
@@ -105,10 +134,20 @@ R이 접근한 마지막 `length(fruit_letter[[1]])` 인텍스 문자로, 문자
 
 운행법을 작성하는 또 다른 방법은 `for` 루프다.
 
-``` {r r-string-banana-for}
+
+```r
 for(char in fruit_letter[[1]]) {
   print(char)
 }
+```
+
+```
+## [1] "b"
+## [1] "a"
+## [1] "n"
+## [1] "a"
+## [1] "n"
+## [1] "a"
 ```
 
 루프를 매번 반복할 때, 문자열 다음 문자가 변수 `char`에 대입된다. 
@@ -120,10 +159,22 @@ for(char in fruit_letter[[1]]) {
 문자열의 일부분을 **슬라이스(slice)**라고 한다. 
 문자열 슬라이스를 선택하는 것은 문자를 선택하는 것과 유사하다.
 
-``` {r r-string-slice}
+
+```r
 s <- strsplit('Monty Python', "")
 paste(s[[1]][1:5], collapse="")
+```
+
+```
+## [1] "Monty"
+```
+
+```r
 paste(s[[1]][7:12], collapse="")
+```
+
+```
+## [1] "Python"
 ```
 
 `[n:m]` 연산자는 `n`번째 문자부터 `m`번째 문자까지의 문자열 부분을 반환한다.
@@ -134,21 +185,44 @@ paste(s[[1]][7:12], collapse="")
 이와 동일한 역할을 수행하는 방법은 `head(fruit_letter[[1]], 3)`, `tail(fruit_letter[[1]], 3)`와 같이 
 `head()`, `tail()` 함수를 활용한다.
 
-``` {r r-string-slice-banana}
+
+```r
 fruit <- 'banana'
 fruit_letter <- strsplit(fruit, "")
 
 head(fruit_letter[[1]], 3)
+```
+
+```
+## [1] "b" "a" "n"
+```
+
+```r
 tail(fruit_letter[[1]], 3)
+```
+
+```
+## [1] "a" "n" "a"
 ```
 
 만약 첫번째 인텍스가 두번째보다 크거나 같은 경우 파이썬에는 결과가 인용부호로 표현되는 빈 문자열(empty string)이 된다.
 하지만, R에서는 해당 인덱스에 해당되는 문자가 추출된다.
 
-``` {r r-string-slice-}
-fruit_letter[[1]][3:3]
 
+```r
+fruit_letter[[1]][3:3]
+```
+
+```
+## [1] "n"
+```
+
+```r
 fruit_letter[[1]][2:1]
+```
+
+```
+## [1] "a" "b"
 ```
 
 빈 문자열은 어떤 문자도 포함하지 않아서 길이가 0 이 되지만, 이것을 제외하고 다른 문자열과 동일하다.
@@ -157,7 +231,8 @@ fruit_letter[[1]][2:1]
 
 다음 프로그램은 문자열에 문자 a가 나타나는 횟수를 계수(counting)한다.
 
-``` {r r-string-a-count}
+
+```r
 word <- strsplit('banana', "")
 count <- 0
 for(letter in word[[1]]) {
@@ -167,6 +242,10 @@ for(letter in word[[1]]) {
 }
 
 count
+```
+
+```
+## [1] 3
 ```
 
 상기 프로그램은 **계수기(counter)**라고 부르는 또다른 연산 패턴을 보여준다. 
@@ -181,9 +260,21 @@ count
 연산자 `in` 은 부울 연산자로 두 개의 문자열을 받아, 
 첫 번째 문자열이 두 번째 문자열의 일부이면 참(TRUE)을 반환한다.
 
-``` {r r-string-in-op}
+
+```r
 'a' %in% strsplit('banana', "")[[1]]
+```
+
+```
+## [1] TRUE
+```
+
+```r
 'c' %in% strsplit('banana', "")[[1]]
+```
+
+```
+## [1] FALSE
 ```
 
 ## 문자열 비교 {#r-string-comparison-operator}
@@ -191,7 +282,8 @@ count
 비교 연산자도 문자열에서 동작한다. 
 두 문자열이 같은지를 살펴보다.
 
-``` {r r-string-comparison}
+
+```r
 word <- 'banana'
 
 if(word == 'banana') {
@@ -199,10 +291,15 @@ if(word == 'banana') {
 }
 ```
 
+```
+## [1] "All right, bananas."
+```
+
 
 다른 비교 연산자는 단어를 알파벳 순서로 정렬하는데 유용하다.
 
-``` {r r-string-pineapple}
+
+```r
 word <- 'Pineapple'
 
 if(word < 'banana') {
@@ -212,6 +309,10 @@ if(word < 'banana') {
 } else {
   cat('All right, bananas.')
 }
+```
+
+```
+## Your word Pineapple  comes after banana.
 ```
 
 
@@ -230,11 +331,16 @@ R은 객체지향언어의 특성을 갖고 있지만 함수형 프로그래밍 
 
 예를 들어, `stringr` 팩키지 `str_to_upper()` 함수는 문자열을 받아 모두 대문자로 변환된 새로운 문자열을 반환한다.
 
-``` {r r-string-upper}
+
+```r
 library(stringr)
 word <- 'banana'
 new_word <- stringr::str_to_upper(word)
 new_word  
+```
+
+```
+## [1] "BANANA"
 ```
 
 동일한 작업을 함수형 패러다임으로 `str_to_upper(word)`와 같이 표현하는데 반해,
@@ -244,44 +350,85 @@ new_word
 예를 들어, 문자열안에 문자열의 위치를 찾는 `str_locate()`, `str_locate_all()`라는 문자열 함수가 있다.
 `str_locate()`는 매칭되는 첫번째만 반환하는 반면에 `str_locate_all()`는 매칭되는 전부를 반환하는 차이가 있다.
 
-``` {r r-string-locate}
+
+```r
 str_locate(word, 'a')
+```
+
+```
+##      start end
+## [1,]     2   2
 ```
 
 상기 예제에서, word 문자열에 `str_locate_all()` 함수를 호출하여 매개 변수로 찾고자 하는 문자를 넘긴다.
 
 `str_locate_all()` 함수로 문자뿐만 아니라 부속 문자열(substring)도 찾을 수 있다.
 
-``` {r r-string-locate-substring}
+
+```r
 str_locate_all(word, 'na')
+```
+
+```
+## [[1]]
+##      start end
+## [1,]     3   4
+## [2,]     5   6
 ```
 
 
 한 가지 자주 있는 작업은 `str_trim()` 함수를 사용해서 문자열 시작과 끝의 공백(공백 여러개, 탭, 새줄)을 제거하는 것이다.
 
-``` {r r-string-strip}
+
+```r
 line <- '     Here we go '
 str_trim(line)
 ```
 
+```
+## [1] "Here we go"
+```
+
 `str_detect()` 함수와 나중에 다룰 정규표현식을 섞어 표현하게 되면 참, 거짓 같은 부울 값(boolean value)을 반환한다. `'^Please'`에서 `^`은 문자열 시작을 지정한다.
 
-``` {r r-string-startwith}
+
+```r
 line <- 'Please have a nice day'
 str_detect(line, '^Please')
+```
+
+```
+## [1] TRUE
 ```
 
 
 대소문자를 구별하는 것을 요구하기 때문에 `str_to_lower()` 함수를 사용해서 검증을 수행하기 전에, 
 한 줄을 입력받아 모두 소문자로 변환하는 것이 필요하다.
 
-``` {r r-string-startwith-to-lower}
+
+```r
 line <- 'Please have a nice day'
 str_detect(line, '^p')
+```
 
+```
+## [1] FALSE
+```
+
+```r
 str_to_lower(line)
+```
 
+```
+## [1] "please have a nice day"
+```
+
+```r
 str_detect(str_to_lower(line), '^p')
+```
+
+```
+## [1] TRUE
 ```
 
 마지막 예제에서 문자열이 문자 "p"로 시작하는지를 검증하기 위해서, 
@@ -309,15 +456,40 @@ str_detect(str_to_lower(line), '^p')
 그리고, 골뱅이 기호 뒤 첫 공백 위치를 찾는다. 
 그리고 나서, 찾고자 하는 부속 문자열을 뽑아내기 위해서 문자열 슬라이싱을 사용한다.
 
-``` {r r-string-email-parsing}
+
+```r
 data <- 'From stephen.marquard@uct.ac.za Sat Jan 5 09:14:16 2008'
 atpos <- str_locate(data, '@')
 atpos
+```
 
+```
+##      start end
+## [1,]    22  22
+```
+
+```r
 sppos <- str_locate_all(data, ' ')
 sppos
+```
 
+```
+## [[1]]
+##      start end
+## [1,]     5   5
+## [2,]    32  32
+## [3,]    36  36
+## [4,]    40  40
+## [5,]    42  42
+## [6,]    51  51
+```
+
+```r
 str_sub(data, start=atpos[1,1]+1, end=sppos[[1]][2,2]-1)
+```
+
+```
+## [1] "uct.ac.za"
 ```
 
 `str_locate()` 함수를 사용해서 찾고자 하는 문자열의 시작 위치를 명세한다. 
@@ -336,21 +508,44 @@ str_sub(data, start=atpos[1,1]+1, end=sppos[[1]][2,2]-1)
 
 예를 들어, 형식 순서 '%d'의 의미는 두번째 피연산자가 정수 형식으로 표현됨을 뜻한다. (d는 "decimal"을 나타낸다.)
 
-``` {r r-string-format}
+
+```r
 camels <- 42
 sprintf('%d', camels)
+```
 
+```
+## [1] "42"
+```
+
+```r
 glue::glue("{camels}")
+```
+
+```
+## 42
 ```
 
 결과는 문자열 '42'로 정수 42와 혼동하면 안 된다.
 
 서식 순서는 문자열 어디에도 나타날 수 있어서 문장 중간에 값을 임베드(embed)할 수 있다.
 
-``` {r r-string-format-camels}
+
+```r
 camels <- 42
 sprintf('I have spotted %d camels.', camels)
+```
+
+```
+## [1] "I have spotted 42 camels."
+```
+
+```r
 glue::glue('I have spotted {camels} camels.')
+```
+
+```
+## I have spotted 42 camels.
 ```
 
 만약 문자열 서식 순서가 하나 이상이라면, 두번째 인자는 튜플(tuple)이 된다.
@@ -360,7 +555,8 @@ glue::glue('I have spotted {camels} camels.')
 문자열 형식을 표현하기 위해서 '%s'을 사용한 사례다. 
 여기서 왜 부동 소수점 형식이  '%f'대신에 '%g'인지는 질문하지 말아주세요.
 
-``` {r r-string-matching, eval=FALSE}
+
+```r
 > camels <- 42
 > glue('I have spotted {camels} camels.')
 I have spotted 42 camels.
@@ -386,7 +582,8 @@ Error in sprintf("I have spotted %d camels.", camels) :
 
 예를 들어 앞장의 반복 while 루프를 시연하기 위해 사용한 프로그램을 살펴봅시다.
 
-``` {r r-string-debug, eval=FALSE}
+
+```r
 while(TRUE) {
   line <- readline(prompt = '> ')
   if(substr(line,1,1) == "#") {
@@ -401,7 +598,8 @@ while(TRUE) {
 
 사용자가 입력값으로 빈 공백 줄을 입력하게 될 때 무엇이 발생하는지 살펴봅시다.
 
-``` {r r-string-run, eval=FALSE}
+
+```r
 > hello there
 [1] hello there
 > # don't print this

@@ -5,9 +5,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-```{r setup, echo = FALSE, message = FALSE}
-source("_common.R")
-```
+
 
 # 파일 {#r-file}
 
@@ -43,11 +41,23 @@ R을 시작한 동일한 폴더에 저장된 `mbox.txt` 파일을 연다.
 `download.file("http://www.py4inf.com/code/mbox.txt", destfile = "data/mbox.txt")` 명령어를 사용하여 
 코딩을 시작하는 디렉토리 아래 `data` 디렉토리를 만들고 동일한 `mbox.txt` 이름으로 저장한다.
 
-``` {r r-file-open}
+
+```r
 # download.file("http://www.py4inf.com/code/mbox.txt", destfile = "data/mbox.txt")
 
 fhand <- file("data/mbox.txt", open = "r")
 fhand
+```
+
+```
+## A connection with                           
+## description "data/mbox.txt"
+## class       "file"         
+## mode        "r"            
+## text        "text"         
+## opened      "opened"       
+## can read    "yes"          
+## can write   "no"
 ```
 
 `open`이 성공하면, 운영체제는 **파일 핸들(file handle)**을 반환한다.
@@ -60,7 +70,8 @@ fhand
 
 파일이 존재하지 않는다면, open은 역추적(traceback) 파일 열기 오류로 실패하고, 파일 콘텐츠에 접근할 핸들도 얻지 못한다.
 
-``` {r r-file-open-error, eval=FALSE}
+
+```r
 > fhand <- file("data/stuff.txt", "r")
 Error in file("data/stuff.txt", "r") : cannot open the connection
 In addition: Warning message:
@@ -73,12 +84,22 @@ In file("data/stuff.txt", "r") :
 최근에 사용자 중심으로 R에 다양한 기능이 추가되어 `tidyverse` 팩키지 일부를 구성하는 
 `readr` 팩키지의 `read_lines()` 함수를 통해 인터넷 웹사이트에서 바로 불러오는 것도 가능하다.
 
-``` {r r-file-open-tidyverse}
+
+```r
 # library(tidyverse)
 
 txt_file <- readr::read_lines("http://www.py4inf.com/code/mbox.txt")
 
 head(txt_file)
+```
+
+```
+## [1] "From stephen.marquard@uct.ac.za Sat Jan  5 09:14:16 2008"    
+## [2] "Return-Path: <postmaster@collab.sakaiproject.org>"           
+## [3] "Received: from murder (mail.umich.edu [141.211.14.90])"      
+## [4] "\t by frankenstein.mail.umich.edu (Cyrus v2.3.8) with LMTPA;"
+## [5] "\t Sat, 05 Jan 2008 09:14:16 -0500"                          
+## [6] "X-Sieve: CMU Sieve 2.3"
 ```
 
 
@@ -87,7 +108,8 @@ head(txt_file)
 R 문자열이 문자 순서(sequence)로 간주 되듯이 마찬가지로 텍스트 파일은 줄(라인, line) 순서(sequence)로 생각될 수 있다.
 예를 들어, 다음은 오픈 소스 프로젝트 개발 팀에서 다양한 참여자들의 전자우편 활동을 기록한 텍스트 파일 샘플이다.
 
-``` {r r-file-mbox-sample, eval=FALSE}
+
+```r
 From stephen.marquard@uct.ac.za Sat Jan  5 09:14:16 2008
 Return-Path: <postmaster@collab.sakaiproject.org>
 Date: Sat, 5 Jan 2008 09:12:18 -0500
@@ -111,18 +133,44 @@ R에서, 문자열 상수 역슬래쉬-n(\n)으로 새줄(newline) 문자를 표
 두 문자처럼 보이지만, 사실은 단일 문자다. 인터프리터에 "stuff"에 입력한 후 변수를 살펴보면, 문자열에 \n가 있다.
 하지만, `cat`문을 사용하여 문자열을 출력하면, 문자열이 새줄 문자에 의해서 두 줄로 쪼개지는 것을 볼 수 있다.
 
-``` {r r-file-newline}
+
+```r
 stuff <- 'Hello\nWorld!'
 stuff
-cat(stuff)
+```
 
+```
+## [1] "Hello\nWorld!"
+```
+
+```r
+cat(stuff)
+```
+
+```
+## Hello
+## World!
+```
+
+```r
 stuff <- 'X\nY'
 cat(stuff)
+```
 
+```
+## X
+## Y
+```
+
+```r
 str_length(stuff)
 ```
 
-문자열 'X\nY'의 길이는 `stringr::str_length("X\nY")` 명령어를 통해 확인이 가능한데 `r stringr::str_length("X\nY")` 이다. 왜냐하면 새줄(newline) 문자도 한 문자이기 때문이다.
+```
+## [1] 3
+```
+
+문자열 'X\nY'의 길이는 `stringr::str_length("X\nY")` 명령어를 통해 확인이 가능한데 3 이다. 왜냐하면 새줄(newline) 문자도 한 문자이기 때문이다.
 
 그래서, 파일 라인을 볼 때, 라인 끝을 표시하는 새줄(newline)로 불리는 눈에 보이지 않는 특수 문자가 각 줄의 끝에 있다고 상상할 필요가 있다.
 
@@ -134,7 +182,8 @@ str_length(stuff)
 파일 핸들(file handle)이 파일 자료를 담고 있지 않지만, 
 for 루프를 사용하여 파일 각 라인을 읽고 라인수를 세는 것을 쉽게 구축할 수 있다.
 
-``` {r r-file-open-count}
+
+```r
 fhand <- file('data/mbox.txt', open = "r")
 count <- 0
 for(line in readLines(fhand)) {
@@ -142,6 +191,13 @@ for(line in readLines(fhand)) {
 }
 
 cat('Line Count:', count, "\n")
+```
+
+```
+## Line Count: 132045
+```
+
+```r
 close(fhand)
 ```
 
@@ -165,14 +221,25 @@ close(fhand)
 만약 주기억장치 크기에 비해서 상대적으로 작은 크기의 파일이라는 것을 안다면, 
 전체 파일을 파일 핸들로 `readLines()` 함수를 사용해서 문자열로 읽어올 수 있다.
 
-``` {r r-file-input}
+
+```r
 fhand <- file("data/mbox-short.txt", open = "r")
 inp <- readChar(fhand, nchars=1e6)
 str_length(inp)
+```
 
+```
+## [1] 94626
+```
+
+```r
 close(fhand)
 
 str_sub(inp, 1, 20)
+```
+
+```
+## [1] "From stephen.marquar"
 ```
 
 
@@ -194,7 +261,8 @@ str_sub(inp, 1, 20)
 예를 들어, 파일을 읽고, "From:"으로 시작하는 라인만 출력하고자 한다면, 
 `stringr` 팩키지에 포함된 `str_detect()` 문자열 탐지 함수를 사용해서 원하는 접두사(From:)로 시작하는 라인만을 선택한다.
 
-``` {r r-file-print-from, eval = FALSE}
+
+```r
 fhand <- file('data/mbox-short.txt', open = "r")
 
 for(line in readLines(fhand)) {
@@ -206,7 +274,8 @@ for(line in readLines(fhand)) {
 
 이 프로그램이 실행하면 다음 출력값을 얻는다.
 
-``` {r r-file-print-from-output, eval = FALSE}
+
+```r
 [1] "From stephen.marquard@uct.ac.za Sat Jan  5 09:14:16 2008"
 [1] "From: stephen.marquard@uct.ac.za"
 [1] "From louis@media.berkeley.edu Fri Jan  4 18:10:48 2008"
@@ -224,7 +293,8 @@ for(line in readLines(fhand)) {
 
 다음과 같이 루프를 구성해서 흥미롭지 않은 라인은 건떠뛰는 패턴을 따르게 한다.
 
-``` {r r-file-print-from-skip, eval = FALSE}
+
+```r
 fhand <- file('data/mbox-short.txt', open = "r")
 
 for(line in readLines(fhand)) {
@@ -243,7 +313,8 @@ for(line in readLines(fhand)) {
 `str_detect()` 문자열 함수는 다른 문자열 내부에 검색하는 문자열이 있는지 찾고, 존재하는 경우 참(TRUE) 만약 문자열이 없다면 거짓(FALSE)을 반환하기 때문에,
 "@uct.ac.za"(남아프리카 케이프 타운 대학으로부터 왔다) 문자열을 포함하는 라인을 검색하기 위해 다음과 같이 루프를 작성한다.
 
-``` {r r-file-find-email, eval = FALSE}
+
+```r
 fhand <- file('data/mbox-short.txt', open = "r")
 
 for(line in readLines(fhand)) {
@@ -256,7 +327,8 @@ for(line in readLines(fhand)) {
 
 출력결과는 다음과 같다.
 
-``` {r r-file-find-email-output, eval = FALSE}
+
+```r
 [1] "From stephen.marquard@uct.ac.za Sat Jan  5 09:14:16 2008"
 [1] "X-Authentication-Warning: nakamura.uits.iupui.edu: apache set sender to stephen.marquard@uct.ac.za using -f"
 [1] "From: stephen.marquard@uct.ac.za"
@@ -283,7 +355,8 @@ for(line in readLines(fhand)) {
 
 [^xwMOOC-rscript]: [.R 스크립트를 인자와 함께 실행](http://statkclee.github.io/parallel-r/r-parallel-rscript-args.html)
 
-``` {r r-file-user-input, eval = FALSE}
+
+```r
 #!/usr/bin/env Rscript
 library(stringr)
 
@@ -306,7 +379,8 @@ cat('There were', count, 'subject lines in', fname)
 이제 다른 파일에 대해서도 반복적으로 프로그램을 실행할 수 있다.
 RStudio `Terminal` (`Console` 패널 아님)을 열고 다음과 같이 인자를 넘겨 실행하면 된다.
 
-``` {r r-file-user-input-res, eval = FALSE}
+
+```r
 D:\docs\r4inf\code>Rscript file-user-input.R "data/mbox-short.txt"
 There were 27 subject lines in ../data/mbox-short.txt
 ```
@@ -322,7 +396,8 @@ There were 27 subject lines in ../data/mbox-short.txt
 제가 여러분에게 엿보지 말라고 말씀드렸습니다. 이번이 마지막 기회입니다.
 사용자가 파일명이 아닌 뭔가 다른 것을 입력하면 어떻게 될까요?
 
-``` {r r-file-user-wrong-input, eval = FALSE}
+
+```r
 D:\docs\r4inf\code>Rscript file-user-input.R "data/missing.txt"
 Error in file(fname, open = "r") :
 : ():
@@ -334,7 +409,6 @@ Error in file(fname, open = "r") :
 : ():
 In file(fname, open = "r") :
    'na na boo boo'  : No such file or directory
-
 ```
 
 웃지마시구요, 사용자는 결국 여러분이 작성한 프로그램을 망가뜨리기 위해 고의든 악의를 가지든 가능한 모든 수단을 강구할 것입니다.
@@ -348,7 +422,8 @@ In file(fname, open = "r") :
 프로그램 오류를 찾았기 때문에, `tryCatch` 구조를 사용해서 오류를 우아하게 고쳐봅시다.
 파일 열기 `file()` 호출이 잘못될 수 있다고 가정하고, `file()` 호출이 실패할 때를 대비해서 다음과 같이 복구 코드를 추가한다.
 
-``` {r r-file-user-wrong-input-try, eval = FALSE}
+
+```r
 #!/usr/bin/env Rscript
 library(stringr)
 
@@ -373,7 +448,8 @@ cat('There were', count, 'subject lines in', fname)
 이제 사용자 혹은 품질 보증 조직에서 올바르지 않거나 어처구니 없는 파일명을 입력했을 때, 
 버그를 "tryCatch()" 함수로 잡아서 우아하게 복구한다.
 
-``` {r r-file-user-wrong-input-try-output, eval = FALSE}
+
+```r
 D:\docs\r4inf\code> Rscript file-user-input-try.R "na na boo boo"
 [1] "ERROR:  Error in file(fname, open = \"r\"):    \n"
 ():
@@ -404,7 +480,8 @@ R에 좀더 자신감이 생기게 되면, 다른 R 프로그래머와 동일한
 
 파일에 쓰기 위해서는 두 번째 매개 변수로 'w' 모드로 파일을 열어야 한다.
 
-``` {r r-file-write, eval = FALSE}
+
+```r
 fhand <- file("data/output.txt", open = "w")
 fhand
 ```
@@ -416,7 +493,8 @@ fhand
 
 파일 핸들 객체의 `writeLines()` 함수는 데이터를 파일에 저장한다.
 
-``` {r r-file-write-once, eval = FALSE}
+
+```r
 writeLines("This here's the wattle,", fhand)
 ```
 
@@ -427,7 +505,8 @@ writeLines("This here's the wattle,", fhand)
 
 `print`문이 자동적으로 새줄(newline)을 추가하듯이 `writeLines()` 함수도 자동적으로 새줄(newline)을 추가한다.
 
-``` {r r-file-write-twice, eval = FALSE}
+
+```r
 writeLines("the emblem of our land.'", fhand)
 ```
 
@@ -435,7 +514,8 @@ writeLines("the emblem of our land.'", fhand)
 파일을 닫는 것은 데이터 마지막 비트까지 디스크에 물리적으로 쓰여져서, 
 전원이 나가더라도 자료가 유실되지 않는 역할을 한다.
 
-``` {r r-file-write-close, eval = FALSE}
+
+```r
 close(fhand)
 ```
 
@@ -445,7 +525,8 @@ close(fhand)
 
 파일에 두 문장을 써 넣은 결과는 다음과 같다.
 
-``` {r r-file-write-output, eval = FALSE}
+
+```r
 D:\docs\r4inf> cat data/output.txt
 This here's the wattle,
 the emblem of our land.
@@ -457,9 +538,15 @@ the emblem of our land.
 파일을 읽고 쓸 때, 공백 때문에 종종 문제에 봉착한다.
 이런 종류의 오류는 공백, 탭, 새줄(newline)이 눈에 보이지 않기 때문에 디버그하기도 쉽지 않다.
 
-``` {r r-file-debug}
+
+```r
 s <- '1 2\t 3\n 4'
 cat(s)
+```
+
+```
+## 1 2	 3
+##  4
 ```
 
 우선 RStudio IDE의 상단 메뉴에서 Tools -> Global Options -> Code -> Display -> "Show whitespace characters" 를 통해 
@@ -491,7 +578,8 @@ cat(s)
 1. 파일을 읽고 한줄씩 파일의 내용을 모두 대문자로 출력하는 프로그램을 작성하세요.
 프로그램을 실행하면 다음과 같이 보일 것입니다.
 
-``` {r r-file-ex01, eval=FALSE}
+
+```r
 $ Rscript shout.R "mbox-short.txt"
 
 FROM STEPHEN.MARQUARD@UCT.AC.ZA SAT JAN 5 09:14:16 2008
@@ -513,7 +601,8 @@ SAT, 05 JAN 2008 09:14:16 -0500
 라인 수를 세고, 라인으로부터 스팸 신뢰값의 총계를 계산하세요. 
 파일의 끝에 도달할 했을 때, 평균 스팸 신뢰도를 출력하세요.
 
-``` {r r-file-ex02, eval=FALSE}
+
+```r
 $ Rscript calc.R "mbox-short.txt"
 Average spam confidence: 0.750718518519
 
@@ -530,7 +619,8 @@ Average spam confidence: 0.894128046745
 파일이 존재하거나, 존재하지 않는 다른 모든 파일에 대해서도 정상적으로 작동해야 합니다. 
 여기 프로그램을 실행한 견본이 있습니다.
 
-``` {r r-file-ex03, eval=FALSE}
+
+```r
 $ Rscript egg.R "mbox.txt"
 There were 1797 subject lines in mbox.txt
 

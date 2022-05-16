@@ -12,9 +12,15 @@ new_session: yes
 rmd_files: [
   "index.Rmd",
 
-  # 자바 챕터
+  # 프로그래밍
   "01-intro.Rmd",
-
+  "02-var.Rmd",
+  "03-cont.Rmd",
+  "04-func.Rmd",
+  "05-loop.Rmd",
+  "06-string.Rmd",
+  "07-file.Rmd",
+  "08-list.Rmd",
 
   # 참고문헌
   "references.Rmd"

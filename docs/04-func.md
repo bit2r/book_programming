@@ -5,9 +5,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-```{r setup, echo = FALSE, message = FALSE}
-source("_common.R")
-```
+
 
 
 # 함수 {#r-func}
@@ -20,8 +18,13 @@ source("_common.R")
 나중에, 함수를 이름으로 "호출(call)"한다.
 이미 **함수 호출(function call)**의 예제를 살펴봤다.
 
-```{r r-func-call}
+
+```r
 typeof(32)
+```
+
+```
+## [1] "double"
 ```
 
 함수명은 `typeof()`이다. 
@@ -39,10 +42,21 @@ typeof(32)
 
 `max`와 `min` 함수는 벡터 최소값과 최대값을 각각 계산해서 출력한다.
 
-```{r r-func-min-max}
-max(c(1,2,3,4,5))
 
+```r
+max(c(1,2,3,4,5))
+```
+
+```
+## [1] 5
+```
+
+```r
 min(c(1,2,3,4,5))
+```
+
+```
+## [1] 1
 ```
 
 
@@ -52,8 +66,13 @@ min 함수는 "가장 작은 값"를, 상기 예제에서는 "1"을 출력한다
 매우 자주 사용되는 또 다른 내장 함수는 얼마나 많은 항목이 있는지 출력하는 `length()` 함수가 있다.
 만약 `length()` 함수의 인수가 벡터이면 벡터에 있는 원소 갯수를 반환한다.
 
-```{r r-func-length}
+
+```r
 length(c(1,2,3,4,5))
+```
+
+```
+## [1] 5
 ```
 
 
@@ -68,7 +87,8 @@ length(c(1,2,3,4,5))
 이런 자료형(type)에서 저런 자료형(type)으로 값을 변환하는 내장 함수가 R에는 있다.
 `as.integer()`함수는 임의의 값을 입력받아 변환이 가능하면 정수형으로 변환하고, 그렇지 않으면 오류가 발생한다.
 
-``` {r r-func-integer, eval = FALSE}
+
+```r
 as.integer("32")
 [1] 32
 as.integer("Hello")
@@ -80,39 +100,85 @@ NAs introduced by coercion
 
 `as.integer()`는 부동 소수점 값을 정수로 변환할 수 있지만 소수점 이하를 절사한다.
 
-```{r r-func-integer-conversion}
-as.integer("3.99999")
 
+```r
+as.integer("3.99999")
+```
+
+```
+## [1] 3
+```
+
+```r
 as.integer("-2.3")  
+```
+
+```
+## [1] -2
 ```
 
 
 `as.numeric()`는 정수와 문자열을 부동 소수점으로 변환한다.
 
-```{r r-func-float}
-as.numeric(32)
 
+```r
+as.numeric(32)
+```
+
+```
+## [1] 32
+```
+
+```r
 as.numeric('3.14159')
+```
+
+```
+## [1] 3.14
 ```
 
 
 `as.characer()`은 인자를 문자열로 변환한다.
 
 
-```{r r-func-character}
-as.character(32)
 
+```r
+as.character(32)
+```
+
+```
+## [1] "32"
+```
+
+```r
 as.character(3.14159)
+```
+
+```
+## [1] "3.14159"
 ```
 
 파이썬을 비롯한 다른 언어에서 다뤄지지 않는 자료형이 **요인(factor)** 이다. 범주형 자료구조를 표현하는 일반적인 자료형으로 데이터 분석 및 모형 개발에 빈번하게 사용된다.
 
 `as.factor()`은 인자를 요인형으로 변환한다.
 
-```{r r-func-factor}
-as.factor(c(0, 1))
 
+```r
+as.factor(c(0, 1))
+```
+
+```
+## [1] 0 1
+## Levels: 0 1
+```
+
+```r
 as.factor(c("male", "female"))
+```
+
+```
+## [1] male   female
+## Levels: female male
 ```
 
 
@@ -138,10 +204,24 @@ R은 데이터분석을 위해 태어난 언어라고 할 만큼 기본 내장�
 매번 `runif()` 함수를 호출할 때 마다, 이미 생성된 아주 긴 난수열에서 하나씩 하나씩 뽑아 쓰다. 
 사례로 다음 반복문을 실행하자.
 
-```{r r-func-random-number}
+
+```r
 for(i in 1:10) {
   cat(runif(1),"\n")
 }
+```
+
+```
+## 0.688 
+## 0.633 
+## 0.341 
+## 0.411 
+## 0.176 
+## 0.829 
+## 0.235 
+## 0.142 
+## 0.766 
+## 0.908
 ```
 
 상기 프로그램은 0.0 에서 1.0 구간에서 10개 난수 리스트를 생성한다.
@@ -155,8 +235,13 @@ for(i in 1:10) {
 `sample()` 함수는 정수 난수 범위와 난수 갯수를 매개 변수를 입력받아 
 최저값(low)과 최고값(high) 사이 (최저값과, 최저값 모두 포함) 정수를 반환한다.
 
-```{r r-func-integer-random}
+
+```r
 sample(1:10, 5)
+```
+
+```
+## [1] 10  4  5  8  3
 ```
 
 `sample(1:10, 5)` 실행문은 1 ~ 10 사이 정수 10개 중에서 난수로 5개를 추출한다는 뜻이다.
@@ -164,10 +249,22 @@ sample(1:10, 5)
 
 무작위로 특정 열에서 하나의 요소를 뽑아내기 위해, `sample()`를 동일하게 사용한다.
 
-```{r r-func-random-choice}
+
+```r
 t <- c(1,2,3,4,5)
 sample(t, 1)
+```
+
+```
+## [1] 5
+```
+
+```r
 sample(t, 1)
+```
+
+```
+## [1] 5
 ```
 
 
@@ -181,7 +278,8 @@ R은 가장 친숙한 수학 함수를 제공하는 수학 모듈이 있다.
 
 **점 표기법(dot notation)**이라고 불리는 표기법을 사용해서, 함수 중에서 한 함수에 접근하기 위해서 모듈/객체 이름과 함수 이름을 명시해서 파이썬에서 활용하기도 하지만, R에서는 필요없다.
 
-```{r}
+
+```r
 signal_power <- 9
 noise_power <- 10
 ratio <- signal_power / noise_power
@@ -199,10 +297,15 @@ height <- sin(radians)
 변수의 이름이 힌트를 주는데, `sin()`과 다른 삼각함수(`cos()`, `tan()` 등)는 라디안을 인자로 받는다.
 도(degree)에서 라디안(radian)으로 변환하기 위해서 360으로 나누고 $2\pi$를 곱한다.
 
-```{r r-func-radian-conversion}
+
+```r
 degrees <- 45
 radians <- degrees / 360.0 * 2 * pi
 sin(radians)
+```
+
+```
+## [1] 0.707
 ```
 
 
@@ -211,8 +314,13 @@ sin(radians)
 
 삼각함수를 배웠다면, 앞선 연산 결과를 2에 루트를 씌우고 2로 나누어 비교 검증한다.
 
-```{r r-func-sqrt}
+
+```r
 sqrt(2) / 2
+```
+
+```
+## [1] 0.707
 ```
 
 
@@ -225,7 +333,8 @@ sqrt(2) / 2
 
 다음에 예제가 있다.
 
-```{r r-func-new-func}
+
+```r
 print_lyrics <- function() {
   print("I'm a lumberjack, and I'm okay.")
   print("I sleep all night and I work all day.")
@@ -259,9 +368,22 @@ print_lyrics <- function() {
 함수 정의를 끝내기 위해서 빈 줄을 입력한다. (스크립트에서는 반듯이 필요한 것은 아니다.) 
 함수를 정의하게 되면 동일한 이름의 변수도 생성된다.
 
-```{r r-func-class-print}
+
+```r
 print_lyrics()
+```
+
+```
+## [1] "I'm a lumberjack, and I'm okay."
+## [1] "I sleep all night and I work all day."
+```
+
+```r
 class(print_lyrics)
+```
+
+```
+## [1] "function"
 ```
 
 
@@ -269,14 +391,21 @@ class(print_lyrics)
 
 신규 함수를 호출하는 구문은 내장 함수의 경우와 동일하다.
 
-```{r r-func-run}
+
+```r
 print_lyrics()
+```
+
+```
+## [1] "I'm a lumberjack, and I'm okay."
+## [1] "I sleep all night and I work all day."
 ```
 
 함수를 정의하면, 또 다른 함수 내부에서 사용이 가능하다.
 예를 들어, 이전 후렴구를 반복하기 위해 `repeat_lyrics()` 함수를 작성할 수 있다.
 
-```{r r-func-repeat-func}
+
+```r
 repeat_lyrics <- function() {
   print_lyrics()
   print_lyrics()
@@ -285,8 +414,16 @@ repeat_lyrics <- function() {
 
 그리고 나서, `repeat_lyrics()` 함수를 호출한다.
 
-```{r r-func-repeat-func-run}
+
+```r
 repeat_lyrics()
+```
+
+```
+## [1] "I'm a lumberjack, and I'm okay."
+## [1] "I sleep all night and I work all day."
+## [1] "I'm a lumberjack, and I'm okay."
+## [1] "I sleep all night and I work all day."
 ```
 
 
@@ -297,7 +434,8 @@ repeat_lyrics()
 
 앞 절의 코드 조각을 모아서 작성한 전체 프로그램은 다음과 같다.
 
-```{r r-func-program, eval=FALSE}
+
+```r
 print_lyrics <- function() {
   print("I'm a lumberjack, and I'm okay.")
   print("I sleep all night and I work all day.")
@@ -364,7 +502,8 @@ repeat_lyrics()
 하나의 인자를 받는 **사용자 정의 함수(user-defined function)**가 예제로 있다.
 
 
-```{r r-func-argument}
+
+```r
 print_twice <- function(bruce){
   cat(bruce, "\n")
   cat(bruce, "\n")
@@ -377,18 +516,54 @@ print_twice <- function(bruce){
 
 사용자 정의 함수는 출력 가능한 임의의 값에 작동한다.
 
-```{r r-func-argument-run}
+
+```r
 print_twice('Spam')
+```
+
+```
+## Spam 
+## Spam
+```
+
+```r
 print_twice(17)
+```
+
+```
+## 17 
+## 17
+```
+
+```r
 print_twice(pi)
+```
+
+```
+## 3.14 
+## 3.14
 ```
 
 내장함수에 적용되는 동일한 구성 규칙이 사용자 정의 함수에도 적용되어서, `print_twice()` 함수 인자로 표현식 어떤 종류도 가능하다. 
 
 
-```{r r-func-argument-run-ex}
+
+```r
 print_twice(rep("spam",2))
+```
+
+```
+## spam spam 
+## spam spam
+```
+
+```r
 print_twice(cos(pi))
+```
+
+```
+## -1 
+## -1
 ```
 
 함수가 호출되기 전에 인자에 대한 평가는 완료되어, 
@@ -396,9 +571,15 @@ print_twice(cos(pi))
 
 변수도 인자로 사용이 가능하다.
 
-```{r r-func-argument-variable}
+
+```r
 michael <- "Eric, the half a bee."
 print_twice(michael)
+```
+
+```
+## Eric, the half a bee. 
+## Eric, the half a bee.
 ```
 
 
@@ -416,15 +597,21 @@ print_twice(michael)
 결과있는 함수를 호출할 때는 결과값을 가지고 뭔가를 하려고 한다. 
 예를 들어, 결과값을 변수에 대입하거나, 표현식의 일부로 사용할 수 있다.
 
-```{r r-func-fruitful, eval=FALSE}
+
+```r
 x <- cos(radians)
 golden <- (sqrt(5) + 1) / 2
 ```
 
 인터랙티브 모드에서 함수를 호출할 때, R은 결과를 화면에 출력한다.
 
-```{r r-func-interactive}
+
+```r
 sqrt(5)
+```
+
+```
+## [1] 2.24
 ```
 
 하지만, 스크립트에서 결과있는 함수를 호출하고 변수에 결과값을 저장하지 않으면 반환되는 결과값은 안개속에 사라져간다!
@@ -434,7 +621,8 @@ sqrt(5)
 빈 함수(Void functions)는 화면에 출력하거나 무엇인가 다른 효과를 가지지만, 반환값이 없다.
 빈 함수를 사용하여 결과에 변수를 대입하면, `NULL`로 불리는 특별한 값을 얻게 된다.
 
-```{r r-func-null, eval=FALSE}
+
+```r
 result <- print_twice('Bing')
 Bing
 Bing
@@ -449,7 +637,8 @@ NULL
 함수에서 결과를 반환하기 위해서, 함수 내부에 `return()`문을 사용한다.
 예를 들어, 두 숫자를 더해서 결과를 반환하는 `addtwo()`라는 간단한 함수를 작성할 수 있다. 
 
-```{r r-func-return}
+
+```r
 addtwo <- function(a, b){
   added <- a + b
   return(added)
@@ -457,6 +646,10 @@ addtwo <- function(a, b){
 
 x <- addtwo(3, 5)
 cat(x)
+```
+
+```
+## 8
 ```
 
 
@@ -541,7 +734,8 @@ hello를 보지 못한다면, 작성하고 있는 프로그램과 실행하고 �
 
 2. 다음 R 프로그램은 무엇을 출력할까요?
 
-```{r r-func-ex2, eval=FALSE}
+
+```r
 fred <- function(){
   print("Zap")
 }
@@ -566,7 +760,8 @@ e) Zap Zap Zap
 3. 프로그램 작성 시 (`hours`와 `rate`)을 매개 변수로 갖는 함수 `computepay()`을 생성하여,
 초과근무에 대해서는 50％ 초과 근무수당을 지급하는 봉급 계산 프로그램을 다시 작성하세요.
 
-``` {r r-func-ex03, eval=FALSE}
+
+```r
 시간을 입력하시오: 45
 시급을 입력하시오: 10
 시급: 475
@@ -576,7 +771,8 @@ e) Zap Zap Zap
 4. 매개 변수로 점수를 받아 문자열로 등급을 반환하는 `computegrade()` 함수를 사용하여
 앞장의 등급 프로그램을 다시 작성하세요.
 
-``` {r r-cont-ex04, eval=FALSE}
+
+```r
 점수    등급
 >= 0.9   A
 >= 0.8   B
