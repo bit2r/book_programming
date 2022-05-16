@@ -1,1 +1,14 @@
-들어가며
+r-intro
+r-intro-motivation
+r-intro-hardware-architecture
+r-intro-programming
+r-intro-word-sentence
+r-intro-conversation
+r-intro-interpreter
+r-intro-write-program
+r-intro-what-is-a-program
+r-intro-program-component
+r-intro-bug
+r-intro-journey
+r-intro-terminology
+r-intro-exercise

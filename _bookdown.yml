@@ -12,6 +12,9 @@ new_session: yes
 rmd_files: [
   "index.Rmd",
 
+  # 자바 챕터
+  "01-intro.Rmd",
+
 
   # 참고문헌
   "references.Rmd"
