@@ -24,7 +24,7 @@ rmd_files: [
   "06-string.Rmd",
   "07-file.Rmd",
   "08-list.Rmd",
-  # "09-dictionaries.Rmd",
+  "09-dictionaries.Rmd",
 
   # 참고문헌
   "references.Rmd"

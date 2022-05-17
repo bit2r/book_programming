@@ -117,3 +117,12 @@ r-list-aliasing
 r-list-debug
 r-list-terminology
 r-list-ex
+named-list
+연습문제
+named-list-wordlist
+named-list-file
+named-list-loop
+고급-텍스트-파싱named-list-advanced
+디버깅-r-dicionaries-debugging
+r-dictionaries-terminology
+r-dictionaries-ex
