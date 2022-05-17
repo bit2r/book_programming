@@ -12,8 +12,11 @@ new_session: yes
 rmd_files: [
   "index.Rmd",
 
-  # 프로그래밍
+  # 들어가며
+  "00-why.Rmd",
   "01-intro.Rmd",
+
+  # 프로그래밍
   "02-var.Rmd",
   "03-cont.Rmd",
   "04-func.Rmd",
@@ -21,6 +24,7 @@ rmd_files: [
   "06-string.Rmd",
   "07-file.Rmd",
   "08-list.Rmd",
+  # "09-dictionaries.Rmd",
 
   # 참고문헌
   "references.Rmd"

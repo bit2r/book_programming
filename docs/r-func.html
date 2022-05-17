@@ -4,16 +4,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>4 . 함수 | 데이터 과학 프로그래밍</title>
+<title>5 . 함수 | 데이터 과학 프로그래밍</title>
 <meta name="author" content="한국 알(R) 사용자회">
-<meta name="description" content='4.1 함수 호출 프로그래밍 문맥에서, 함수(function)는 연산을 수행하는 명명된 일련의 문장이다. 함수를 정의할 때, 이름과 일련의 문장을 명기한다. 나중에, 함수를 이름으로 “호출(call)”한다. 이미 함수 호출(function call)의 예제를 살펴봤다. typeof(32) ## [1] "double" 함수명은 typeof()이다....'>
+<meta name="description" content='5.1 함수 호출 프로그래밍 문맥에서, 함수(function)는 연산을 수행하는 명명된 일련의 문장이다. 함수를 정의할 때, 이름과 일련의 문장을 명기한다. 나중에, 함수를 이름으로 “호출(call)”한다. 이미 함수 호출(function call)의 예제를 살펴봤다. typeof(32) ## [1] "double" 함수명은 typeof()이다....'>
 <meta name="generator" content="bookdown 0.26 with bs4_book()">
-<meta property="og:title" content="4 . 함수 | 데이터 과학 프로그래밍">
+<meta property="og:title" content="5 . 함수 | 데이터 과학 프로그래밍">
 <meta property="og:type" content="book">
-<meta property="og:description" content='4.1 함수 호출 프로그래밍 문맥에서, 함수(function)는 연산을 수행하는 명명된 일련의 문장이다. 함수를 정의할 때, 이름과 일련의 문장을 명기한다. 나중에, 함수를 이름으로 “호출(call)”한다. 이미 함수 호출(function call)의 예제를 살펴봤다. typeof(32) ## [1] "double" 함수명은 typeof()이다....'>
+<meta property="og:description" content='5.1 함수 호출 프로그래밍 문맥에서, 함수(function)는 연산을 수행하는 명명된 일련의 문장이다. 함수를 정의할 때, 이름과 일련의 문장을 명기한다. 나중에, 함수를 이름으로 “호출(call)”한다. 이미 함수 호출(function call)의 예제를 살펴봤다. typeof(32) ## [1] "double" 함수명은 typeof()이다....'>
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="4 . 함수 | 데이터 과학 프로그래밍">
-<meta name="twitter:description" content='4.1 함수 호출 프로그래밍 문맥에서, 함수(function)는 연산을 수행하는 명명된 일련의 문장이다. 함수를 정의할 때, 이름과 일련의 문장을 명기한다. 나중에, 함수를 이름으로 “호출(call)”한다. 이미 함수 호출(function call)의 예제를 살펴봤다. typeof(32) ## [1] "double" 함수명은 typeof()이다....'>
+<meta name="twitter:title" content="5 . 함수 | 데이터 과학 프로그래밍">
+<meta name="twitter:description" content='5.1 함수 호출 프로그래밍 문맥에서, 함수(function)는 연산을 수행하는 명명된 일련의 문장이다. 함수를 정의할 때, 이름과 일련의 문장을 명기한다. 나중에, 함수를 이름으로 “호출(call)”한다. 이미 함수 호출(function call)의 예제를 살펴봤다. typeof(32) ## [1] "double" 함수명은 typeof()이다....'>
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -65,14 +65,18 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">기계와의 경쟁 1</a></li>
-<li><a class="" href="r-intro.html"><span class="header-section-number">1</span> 프로그래밍 학습 이유</a></li>
-<li><a class="" href="r-var.html"><span class="header-section-number">2</span> 변수, 표현식, 문장</a></li>
-<li><a class="" href="r-cont.html"><span class="header-section-number">3</span> 조건부 실행</a></li>
-<li><a class="active" href="r-func.html"><span class="header-section-number">4</span> 함수</a></li>
-<li><a class="" href="r-iter.html"><span class="header-section-number">5</span> 반복(Iteration)</a></li>
-<li><a class="" href="r-string.html"><span class="header-section-number">6</span> 문자열</a></li>
-<li><a class="" href="r-file.html"><span class="header-section-number">7</span> 파일</a></li>
-<li><a class="" href="r-list.html"><span class="header-section-number">8</span> 리스트 (List)</a></li>
+<li class="book-part">들어가며</li>
+<li><a class="" href="r-vs-python.html"><span class="header-section-number">1</span> R vs 파이썬</a></li>
+<li><a class="" href="r-intro.html"><span class="header-section-number">2</span> 프로그래밍 학습 이유</a></li>
+<li class="book-part">프로그래밍</li>
+<li><a class="" href="r-var.html"><span class="header-section-number">3</span> 변수, 표현식, 문장</a></li>
+<li><a class="" href="r-cont.html"><span class="header-section-number">4</span> 조건부 실행</a></li>
+<li><a class="active" href="r-func.html"><span class="header-section-number">5</span> 함수</a></li>
+<li><a class="" href="r-iter.html"><span class="header-section-number">6</span> 반복(Iteration)</a></li>
+<li><a class="" href="r-string.html"><span class="header-section-number">7</span> 문자열</a></li>
+<li><a class="" href="r-file.html"><span class="header-section-number">8</span> 파일</a></li>
+<li class="book-part">자료구조</li>
+<li><a class="" href="r-list.html"><span class="header-section-number">9</span> 리스트 (List)</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -81,13 +85,13 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="r-func" class="section level1" number="4">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="r-func" class="section level1" number="5">
 <h1>
-<span class="header-section-number">4 . </span> 함수<a class="anchor" aria-label="anchor" href="#r-func"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5 . </span> 함수<a class="anchor" aria-label="anchor" href="#r-func"><i class="fas fa-link"></i></a>
 </h1>
-<div id="r-func-call" class="section level2" number="4.1">
+<div id="r-func-call" class="section level2" number="5.1">
 <h2>
-<span class="header-section-number">4.1</span> 함수 호출<a class="anchor" aria-label="anchor" href="#r-func-call"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.1</span> 함수 호출<a class="anchor" aria-label="anchor" href="#r-func-call"><i class="fas fa-link"></i></a>
 </h2>
 <p>프로그래밍 문맥에서, <strong>함수(function)</strong>는 연산을 수행하는 명명된 일련의 문장이다.
 함수를 정의할 때, 이름과 일련의 문장을 명기한다.
@@ -102,9 +106,9 @@
 앞선 <code><a href="https://rdrr.io/r/base/typeof.html">typeof()</a></code> 함수에 대한 결과는 인자의 자료형(type)이다.</p>
 <p>통상 함수가 인자를 “받아” 결과를 “반환”한다. 결과를 <strong>결과값(return value)</strong>이라 부른다.</p>
 </div>
-<div id="r-func-builtin" class="section level2" number="4.2">
+<div id="r-func-builtin" class="section level2" number="5.2">
 <h2>
-<span class="header-section-number">4.2</span> 내장(Built-in) 함수<a class="anchor" aria-label="anchor" href="#r-func-builtin"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.2</span> 내장(Built-in) 함수<a class="anchor" aria-label="anchor" href="#r-func-builtin"><i class="fas fa-link"></i></a>
 </h2>
 <p>함수를 정의할 필요없이 사용할 수 있는 내장함수가 R에는 많다.
 공통의 문제를 해결할 수 있는 함수를 R을 창시자(Ross Ihaka, Robert Gentleman)가 작성해서 누구나 사용할 수 있도록 R에 포함했다.</p>
@@ -125,9 +129,9 @@ min 함수는 “가장 작은 값”를, 상기 예제에서는 “1”을 출�
 <p>이들 함수는 벡터에만 국한된 것이 아니라, 뒷장에서 보듯이 다양한 자료형에 사용된다.</p>
 <p>내장함수 이름은 사전에 점유된 예약어로 취급해야 한다. 예를 들어 “max”를 변수명으로 사용하지 말아야 한다.</p>
 </div>
-<div id="r-func-type" class="section level2" number="4.3">
+<div id="r-func-type" class="section level2" number="5.3">
 <h2>
-<span class="header-section-number">4.3</span> 자료형 변환 함수<a class="anchor" aria-label="anchor" href="#r-func-type"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.3</span> 자료형 변환 함수<a class="anchor" aria-label="anchor" href="#r-func-type"><i class="fas fa-link"></i></a>
 </h2>
 <p>이런 자료형(type)에서 저런 자료형(type)으로 값을 변환하는 내장 함수가 R에는 있다.
 <code><a href="https://rdrr.io/r/base/integer.html">as.integer()</a></code>함수는 임의의 값을 입력받아 변환이 가능하면 정수형으로 변환하고, 그렇지 않으면 오류가 발생한다.</p>
@@ -169,9 +173,9 @@ min 함수는 “가장 작은 값”를, 상기 예제에서는 “1”을 출�
 <pre><code>## [1] male   female
 ## Levels: female male</code></pre>
 </div>
-<div id="r-func-random-number" class="section level2" number="4.4">
+<div id="r-func-random-number" class="section level2" number="5.4">
 <h2>
-<span class="header-section-number">4.4</span> 난수<a class="anchor" aria-label="anchor" href="#r-func-random-number"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.4</span> 난수<a class="anchor" aria-label="anchor" href="#r-func-random-number"><i class="fas fa-link"></i></a>
 </h2>
 <p>동일한 입력을 받을 때, 대부분의 컴퓨터는 매번 동일한 출력값을 생성하기 때문에 <strong>결정적(deterministic)</strong>이라고 한다.
 결정론이 대체로 좋은 것이다. 왜냐하면, 동일한 결과를 얻는데 동일한 계산을 기대하기 때문입니다.
@@ -221,9 +225,9 @@ min 함수는 “가장 작은 값”를, 상기 예제에서는 “1”을 출�
 <pre><code>## [1] 5</code></pre>
 <p>또한 runif() 모듈을 활용하여 정규분포, 지수분포, 감마분포 및 기타 연속형 분포에서 난수를 생성하는 함수도 제공된다.</p>
 </div>
-<div id="r-func-math" class="section level2" number="4.5">
+<div id="r-func-math" class="section level2" number="5.5">
 <h2>
-<span class="header-section-number">4.5</span> 수학 함수<a class="anchor" aria-label="anchor" href="#r-func-math"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.5</span> 수학 함수<a class="anchor" aria-label="anchor" href="#r-func-math"><i class="fas fa-link"></i></a>
 </h2>
 <p>R은 가장 친숙한 수학 함수를 제공하는 수학 모듈이 있다.
 기본 수학 모듈이 내장함수로 기본 설치되어 있어서 별도 호출작업은 필요없다.</p>
@@ -251,9 +255,9 @@ min 함수는 “가장 작은 값”를, 상기 예제에서는 “1”을 출�
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span> <span class="op">/</span> <span class="fl">2</span></code></pre></div>
 <pre><code>## [1] 0.707</code></pre>
 </div>
-<div id="r-func-new-function" class="section level2" number="4.6">
+<div id="r-func-new-function" class="section level2" number="5.6">
 <h2>
-<span class="header-section-number">4.6</span> 신규 함수 추가<a class="anchor" aria-label="anchor" href="#r-func-new-function"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.6</span> 신규 함수 추가<a class="anchor" aria-label="anchor" href="#r-func-new-function"><i class="fas fa-link"></i></a>
 </h2>
 <p>지금까지 R 설치 시 함께 설치되는 함수만 사용했지만 새로운 함수를 추가하는 것도 가능하다.
 <strong>함수 정의(function definition)</strong>는 신규 함수명과 함수가 호출될 때 실행될 일련의 문장을 명세한다.
@@ -310,9 +314,9 @@ min 함수는 “가장 작은 값”를, 상기 예제에서는 “1”을 출�
 ## [1] "I sleep all night and I work all day."</code></pre>
 <p>하지만, 이것이 실제 노래가 불려지는 것은 아니다.</p>
 </div>
-<div id="r-func-how-to-use" class="section level2" number="4.7">
+<div id="r-func-how-to-use" class="section level2" number="5.7">
 <h2>
-<span class="header-section-number">4.7</span> 함수 정의와 사용법<a class="anchor" aria-label="anchor" href="#r-func-how-to-use"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.7</span> 함수 정의와 사용법<a class="anchor" aria-label="anchor" href="#r-func-how-to-use"><i class="fas fa-link"></i></a>
 </h2>
 <p>앞 절의 코드 조각을 모아서 작성한 전체 프로그램은 다음과 같다.</p>
 <div class="sourceCode" id="cb177"><pre class="downlit sourceCode r">
@@ -337,9 +341,9 @@ min 함수는 “가장 작은 값”를, 상기 예제에서는 “1”을 출�
 <p><strong>연습문제</strong> 함수 호출을 맨 마지막으로 옮기고, repeat_lyrics 함수 정의 뒤에 print_lyrics 함수를 옮기세요.
 프로그램을 실행하게 되면 무슨 일이 발생하나요?</p>
 </div>
-<div id="r-func-control" class="section level2" number="4.8">
+<div id="r-func-control" class="section level2" number="5.8">
 <h2>
-<span class="header-section-number">4.8</span> 실행 흐름<a class="anchor" aria-label="anchor" href="#r-func-control"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.8</span> 실행 흐름<a class="anchor" aria-label="anchor" href="#r-func-control"><i class="fas fa-link"></i></a>
 </h2>
 <p>처음으로 함수가 사용되기 전에 정의되었는지를 확인하기 위해서,
 명령문 실행 순서를 파악해야 하는데 이를 <strong>실행 흐름(flow of execution)</strong>이라고 한다.</p>
@@ -359,9 +363,9 @@ min 함수는 “가장 작은 값”를, 상기 예제에서는 “1”을 출�
 프로그램을 읽을 때, 위에서부터 아래로 읽을 필요는 없다.
 때때로, 실행 흐름을 따르는 것이 좀더 이치에 맞는다.</p>
 </div>
-<div id="r-func-parameter-argument" class="section level2" number="4.9">
+<div id="r-func-parameter-argument" class="section level2" number="5.9">
 <h2>
-<span class="header-section-number">4.9</span> 매개 변수와 인수<a class="anchor" aria-label="anchor" href="#r-func-parameter-argument"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.9</span> 매개 변수와 인수<a class="anchor" aria-label="anchor" href="#r-func-parameter-argument"><i class="fas fa-link"></i></a>
 </h2>
 <p>지금까지 살펴본 몇몇 내장 함수는 <strong>인자(argument)</strong>를 요구한다.
 예를 들어, <code><a href="https://rdrr.io/r/base/Trig.html">sin()</a></code> 함수를 호출할 때, 숫자를 인자로 넘겨야 한다.
@@ -409,9 +413,9 @@ min 함수는 “가장 작은 값”를, 상기 예제에서는 “1”을 출�
 무슨 값이 호출된든지 호출하는 측과 상관이 없다.
 여기 <code>print_twice()</code> 함수에서는 누구나 bruce라고 부르면 된다.</p>
 </div>
-<div id="r-func-void" class="section level2" number="4.10">
+<div id="r-func-void" class="section level2" number="5.10">
 <h2>
-<span class="header-section-number">4.10</span> 결과있는 함수와 빈 함수<a class="anchor" aria-label="anchor" href="#r-func-void"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.10</span> 결과있는 함수와 빈 함수<a class="anchor" aria-label="anchor" href="#r-func-void"><i class="fas fa-link"></i></a>
 </h2>
 <p>수학 함수와 같은 몇몇 함수는 결과를 만들어 낸다.
 좀더 좋은 이름이 없어서, 결과를 만들어 내는 함수를 <strong>결과있는 함수(fruitful functions)</strong>라고 명명한다.
@@ -454,9 +458,9 @@ min 함수는 “가장 작은 값”를, 상기 예제에서는 “1”을 출�
 <code>addtwo()</code> 함수는 두 숫자 덧셈을 수행하고 <code>added</code>라는 로컬 변수에 저장하고, <code><a href="https://rdrr.io/r/base/function.html">return()</a></code>문을 사용해서 덧셈 결과를 반환하고,x 라는 변수에 대입해서 출력한다.</p>
 <p>R에서 명시적으로 <code>return</code>을 통해 밝히지 않더라도 함수에서 최종적으로 담고 있는 객체가 자동 반환되지만, <code>return</code>을 통해 명시적으로 하는 것이 추후 디버깅 등의 목적으로 더 유용하다.</p>
 </div>
-<div id="r-func-why" class="section level2" number="4.11">
+<div id="r-func-why" class="section level2" number="5.11">
 <h2>
-<span class="header-section-number">4.11</span> 함수 사용 이유?<a class="anchor" aria-label="anchor" href="#r-func-why"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.11</span> 함수 사용 이유?<a class="anchor" aria-label="anchor" href="#r-func-why"><i class="fas fa-link"></i></a>
 </h2>
 <p>프로그램을 함수로 나누는 고생을 할 가치가 있는지 명확하지 않을 수 있다. 다음에 여기 몇 가지 이유가 있다.</p>
 <ul>
@@ -469,9 +473,9 @@ min 함수는 “가장 작은 값”를, 상기 예제에서는 “1”을 출�
 “리스트에서 가장 작은 값을 찾아내는 것”과 같이 아이디어를 적절하게 추상화하여 함수를 작성하는 것이 함수를 만들고 사용하는 기술의 일부가 된다.
 나중에, 리스트에서 가장 작은 값을 찾아내는 코드를 보여 줄 것입니다. 리스트를 인수로 받아 가장 작은 값을 반환하는 <code><a href="https://rdrr.io/r/base/Extremes.html">min()</a></code> 함수를 작성해서 여러분에게 보여드릴 것이다.</p>
 </div>
-<div id="r-func-debug" class="section level2" number="4.12">
+<div id="r-func-debug" class="section level2" number="5.12">
 <h2>
-<span class="header-section-number">4.12</span> 디버깅<a class="anchor" aria-label="anchor" href="#r-func-debug"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.12</span> 디버깅<a class="anchor" aria-label="anchor" href="#r-func-debug"><i class="fas fa-link"></i></a>
 </h2>
 <p>텍스트 편집기로 스크립트를 작성한다면 공백과 탭으로 몇번씩 문제에 봉착했을 것입니다.
 이런 문제를 피하는 가장 최선의 방식은 절대 탭을 사용하지 말고 공백(스페이스)를 사용하는 것이다.
@@ -486,9 +490,9 @@ R을 인식하는 대부분의 텍스트 편집기는 디폴트로 이런 기능
 확신을 하지 못한다면, 프로그램의 첫줄에 <code>print('hello')</code> 을 넣어서 실행해 보자.
 hello를 보지 못한다면, 작성하고 있는 프로그램과 실행하고 있는 프로그램은 다른 것이다.</p>
 </div>
-<div id="용어정의-r-func-terminology" class="section level2" number="4.13">
+<div id="용어정의-r-func-terminology" class="section level2" number="5.13">
 <h2>
-<span class="header-section-number">4.13</span> 용어정의 {r-func-terminology}<a class="anchor" aria-label="anchor" href="#%EC%9A%A9%EC%96%B4%EC%A0%95%EC%9D%98-r-func-terminology"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.13</span> 용어정의 {r-func-terminology}<a class="anchor" aria-label="anchor" href="#%EC%9A%A9%EC%96%B4%EC%A0%95%EC%9D%98-r-func-terminology"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>
@@ -531,9 +535,9 @@ hello를 보지 못한다면, 작성하고 있는 프로그램과 실행하고 �
 <strong>빈 함수(void function)</strong>: 반환값을 갖지 않는 함수</li>
 </ul>
 </div>
-<div id="연습문제-r-func-ex" class="section level2" number="4.14">
+<div id="연습문제-r-func-ex" class="section level2" number="5.14">
 <h2>
-<span class="header-section-number">4.14</span> 연습문제 {r-func-ex}<a class="anchor" aria-label="anchor" href="#%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C-r-func-ex"><i class="fas fa-link"></i></a>
+<span class="header-section-number">5.14</span> 연습문제 {r-func-ex}<a class="anchor" aria-label="anchor" href="#%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C-r-func-ex"><i class="fas fa-link"></i></a>
 </h2>
 <ol style="list-style-type: decimal">
 <li>R “function” 키워드의 목적은 무엇입니까?
@@ -607,26 +611,26 @@ hello를 보지 못한다면, 작성하고 있는 프로그램과 실행하고 �
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="r-cont.html"><span class="header-section-number">3</span> 조건부 실행</a></div>
-<div class="next"><a href="r-iter.html"><span class="header-section-number">5</span> 반복(Iteration)</a></div>
+<div class="prev"><a href="r-cont.html"><span class="header-section-number">4</span> 조건부 실행</a></div>
+<div class="next"><a href="r-iter.html"><span class="header-section-number">6</span> 반복(Iteration)</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#r-func"><span class="header-section-number">4</span> 함수</a></li>
-<li><a class="nav-link" href="#r-func-call"><span class="header-section-number">4.1</span> 함수 호출</a></li>
-<li><a class="nav-link" href="#r-func-builtin"><span class="header-section-number">4.2</span> 내장(Built-in) 함수</a></li>
-<li><a class="nav-link" href="#r-func-type"><span class="header-section-number">4.3</span> 자료형 변환 함수</a></li>
-<li><a class="nav-link" href="#r-func-random-number"><span class="header-section-number">4.4</span> 난수</a></li>
-<li><a class="nav-link" href="#r-func-math"><span class="header-section-number">4.5</span> 수학 함수</a></li>
-<li><a class="nav-link" href="#r-func-new-function"><span class="header-section-number">4.6</span> 신규 함수 추가</a></li>
-<li><a class="nav-link" href="#r-func-how-to-use"><span class="header-section-number">4.7</span> 함수 정의와 사용법</a></li>
-<li><a class="nav-link" href="#r-func-control"><span class="header-section-number">4.8</span> 실행 흐름</a></li>
-<li><a class="nav-link" href="#r-func-parameter-argument"><span class="header-section-number">4.9</span> 매개 변수와 인수</a></li>
-<li><a class="nav-link" href="#r-func-void"><span class="header-section-number">4.10</span> 결과있는 함수와 빈 함수</a></li>
-<li><a class="nav-link" href="#r-func-why"><span class="header-section-number">4.11</span> 함수 사용 이유?</a></li>
-<li><a class="nav-link" href="#r-func-debug"><span class="header-section-number">4.12</span> 디버깅</a></li>
-<li><a class="nav-link" href="#%EC%9A%A9%EC%96%B4%EC%A0%95%EC%9D%98-r-func-terminology"><span class="header-section-number">4.13</span> 용어정의 {r-func-terminology}</a></li>
-<li><a class="nav-link" href="#%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C-r-func-ex"><span class="header-section-number">4.14</span> 연습문제 {r-func-ex}</a></li>
+<li><a class="nav-link" href="#r-func"><span class="header-section-number">5</span> 함수</a></li>
+<li><a class="nav-link" href="#r-func-call"><span class="header-section-number">5.1</span> 함수 호출</a></li>
+<li><a class="nav-link" href="#r-func-builtin"><span class="header-section-number">5.2</span> 내장(Built-in) 함수</a></li>
+<li><a class="nav-link" href="#r-func-type"><span class="header-section-number">5.3</span> 자료형 변환 함수</a></li>
+<li><a class="nav-link" href="#r-func-random-number"><span class="header-section-number">5.4</span> 난수</a></li>
+<li><a class="nav-link" href="#r-func-math"><span class="header-section-number">5.5</span> 수학 함수</a></li>
+<li><a class="nav-link" href="#r-func-new-function"><span class="header-section-number">5.6</span> 신규 함수 추가</a></li>
+<li><a class="nav-link" href="#r-func-how-to-use"><span class="header-section-number">5.7</span> 함수 정의와 사용법</a></li>
+<li><a class="nav-link" href="#r-func-control"><span class="header-section-number">5.8</span> 실행 흐름</a></li>
+<li><a class="nav-link" href="#r-func-parameter-argument"><span class="header-section-number">5.9</span> 매개 변수와 인수</a></li>
+<li><a class="nav-link" href="#r-func-void"><span class="header-section-number">5.10</span> 결과있는 함수와 빈 함수</a></li>
+<li><a class="nav-link" href="#r-func-why"><span class="header-section-number">5.11</span> 함수 사용 이유?</a></li>
+<li><a class="nav-link" href="#r-func-debug"><span class="header-section-number">5.12</span> 디버깅</a></li>
+<li><a class="nav-link" href="#%EC%9A%A9%EC%96%B4%EC%A0%95%EC%9D%98-r-func-terminology"><span class="header-section-number">5.13</span> 용어정의 {r-func-terminology}</a></li>
+<li><a class="nav-link" href="#%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C-r-func-ex"><span class="header-section-number">5.14</span> 연습문제 {r-func-ex}</a></li>
 </ul>
 
       <div class="book-extra">
@@ -643,7 +647,7 @@ hello를 보지 못한다면, 작성하고 있는 프로그램과 실행하고 �
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>데이터 과학 프로그래밍</strong>" was written by 한국 알(R) 사용자회. It was last built on 2022-05-16.</p>
+    <p>"<strong>데이터 과학 프로그래밍</strong>" was written by 한국 알(R) 사용자회. It was last built on 2022-05-17.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

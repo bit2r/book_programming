@@ -6,6 +6,8 @@ editor_options:
 
 
 
+# (PART\*) 프로그래밍 {#r-programming .unnumbered}
+
 # 변수, 표현식, 문장 {#r-var}
 
 

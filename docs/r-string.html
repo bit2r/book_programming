@@ -4,16 +4,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>6 . 문자열 | 데이터 과학 프로그래밍</title>
+<title>7 . 문자열 | 데이터 과학 프로그래밍</title>
 <meta name="author" content="한국 알(R) 사용자회">
-<meta name="description" content="6.1 문자열은 순열이다. 문자열은 여러 문자들의 순열(sequence)이다. 꺾쇠 연산자로 한번에 하나씩 문자에 접근한다. fruit &lt;- 'banana' fruit_letter &lt;- strsplit(fruit, &quot;&quot;) letter &lt;- fruit_letter[[1]][1] 두 번째 문장은 변수 fruit_letter에서 1번 위치 문자를 추출하여...">
+<meta name="description" content="7.1 문자열은 순열이다. 문자열은 여러 문자들의 순열(sequence)이다. 꺾쇠 연산자로 한번에 하나씩 문자에 접근한다. fruit &lt;- 'banana' fruit_letter &lt;- strsplit(fruit, &quot;&quot;) letter &lt;- fruit_letter[[1]][1] 두 번째 문장은 변수 fruit_letter에서 1번 위치 문자를 추출하여...">
 <meta name="generator" content="bookdown 0.26 with bs4_book()">
-<meta property="og:title" content="6 . 문자열 | 데이터 과학 프로그래밍">
+<meta property="og:title" content="7 . 문자열 | 데이터 과학 프로그래밍">
 <meta property="og:type" content="book">
-<meta property="og:description" content="6.1 문자열은 순열이다. 문자열은 여러 문자들의 순열(sequence)이다. 꺾쇠 연산자로 한번에 하나씩 문자에 접근한다. fruit &lt;- 'banana' fruit_letter &lt;- strsplit(fruit, &quot;&quot;) letter &lt;- fruit_letter[[1]][1] 두 번째 문장은 변수 fruit_letter에서 1번 위치 문자를 추출하여...">
+<meta property="og:description" content="7.1 문자열은 순열이다. 문자열은 여러 문자들의 순열(sequence)이다. 꺾쇠 연산자로 한번에 하나씩 문자에 접근한다. fruit &lt;- 'banana' fruit_letter &lt;- strsplit(fruit, &quot;&quot;) letter &lt;- fruit_letter[[1]][1] 두 번째 문장은 변수 fruit_letter에서 1번 위치 문자를 추출하여...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="6 . 문자열 | 데이터 과학 프로그래밍">
-<meta name="twitter:description" content="6.1 문자열은 순열이다. 문자열은 여러 문자들의 순열(sequence)이다. 꺾쇠 연산자로 한번에 하나씩 문자에 접근한다. fruit &lt;- 'banana' fruit_letter &lt;- strsplit(fruit, &quot;&quot;) letter &lt;- fruit_letter[[1]][1] 두 번째 문장은 변수 fruit_letter에서 1번 위치 문자를 추출하여...">
+<meta name="twitter:title" content="7 . 문자열 | 데이터 과학 프로그래밍">
+<meta name="twitter:description" content="7.1 문자열은 순열이다. 문자열은 여러 문자들의 순열(sequence)이다. 꺾쇠 연산자로 한번에 하나씩 문자에 접근한다. fruit &lt;- 'banana' fruit_letter &lt;- strsplit(fruit, &quot;&quot;) letter &lt;- fruit_letter[[1]][1] 두 번째 문장은 변수 fruit_letter에서 1번 위치 문자를 추출하여...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -65,14 +65,18 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">기계와의 경쟁 1</a></li>
-<li><a class="" href="r-intro.html"><span class="header-section-number">1</span> 프로그래밍 학습 이유</a></li>
-<li><a class="" href="r-var.html"><span class="header-section-number">2</span> 변수, 표현식, 문장</a></li>
-<li><a class="" href="r-cont.html"><span class="header-section-number">3</span> 조건부 실행</a></li>
-<li><a class="" href="r-func.html"><span class="header-section-number">4</span> 함수</a></li>
-<li><a class="" href="r-iter.html"><span class="header-section-number">5</span> 반복(Iteration)</a></li>
-<li><a class="active" href="r-string.html"><span class="header-section-number">6</span> 문자열</a></li>
-<li><a class="" href="r-file.html"><span class="header-section-number">7</span> 파일</a></li>
-<li><a class="" href="r-list.html"><span class="header-section-number">8</span> 리스트 (List)</a></li>
+<li class="book-part">들어가며</li>
+<li><a class="" href="r-vs-python.html"><span class="header-section-number">1</span> R vs 파이썬</a></li>
+<li><a class="" href="r-intro.html"><span class="header-section-number">2</span> 프로그래밍 학습 이유</a></li>
+<li class="book-part">프로그래밍</li>
+<li><a class="" href="r-var.html"><span class="header-section-number">3</span> 변수, 표현식, 문장</a></li>
+<li><a class="" href="r-cont.html"><span class="header-section-number">4</span> 조건부 실행</a></li>
+<li><a class="" href="r-func.html"><span class="header-section-number">5</span> 함수</a></li>
+<li><a class="" href="r-iter.html"><span class="header-section-number">6</span> 반복(Iteration)</a></li>
+<li><a class="active" href="r-string.html"><span class="header-section-number">7</span> 문자열</a></li>
+<li><a class="" href="r-file.html"><span class="header-section-number">8</span> 파일</a></li>
+<li class="book-part">자료구조</li>
+<li><a class="" href="r-list.html"><span class="header-section-number">9</span> 리스트 (List)</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -81,13 +85,13 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="r-string" class="section level1" number="6">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="r-string" class="section level1" number="7">
 <h1>
-<span class="header-section-number">6 . </span> 문자열<a class="anchor" aria-label="anchor" href="#r-string"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7 . </span> 문자열<a class="anchor" aria-label="anchor" href="#r-string"><i class="fas fa-link"></i></a>
 </h1>
-<div id="r-string-sequence" class="section level2" number="6.1">
+<div id="r-string-sequence" class="section level2" number="7.1">
 <h2>
-<span class="header-section-number">6.1</span> 문자열은 순열이다.<a class="anchor" aria-label="anchor" href="#r-string-sequence"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.1</span> 문자열은 순열이다.<a class="anchor" aria-label="anchor" href="#r-string-sequence"><i class="fas fa-link"></i></a>
 </h2>
 <p>문자열은 여러 문자들의 순열(sequence)이다.
 꺾쇠 연산자로 한번에 하나씩 문자에 접근한다.</p>
@@ -106,7 +110,7 @@
 <p>파이썬 사용자에게 ’banana’의 첫 분자는 a가 아니라 b다.
 하지만, 파이썬 인텍스는 문자열 처음부터 오프셋(offset)<a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;컴퓨터에서 어떤 주소로부터 간격을 두고 떨어진 주소와의 거리.
 기억 장치가 페이지 혹은 세그먼트 단위로 나누어져 있을 때 하나의 시작 주소로부터 오프셋만큼 떨어진 위치를 나타내는 것이다.
-출처: 네이버 지식백과 - 오프셋 [offset] (IT용어사전, 한국정보통신기술협회)&lt;/p&gt;"><sup>4</sup></a>이다.
+출처: 네이버 지식백과 - 오프셋 [offset] (IT용어사전, 한국정보통신기술협회)&lt;/p&gt;"><sup>8</sup></a>이다.
 첫 글자 오프셋은 0 이다.</p>
 <p>하지만, R은 사람 친화적이기 때문에 b가 ’banana’의 첫번째 문자가 되고 a가 두번째, n이 세번째 문자가 된다.</p>
 <div class="figure">
@@ -119,9 +123,9 @@
 <code class="sourceCode R"><span class="va">fruit_letter</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">1.5</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] "b"</code></pre>
 </div>
-<div id="r-string-length" class="section level2" number="6.2">
+<div id="r-string-length" class="section level2" number="7.2">
 <h2>
-<span class="header-section-number">6.2</span> <code>length()</code> 함수 사용 문자열 길이<a class="anchor" aria-label="anchor" href="#r-string-length"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.2</span> <code>length()</code> 함수 사용 문자열 길이<a class="anchor" aria-label="anchor" href="#r-string-length"><i class="fas fa-link"></i></a>
 </h2>
 <p><code><a href="https://rdrr.io/r/base/length.html">length()</a></code> 함수는 문자열의 문자 갯수를 반환하는 내장함수다.</p>
 <div class="sourceCode" id="cb229"><pre class="downlit sourceCode r">
@@ -140,9 +144,9 @@
 마지막 문자를 얻기 위해서 length에서 1을 빼야 한다.
 하지만, R에서는 사람이 생각하는 방식대로 마지막 문자가 얻어진다.</p>
 </div>
-<div id="r-string-traversal" class="section level2" number="6.3">
+<div id="r-string-traversal" class="section level2" number="7.3">
 <h2>
-<span class="header-section-number">6.3</span> 루프를 사용한 문자열 순회<a class="anchor" aria-label="anchor" href="#r-string-traversal"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.3</span> 루프를 사용한 문자열 순회<a class="anchor" aria-label="anchor" href="#r-string-traversal"><i class="fas fa-link"></i></a>
 </h2>
 <p>연산의 많은 경우에 문자열을 한번에 한 문자씩 처리한다.
 종종 처음에서 시작해서, 차례로 각 문자를 선택하고, 선택된 문자에 임의 연산을 수행하고, 끝까지 계속한다.
@@ -181,9 +185,9 @@ R이 접근한 마지막 <code>length(fruit_letter[[1]])</code> 인텍스 문자
 <p>루프를 매번 반복할 때, 문자열 다음 문자가 변수 <code>char</code>에 대입된다.
 루프는 더 이상 남겨진 문자가 없을 때까지 계속 실행된다.</p>
 </div>
-<div id="r-string-slice" class="section level2" number="6.4">
+<div id="r-string-slice" class="section level2" number="7.4">
 <h2>
-<span class="header-section-number">6.4</span> 문자열 슬라이스<a class="anchor" aria-label="anchor" href="#r-string-slice"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.4</span> 문자열 슬라이스<a class="anchor" aria-label="anchor" href="#r-string-slice"><i class="fas fa-link"></i></a>
 </h2>
 <p>문자열의 일부분을 <strong>슬라이스(slice)</strong>라고 한다.
 문자열 슬라이스를 선택하는 것은 문자를 선택하는 것과 유사하다.</p>
@@ -218,9 +222,9 @@ R이 접근한 마지막 <code>length(fruit_letter[[1]])</code> 인텍스 문자
 <pre><code>## [1] "a" "b"</code></pre>
 <p>빈 문자열은 어떤 문자도 포함하지 않아서 길이가 0 이 되지만, 이것을 제외하고 다른 문자열과 동일하다.</p>
 </div>
-<div id="r-string-count" class="section level2" number="6.5">
+<div id="r-string-count" class="section level2" number="7.5">
 <h2>
-<span class="header-section-number">6.5</span> 루프 돌기 계수<a class="anchor" aria-label="anchor" href="#r-string-count"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.5</span> 루프 돌기 계수<a class="anchor" aria-label="anchor" href="#r-string-count"><i class="fas fa-link"></i></a>
 </h2>
 <p>다음 프로그램은 문자열에 문자 a가 나타나는 횟수를 계수(counting)한다.</p>
 <div class="sourceCode" id="cb249"><pre class="downlit sourceCode r">
@@ -239,9 +243,9 @@ R이 접근한 마지막 <code>length(fruit_letter[[1]])</code> 인텍스 문자
 루프를 빠져나갔을 때, <code>count</code>는 결과 값 즉, a가 나타난 총 횟수를 담고 있다.</p>
 <p><strong>연습문제</strong> : 문자열과 문자를 인자(argument)로 받도록 상기 코드를 <code>count</code>라는 함수로 <strong>캡슐화(encapsulation)</strong>하고 일반화하세요.</p>
 </div>
-<div id="r-string-in-operator" class="section level2" number="6.6">
+<div id="r-string-in-operator" class="section level2" number="7.6">
 <h2>
-<span class="header-section-number">6.6</span> <code>%in%</code> 연산자<a class="anchor" aria-label="anchor" href="#r-string-in-operator"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.6</span> <code>%in%</code> 연산자<a class="anchor" aria-label="anchor" href="#r-string-in-operator"><i class="fas fa-link"></i></a>
 </h2>
 <p>연산자 <code>in</code> 은 부울 연산자로 두 개의 문자열을 받아,
 첫 번째 문자열이 두 번째 문자열의 일부이면 참(TRUE)을 반환한다.</p>
@@ -252,9 +256,9 @@ R이 접근한 마지막 <code>length(fruit_letter[[1]])</code> 인텍스 문자
 <code class="sourceCode R"><span class="st">'c'</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/strsplit.html">strsplit</a></span><span class="op">(</span><span class="st">'banana'</span>, <span class="st">""</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 </div>
-<div id="r-string-comparison-operator" class="section level2" number="6.7">
+<div id="r-string-comparison-operator" class="section level2" number="7.7">
 <h2>
-<span class="header-section-number">6.7</span> 문자열 비교<a class="anchor" aria-label="anchor" href="#r-string-comparison-operator"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.7</span> 문자열 비교<a class="anchor" aria-label="anchor" href="#r-string-comparison-operator"><i class="fas fa-link"></i></a>
 </h2>
 <p>비교 연산자도 문자열에서 동작한다.
 두 문자열이 같은지를 살펴보다.</p>
@@ -279,9 +283,9 @@ R이 접근한 마지막 <code>length(fruit_letter[[1]])</code> 인텍스 문자
 <pre><code>## Your word Pineapple  comes after banana.</code></pre>
 <p>이러한 문제를 다루는 일반적인 방식은 비교 연산을 수행하기 전에 문자열을 표준 포맷으로 예를 들어 모두 소문자, 변환하는 것입니다. 경우에 따라서 “Pineapple”로 무장한 사람들로부터 여러분을 보호해야하는 것을 명심하세요.</p>
 </div>
-<div id="r-string-method" class="section level2" number="6.8">
+<div id="r-string-method" class="section level2" number="7.8">
 <h2>
-<span class="header-section-number">6.8</span> 문자열 함수<a class="anchor" aria-label="anchor" href="#r-string-method"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.8</span> 문자열 함수<a class="anchor" aria-label="anchor" href="#r-string-method"><i class="fas fa-link"></i></a>
 </h2>
 <p>R은 객체지향언어의 특성을 갖고 있지만 함수형 프로그래밍 언어의 특성도 갖고 있다.
 문자열을 R 객체(objects)로 객체를 데이터(실제 문자열 자체)와 메쏘드(methods)를 담고 있는 것으로 바라볼 수도 있다.
@@ -341,9 +345,9 @@ R이 접근한 마지막 <code>length(fruit_letter[[1]])</code> 인텍스 문자
 <code>? str_count()</code> 도움말로 <code><a href="https://stringr.tidyverse.org/reference/str_count.html">str_count()</a></code> 함수에 대한 문서를 읽고,
 문자열 ’banana’의 문자가 몇 개인지 계수하는 메쏘드 호출 프로그램을 작성하세요.</p>
 </div>
-<div id="r-string-parsing" class="section level2" number="6.9">
+<div id="r-string-parsing" class="section level2" number="7.9">
 <h2>
-<span class="header-section-number">6.9</span> 문자열 파싱<a class="anchor" aria-label="anchor" href="#r-string-parsing"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.9</span> 문자열 파싱<a class="anchor" aria-label="anchor" href="#r-string-parsing"><i class="fas fa-link"></i></a>
 </h2>
 <p>종종, 문자열을 들여다 보고 특정 부속 문자열(substring)을 찾고 싶다.
 예를 들어, 아래와 같은 형식으로 작성된 일련의 라인이 주어졌다고 가정하면,</p>
@@ -376,9 +380,9 @@ R이 접근한 마지막 <code>length(fruit_letter[[1]])</code> 인텍스 문자
 <p><code><a href="https://stringr.tidyverse.org/reference/str_locate.html">str_locate()</a></code> 함수를 사용해서 찾고자 하는 문자열의 시작 위치를 명세한다.
 문자열 슬라이싱(slicing)할 때, 골뱅기 기호 뒤부터 빈 공백을 포함하지 않는 위치까지 문자열을 뽑아낸다.</p>
 </div>
-<div id="r-string-format" class="section level2" number="6.10">
+<div id="r-string-format" class="section level2" number="7.10">
 <h2>
-<span class="header-section-number">6.10</span> 서식 연산자<a class="anchor" aria-label="anchor" href="#r-string-format"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.10</span> 서식 연산자<a class="anchor" aria-label="anchor" href="#r-string-format"><i class="fas fa-link"></i></a>
 </h2>
 <p><strong>서식 연산자(format operator)</strong> Base R의 <code><a href="https://rdrr.io/r/base/sprintf.html">sprintf()</a></code> 함수에 C언어 스타일로 <code>%</code>를 사용하기도 하지만
 <a href="https://cran.r-project.org/web/packages/glue/index.html">glue: Interpreted String Literals</a> 팩키지도 최근에 많이 사용된다.
@@ -422,9 +426,9 @@ R이 접근한 마지막 <code>length(fruit_letter[[1]])</code> 인텍스 문자
 <p>상기 첫 예제는 충분한 요소 개수가 되지 않고, 두 번째 예제는 자료형이 맞지 않는다.
 서식 연산자는 강력하지만, 사용하기가 까다로운 점이 있으니, <code>glue</code>를 사용하는 것도 권장된다.</p>
 </div>
-<div id="r-string-debug" class="section level2" number="6.11">
+<div id="r-string-debug" class="section level2" number="7.11">
 <h2>
-<span class="header-section-number">6.11</span> 디버깅<a class="anchor" aria-label="anchor" href="#r-string-debug"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.11</span> 디버깅<a class="anchor" aria-label="anchor" href="#r-string-debug"><i class="fas fa-link"></i></a>
 </h2>
 <p>프로그램을 작성하면서 배양해야 하는 기술은 항상 자신에게 질문을 하는 것이다.
 “여기서 무엇이 잘못 될 수 있을까?” 혹은 “내가 작성한 완벽한 프로그램을 망가뜨리기 위해 사용자는 무슨 엄청난 일을 할 것인가?”</p>
@@ -458,9 +462,9 @@ R의 경우 정상 실행되지만 원하는 바는 아니다.
 <p><strong>가디언 패턴(guardian pattern)</strong>을 사용한 <code>if</code>문으로 문자열에 적어도 하나의 문자가 있는 경우만 두번째 논리 표현식이 평가되도록 코드를 작성한다.</p>
 <p><code>if(str_length(line) &gt; 0 &amp; str_detect(line, '^#'))</code></p>
 </div>
-<div id="r-string-terminology" class="section level2" number="6.12">
+<div id="r-string-terminology" class="section level2" number="7.12">
 <h2>
-<span class="header-section-number">6.12</span> 용어정의<a class="anchor" aria-label="anchor" href="#r-string-terminology"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.12</span> 용어정의<a class="anchor" aria-label="anchor" href="#r-string-terminology"><i class="fas fa-link"></i></a>
 </h2>
 <p><strong>계수기(counter)</strong>: 무언가를 계수하기 위해서 사용되는 변수로 일반적으로 0 으로 초기화하고 나서 증가한다.
 <strong>빈 문자열(empty string)</strong>: 두 인용부호로 표현되고, 어떤 문자도 없고 길이가 0 인 문자열.
@@ -479,9 +483,9 @@ R의 경우 정상 실행되지만 원하는 바는 아니다.
 <strong>슬라이스(slice)</strong>: 인텍스 범위로 지정되는 문자열 부분.
 <strong>운행법(traverse)</strong>: 순서(sequence)의 항목을 반복적으로 훑기, 각각에 대해서는 동일한 연산을 수행.</p>
 </div>
-<div id="r-string-ex" class="section level2" number="6.13">
+<div id="r-string-ex" class="section level2" number="7.13">
 <h2>
-<span class="header-section-number">6.13</span> 연습문제<a class="anchor" aria-label="anchor" href="#r-string-ex"><i class="fas fa-link"></i></a>
+<span class="header-section-number">7.13</span> 연습문제<a class="anchor" aria-label="anchor" href="#r-string-ex"><i class="fas fa-link"></i></a>
 </h2>
 <ol style="list-style-type: decimal">
 <li>다음 문자열에서 숫자를 뽑아내는 R 코드로 작성하세요.</li>
@@ -494,25 +498,25 @@ R의 경우 정상 실행되지만 원하는 바는 아니다.
 </div>
 
   <div class="chapter-nav">
-<div class="prev"><a href="r-iter.html"><span class="header-section-number">5</span> 반복(Iteration)</a></div>
-<div class="next"><a href="r-file.html"><span class="header-section-number">7</span> 파일</a></div>
+<div class="prev"><a href="r-iter.html"><span class="header-section-number">6</span> 반복(Iteration)</a></div>
+<div class="next"><a href="r-file.html"><span class="header-section-number">8</span> 파일</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#r-string"><span class="header-section-number">6</span> 문자열</a></li>
-<li><a class="nav-link" href="#r-string-sequence"><span class="header-section-number">6.1</span> 문자열은 순열이다.</a></li>
-<li><a class="nav-link" href="#r-string-length"><span class="header-section-number">6.2</span> length() 함수 사용 문자열 길이</a></li>
-<li><a class="nav-link" href="#r-string-traversal"><span class="header-section-number">6.3</span> 루프를 사용한 문자열 순회</a></li>
-<li><a class="nav-link" href="#r-string-slice"><span class="header-section-number">6.4</span> 문자열 슬라이스</a></li>
-<li><a class="nav-link" href="#r-string-count"><span class="header-section-number">6.5</span> 루프 돌기 계수</a></li>
-<li><a class="nav-link" href="#r-string-in-operator"><span class="header-section-number">6.6</span> %in% 연산자</a></li>
-<li><a class="nav-link" href="#r-string-comparison-operator"><span class="header-section-number">6.7</span> 문자열 비교</a></li>
-<li><a class="nav-link" href="#r-string-method"><span class="header-section-number">6.8</span> 문자열 함수</a></li>
-<li><a class="nav-link" href="#r-string-parsing"><span class="header-section-number">6.9</span> 문자열 파싱</a></li>
-<li><a class="nav-link" href="#r-string-format"><span class="header-section-number">6.10</span> 서식 연산자</a></li>
-<li><a class="nav-link" href="#r-string-debug"><span class="header-section-number">6.11</span> 디버깅</a></li>
-<li><a class="nav-link" href="#r-string-terminology"><span class="header-section-number">6.12</span> 용어정의</a></li>
-<li><a class="nav-link" href="#r-string-ex"><span class="header-section-number">6.13</span> 연습문제</a></li>
+<li><a class="nav-link" href="#r-string"><span class="header-section-number">7</span> 문자열</a></li>
+<li><a class="nav-link" href="#r-string-sequence"><span class="header-section-number">7.1</span> 문자열은 순열이다.</a></li>
+<li><a class="nav-link" href="#r-string-length"><span class="header-section-number">7.2</span> length() 함수 사용 문자열 길이</a></li>
+<li><a class="nav-link" href="#r-string-traversal"><span class="header-section-number">7.3</span> 루프를 사용한 문자열 순회</a></li>
+<li><a class="nav-link" href="#r-string-slice"><span class="header-section-number">7.4</span> 문자열 슬라이스</a></li>
+<li><a class="nav-link" href="#r-string-count"><span class="header-section-number">7.5</span> 루프 돌기 계수</a></li>
+<li><a class="nav-link" href="#r-string-in-operator"><span class="header-section-number">7.6</span> %in% 연산자</a></li>
+<li><a class="nav-link" href="#r-string-comparison-operator"><span class="header-section-number">7.7</span> 문자열 비교</a></li>
+<li><a class="nav-link" href="#r-string-method"><span class="header-section-number">7.8</span> 문자열 함수</a></li>
+<li><a class="nav-link" href="#r-string-parsing"><span class="header-section-number">7.9</span> 문자열 파싱</a></li>
+<li><a class="nav-link" href="#r-string-format"><span class="header-section-number">7.10</span> 서식 연산자</a></li>
+<li><a class="nav-link" href="#r-string-debug"><span class="header-section-number">7.11</span> 디버깅</a></li>
+<li><a class="nav-link" href="#r-string-terminology"><span class="header-section-number">7.12</span> 용어정의</a></li>
+<li><a class="nav-link" href="#r-string-ex"><span class="header-section-number">7.13</span> 연습문제</a></li>
 </ul>
 
       <div class="book-extra">
@@ -529,7 +533,7 @@ R의 경우 정상 실행되지만 원하는 바는 아니다.
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>데이터 과학 프로그래밍</strong>" was written by 한국 알(R) 사용자회. It was last built on 2022-05-16.</p>
+    <p>"<strong>데이터 과학 프로그래밍</strong>" was written by 한국 알(R) 사용자회. It was last built on 2022-05-17.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

@@ -1,3 +1,10 @@
+r-vs-python
+rhistory
+data-science-education-r
+r-python-ds
+comparison-with-packages
+two-language-problem
+data-science-toolchain
 r-intro
 r-intro-motivation
 r-intro-hardware-architecture
@@ -102,6 +109,7 @@ r-list-traversal
 r-list-slice
 r-list-function
 r-list-delete
+리스트와-함수
 r-list-string
 r-list-parsing
 r-list-object-value

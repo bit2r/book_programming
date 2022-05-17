@@ -4,16 +4,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>3 . 조건부 실행 | 데이터 과학 프로그래밍</title>
+<title>4 . 조건부 실행 | 데이터 과학 프로그래밍</title>
 <meta name="author" content="한국 알(R) 사용자회">
-<meta name="description" content="3.1 부울 표현식 부울 표현식(boolean expression)은 참(TRUE) 혹은 거짓(FALSE)를 지닌 표현식이다. 다음 예제는 == 연산자를 사용하여 두 개 피연산자를 비교하여 값이 동일하면 참(TRUE), 그렇지 않으면 거짓(FALSE)을 산출한다. 5 == 5 ## [1] TRUE 5 == 6 ## [1] FALSE 참(TRUE)과...">
+<meta name="description" content="4.1 부울 표현식 부울 표현식(boolean expression)은 참(TRUE) 혹은 거짓(FALSE)를 지닌 표현식이다. 다음 예제는 == 연산자를 사용하여 두 개 피연산자를 비교하여 값이 동일하면 참(TRUE), 그렇지 않으면 거짓(FALSE)을 산출한다. 5 == 5 ## [1] TRUE 5 == 6 ## [1] FALSE 참(TRUE)과...">
 <meta name="generator" content="bookdown 0.26 with bs4_book()">
-<meta property="og:title" content="3 . 조건부 실행 | 데이터 과학 프로그래밍">
+<meta property="og:title" content="4 . 조건부 실행 | 데이터 과학 프로그래밍">
 <meta property="og:type" content="book">
-<meta property="og:description" content="3.1 부울 표현식 부울 표현식(boolean expression)은 참(TRUE) 혹은 거짓(FALSE)를 지닌 표현식이다. 다음 예제는 == 연산자를 사용하여 두 개 피연산자를 비교하여 값이 동일하면 참(TRUE), 그렇지 않으면 거짓(FALSE)을 산출한다. 5 == 5 ## [1] TRUE 5 == 6 ## [1] FALSE 참(TRUE)과...">
+<meta property="og:description" content="4.1 부울 표현식 부울 표현식(boolean expression)은 참(TRUE) 혹은 거짓(FALSE)를 지닌 표현식이다. 다음 예제는 == 연산자를 사용하여 두 개 피연산자를 비교하여 값이 동일하면 참(TRUE), 그렇지 않으면 거짓(FALSE)을 산출한다. 5 == 5 ## [1] TRUE 5 == 6 ## [1] FALSE 참(TRUE)과...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="3 . 조건부 실행 | 데이터 과학 프로그래밍">
-<meta name="twitter:description" content="3.1 부울 표현식 부울 표현식(boolean expression)은 참(TRUE) 혹은 거짓(FALSE)를 지닌 표현식이다. 다음 예제는 == 연산자를 사용하여 두 개 피연산자를 비교하여 값이 동일하면 참(TRUE), 그렇지 않으면 거짓(FALSE)을 산출한다. 5 == 5 ## [1] TRUE 5 == 6 ## [1] FALSE 참(TRUE)과...">
+<meta name="twitter:title" content="4 . 조건부 실행 | 데이터 과학 프로그래밍">
+<meta name="twitter:description" content="4.1 부울 표현식 부울 표현식(boolean expression)은 참(TRUE) 혹은 거짓(FALSE)를 지닌 표현식이다. 다음 예제는 == 연산자를 사용하여 두 개 피연산자를 비교하여 값이 동일하면 참(TRUE), 그렇지 않으면 거짓(FALSE)을 산출한다. 5 == 5 ## [1] TRUE 5 == 6 ## [1] FALSE 참(TRUE)과...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -65,14 +65,18 @@
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
 <li><a class="" href="index.html">기계와의 경쟁 1</a></li>
-<li><a class="" href="r-intro.html"><span class="header-section-number">1</span> 프로그래밍 학습 이유</a></li>
-<li><a class="" href="r-var.html"><span class="header-section-number">2</span> 변수, 표현식, 문장</a></li>
-<li><a class="active" href="r-cont.html"><span class="header-section-number">3</span> 조건부 실행</a></li>
-<li><a class="" href="r-func.html"><span class="header-section-number">4</span> 함수</a></li>
-<li><a class="" href="r-iter.html"><span class="header-section-number">5</span> 반복(Iteration)</a></li>
-<li><a class="" href="r-string.html"><span class="header-section-number">6</span> 문자열</a></li>
-<li><a class="" href="r-file.html"><span class="header-section-number">7</span> 파일</a></li>
-<li><a class="" href="r-list.html"><span class="header-section-number">8</span> 리스트 (List)</a></li>
+<li class="book-part">들어가며</li>
+<li><a class="" href="r-vs-python.html"><span class="header-section-number">1</span> R vs 파이썬</a></li>
+<li><a class="" href="r-intro.html"><span class="header-section-number">2</span> 프로그래밍 학습 이유</a></li>
+<li class="book-part">프로그래밍</li>
+<li><a class="" href="r-var.html"><span class="header-section-number">3</span> 변수, 표현식, 문장</a></li>
+<li><a class="active" href="r-cont.html"><span class="header-section-number">4</span> 조건부 실행</a></li>
+<li><a class="" href="r-func.html"><span class="header-section-number">5</span> 함수</a></li>
+<li><a class="" href="r-iter.html"><span class="header-section-number">6</span> 반복(Iteration)</a></li>
+<li><a class="" href="r-string.html"><span class="header-section-number">7</span> 문자열</a></li>
+<li><a class="" href="r-file.html"><span class="header-section-number">8</span> 파일</a></li>
+<li class="book-part">자료구조</li>
+<li><a class="" href="r-list.html"><span class="header-section-number">9</span> 리스트 (List)</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -81,13 +85,13 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="r-cont" class="section level1" number="3">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="r-cont" class="section level1" number="4">
 <h1>
-<span class="header-section-number">3 . </span> 조건부 실행<a class="anchor" aria-label="anchor" href="#r-cont"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4 . </span> 조건부 실행<a class="anchor" aria-label="anchor" href="#r-cont"><i class="fas fa-link"></i></a>
 </h1>
-<div id="r-cont-boolean" class="section level2" number="3.1">
+<div id="r-cont-boolean" class="section level2" number="4.1">
 <h2>
-<span class="header-section-number">3.1</span> 부울 표현식<a class="anchor" aria-label="anchor" href="#r-cont-boolean"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.1</span> 부울 표현식<a class="anchor" aria-label="anchor" href="#r-cont-boolean"><i class="fas fa-link"></i></a>
 </h2>
 <p><strong>부울 표현식(boolean expression)</strong>은 참(TRUE) 혹은 거짓(FALSE)를 지닌 표현식이다.
 다음 예제는 <code>==</code> 연산자를 사용하여 두 개 피연산자를 비교하여 값이 동일하면 참(TRUE),
@@ -121,9 +125,9 @@ R에서 대입연산자로 <code>&lt;-</code>을 사용하지만, <code>=</code>
 <code>=</code> 연산자는 대입 연산자이고, <code>==</code> 연산자는 비교 연산자다.
 <code>=&lt;</code>, <code>=&gt;</code> 같은 비교 연산자는 R에는 없다.</p>
 </div>
-<div id="r-cont-logical-operator" class="section level2" number="3.2">
+<div id="r-cont-logical-operator" class="section level2" number="4.2">
 <h2>
-<span class="header-section-number">3.2</span> 논리 연산자<a class="anchor" aria-label="anchor" href="#r-cont-logical-operator"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.2</span> 논리 연산자<a class="anchor" aria-label="anchor" href="#r-cont-logical-operator"><i class="fas fa-link"></i></a>
 </h2>
 <p>세개 <strong>논리 연산자(logical operators)</strong>: <code>&amp;</code>, <code>||</code>, <code>!</code> 이 있다.
 논리 연산자 의미는 수식기호 의미와 유사하다.
@@ -145,9 +149,9 @@ R에서 대입연산자로 <code>&lt;-</code>을 사용하지만, <code>=</code>
 <p>이러한 유연함이 유용할 수 있으나, 혼란을 줄 수도 있으니 유의해서 사용해야 한다.
 무슨 일을 하고 있는지 정확하게 알지 못한다면 피하는게 상책이다.</p>
 </div>
-<div id="r-cont-run" class="section level2" number="3.3">
+<div id="r-cont-run" class="section level2" number="4.3">
 <h2>
-<span class="header-section-number">3.3</span> 조건문 실행<a class="anchor" aria-label="anchor" href="#r-cont-run"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.3</span> 조건문 실행<a class="anchor" aria-label="anchor" href="#r-cont-run"><i class="fas fa-link"></i></a>
 </h2>
 <p>유용한 프로그램을 작성하기 위해서 거의 항상 조건을 확인하고 조건에 따라 프로그램 실행을 바꿀 수 있어야 한다.
 <strong>조건문(Conditional statements)</strong>은 그러한 능력을 부여한다.
@@ -181,9 +185,9 @@ R에서 대입연산자로 <code>&lt;-</code>을 사용하지만, <code>=</code>
 <span id="cb101-5"><a href="r-cont.html#cb101-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> }</span>
 <span id="cb101-6"><a href="r-cont.html#cb101-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"작다"</span></span></code></pre></div>
 </div>
-<div id="r-cont-alternative" class="section level2" number="3.4">
+<div id="r-cont-alternative" class="section level2" number="4.4">
 <h2>
-<span class="header-section-number">3.4</span> 대안 실행<a class="anchor" aria-label="anchor" href="#r-cont-alternative"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.4</span> 대안 실행<a class="anchor" aria-label="anchor" href="#r-cont-alternative"><i class="fas fa-link"></i></a>
 </h2>
 <p><code>if</code>문의 두 번째 형태는 <strong>대안 실행(alternative execution)</strong>이다.
 대안 실행의 경우 두 가지 경우의 수가 존재하고, 조건이 어느 방향으로 실행할 것인지 결정한다.
@@ -202,9 +206,9 @@ R에서 대입연산자로 <code>&lt;-</code>을 사용하지만, <code>=</code>
 <p>조건은 참 혹은 거짓이어서, 대안 중 하나만 정확하게 실행된다.
 대안을 <strong>분기(Branch)</strong>라고도 하는데 이유는 실행 흐름이 분기되기 때문이다.</p>
 </div>
-<div id="r-cont-chained" class="section level2" number="3.5">
+<div id="r-cont-chained" class="section level2" number="4.5">
 <h2>
-<span class="header-section-number">3.5</span> 연쇄 조건문<a class="anchor" aria-label="anchor" href="#r-cont-chained"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.5</span> 연쇄 조건문<a class="anchor" aria-label="anchor" href="#r-cont-chained"><i class="fas fa-link"></i></a>
 </h2>
 <p>때때로, 두 가지 이상의 경우의 수가 있으며, 두 가지 이상의 분기가 필요하다.
 이와 같은 연산을 표현하는 방식이 <strong>연쇄 조건문(chained conditional)</strong>이다.</p>
@@ -233,9 +237,9 @@ R에서 대입연산자로 <code>&lt;-</code>을 사용하지만, <code>=</code>
 순서대로 진행 중에 하나의 조건이 참이면, 해당 분기가 수행되고, <code>if</code>문 전체는 종료된다.
 설사 하나 이상의 조건이 참이라고 하더라도, 첫 번째 참 분기만 수행된다.</p>
 </div>
-<div id="r-cont-nested" class="section level2" number="3.6">
+<div id="r-cont-nested" class="section level2" number="4.6">
 <h2>
-<span class="header-section-number">3.6</span> 중첩 조건문<a class="anchor" aria-label="anchor" href="#r-cont-nested"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.6</span> 중첩 조건문<a class="anchor" aria-label="anchor" href="#r-cont-nested"><i class="fas fa-link"></i></a>
 </h2>
 <p>하나의 조건문이 조건문 내부에 중첩될 수 있다.
 다음과 같이 삼분 예제를 작성할 수 있다.</p>
@@ -271,9 +275,9 @@ R에서 대입연산자로 <code>&lt;-</code>을 사용하지만, <code>=</code>
   <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"x는 한자리 양수."</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
 </div>
-<div id="r-cont-try-catch" class="section level2" number="3.7">
+<div id="r-cont-try-catch" class="section level2" number="4.7">
 <h2>
-<span class="header-section-number">3.7</span> try와 catch를 활용한 예외 처리<a class="anchor" aria-label="anchor" href="#r-cont-try-catch"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.7</span> try와 catch를 활용한 예외 처리<a class="anchor" aria-label="anchor" href="#r-cont-try-catch"><i class="fas fa-link"></i></a>
 </h2>
 <p>함수 <code><a href="https://rdrr.io/r/base/readline.html">readline()</a></code>와 <code><a href="https://rdrr.io/r/base/integer.html">as.integer()</a></code>을 사용하여 앞에서 사용자가 타이핑한 숫자를 읽어 정수로 파싱하는 프로그램 코드를 살펴보았다.
 또한 이렇게 코딩하는 것이 얼마나 위험한 것인지도 살펴보았다.</p>
@@ -344,9 +348,9 @@ R은 <code>tryCatch</code> 블록에서 빠져 나와 <code>error</code> 문장�
 예제에서 <code>error</code> 절에서는 단순히 오류 메시지를 출력만 한다.
 대체로, 예외 처리를 통해서 오류를 고치거나, 재시작하거나, 최소한 프로그램이 정상적으로 종료될 수 있게 한다.</p>
 </div>
-<div id="r-cont-short-circuit" class="section level2" number="3.8">
+<div id="r-cont-short-circuit" class="section level2" number="4.8">
 <h2>
-<span class="header-section-number">3.8</span> 논리 연산식의 단락(Short circuit) 평가<a class="anchor" aria-label="anchor" href="#r-cont-short-circuit"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.8</span> 논리 연산식의 단락(Short circuit) 평가<a class="anchor" aria-label="anchor" href="#r-cont-short-circuit"><i class="fas fa-link"></i></a>
 </h2>
 <p><code>x &gt;= 2 &amp; (x/y) &gt; 2</code> 와 같은 논리 표현식을 R에서 처리할 때, 왼쪽에서부터 오른쪽으로 표현식을 평가한다.
 <code>&amp;</code> 정의 때문에 x 가 2보다 작다면, <code>x &gt;= 2</code>은 거짓(FALSE)으로,
@@ -392,9 +396,9 @@ R 인터프리터의 다음 코드를 살펴보자.</p>
 세 번째 논리 표현식은 <code>(x/y)</code> 연산이 끝난 후에 <code>y != 0</code> 이 수행되어서 오류가 발생한다.</p>
 <p>두 번째 표현식에서 y 가 0 이 아닐 때만, (x/y)을 실행하도록 <code>y != 0</code> 이 가디언(gardian) 역할을 수행한다고 말할 수 있다.</p>
 </div>
-<div id="r-cont-debugging" class="section level2" number="3.9">
+<div id="r-cont-debugging" class="section level2" number="4.9">
 <h2>
-<span class="header-section-number">3.9</span> 디버깅<a class="anchor" aria-label="anchor" href="#r-cont-debugging"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.9</span> 디버깅<a class="anchor" aria-label="anchor" href="#r-cont-debugging"><i class="fas fa-link"></i></a>
 </h2>
 <p>오류가 발생했을 때, 파이썬 화면에 출력되는 역추적(traceback)에는 상당한 정보가 담겨있다. 하지만,특히 스택에 많은 프레임이 있는 경우 엄청나게 보여 엄두가 나지 않을 수도 있다. 대체로 가장 유용한 정보는 다음과 같은 것이 있다.</p>
 <ul>
@@ -423,9 +427,9 @@ R에서 아래와 같이 작성할 수 있다.</p>
 <p>대체로, 오류 메시지는 문제가 어디에서 발견되었는지를 알려주지만,
 종종 문제의 원인이 어디에서 발생했는지는 알려주지 않는다.</p>
 </div>
-<div id="r-cont-terminology" class="section level2" number="3.10">
+<div id="r-cont-terminology" class="section level2" number="4.10">
 <h2>
-<span class="header-section-number">3.10</span> 용어 정의<a class="anchor" aria-label="anchor" href="#r-cont-terminology"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.10</span> 용어 정의<a class="anchor" aria-label="anchor" href="#r-cont-terminology"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>몸통 부문(body)**: 복합 문장 내부에 일련의 문장문</li>
@@ -443,9 +447,9 @@ R에서 아래와 같이 작성할 수 있다.</p>
 <li>단락(short circuit)**: 나머지 표현식 평가를 할 필요없이 최종 결과를 알기 때문에, 파이썬이 논리 표현식 평가를 진행하는 중간에 평가를 멈출 때.</li>
 </ul>
 </div>
-<div id="r-cont-ex" class="section level2" number="3.11">
+<div id="r-cont-ex" class="section level2" number="4.11">
 <h2>
-<span class="header-section-number">3.11</span> 연습문제<a class="anchor" aria-label="anchor" href="#r-cont-ex"><i class="fas fa-link"></i></a>
+<span class="header-section-number">4.11</span> 연습문제<a class="anchor" aria-label="anchor" href="#r-cont-ex"><i class="fas fa-link"></i></a>
 </h2>
 <ol style="list-style-type: decimal">
 <li>40시간 이상 일할 경우 시급을 1.5배 더 종업원에게 지급하는 봉급계산 프로그램을 다시 작성하세요.</li>
@@ -497,23 +501,23 @@ R에서 아래와 같이 작성할 수 있다.</p>
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="r-var.html"><span class="header-section-number">2</span> 변수, 표현식, 문장</a></div>
-<div class="next"><a href="r-func.html"><span class="header-section-number">4</span> 함수</a></div>
+<div class="prev"><a href="r-var.html"><span class="header-section-number">3</span> 변수, 표현식, 문장</a></div>
+<div class="next"><a href="r-func.html"><span class="header-section-number">5</span> 함수</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#r-cont"><span class="header-section-number">3</span> 조건부 실행</a></li>
-<li><a class="nav-link" href="#r-cont-boolean"><span class="header-section-number">3.1</span> 부울 표현식</a></li>
-<li><a class="nav-link" href="#r-cont-logical-operator"><span class="header-section-number">3.2</span> 논리 연산자</a></li>
-<li><a class="nav-link" href="#r-cont-run"><span class="header-section-number">3.3</span> 조건문 실행</a></li>
-<li><a class="nav-link" href="#r-cont-alternative"><span class="header-section-number">3.4</span> 대안 실행</a></li>
-<li><a class="nav-link" href="#r-cont-chained"><span class="header-section-number">3.5</span> 연쇄 조건문</a></li>
-<li><a class="nav-link" href="#r-cont-nested"><span class="header-section-number">3.6</span> 중첩 조건문</a></li>
-<li><a class="nav-link" href="#r-cont-try-catch"><span class="header-section-number">3.7</span> try와 catch를 활용한 예외 처리</a></li>
-<li><a class="nav-link" href="#r-cont-short-circuit"><span class="header-section-number">3.8</span> 논리 연산식의 단락(Short circuit) 평가</a></li>
-<li><a class="nav-link" href="#r-cont-debugging"><span class="header-section-number">3.9</span> 디버깅</a></li>
-<li><a class="nav-link" href="#r-cont-terminology"><span class="header-section-number">3.10</span> 용어 정의</a></li>
-<li><a class="nav-link" href="#r-cont-ex"><span class="header-section-number">3.11</span> 연습문제</a></li>
+<li><a class="nav-link" href="#r-cont"><span class="header-section-number">4</span> 조건부 실행</a></li>
+<li><a class="nav-link" href="#r-cont-boolean"><span class="header-section-number">4.1</span> 부울 표현식</a></li>
+<li><a class="nav-link" href="#r-cont-logical-operator"><span class="header-section-number">4.2</span> 논리 연산자</a></li>
+<li><a class="nav-link" href="#r-cont-run"><span class="header-section-number">4.3</span> 조건문 실행</a></li>
+<li><a class="nav-link" href="#r-cont-alternative"><span class="header-section-number">4.4</span> 대안 실행</a></li>
+<li><a class="nav-link" href="#r-cont-chained"><span class="header-section-number">4.5</span> 연쇄 조건문</a></li>
+<li><a class="nav-link" href="#r-cont-nested"><span class="header-section-number">4.6</span> 중첩 조건문</a></li>
+<li><a class="nav-link" href="#r-cont-try-catch"><span class="header-section-number">4.7</span> try와 catch를 활용한 예외 처리</a></li>
+<li><a class="nav-link" href="#r-cont-short-circuit"><span class="header-section-number">4.8</span> 논리 연산식의 단락(Short circuit) 평가</a></li>
+<li><a class="nav-link" href="#r-cont-debugging"><span class="header-section-number">4.9</span> 디버깅</a></li>
+<li><a class="nav-link" href="#r-cont-terminology"><span class="header-section-number">4.10</span> 용어 정의</a></li>
+<li><a class="nav-link" href="#r-cont-ex"><span class="header-section-number">4.11</span> 연습문제</a></li>
 </ul>
 
       <div class="book-extra">
@@ -530,7 +534,7 @@ R에서 아래와 같이 작성할 수 있다.</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>데이터 과학 프로그래밍</strong>" was written by 한국 알(R) 사용자회. It was last built on 2022-05-16.</p>
+    <p>"<strong>데이터 과학 프로그래밍</strong>" was written by 한국 알(R) 사용자회. It was last built on 2022-05-17.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
