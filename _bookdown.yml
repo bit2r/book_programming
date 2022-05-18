@@ -32,6 +32,7 @@ rmd_files: [
   # 분야별 도구
   "11-regex.Rmd",
   "12-database.Rmd",
+  "13-web.Rmd",
 
   # 참고문헌
   "references.Rmd"

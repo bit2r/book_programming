@@ -164,3 +164,13 @@ db-join-retrieve
 db-summary
 db-debugging
 db-terminology
+r-webservice
+ws-xml
+ws-xml-parsing
+ws-xml-nodes
+webservice-json
+webservice-json-parsing
+ws-api
+google-geocoding
+ws-security
+ws-term
