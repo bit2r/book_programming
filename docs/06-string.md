@@ -7,6 +7,8 @@ editor_options:
 
 
 
+# (PART\*) 자료구조 {#r-data-type .unnumbered}
+
 # 문자열 {#r-string}
 
 ## 문자열은 순열이다. {#r-string-sequence}

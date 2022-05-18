@@ -6,9 +6,6 @@ editor_options:
 
 
 
-# (PART\*) 자료구조 {#r-data-type .unnumbered}
-
-
 # 리스트 (List) {#r-list}
 
 ## 리스트는 순서(sequence)다. {#r-list-sequence}
@@ -220,7 +217,7 @@ list('spam', 1, list('Brie', 'Roquefort', 'Pol le Veq'), list(1, 2, 3))
 ## [1] 3
 ```
 
-## 리스트 연산자 {r-list-operator}
+## 리스트 연산자 {#r-list-operator}
 
 `append()` 함수 연산자는 리스트를 추가하여 결합시킨다.
 

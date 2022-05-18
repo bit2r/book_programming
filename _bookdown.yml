@@ -21,10 +21,16 @@ rmd_files: [
   "03-cont.Rmd",
   "04-func.Rmd",
   "05-loop.Rmd",
+
+  # 자료구조
   "06-string.Rmd",
   "07-file.Rmd",
   "08-list.Rmd",
   "09-dictionaries.Rmd",
+  "10-tuples.Rmd",
+
+  # 분야별 도구
+  "11-regex.Rmd",
 
   # 참고문헌
   "references.Rmd"
