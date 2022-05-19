@@ -176,12 +176,7 @@ ws-security
 ws-term
 r-automation
 r-paths
-tasks-picture
 tasks-commandline
-tasks-pipe
-tasks-terminology
-tasks-exercise
-run-r-script
 install-r
 install-env
 exec-rscript
@@ -189,3 +184,13 @@ exec-run-other-ways
 tasks-swcarpentry
 make-rscript
 sessionInfo-save
+task-args
+task-args-rscript
+task-rscript-gdp
+rscript-prototype
+rscript-change-data-file
+task-stat-by-countries
+tasks-pipe
+tasks-pipe-unix
+tasks-terminology
+tasks-exercise
