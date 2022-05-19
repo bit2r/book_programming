@@ -5,9 +5,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-```{r setup, echo = FALSE, message = FALSE}
-source("_common.R")
-```
+
 
 # 일반적인 작업 자동화 {#r-automation}
 
@@ -37,7 +35,8 @@ R은 또한 여러분의 로컬 컴퓨터 디렉토리와 폴더를 훑어서 �
 `path_wd()` 함수는 현재 디렉토리 이름을 반환한다.
 
 
-```{r task-fs}
+
+```r
 library(fs)
 
 cwd <- fs::path_wd()
@@ -57,14 +56,16 @@ cwd <- fs::path_wd()
 상대적이다. 파일의 절대 경로를 알아내기 위해서 `fs::path_abs()` 함수를
 사용한다.
 
-```{r show-abs-path, eval = FALSE}
+
+```r
 fs::path_abs("index.Rmd")
 C:/swc/book_programming/index.Rmd
 ```
 
 `dir_exists`는 디렉토리, `file_exists`는 파일이 존재하는지 검사한다.
 
-```{r file-dir-exist, eval = FALSE}
+
+```r
 fs::dir_exists("data")
 ```
 
@@ -73,7 +74,8 @@ data
 TRUE
 ```
 
-```{r file-file-exist, eval = FALSE}
+
+```r
 fs::file_exists("index.Rmd")
 ```
 
@@ -86,7 +88,8 @@ TRUE
 `dir_ls()` 함수는 은 주어진 디렉토리에 파일 리스트(그리고 다른 디렉토리)를
 반환한다.
 
-```{r tasks-dir-ls, eval = FALSE}
+
+```r
 fs::dir_ls()
 ```
 
@@ -449,7 +452,8 @@ my iPhone"으로 구성된 3줄짜리 파일이다. 프로그램을 다음과 �
     운영 시스템을 사용하는지 알고 운영 시스템에서 지원되는 명령어로
     파이프를 열수 있다는 것이 중요하다.
 
-```{r exec-system-command, eval = FALSE}
+
+```r
 system2("ls", "-l", stdout = TRUE, stderr = TRUE)
 ```
 
@@ -510,7 +514,8 @@ system2("ls", "-l", stdout = TRUE, stderr = TRUE)
 1. 마크다운(웹), LaTeX(조판) 출력형식에 맞춰 서식을 결정한다.
 1. 최종 결과를 텍스트, 이미지 파일, pdf, html로 출력한다.
 
-``` {shell unix-pipes, eval = FALSE}
+
+```shell
 $ cat data.txt | preProcesswithPython.py | runModelwithR.R | formatOutput.sh > mlOutput.txt
 ```
 
@@ -725,13 +730,15 @@ $ R --no-save << RSCRIPT
 
 텍스트 편집기를 열고, `sessionInfo()`를 적고 파일명을 `r_session_info.R`로 저장한다.
 
-``` {r sessionInfo-rscript, eval = FALSE}
+
+```r
 sessionInfo()
 ```
 
 배쉬쉘에서 R스크립트를 실행해서 R 세션정보를 받아확인한다.
 
-``` {shell rscript-session, eval = FALSE}
+
+```shell
 $ Rscript r_session_info.R
 ```
 
@@ -755,7 +762,8 @@ attached base packages:
 
 `>` 파이프 연산자를 사용해서 R 스크립트 출력결과를 텍스트 파일로 저장한다.
 
-``` {shell output-to-file, eval = FALSE}
+
+```shell
 $ Rscript r_session_info.R > r_session_info_pipe_output.txt
 ```
 
@@ -765,7 +773,8 @@ $ Rscript r_session_info.R > r_session_info_pipe_output.txt
 `caputre.output` 함수를 `cat`과 함께 사용하는데, 
 한글도 적용이 가능하도록, `encoding="UTF-8"`도 추가한다.
 
-```{r sessionInfo-output-shell, eval = FALSE}
+
+```r
 output <- capture.output(sessionInfo())
 cat("R 세션정보", output, file="./r_session_info_rscript.txt", sep="\n", encoding="UTF-8")
 ```

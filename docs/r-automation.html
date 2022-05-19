@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>15 . 일반적인 작업 자동화 | 데이터 과학 프로그래밍</title>
+<meta name="author" content="한국 알(R) 사용자회">
+<meta name="description" content="파일, 네트워크, 서비스, 그리고 데이터베이스에서 데이터를 읽어왔다. R은 또한 여러분의 로컬 컴퓨터 디렉토리와 폴더를 훑어서 파일도 읽어온다. 이번 장에서, 여러분의 로컬 컴퓨터를 스캔하고 각 파일에 대해서 연산을 수행하는 프로그램을 작성한다. 파일은 디렉토리(또한 “폴더”라고도 부른다.)에 정렬되어 보관된다. 간단한 R 스크립트로 전체 로컬...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="15 . 일반적인 작업 자동화 | 데이터 과학 프로그래밍">
+<meta property="og:type" content="book">
+<meta property="og:description" content="파일, 네트워크, 서비스, 그리고 데이터베이스에서 데이터를 읽어왔다. R은 또한 여러분의 로컬 컴퓨터 디렉토리와 폴더를 훑어서 파일도 읽어온다. 이번 장에서, 여러분의 로컬 컴퓨터를 스캔하고 각 파일에 대해서 연산을 수행하는 프로그램을 작성한다. 파일은 디렉토리(또한 “폴더”라고도 부른다.)에 정렬되어 보관된다. 간단한 R 스크립트로 전체 로컬...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="15 . 일반적인 작업 자동화 | 데이터 과학 프로그래밍">
+<meta name="twitter:description" content="파일, 네트워크, 서비스, 그리고 데이터베이스에서 데이터를 읽어왔다. R은 또한 여러분의 로컬 컴퓨터 디렉토리와 폴더를 훑어서 파일도 읽어온다. 이번 장에서, 여러분의 로컬 컴퓨터를 스캔하고 각 파일에 대해서 연산을 수행하는 프로그램을 작성한다. 파일은 디렉토리(또한 “폴더”라고도 부른다.)에 정렬되어 보관된다. 간단한 R 스크립트로 전체 로컬...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS -->
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">데이터 과학 프로그래밍</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">기계와의 경쟁 1</a></li>
+<li class="book-part">들어가며</li>
+<li><a class="" href="r-vs-python.html"><span class="header-section-number">1</span> R vs 파이썬</a></li>
+<li><a class="" href="r-intro.html"><span class="header-section-number">2</span> 프로그래밍 학습 이유</a></li>
+<li class="book-part">프로그래밍</li>
+<li><a class="" href="r-var.html"><span class="header-section-number">3</span> 변수, 표현식, 문장</a></li>
+<li><a class="" href="r-cont.html"><span class="header-section-number">4</span> 조건부 실행</a></li>
+<li><a class="" href="r-func.html"><span class="header-section-number">5</span> 함수</a></li>
+<li><a class="" href="r-iter.html"><span class="header-section-number">6</span> 반복(Iteration)</a></li>
+<li class="book-part">자료구조</li>
+<li><a class="" href="r-string.html"><span class="header-section-number">7</span> 문자열</a></li>
+<li><a class="" href="r-file.html"><span class="header-section-number">8</span> 파일</a></li>
+<li><a class="" href="r-list.html"><span class="header-section-number">9</span> 리스트 (List)</a></li>
+<li><a class="" href="named-list.html"><span class="header-section-number">10</span> 딕셔너리</a></li>
+<li><a class="" href="r-tuple.html"><span class="header-section-number">11</span> 튜플(Tuples)</a></li>
+<li class="book-part">분야별 도구</li>
+<li><a class="" href="regex.html"><span class="header-section-number">12</span> 정규 표현식</a></li>
+<li><a class="" href="r-db.html"><span class="header-section-number">13</span> 데이터베이스와 SQL</a></li>
+<li><a class="" href="r-webservice.html"><span class="header-section-number">14</span> 웹서비스 사용하기</a></li>
+<li><a class="active" href="r-automation.html"><span class="header-section-number">15</span> 일반적인 작업 자동화</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="r-automation" class="section level1" number="15">
+<h1>
+<span class="header-section-number">15 . </span> 일반적인 작업 자동화<a class="anchor" aria-label="anchor" href="#r-automation"><i class="fas fa-link"></i></a>
+</h1>
+<p>파일, 네트워크, 서비스, 그리고 데이터베이스에서 데이터를 읽어왔다.
+R은 또한 여러분의 로컬 컴퓨터 디렉토리와 폴더를 훑어서 파일도
+읽어온다.</p>
+<p>이번 장에서, 여러분의 로컬 컴퓨터를 스캔하고 각 파일에 대해서 연산을
+수행하는 프로그램을 작성한다. 파일은 디렉토리(또한 “폴더”라고도
+부른다.)에 정렬되어 보관된다. 간단한 R 스크립트로 전체 로컬
+컴퓨터나 디렉토리 여기저기 뒤져야 찾아지는 수백 수천개 파일에 대한
+단순한 작업을 짧게 수행한다.</p>
+<p>트리상의 디렉토리나 파일을 여기저기 돌아다니기 위해서 <code>os.walk</code>과 <code>for</code>
+루프를 사용한다. <code>open</code>이 파일 콘텐츠를 읽는 루프를 작성하는 것과
+비슷하게, <code>socket</code>은 네트워크 연결된 콘텐츠를 읽는 루프를 작성하고,
+<code>urllib</code>는 웹문서를 열어 콘텐츠를 루프를 통해서 읽어오게 한다.</p>
+<div id="r-paths" class="section level2" number="15.1">
+<h2>
+<span class="header-section-number">15.1</span> 파일 이름과 경로<a class="anchor" aria-label="anchor" href="#r-paths"><i class="fas fa-link"></i></a>
+</h2>
+<p>모든 실행 프로그램은 “현재 디렉토리(current directory)”를 가지고 있는데
+작업 대부분을 수행하는 디폴트 디렉토리가 된다. 예를 들어, 읽기 위해서
+파일을 연다면, R은 현재 디렉토리에서 파일을 찾는다.</p>
+<p><code>libuv</code> C 라이브러리에 기반한 <a href="https://cran.r-project.org/web/packages/fs/index.html"><code>fs</code></a>
+패키지는 파일과 디렉토리를 작업하는 함수를 제공한다.
+<code><a href="https://fs.r-lib.org/reference/path.html">path_wd()</a></code> 함수는 현재 디렉토리 이름을 반환한다.</p>
+<div class="sourceCode" id="cb564"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://fs.r-lib.org">fs</a></span><span class="op">)</span>
+
+<span class="va">cwd</span> <span class="op">&lt;-</span> <span class="fu">fs</span><span class="fu">::</span><span class="fu"><a href="https://fs.r-lib.org/reference/path.html">path_wd</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co"># C:/swc/book_programming</span></code></pre></div>
+<p><code>cwd</code> 는 <strong>current working directory</strong>의 약자로 현재 작업 디렉토리다.
+예제의 결과는 <code>C:/swc/book_programming</code>인데
+현재 작성중인 전자책 <code>book_programming</code> 의 홈 디렉토리가 된다.</p>
+<p>파일을 식별하는 <code>cwd</code> 같은 문자열을 경로(path)라고 부른다.
+<strong>상대경로(relative path)</strong>는 현재 디렉토리에서 시작하고,
+<strong>절대경로(absolute path)</strong>는 파일 시스템의 가장 최상단의 디렉토리에서
+시작한다.</p>
+<p>지금까지 살펴본 경로는 간단한 파일 이름이여서, 현재 디렉토리에서
+상대적이다. 파일의 절대 경로를 알아내기 위해서 <code><a href="https://fs.r-lib.org/reference/path_math.html">fs::path_abs()</a></code> 함수를
+사용한다.</p>
+<div class="sourceCode" id="cb565"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb565-1"><a href="r-automation.html#cb565-1" aria-hidden="true" tabindex="-1"></a>fs<span class="sc">::</span><span class="fu">path_abs</span>(<span class="st">"index.Rmd"</span>)</span>
+<span id="cb565-2"><a href="r-automation.html#cb565-2" aria-hidden="true" tabindex="-1"></a>C<span class="sc">:</span><span class="er">/</span>swc<span class="sc">/</span>book_programming<span class="sc">/</span>index.Rmd</span></code></pre></div>
+<p><code>dir_exists</code>는 디렉토리, <code>file_exists</code>는 파일이 존재하는지 검사한다.</p>
+<div class="sourceCode" id="cb566"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">fs</span><span class="fu">::</span><span class="fu"><a href="https://fs.r-lib.org/reference/file_access.html">dir_exists</a></span><span class="op">(</span><span class="st">"data"</span><span class="op">)</span></code></pre></div>
+<pre><code>data  
+TRUE</code></pre>
+<div class="sourceCode" id="cb568"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">fs</span><span class="fu">::</span><span class="fu"><a href="https://fs.r-lib.org/reference/file_access.html">file_exists</a></span><span class="op">(</span><span class="st">"index.Rmd"</span><span class="op">)</span></code></pre></div>
+<pre><code>index.Rmd 
+TRUE </code></pre>
+<p><code><a href="https://fs.r-lib.org/reference/dir_ls.html">dir_ls()</a></code> 함수는 은 주어진 디렉토리에 파일 리스트(그리고 다른 디렉토리)를
+반환한다.</p>
+<div class="sourceCode" id="cb570"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">fs</span><span class="fu">::</span><span class="fu"><a href="https://fs.r-lib.org/reference/dir_ls.html">dir_ls</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code>00-why.Rmd             01-intro.Rmd           02-var.Rmd             03-cont.Rmd            04-func.Rmd            
+05-loop.Rmd            06-string.Rmd          07-file.Rmd            08-list.Rmd            09-dictionaries.Rmd    
+10-tuples.Rmd          11-regex.Rmd           12-database.Rmd        13-web.Rmd             14-tasks.Rmd           
+assets                 book.bib               book_programming.rds   book_programming.Rproj data                   
+DESCRIPTION            Dockerfile             docs                   index.Rmd              LICENSE                
+now.json               packages.bib           preamble.tex           README.md              references.Rmd         
+script                 style.css              toc.css                _bookdown.yml          _bookdown_files        
+_build.sh              _common.R              _deploy.sh             _output.yml            _publish.R      </code></pre>
+</div>
+<div id="tasks-picture" class="section level2" number="15.2">
+<h2>
+<span class="header-section-number">15.2</span> 사례: 사진 디렉토리 정리<a class="anchor" aria-label="anchor" href="#tasks-picture"><i class="fas fa-link"></i></a>
+</h2>
+<p>얼마 전에 핸드폰에서 사진을 받아서 서버에 저장하는 <a href="https://www.flickr.com/">플릭커(Flickr)</a><a href="references.html#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a>와
+유사한 소프트웨어를 개발했다. 플릭커가 존재하기 전에 작성해고, 플맄커가
+생긴 이후에도 계속해서 사용했다. 왜냐하면 영원히 원본을 보관하고 싶어서다.</p>
+<p>문자메시지를 사용해서 한줄 텍스트 문자나 전자우편 주소 제목줄도 보낼 수
+있다. 사진 파일과 마찬가지로 텍스프 파일형식 메시지를 동일한 디렉토리에
+저장했다. 사진을 찍은 월, 년, 일, 그리고 시간에 기초한 디렉토리 구조다.
+다음은 사진 한장과 설명 텍스트를 가진 예제다.</p>
+<pre><code>    ./2006/03/24-03-06_2018002.jpg
+    ./2006/03/24-03-06_2018002.txt</code></pre>
+<p>7년이 지난 후에, 정말 많은 사진과 짧은 설명문이 생겼다. 시간이 지남에
+따라 핸드폰을 바꿨다. 메시지에서 짧은 설명문을 뽑아내는 코드가 잘
+동작하지 않고 짧은 설명문 대신에 쓸모없는 데이터를 서버에 추가했다.</p>
+<p>파일을 훑어서 어느 텍스트 파일이 정말 짧은 설명문이고, 어는 것이
+쓰레기인지 찾아서 잘못된 파일은 삭제하고 싶었다. 첫번째 할 일은 다음
+프로그램을 사용하여 폴더에 전체 텍스트 파일 목록을 얻는 것이다.</p>
+<pre><code>import os
+count = 0
+for (dirname, dirs, files) in os.walk('.'):
+   for filename in files:
+       if filename.endswith('.txt') :
+           count = count + 1
+print 'Files:', count
+
+python txtcount.py
+Files: 1917</code></pre>
+<p>이것을 가능하게 하는 가장 중요한 코드는 파이썬 <code>os.walk</code> 라이브러리다.
+<code>os.walk</code>을 호출하고 시작 디렉토리를 지정해 주면, 재귀적으로 모든
+디렉토리와 하위 디렉토리를 훑는다. “.” 문자열은 현재 디렉토리에서
+시작해서 하위 디렉토리로 훑는 것을 표시한다. 디렉토리 각각에 도착하면,
+<code>for</code> 루프 몸통부분에 있는 튜플에서 값 세개를 얻는다. 첫번째 값은 현재
+디렉토리 이름, 두번째 값은 현재 디렉토리의 하위 디렉토리 리스트, 그리고
+세번째 값은 현재 디렉토리 파일 리스트다.</p>
+<p>명시적으로 하위 디렉토리 각각을 살펴보지 않는다. 왜냐하면, <code>os.walk</code>가
+자동으로 모든 폴더를 방문할 것이기 때문이다. 하지만, 각 파일을 살펴보고
+싶기 때문에, 간단한 <code>for</code> 루프를 작성해서 현재 디렉토리에 파일 각각을
+조사한다. “.txt”로 끝나는 파일이 있는지 확인한다. 전체 디렉토리 트리를
+훑어서 접미사 “.txt”로 끝나는 파일 숫자를 카운트한다.</p>
+<p>얼마나 많은 파일이 “.txt” 확장자로 끝나는지 감을 잡았으면, 다음 작업은
+자동적으로 어느 파일이 정상이고, 어느 파일이 문제가 있는지를 파이썬이
+결정하도록 하는 것이다. 간단한 프로그램을 작성해서 파일과 파일의 크기를
+출력한다.</p>
+<pre><code>import os
+from os.path import join
+for (dirname, dirs, files) in os.walk('.'):
+   for filename in files:
+       if filename.endswith('.txt') :
+           thefile = os.path.join(dirname,filename)
+           print os.path.getsize(thefile), thefile</code></pre>
+<p>파일을 단순히 카운트하는 대신에 <code>os.path.join</code>을 사용하여 디렉토리
+안에서 디렉토리 이름과 파일 이름을 합쳐서 파일 이름을 생성한다. 문자열
+연결 대신에 <code>os.path.join</code>을 사용하는 것이 중요한데 왜냐하면 파일 경로를
+나타내기 위해서 윈도우에서는 파일 경로를 생성하기 위해서 역슬래쉬(<code>\</code>)를
+사용하고, 리눅스나 애플에서는 슬래쉬 (<code>/</code>)를 사용하기 때문이다.
+<code>os.path.join</code>은 이러한 차이를 알고 어느 운영체제에서 동작하는지
+인지하고 시스템에 따라 적절한 합치기 작업을 수행한다. 그래서 동일한
+파이썬 코드가 윈도우나 유닉스계열 시스템에도 실행된다.</p>
+<p>디렉토리 경로를 가진 전체 파일 이름을 갖게 되면, <code>os.path.getsize</code>
+유틸리티를 사용해서 크기를 얻고 출력해서 다음 결과값을 만들어 낸다.</p>
+<pre><code>python txtsize.py
+...
+18 ./2006/03/24-03-06_2303002.txt
+22 ./2006/03/25-03-06_1340001.txt
+22 ./2006/03/25-03-06_2034001.txt
+...
+2565 ./2005/09/28-09-05_1043004.txt
+2565 ./2005/09/28-09-05_1141002.txt
+...
+2578 ./2006/03/27-03-06_1618001.txt
+2578 ./2006/03/28-03-06_2109001.txt
+2578 ./2006/03/29-03-06_1355001.txt
+...</code></pre>
+<p>출력값을 스캔하면, 몇몇 파일은 매우 짧고, 다른 많은 파일은 매우 큰데
+동일한 크기(2578, 2565)임을 볼 수 있다. 수작업으로 몇개의 큰 파일을
+살펴보면, T-Mobile 핸드폰에서 보내지는 전자우편에 함께 오는 일반적인
+동일한 HTML을 가진 것임을 알 수 있다.</p>
+<pre><code>&lt;html&gt;
+        &lt;head&gt;
+                &lt;title&gt;T-Mobile&lt;/title&gt;
+...</code></pre>
+<p>파일을 대충 살펴보면, 파일에 그다지 유용한 정보가 없으므로 삭제한다.</p>
+<p>하지만, 파일을 삭제하기 전에, 한 줄 이상인 파일을 찾고 내용을 출력하는
+프로그램을 작성한다. 2578 혹은 2565 문자길이를 가진 파일을 보여주지는
+않는다. 왜냐하면, 파일에 더 이상 유용한 정보가 없음을 알기 때문이다.</p>
+<p>그래서 다음과 같이 프로그램을 작성한다.</p>
+<pre><code>import os
+from os.path import join
+for (dirname, dirs, files) in os.walk('.'):
+   for filename in files:
+       if filename.endswith('.txt') :
+           thefile = os.path.join(dirname,filename)
+           size = os.path.getsize(thefile)
+           if size == 2578 or size == 2565:
+               continue
+           fhand = open(thefile,'r')
+           lines = list()
+           for line in fhand:
+               lines.append(line)
+           fhand.close()
+           if len(lines) &gt; 1:
+                print len(lines), thefile
+                print lines[:4]</code></pre>
+<p><code>continue</code>를 사용하여 두 “잘못된 크기(bad sizes)” 파일을 건너뛰고,
+나머지 파일을 열고, 파이썬 리스트에 파일 라인을 읽는다. 만약 파일이 하나
+이상의 라인이면, 파일에 얼마나 많은 라인이 있는지 출력하고, 첫 세줄을
+출력한다.</p>
+<p>두개의 잘못된 파일 크기를 제외하고, 모든 한줄짜리 파일이 정상적이라고
+가정하고나면 깨끗하게 정리된 파일을 생성된다.</p>
+<pre><code>python txtcheck.py 
+3 ./2004/03/22-03-04_2015.txt
+['Little horse rider\r\n', '\r\n', '\r']
+2 ./2004/11/30-11-04_1834001.txt
+['Testing 123.\n', '\n']
+3 ./2007/09/15-09-07_074202_03.txt
+['\r\n', '\r\n', 'Sent from my iPhone\r\n']
+3 ./2007/09/19-09-07_124857_01.txt
+['\r\n', '\r\n', 'Sent from my iPhone\r\n']
+3 ./2007/09/20-09-07_115617_01.txt
+...</code></pre>
+<p>하지만, 한가지 더 성가신 패턴의 파일이 있다. 두 공백 라인과 “Sent from
+my iPhone”으로 구성된 3줄짜리 파일이다. 프로그램을 다음과 같이 변경하여
+이러한 파일도 처리하게 한다.</p>
+<pre><code>           lines = list()
+           for line in fhand:
+               lines.append(line)
+           if len(lines) == 3 and lines[2].startswith('Sent from my iPhone'):
+               continue
+           if len(lines) &gt; 1:
+                print len(lines), thefile
+                print lines[:4]</code></pre>
+<p>단순하게 3줄짜리 파일이 있는지 검사하고 만약 지정된 텍스트로 세번째
+라인이 시작한다면, 건너뛴다.</p>
+<p>이제 프로그램을 실행하면, 4개의 다중 라인 파일만을 보게되고 모든 파일이
+잘 처리된 것으로 보인다.</p>
+<pre><code>python txtcheck2.py 
+3 ./2004/03/22-03-04_2015.txt
+['Little horse rider\r\n', '\r\n', '\r']
+2 ./2004/11/30-11-04_1834001.txt
+['Testing 123.\n', '\n']
+2 ./2006/03/17-03-06_1806001.txt
+['On the road again...\r\n', '\r\n']
+2 ./2006/03/24-03-06_1740001.txt
+['On the road again...\r\n', '\r\n']</code></pre>
+<p>프로그램의 전반적인 패턴을 살펴보면, 연속적으로 파일을 어떻게 승인할지와
+거절할지를 정교화했고, “잘못된” 패턴을 발견하면 <code>continue</code>를 사용해서
+잘못된 파일을 건너뛰게 했다. 그래서 잘못된 더 많은 파일 패턴이
+탐지되도록 코드를 정교화했다.</p>
+<p>이제 파일을 삭제할 준비가 되었다. 로직을 바꿔서, 나머지 올바른 파일을
+출력하는 대신에, 삭제할 “잘못된” 파일만을 출력한다.</p>
+<pre><code>import os
+from os.path import join
+for (dirname, dirs, files) in os.walk('.'):
+   for filename in files:
+       if filename.endswith('.txt') :
+           thefile = os.path.join(dirname,filename)
+           size = os.path.getsize(thefile)
+           if size == 2578 or size == 2565:
+               print 'T-Mobile:',thefile
+               continue
+           fhand = open(thefile,'r')
+           lines = list()
+           for line in fhand:
+               lines.append(line)
+           fhand.close()
+           if len(lines) == 3 and lines[2].startswith('Sent from my iPhone'):
+               print 'iPhone:', thefile
+               continue</code></pre>
+<p>이제 삭제할 대상 목록과 왜 이 파일이 삭제 대상으로 나왔는지를 볼 수
+있다. 프로그램은 다음 출력을 생성한다.</p>
+<pre><code>python txtcheck3.py
+...
+T-Mobile: ./2006/05/31-05-06_1540001.txt
+T-Mobile: ./2006/05/31-05-06_1648001.txt
+iPhone: ./2007/09/15-09-07_074202_03.txt
+iPhone: ./2007/09/15-09-07_144641_01.txt
+iPhone: ./2007/09/19-09-07_124857_01.txt
+...</code></pre>
+<p>무작위로 파일을 검사해서 프로그램에 버그가 우연하게 들어가 있는지 혹은
+원치 않는 파일이 작성한 프로그램 로직에 끌려들어 갔는지 확인할 수 있다.</p>
+<p>결과값에 만족하고, 다음이 삭제할 파일 목록임으로, 프로그램에 다음과 같은
+변경을 한다.</p>
+<pre><code>           if size == 2578 or size == 2565:
+               print 'T-Mobile:',thefile
+               os.remove(thefile)
+               continue
+...
+           if len(lines) == 3 and lines[2].startswith('Sent from my iPhone'):
+               print 'iPhone:', thefile
+               os.remove(thefile)
+               continue</code></pre>
+<p>이번 버젼의 프로그램에서 파일을 출력하고 <code>os.remove</code>을 사용하여 잘못된
+파일을 삭제한다.</p>
+<pre><code>python txtdelete.py 
+T-Mobile: ./2005/01/02-01-05_1356001.txt
+T-Mobile: ./2005/01/02-01-05_1858001.txt
+...</code></pre>
+<p>재미로, 프로그램을 두번 실행하게 되면 모든 잘못된 파일이 삭제되어서
+출력값이 없다.</p>
+<p><code>txtcount.py</code>을 다시 실행하면, 899 잘못된 파일이 삭제되었음을 알 수
+있다.</p>
+<pre><code>python txtcount.py 
+Files: 1018</code></pre>
+<p>이번 장에서 일련의 절차에 따라 파이썬을 사용하여 디렉토리와 파일을
+검색하는 패턴을 살펴봤다. 천천히 파이썬을 사용해서 디렉토리를 정리하기
+위해서 무엇을 할지를 결정했다. 어느 파일이 좋고 어느 파일이 유용하지
+않는지 파악한 후에 파이썬을 사용해서 파일을 삭제하고 파일 정리를
+수행했다.</p>
+<p>해결하려고 하는 문제가 무척 간단하여 파일 이름만을 살펴보는 것으로
+충분히 처리할 수 있다. 혹은 모든 파일을 읽고 파일 내부에 패턴을 찾을
+필요가 있을 수도 있다. 때때로, 모든 파일을 읽고, 파일의 일부에 변경이
+필요할지도 모른다. <code>os.walk</code>와 다른 <code>os</code> 유틸리티가 어떻게 사용되는지
+이해하기만 하면 이 모든 것은 매우 명확한다.</p>
+</div>
+<div id="tasks-commandline" class="section level2" number="15.3">
+<h2>
+<span class="header-section-number">15.3</span> 명령 줄 인자<a class="anchor" aria-label="anchor" href="#tasks-commandline"><i class="fas fa-link"></i></a>
+</h2>
+<p>앞선 장에서 <code>raw_input</code>을 사용하여 파일명을 사용자로부터 입력받고,
+파일에서 데이터를 읽어 다음과 같이 처리했다.</p>
+<pre><code>name = raw_input('Enter file:')
+handle = open(name, 'r')
+text = handle.read()
+...</code></pre>
+<p>파이썬을 시작할 때, 명령 라인에서 파일 이름을 입력 받음으써 프로그램을
+간략화 할 수 있다. 지금까지 파이썬 프로그램을 단순하게 실행하고 다음과
+같이 명령어 프롬프트에 응답했다.</p>
+<pre><code>python words.py
+Enter file: mbox-short.txt
+...</code></pre>
+<p>파이썬 파일 다음에 추가 문자열을 배치하고 파이썬 프로그램에서 <strong>명령 줄
+인수(command line arguments)</strong>에 접근한다. 명령 줄에서 인자를 읽는 것을
+시연하는 간단한 프로그램이 다음에 있다.</p>
+<pre><code>import sys
+print 'Count:', len(sys.argv)
+print 'Type:', type(sys.argv)
+for arg in sys.argv:
+   print 'Argument:', arg</code></pre>
+<p><code>sys.argv</code>의 콘텐츠는 문자열 리스트로 첫 문자열은 파이썬 프로그램 이름,
+그리고 나머지 문자열은 파이썬 파일 다음의 명령 줄의 인자들이다.</p>
+<p>다음은 명령 줄에서 명령 줄 인자 몇개를 읽어들이는 프로그램이다.</p>
+<pre><code>python argtest.py hello there
+Count: 3
+Type: &lt;type 'list'&gt;
+Argument: argtest.py
+Argument: hello
+Argument: there</code></pre>
+<p>세가지 요소 리스트로 프로그램에 넘겨지는 인자가 3개 있다. 리스트의 첫
+요소는 파일 이름 (argtest.py) 그리고 나머지는 파일 이름 뒤에 2 명령 줄
+인자다.</p>
+<p>파일을 읽어 오는 프로그램을 다시 작성할 수 있다. 다음과 같이 명령 줄
+인자로 파일 명을 받는다.</p>
+<pre><code>import sys
+
+name = sys.argv[1]
+handle = open(name, 'r')
+text = handle.read()
+print name, 'is', len(text), 'bytes'</code></pre>
+<p>두번째 명령 줄 인자를 파일 이름으로 취한다. ( <code>[0]</code> 항목 프로그램 이름은
+생략한다.) 파일을 열고 다음과 같이 콘텐츠를 읽는다.</p>
+<pre><code>python argfile.py mbox-short.txt
+mbox-short.txt is 94626 bytes</code></pre>
+<p>입력값으로 명령문 인자를 사용하는 것은 파이썬 프로그램을 재사용하기 쉽게
+하고, 특히 하나 혹은 두개의 문자열을 입력받을 때 유용한다.</p>
+</div>
+<div id="tasks-pipe" class="section level2" number="15.4">
+<h2>
+<span class="header-section-number">15.4</span> 파이프(Pipes)<a class="anchor" aria-label="anchor" href="#tasks-pipe"><i class="fas fa-link"></i></a>
+</h2>
+<p>대부분의 운영 시스템은 <strong>쉘(shell)</strong>로 알려진 명령어 기반 인터페이스를
+지원한다. 일반적으로 쉘은 파일 시스템을 탐색하거나 응용 프로그램을
+실행하는 명령어를 지원한다. 예를 들어, 유닉스에서 <code>cd</code> 명령어로
+디렉토리를 변경하고 <code>ls</code> 명령어로 디렉토리의 콘텐츠를 보여주고,
+<code>firefox</code>를 타이핑해서 웹브라우져를 실행한다.</p>
+<p>쉘에서 실행시킬 수 있는 어떤 프로그램이나 <strong>파이프(pipe)</strong>를 사용하여
+파이썬에서도 실행시킬 수 있다. 파이프는 작동중인 프로세스를 표현하는
+객체다.</p>
+<p>예를 들어, 유닉스 명령어<a href="references.html#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a> <code>ls -l</code>는 정상적으로 현재 디렉토리의
+콘텐츠(긴 형식으로)를 보여준다. <code><a href="https://rdrr.io/r/base/system2.html">system2()</a></code> 내장함수, 혹은
+<a href="https://cran.r-project.org/web/packages/processx/index.html"><code>processx</code></a>,
+<a href="https://cran.r-project.org/web/packages/sys/index.html"><code>sys</code></a> 패키지를
+가지고 <code>ls</code> 를 실행시킬 수 있다.</p>
+<div class="sourceCode" id="cb592"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/system2.html">system2</a></span><span class="op">(</span><span class="st">"ls"</span>, <span class="st">"-l"</span>, stdout <span class="op">=</span> <span class="cn">TRUE</span>, stderr <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<pre><code> [1] "total 960"                                                                
+ [2] "-rw-r--r--   1 tidyverse  staff  16280  5 18 10:26 00-why.Rmd"            
+ [3] "-rw-r--r--   1 tidyverse  staff  44481  5 18 10:26 01-intro.Rmd"          
+ [4] "-rw-r--r--   1 tidyverse  staff  25092  5 18 10:26 02-var.Rmd"            
+ [5] "-rw-r--r--   1 tidyverse  staff  20041  5 18 10:26 03-cont.Rmd"           
+ [6] "-rw-r--r--   1 tidyverse  staff  24862  5 18 10:26 04-func.Rmd"           
+ [7] "-rw-r--r--   1 tidyverse  staff  19254  5 18 10:26 05-loop.Rmd"           
+ [8] "-rw-r--r--   1 tidyverse  staff  19007  5 18 10:26 06-string.Rmd"         
+ [9] "-rw-r--r--   1 tidyverse  staff  26301  5 18 10:26 07-file.Rmd"           
+[10] "-rw-r--r--   1 tidyverse  staff  27648  5 18 10:26 08-list.Rmd"           
+[11] "-rw-r--r--   1 tidyverse  staff  22463  5 18 10:26 09-dictionaries.Rmd"   
+[12] "-rw-r--r--   1 tidyverse  staff  12085  5 18 10:26 10-tuples.Rmd"         
+[13] "-rw-r--r--   1 tidyverse  staff  30744  5 18 12:42 11-regex.Rmd"          
+[14] "-rw-r--r--   1 tidyverse  staff  36390  5 19 11:15 12-database.Rmd"       
+[15] "-rw-r--r--   1 tidyverse  staff  18931  5 19 11:15 13-web.Rmd"            
+[16] "-rw-r--r--   1 tidyverse  staff  32936  5 19 12:19 14-tasks.Rmd"          
+[17] "-rw-r--r--   1 tidyverse  staff    115  5 18 10:26 DESCRIPTION"           
+[18] "-rw-r--r--   1 tidyverse  staff    150  5 18 10:26 Dockerfile"            
+[19] "-rw-r--r--   1 tidyverse  staff   6556  5 18 10:26 LICENSE"               
+[20] "-rw-r--r--   1 tidyverse  staff    741  5 18 10:26 README.md"             
+[21] "-rw-r--r--   1 tidyverse  staff    671  5 19 11:15 _bookdown.yml"         
+[22] "-rw-r--r--   1 tidyverse  staff    235  5 18 10:26 _build.sh"             
+[23] "-rw-r--r--   1 tidyverse  staff    842  5 18 10:26 _common.R"             
+[24] "-rwxr-xr-x   1 tidyverse  staff    398  5 18 10:26 _deploy.sh"            
+[25] "-rw-r--r--   1 tidyverse  staff    360  5 18 10:26 _output.yml"           
+[26] "-rw-r--r--   1 tidyverse  staff   1427  5 18 10:26 _publish.R"            
+[27] "drwxr-xr-x   4 tidyverse  staff    128  5 18 14:45 assets"                
+[28] "-rw-r--r--   1 tidyverse  staff   3203  5 18 10:26 book.bib"              
+[29] "-rw-r--r--   1 tidyverse  staff    277  5 18 10:26 book_programming.Rproj"
+[30] "-rw-r--r--   1 tidyverse  staff    208  5 19 12:10 book_programming.rds"  
+[31] "drwxr-xr-x  10 tidyverse  staff    320  5 18 14:04 data"                  
+[32] "drwxr-xr-x  48 tidyverse  staff   1536  5 19 12:10 docs"                  
+[33] "-rw-r--r--   1 tidyverse  staff   6272  5 18 10:26 index.Rmd"             
+[34] "-rw-r--r--   1 tidyverse  staff     41  5 18 10:26 now.json"              
+[35] "-rw-r--r--   1 tidyverse  staff   2655  5 18 10:26 packages.bib"          
+[36] "-rw-r--r--   1 tidyverse  staff    161  5 18 10:26 preamble.tex"          
+[37] "-rw-r--r--   1 tidyverse  staff     55  5 18 10:26 references.Rmd"        
+[38] "drwxr-xr-x   4 tidyverse  staff    128  5 18 10:26 script"                
+[39] "-rw-r--r--   1 tidyverse  staff    172  5 18 10:26 style.css"             
+[40] "-rw-r--r--   1 tidyverse  staff   2443  5 18 10:26 toc.css"   </code></pre>
+<p>인자는 쉘 명령어를 포함하는 문자열이다.</p>
+<div id="tasks-pipe" class="section level3" number="15.4.1">
+<h3>
+<span class="header-section-number">15.4.1</span> 유닉스 철학과 파이프<a class="anchor" aria-label="anchor" href="#tasks-pipe"><i class="fas fa-link"></i></a>
+</h3>
+<div class="figure">
+<img src="assets/images/parallel-r-pipeline.png" style="width:100.0%" alt=""><p class="caption">R 파이프라인</p>
+</div>
+<p>통계 예측모형, 기계학습, 딥러닝 시스템을 개발할 경우 유닉스/리눅스 운영체제로 환경을 통일하고 텍스트 파일을 모든 프로그램과 시스템이 의사소통하는 기본 인터페이스로 잡고, 이를 파이프로 연결한다.</p>
+<ol style="list-style-type: decimal">
+<li>텍스트 데이터로 분석에 사용될 혹은 훈련데이터로 준비한다.</li>
+<li>파이썬 혹은 쉘스크립트, R스크립트를 활용하여 전처리한다.</li>
+<li>R <code>tidymodels</code> 혹은 파이썬 <code>Scikit-learn</code> 예측모형을 적합, 기계학습 훈련, 시각화를 수행한다.</li>
+<li>마크다운(웹), LaTeX(조판) 출력형식에 맞춰 서식을 결정한다.</li>
+<li>최종 결과를 텍스트, 이미지 파일, pdf, html로 출력한다.</li>
+</ol>
+<pre class="shell"><code>$ cat data.txt | preProcesswithPython.py | runModelwithR.R | formatOutput.sh &gt; mlOutput.txt</code></pre>
+<div id="unix-philosophy" class="rmdcaution">
+<p><strong><a href="https://en.wikipedia.org/wiki/Unix_philosophy">유닉스 철학</a></strong></p>
+<p>[원문] Write programs that do one thing and do it well. Write programs to work together. Write programs to handle text streams, because that is a universal interface. – Doug McIlroy</p>
+<ul>
+<li>한가지 작업만 매우 잘하는 프로그램을 작성한다(Write programs that do one thing and do it well)</li>
+<li>프로그램이 함께 동작하도록 작성한다(Write programs to work together)</li>
+<li>텍스트를 다루는 프로그램을 작성한다. 이유는 어디서나 사용되는 인터페이스가 되기 때문이다(Write programs to handle text streams, because that is a universal interface)</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="tasks-terminology" class="section level2" number="15.5">
+<h2>
+<span class="header-section-number">15.5</span> 용어정의<a class="anchor" aria-label="anchor" href="#tasks-terminology"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li>
+<strong>절대경로(absolute path)</strong>:
+파일이나 디렉토리가 어디에 저장되어 있는지를 저장하는 문자열로
+“최상단의 디렉토리”에서 시작해서, 현재 작업 디렉토리에 관계없이
+파일이나 디렉토리를 접근하는데 사용할 수 있다.</li>
+<li>
+<strong>체크썸(checksum)</strong>:
+<strong>해싱(hashing)</strong>을 참조하세요. “체크썸(checksum)”단어는 네트워크로
+데이터가 보내지거나 백업 매체에 쓰여지고 다시 읽어올 때, 데이터가
+왜곡되었는지를 검증하는 필요에서 생겨났다. 데이터가 쓰여지거나
+보내질 때, 송신 시스템은 체크썸을 계산하고 또한 체크썸도 보낸다.
+데이터가 읽혀지거나 받았을 때, 수신 시스템을 수신된 데이터의
+체크썸을 다시 계산하고 받은 체크썸과 비교한다. 만약 체크썸이
+매칭되지 않으면, 전송 시에 데이터가 왜곡된 것으로 판단해야 한다.</li>
+<li>
+<strong>명령 줄 인자(command line argument)</strong>:
+파이썬 파일 이름 뒤에 명령 줄에 매개 변수.</li>
+<li>
+<strong>현재 작업 디렉토리(current working directory)</strong>:
+여러분이 “작업하고 있는” 현재 디렉토리. 명령-줄 인터페이스에서
+대부분의 시스템에 <code>cd</code> 명령어를 사용하여 작업 디렉토리를 변경할 수
+있다. 경로 정보 없이 파일만을 사용하여 파이썬에서 파일을 열게 될 때,
+파일은 프로그램을 실행하고 있는현재 작업 디렉토리에 있어야 한다.</li>
+<li>
+<strong>해싱(hashing)</strong>:
+가능한 큰 데이터를 읽고 그 데이터에 대해서 유일한 체크썸을 생성하는
+것. 최고의 해쉬 함수는 거의 “충돌(collision)”을 만들지 않는다.
+여기서 충돌은 서로 다른 두 데이터 스트림에 해쉬 함수를 줄 때 동일한
+해쉬값을 돌려받는 것이다. MD5, SHA1, SHA256 는 가장 많이 사용되는
+해쉬 함수의 사례다.</li>
+<li>
+<strong>파이프(pipe)</strong>:
+파이프는 실행하는 프로그램에 연결이다. 파이프를 사용해서, 데이터를
+다른 프로그램에 보내거나 그 프로그램에서 데이터를 받는 프로그램을
+작성할 수 있다. 파이프는 <strong>소켓(socket)</strong>과 매우 유사하다. 차이점은
+파이프는 동일한 컴퓨터에서 실행되는 프로그램을 연결하는데만
+사용된다는 것이다. (즉, 네트워크를 통해서는 사용할 수 없다.)</li>
+<li>
+<strong>상대경로(relative path)</strong>:
+파일 혹은 디렉토리가 어디에 저장되었는지를 현재 작업 디렉토리에
+상대적으로 표현하는 문자열.</li>
+<li>
+<strong>쉘(shell)</strong>:
+운영 시스템에 명령줄 인터페이스. 다른 시스템에서는 또한 “터미널
+프로그램(terminal program)”이라고 부른다. 이런 인터페이스에서 라인에
+명령어와 매개 변수를 타입하고 명령을 실행하기 위해서 “엔터(enter)”를
+누른다.</li>
+<li>
+<strong>워크(walk)</strong>:
+모든 디렉토리를 방문할 때까지 디렉토리, 하위 디렉토리, 하위의 하위
+디렉토리 전체 트리를 방문하는 개념을 나타내기 위해서 사용된 용어.
+여기서 이것을 “디렉토리 트리를 워크”한다고 부른다.</li>
+</ul>
+</div>
+<div id="tasks-exercise" class="section level2" number="15.6">
+<h2>
+<span class="header-section-number">15.6</span> 연습문제<a class="anchor" aria-label="anchor" href="#tasks-exercise"><i class="fas fa-link"></i></a>
+</h2>
+<p>MP3 파일이 대규모로 수집되어 있은 곳에는 같은 노래의 복사본 하나 이상이
+다른 디렉토리 혹은 다른 파일 이름으로 저장되어 있을 수 있다. 이번
+연습문제의 목표는 이런 중복 파일을 찾는 것이다.</p>
+<ol style="list-style-type: decimal">
+<li><p><code>.mp3</code>같은 확장자를 가진 파일을 모든 디렉토리와 하위 디렉토리를
+검색해서 동일한 크기를 가진 파일짝을 목록으로 보여주는 프로그램을
+작성하세요.</p></li>
+<li>
+<p><strong>체크썸(checksum)</strong> 알고리즘이나 해싱을 사용하여 중복 콘텐츠를 가진
+파일을 찾는 이전의 프로그램을 개작하세요. 예를 들어, MD5
+(Message-Digest algorithm 5)는 임의적으로 긴 “메시지”를 가지고
+128비트 “체크썸”을 반환한다. 다른 콘텐츠를 가진 두 파일이 같은
+체크썸을 반환할 확률은 매우 적다.</p>
+<p><a href="wikipedia.org/wiki/Md5">wikipedia.org/wiki/Md5</a>에서 MD5에 대해서 더
+배울 수 있다. 다음 코드 조각은 파일을 열고, 읽고, 체크썸을 계산한다.</p>
+<p>체크섬을 계산하고 키로 이미 딕셔너리에 있게 되면, 중복 콘텐츠인 두
+파일 있어서 딕셔너리에 파일과 방금전에 읽은 파일을 출력한다. 사진
+파일 폴더에서 실행한 샘플 출력물이 다음에 있다.</p>
+</li>
+</ol>
+<pre><code>        ./2004/11/15-11-04_0923001.jpg ./2004/11/15-11-04_1016001.jpg
+        ./2005/06/28-06-05_1500001.jpg ./2005/06/28-06-05_1502001.jpg
+        ./2006/08/11-08-06_205948_01.jpg ./2006/08/12-08-06_155318_02.jpg</code></pre>
+<pre><code>명백하게 때때로 같은 사진을 한번 이상 보내거나 원본을 삭제하지 않고
+종종 사진 사본을 만든다.</code></pre>
+</div>
+<div id="run-r-script" class="section level2" number="15.7">
+<h2>
+<span class="header-section-number">15.7</span> R 스크립트 실행 <a href="references.html#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a> <a href="references.html#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a><a class="anchor" aria-label="anchor" href="#run-r-script"><i class="fas fa-link"></i></a>
+</h2>
+<div class="inline-figure">
+<img src="assets/images/parallel-r-script-exec.png" style="width:100.0%" alt="R 스크핍트 실행">
+명령라인 인터페이스에서 R 스크립트를 실행하고 다양한 R 스크립트 실행방법을 살펴보자.
+먼저, 유닉스/리눅스/윈도우 운영체제가 준비되었다면 R스크립트 실행환경을 준비한다.</div>
+<div id="install-r" class="section level3" number="15.7.1">
+<h3>
+<span class="header-section-number">15.7.1</span> R 설치<a class="anchor" aria-label="anchor" href="#install-r"><i class="fas fa-link"></i></a>
+</h3>
+<p>R을 스크립트 형태(<code>.R</code>) 파일로 실행할 경우 가장 먼저 <code>r-base-core</code>를 설치한다.
+그래픽 사용자 인터페이스가 없는 형태의 R이 설치되며 R 스크립트 실행에 필요한
+연관된 프로그램도 더불어 설치한다.</p>
+<pre><code>$ sudo apt-get install -y r-base-core</code></pre>
+</div>
+<div id="install-env" class="section level3" number="15.7.2">
+<h3>
+<span class="header-section-number">15.7.2</span> R 스크립트 실행환경<a class="anchor" aria-label="anchor" href="#install-env"><i class="fas fa-link"></i></a>
+</h3>
+<p>R과 스크립트를 실행할 <code>Rscript</code> 실행프로그램이 위치한 디렉토리를 확인한다.
+여기에 사용되는 명령어는 <code>which</code>다.
+<code>which R</code> 명령어를 통해 R 실행파일이 <code>/usr/bin/</code> 디렉토리에 위치한 것을 확인할 수 있다.</p>
+<pre><code>$ which R
+/usr/bin/R</code></pre>
+<p><code>which Rscript</code> 명령어를 통해 Rcript 실행파일도
+<code>/usr/bin/</code> 디렉토리에 위치한 것을 확인할 수 있다.</p>
+<pre><code>$ which Rscript
+/usr/bin/Rscript</code></pre>
+<p><code>echo $PATH</code> 명령어를 통해 <code>/usr/bin</code>, 경우에 따라서는 <code>/usr/local/bin</code>
+디렉토리에 R과 Rscript 실행파일이 존재하는 것을 확인한다.</p>
+<pre><code>$ echo $PATH
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games</code></pre>
+</div>
+<div id="exec-rscript" class="section level3" number="15.7.3">
+<h3>
+<span class="header-section-number">15.7.3</span> R 스크립트 파일 실행<a class="anchor" aria-label="anchor" href="#exec-rscript"><i class="fas fa-link"></i></a>
+</h3>
+<p><code>.R</code> 스크립트 파일을 명령라인 인터페이스로 실행하는 방법은 다양한다.
+먼저 <code>hello_world.R</code> 스크립트 파일을 생성한다.</p>
+<pre><code>#! /usr/bin/env Rscript
+
+print("Hello World!!!")</code></pre>
+<p>쉬뱅(shebang, #!) 다음에 스크립트를 실행할 프로그램을 지정한다.
+<code>Rscript</code>로 지정하여 R스크립트를 실행하는데 사용한다.</p>
+<p><code>#! /usr/bin/env Rscript</code></p>
+<pre><code>$ chmod +x hello_world.R
+$ ./hello_world.R</code></pre>
+<p><code>chmod +x</code> 명령어를 통해서 일반 텍스트 파일을 실행가능한
+파일 형식으로 지정한다.
+<code>hello_world.R</code> 파일이 실행가능한 형태가 되었기 때문에
+<code>./hello_world.R</code> 명령어로 R스크립트를 실행시킨다.</p>
+<pre><code>Hello World!!!</code></pre>
+</div>
+<div id="exec-run-other-ways" class="section level3" number="15.7.4">
+<h3>
+<span class="header-section-number">15.7.4</span> 다른 R 스크립트 파일 실행법<a class="anchor" aria-label="anchor" href="#exec-run-other-ways"><i class="fas fa-link"></i></a>
+</h3>
+<p>R스크립트를 실행하는 방법은 다양하다.</p>
+<pre><code>$ R --slave -f hello_world.R
+$ Rscript hello_world.R</code></pre>
+<p><code>Rscript</code> 명령어로 실행을 시켜도 동일한 산출 결과가 출력된다.</p>
+<pre><code>$ R CMD BATCH hello_world.R hello_world_output.txt</code></pre>
+<p><code>R CMD BATCH</code> 명령어로 실행시키면 실행결과가 <code>hello_world_output.txt</code> 파일에 저장된다. <code>hello_world_output.txt</code> 파일명을 지정하지 않으면 <code>hello_world.Rout</code> 파일에 저장된다.</p>
+<pre><code>$ R --no-save &lt;&lt; RSCRIPT
+     print("Hello World")
+  RSCRIPT</code></pre>
+<p><code>R --no-save &lt;&lt;</code> 사용법도 가능하다.</p>
+</div>
+</div>
+<div id="tasks-swcarpentry" class="section level2" number="15.8">
+<h2>
+<span class="header-section-number">15.8</span> 실습 사례 <a href="references.html#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a><a class="anchor" aria-label="anchor" href="#tasks-swcarpentry"><i class="fas fa-link"></i></a>
+</h2>
+<div id="make-rscript" class="section level3" number="15.8.1">
+<h3>
+<span class="header-section-number">15.8.1</span> R스크립트 작성<a class="anchor" aria-label="anchor" href="#make-rscript"><i class="fas fa-link"></i></a>
+</h3>
+<p><code>Rscript r_session_info.R</code> 명령어를 실행해서
+실제로 RStudio나 R 콘솔을 열지 않고도 R 세션정보를 명령라인 인터페이스에서 처리하는 R 스크립트를 작성한다.</p>
+<p>텍스트 편집기를 열고, <code><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo()</a></code>를 적고 파일명을 <code>r_session_info.R</code>로 저장한다.</p>
+<div class="sourceCode" id="cb607"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p>배쉬쉘에서 R스크립트를 실행해서 R 세션정보를 받아확인한다.</p>
+<pre class="shell"><code>$ Rscript r_session_info.R</code></pre>
+<pre><code>R version 3.0.2 (2013-09-25)
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  base</code></pre>
+</div>
+<div id="sessionInfo-save" class="section level3" number="15.8.2">
+<h3>
+<span class="header-section-number">15.8.2</span> R스크립트 출력결과 파일저장<a class="anchor" aria-label="anchor" href="#sessionInfo-save"><i class="fas fa-link"></i></a>
+</h3>
+<p><code>&gt;</code> 파이프 연산자를 사용해서 R 스크립트 출력결과를 텍스트 파일로 저장한다.</p>
+<pre class="shell"><code>$ Rscript r_session_info.R &gt; r_session_info_pipe_output.txt</code></pre>
+<p>또다른 방법은 R 스크립트 내부에서 출력결과를 파일에 저장하고
+프로그램을 종료하는 방법도 있다.</p>
+<p><code>caputre.output</code> 함수를 <code>cat</code>과 함께 사용하는데,
+한글도 적용이 가능하도록, <code>encoding="UTF-8"</code>도 추가한다.</p>
+<div class="sourceCode" id="cb611"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">output</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/capture.output.html">capture.output</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"R 세션정보"</span>, <span class="va">output</span>, file<span class="op">=</span><span class="st">"./r_session_info_rscript.txt"</span>, sep<span class="op">=</span><span class="st">"\n"</span>, encoding<span class="op">=</span><span class="st">"UTF-8"</span><span class="op">)</span></code></pre></div>
+<p><code>Rscript r_session_info.R</code> 명령어를 실행시키면 다음과 같이 실행결과가 텍스트 파일 <code>r_session_info_rscript.txt</code>로 떨어진다.</p>
+<pre><code>R 세션정보
+R version 3.0.2 (2013-09-25)
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  base
+UTF-8</code></pre>
+<ul>
+<li><a href="https://cran.r-project.org/web/packages/optparse/index.html">optparse - Command Line Option Parser</a></li>
+<li><a href="https://cran.r-project.org/web/packages/argparse/index.html">argparse - Command line optional and positional argument parser</a></li>
+<li><a href="https://cran.r-project.org/web/packages/getopt/">getopt - C-like getopt behavior</a></li>
+</ul>
+</div>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="r-webservice.html"><span class="header-section-number">14</span> 웹서비스 사용하기</a></div>
+<div class="next"><a href="references.html">References</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#r-automation"><span class="header-section-number">15</span> 일반적인 작업 자동화</a></li>
+<li><a class="nav-link" href="#r-paths"><span class="header-section-number">15.1</span> 파일 이름과 경로</a></li>
+<li><a class="nav-link" href="#tasks-picture"><span class="header-section-number">15.2</span> 사례: 사진 디렉토리 정리</a></li>
+<li><a class="nav-link" href="#tasks-commandline"><span class="header-section-number">15.3</span> 명령 줄 인자</a></li>
+<li>
+<a class="nav-link" href="#tasks-pipe"><span class="header-section-number">15.4</span> 파이프(Pipes)</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#tasks-pipe"><span class="header-section-number">15.4.1</span> 유닉스 철학과 파이프</a></li></ul>
+</li>
+<li><a class="nav-link" href="#tasks-terminology"><span class="header-section-number">15.5</span> 용어정의</a></li>
+<li><a class="nav-link" href="#tasks-exercise"><span class="header-section-number">15.6</span> 연습문제</a></li>
+<li>
+<a class="nav-link" href="#run-r-script"><span class="header-section-number">15.7</span> R 스크립트 실행 14 15</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#install-r"><span class="header-section-number">15.7.1</span> R 설치</a></li>
+<li><a class="nav-link" href="#install-env"><span class="header-section-number">15.7.2</span> R 스크립트 실행환경</a></li>
+<li><a class="nav-link" href="#exec-rscript"><span class="header-section-number">15.7.3</span> R 스크립트 파일 실행</a></li>
+<li><a class="nav-link" href="#exec-run-other-ways"><span class="header-section-number">15.7.4</span> 다른 R 스크립트 파일 실행법</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#tasks-swcarpentry"><span class="header-section-number">15.8</span> 실습 사례 16</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#make-rscript"><span class="header-section-number">15.8.1</span> R스크립트 작성</a></li>
+<li><a class="nav-link" href="#sessionInfo-save"><span class="header-section-number">15.8.2</span> R스크립트 출력결과 파일저장</a></li>
+</ul>
+</li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>데이터 과학 프로그래밍</strong>" was written by 한국 알(R) 사용자회. It was last built on 2022-05-19.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>
