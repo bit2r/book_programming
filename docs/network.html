@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>13 . 네트워크 프로그램 | 데이터 과학 프로그래밍</title>
+<meta name="author" content="한국 알(R) 사용자회">
+<meta name="description" content="지금까지 책의 많은 예제는 파일을 읽고 파일의 정보를 찾는데 집중했지만, 다양한 많은 정보의 원천이 인터넷에 있다. 이번 장에서는 웹브라우져로 가장하고 HTTP 프로토콜(HyperText Transport Protocol,HTTP)을 사용하여 웹페이지를 검색할 것이다. 웹페이지 데이터를 읽고 파싱할 것이다. 파이썬 튜플과 마찬가지로 R에서 네트워크...">
+<meta name="generator" content="bookdown 0.26 with bs4_book()">
+<meta property="og:title" content="13 . 네트워크 프로그램 | 데이터 과학 프로그래밍">
+<meta property="og:type" content="book">
+<meta property="og:description" content="지금까지 책의 많은 예제는 파일을 읽고 파일의 정보를 찾는데 집중했지만, 다양한 많은 정보의 원천이 인터넷에 있다. 이번 장에서는 웹브라우져로 가장하고 HTTP 프로토콜(HyperText Transport Protocol,HTTP)을 사용하여 웹페이지를 검색할 것이다. 웹페이지 데이터를 읽고 파싱할 것이다. 파이썬 튜플과 마찬가지로 R에서 네트워크...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="13 . 네트워크 프로그램 | 데이터 과학 프로그래밍">
+<meta name="twitter:description" content="지금까지 책의 많은 예제는 파일을 읽고 파일의 정보를 찾는데 집중했지만, 다양한 많은 정보의 원천이 인터넷에 있다. 이번 장에서는 웹브라우져로 가장하고 HTTP 프로토콜(HyperText Transport Protocol,HTTP)을 사용하여 웹페이지를 검색할 것이다. 웹페이지 데이터를 읽고 파싱할 것이다. 파이썬 튜플과 마찬가지로 R에서 네트워크...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">데이터 과학 프로그래밍</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">기계와의 경쟁 1</a></li>
+<li class="book-part">들어가며</li>
+<li><a class="" href="r-vs-python.html"><span class="header-section-number">1</span> R vs 파이썬</a></li>
+<li><a class="" href="r-intro.html"><span class="header-section-number">2</span> 프로그래밍 학습 이유</a></li>
+<li class="book-part">프로그래밍</li>
+<li><a class="" href="r-var.html"><span class="header-section-number">3</span> 변수, 표현식, 문장</a></li>
+<li><a class="" href="r-cont.html"><span class="header-section-number">4</span> 조건부 실행</a></li>
+<li><a class="" href="r-func.html"><span class="header-section-number">5</span> 함수</a></li>
+<li><a class="" href="r-iter.html"><span class="header-section-number">6</span> 반복(Iteration)</a></li>
+<li class="book-part">자료구조</li>
+<li><a class="" href="r-string.html"><span class="header-section-number">7</span> 문자열</a></li>
+<li><a class="" href="r-file.html"><span class="header-section-number">8</span> 파일</a></li>
+<li><a class="" href="r-list.html"><span class="header-section-number">9</span> 리스트 (List)</a></li>
+<li><a class="" href="named-list.html"><span class="header-section-number">10</span> 딕셔너리</a></li>
+<li><a class="" href="r-tuple.html"><span class="header-section-number">11</span> 튜플(Tuples)</a></li>
+<li class="book-part">분야별 도구</li>
+<li><a class="" href="regex.html"><span class="header-section-number">12</span> 정규 표현식</a></li>
+<li><a class="active" href="network.html"><span class="header-section-number">13</span> 네트워크 프로그램</a></li>
+<li><a class="" href="r-webservice.html"><span class="header-section-number">14</span> 웹서비스 사용하기</a></li>
+<li><a class="" href="r-db.html"><span class="header-section-number">15</span> 데이터베이스와 SQL</a></li>
+<li><a class="" href="r-automation.html"><span class="header-section-number">16</span> 작업 자동화</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="network" class="section level1" number="13">
+<h1>
+<span class="header-section-number">13 . </span> 네트워크 프로그램<a class="anchor" aria-label="anchor" href="#network"><i class="fas fa-link"></i></a>
+</h1>
+<p>지금까지 책의 많은 예제는 파일을 읽고 파일의 정보를 찾는데 집중했지만,
+다양한 많은 정보의 원천이 인터넷에 있다.</p>
+<p>이번 장에서는 웹브라우져로 가장하고 HTTP 프로토콜(HyperText Transport
+Protocol,HTTP)을 사용하여 웹페이지를 검색할 것이다. 웹페이지 데이터를
+읽고 파싱할 것이다.</p>
+<div id="network-socket" class="rmdcaution">
+<p>파이썬 튜플과 마찬가지로 R에서 네트워크 프로그래밍을 위해
+소켓까지 내려가서 프로그래밍을 할 경우는 많지 않다.
+하지만 네트워크 프로그램에 대한 이해와 개념을 잡기 위해
+파이썬 소켓 네트워크 프로그래밍을 먼저 살펴본다.</p>
+</div>
+<div id="network-http" class="section level2" number="13.1">
+<h2>
+<span class="header-section-number">13.1</span> 하이퍼 텍스트 전송 프로토콜<a class="anchor" aria-label="anchor" href="#network-http"><i class="fas fa-link"></i></a>
+</h2>
+<p>웹에 동력을 공급하는 네트워크 프로토콜(HyperText Transport Protocol - HTTP)은
+실제로 매우 단순하다.
+파이썬에는 <code>소켓 (sockets)</code>이라고 불리는 내장 지원 모듈이 있다. 파이썬
+프로그램에서 소켓 모듈을 통해서 네트워크 연결을 하고, 데이터 검색을 매우
+용이하게 한다.</p>
+<p><strong>소켓(socket)</strong>은 단일 소켓으로 두 프로그램 사이에 양방향 연결을
+제공한다는 점을 제외하고 파일과 매우 유사하다. 동일한 소켓에 읽거나 쓸
+수 있다. 소켓에 무언가를 쓰게 되면, 소켓의 다른 끝에 있는 응용프로그램에
+전송된다. 소켓으로부터 읽게 되면, 다른 응용 프로그램이 전송한 데이터를
+받게 된다.</p>
+<p>하지만, 소켓의 다른쪽 끝에 프로그램이 어떠한 데이터도 전송하지 않았는데
+소켓을 읽으려고 하면, 단지 앉아서 기다리기만 한다. 만약 어떠한 것도
+보내지 않고 양쪽 소켓 끝의 프로그램 모두 기다리기만 한다면, 모두 매우
+오랜 시간동안 기다리게 될 것이다.</p>
+<p>인터넷으로 통신하는 프로그램의 중요한 부분은 특정 종류의 프로토콜을
+공유하는 것이다. 프로토콜(protocol)은 정교한 규칙의 집합으로 누가
+메시지를 먼저 보내고, 메세지로 무엇을 하며, 메시지에 대한 응답은
+무엇이고, 다음에 누가 메세지를 보내고 등등을 포함한다. 이런 관점에서
+소켓 끝의 두 응용프로그램이 함께 춤을 추고 있으니, 다른 사람 발을 밟지
+않도록 확인해야 한다.</p>
+<p>네트워크 프로토콜을 기술하는 문서가 많이 있다. 하이퍼텍스트 전송
+프로토콜(HyperText Transport Protocol)은 다음 문서에 기술되어 있다.</p>
+<p><a href="http://www.w3.org/Protocols/rfc2616/rfc2616.txt" class="uri">http://www.w3.org/Protocols/rfc2616/rfc2616.txt</a></p>
+<p>매우 상세한 176 페이지나 되는 장문의 복잡한 문서다. 흥미롭다면 시간을
+가지고 읽어보기 바란다. RFC2616에 36 페이지를 읽어보면, GET
+요청(request)에 대한 구문을 발견하게 된다. 꼼꼼히 읽게 되면, 웹서버에
+문서를 요청하기 하기 위해서, 80 포트로 <code>www.py4inf.com</code> 서버에 연결을
+하고 나서 다음 양식 한 라인을 전송한다.</p>
+<p><code>GET http://www.py4inf.com/code/romeo.txt HTTP/1.0</code></p>
+<p>두번째 매개변수는 요청하는 웹페이지가 된다. 그리고 또한 빈 라인도
+전송한다. 웹서버는 문서에 대한 헤더 정보와 빈 라인 그리고 문서 본문으로
+응답한다.</p>
+</div>
+<div id="network-web-browser" class="section level2" number="13.2">
+<h2>
+<span class="header-section-number">13.2</span> 가장 간단한 웹 브라우져<a class="anchor" aria-label="anchor" href="#network-web-browser"><i class="fas fa-link"></i></a>
+</h2>
+<p>아마도 HTTP 프로토콜이 어떻게 작동하는지 알아보는 가장 간단한 방법은
+매우 간단한 파이썬 프로그램을 작성하는 것이다. 웹서버에 접속하고 HTTP
+프로토콜 규칙에 따라 문서를 요청하고 서버가 다시 보내주는 결과를
+보여주는 것이다.</p>
+<div class="sourceCode" id="cb525"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb525-1"><a href="network.html#cb525-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> socket</span>
+<span id="cb525-2"><a href="network.html#cb525-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb525-3"><a href="network.html#cb525-3" aria-hidden="true" tabindex="-1"></a>mysock <span class="op">=</span> socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span>
+<span id="cb525-4"><a href="network.html#cb525-4" aria-hidden="true" tabindex="-1"></a>mysock.<span class="ex">connect</span>((<span class="st">'data.pr4e.org'</span>, <span class="dv">80</span>))</span>
+<span id="cb525-5"><a href="network.html#cb525-5" aria-hidden="true" tabindex="-1"></a>cmd <span class="op">=</span> <span class="st">'GET http://data.pr4e.org/romeo.txt HTTP/1.0</span><span class="ch">\r\n\r\n</span><span class="st">'</span>.encode()</span>
+<span id="cb525-6"><a href="network.html#cb525-6" aria-hidden="true" tabindex="-1"></a>mysock.send(cmd)</span>
+<span id="cb525-7"><a href="network.html#cb525-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb525-8"><a href="network.html#cb525-8" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb525-9"><a href="network.html#cb525-9" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> mysock.recv(<span class="dv">512</span>)</span>
+<span id="cb525-10"><a href="network.html#cb525-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(data) <span class="op">&lt;</span> <span class="dv">1</span>:</span>
+<span id="cb525-11"><a href="network.html#cb525-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb525-12"><a href="network.html#cb525-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(data.decode(),end<span class="op">=</span><span class="st">''</span>)</span>
+<span id="cb525-13"><a href="network.html#cb525-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb525-14"><a href="network.html#cb525-14" aria-hidden="true" tabindex="-1"></a>mysock.close()</span></code></pre></div>
+<p>처음에 프로그램은 <a href="www.py4e.com">www.py4e.com</a> 서버에 80 포트로
+연결한다. “웹 브라우져” 역할로 작성된 프로그램이 하기 때문에 HTTP
+프로토콜은 GET 명령어를 공백 라인과 함께 보낸다.</p>
+<div class="figure">
+<img src="assets/images/socket-concept.png" style="width:100.0%" alt=""><p class="caption">소켓 개념도</p>
+</div>
+<p>공백 라인을 보내자 마자, 512 문자 덩어리의 데이터를 소켓에서 받아 더
+이상 읽을 데이터가 없을 때까지(즉, recv()이 빈 문자열을 반환한다.)
+데이터를 출력하는 루프를 작성한다.</p>
+<p>프로그램 실행결과 다음을 얻을 수 있다.</p>
+<pre><code>HTTP/1.1 200 OK
+Date: Wed, 11 Apr 2018 18:52:55 GMT
+Server: Apache/2.4.7 (Ubuntu)
+Last-Modified: Sat, 13 May 2017 11:22:22 GMT
+ETag: "a7-54f6609245537"
+Accept-Ranges: bytes
+Content-Length: 167
+Cache-Control: max-age=0, no-cache, no-store, must-revalidate
+Pragma: no-cache
+Expires: Wed, 11 Jan 1984 05:00:00 GMT
+Connection: close
+Content-Type: text/plain
+
+But soft what light through yonder window breaks
+It is the east and Juliet is the sun
+Arise fair sun and kill the envious moon
+Who is already sick and pale with grief</code></pre>
+<p>출력결과는 웹서버가 문서를 기술하기 위해서 보내는 헤더(header)로
+시작한다. 예를 들어, <code>Content-Type</code> 헤더는 문서가 일반 텍스트
+문서(<code>text/plain</code>)임을 표기한다.</p>
+<p>서버가 헤더를 보낸 후에, 빈 라인을 추가해서 헤더 끝임을 표기하고 나서
+실제 파일<code>romeo.txt</code>을 보낸다.</p>
+<p>이 예제를 통해서 소켓을 통해서 저수준(low-level) 네트워크 연결을 어떻게
+하는지 확인할 수 있다. 소켓을 사용해서 웹서버, 메일 서버 혹은 다른
+종류의 서버와 통신할 수 있다. 필요한 것은 프로토콜을 기술하는 문서를
+찾고 프로토콜에 따라 데이터를 주고 받는 코드를 작성하는 것이다.</p>
+<p>하지만, 가장 흔히 사용하는 프로토콜은 HTTP (즉, 웹) 프로토콜이기 때문에,
+파이썬에는 HTTP 프로토컬을 지원하기 위해 특별히 설계된 라이브러리가
+있다. 이것을 통해서 웹상에서 데이터나 문서를 검색을 쉽게 할 수 있다.</p>
+</div>
+<div id="socket-images" class="section level2" number="13.3">
+<h2>
+<span class="header-section-number">13.3</span> HTTP 경유 이미지 가져오기<a class="anchor" aria-label="anchor" href="#socket-images"><i class="fas fa-link"></i></a>
+</h2>
+<p>상기 예제에서는 파일에 새줄(newline)이 있는 일반 텍스트 파일을 가져왔다.
+그리고 나서, 프로그램을 실행해서 데이터를 단순히 화면에 복사했다. HTTP를
+사용하여 이미지를 가져오도록 비슷하게 프로그램을 작성할 수 있다.
+프로그램 실행 시에 화면에 데이터를 복사하는 대신에, 데이터를 문자열로
+누적하고, 다음과 같이 헤더를 잘라내고 나서 파일에 이미지 데이터를
+저장한다.</p>
+<div class="sourceCode" id="cb527"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb527-1"><a href="network.html#cb527-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> socket</span>
+<span id="cb527-2"><a href="network.html#cb527-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb527-3"><a href="network.html#cb527-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb527-4"><a href="network.html#cb527-4" aria-hidden="true" tabindex="-1"></a>HOST <span class="op">=</span> <span class="st">'data.pr4e.org'</span></span>
+<span id="cb527-5"><a href="network.html#cb527-5" aria-hidden="true" tabindex="-1"></a>PORT <span class="op">=</span> <span class="dv">80</span></span>
+<span id="cb527-6"><a href="network.html#cb527-6" aria-hidden="true" tabindex="-1"></a>mysock <span class="op">=</span> socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span>
+<span id="cb527-7"><a href="network.html#cb527-7" aria-hidden="true" tabindex="-1"></a>mysock.<span class="ex">connect</span>((HOST, PORT))</span>
+<span id="cb527-8"><a href="network.html#cb527-8" aria-hidden="true" tabindex="-1"></a>mysock.sendall(<span class="st">b'GET http://data.pr4e.org/cover3.jpg HTTP/1.0</span><span class="ch">\r\n\r\n</span><span class="st">'</span>)</span>
+<span id="cb527-9"><a href="network.html#cb527-9" aria-hidden="true" tabindex="-1"></a>count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb527-10"><a href="network.html#cb527-10" aria-hidden="true" tabindex="-1"></a>picture <span class="op">=</span> <span class="st">b""</span></span>
+<span id="cb527-11"><a href="network.html#cb527-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb527-12"><a href="network.html#cb527-12" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb527-13"><a href="network.html#cb527-13" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> mysock.recv(<span class="dv">5120</span>)</span>
+<span id="cb527-14"><a href="network.html#cb527-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(data) <span class="op">&lt;</span> <span class="dv">1</span>: <span class="cf">break</span></span>
+<span id="cb527-15"><a href="network.html#cb527-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">#time.sleep(0.25)</span></span>
+<span id="cb527-16"><a href="network.html#cb527-16" aria-hidden="true" tabindex="-1"></a>    count <span class="op">=</span> count <span class="op">+</span> <span class="bu">len</span>(data)</span>
+<span id="cb527-17"><a href="network.html#cb527-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="bu">len</span>(data), count)</span>
+<span id="cb527-18"><a href="network.html#cb527-18" aria-hidden="true" tabindex="-1"></a>    picture <span class="op">=</span> picture <span class="op">+</span> data</span>
+<span id="cb527-19"><a href="network.html#cb527-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb527-20"><a href="network.html#cb527-20" aria-hidden="true" tabindex="-1"></a>mysock.close()</span>
+<span id="cb527-21"><a href="network.html#cb527-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb527-22"><a href="network.html#cb527-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Look for the end of the header (2 CRLF)</span></span>
+<span id="cb527-23"><a href="network.html#cb527-23" aria-hidden="true" tabindex="-1"></a>pos <span class="op">=</span> picture.find(<span class="st">b"</span><span class="ch">\r\n\r\n</span><span class="st">"</span>)</span>
+<span id="cb527-24"><a href="network.html#cb527-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Header length'</span>, pos)</span>
+<span id="cb527-25"><a href="network.html#cb527-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(picture[:pos].decode())</span>
+<span id="cb527-26"><a href="network.html#cb527-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb527-27"><a href="network.html#cb527-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Skip past the header and save the picture data</span></span>
+<span id="cb527-28"><a href="network.html#cb527-28" aria-hidden="true" tabindex="-1"></a>picture <span class="op">=</span> picture[pos<span class="op">+</span><span class="dv">4</span>:]</span>
+<span id="cb527-29"><a href="network.html#cb527-29" aria-hidden="true" tabindex="-1"></a>fhand <span class="op">=</span> <span class="bu">open</span>(<span class="st">"stuff.jpg"</span>, <span class="st">"wb"</span>)</span>
+<span id="cb527-30"><a href="network.html#cb527-30" aria-hidden="true" tabindex="-1"></a>fhand.write(picture)</span>
+<span id="cb527-31"><a href="network.html#cb527-31" aria-hidden="true" tabindex="-1"></a>fhand.close()</span>
+<span id="cb527-32"><a href="network.html#cb527-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb527-33"><a href="network.html#cb527-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Code: http://www.py4e.com/code3/urljpeg.py</span></span></code></pre></div>
+<p>프로그램을 실행하면, 다음과 같은 출력을 생성한다.</p>
+<pre><code>$ python urljpeg.py
+5120 5120
+5120 10240
+4240 14480
+5120 19600
+...
+5120 214000
+3200 217200
+5120 222320
+5120 227440
+3167 230607
+Header length 393
+HTTP/1.1 200 OK
+Date: Wed, 11 Apr 2018 18:54:09 GMT
+Server: Apache/2.4.7 (Ubuntu)
+Last-Modified: Mon, 15 May 2017 12:27:40 GMT
+ETag: "38342-54f8f2e5b6277"
+Accept-Ranges: bytes
+Content-Length: 230210
+Vary: Accept-Encoding
+Cache-Control: max-age=0, no-cache, no-store, must-revalidate
+Pragma: no-cache
+Expires: Wed, 11 Jan 1984 05:00:00 GMT
+Connection: close
+Content-Type: image/jpeg</code></pre>
+<p>상기 url에 대해서, <code>Content-Type</code> 헤더가 문서 본문이
+이미지(<code>image/jpeg</code>)를 나타내는 것을 볼 수 있다. 프로그램이 완료되면,
+이미지 뷰어로 <code>stuff.jpg</code> 파일을 열어서 이미지 데이터를 볼 수 있다.</p>
+<p>프로그램을 실행하면, <code>recv()</code> 메쏘드를 호출할 때 마다 5120 문자는
+전달받지 못하는 것을 볼 수 있다. <code>recv()</code> 호출하는 순간마다 웹서버에서
+네트워크로 전송되는 가능한 많은 문자를 받을 뿐이다. 매번 5120 문자까지
+요청하지만, 1460 혹은 2920 문자만 전송받는다.</p>
+<p>결과값은 네트워크 속도에 따라 달라질 수 있다. <code>recv()</code> 메쏘드 마지막
+호출에는 스트림 마지막인 1681 바이트만 받았고, <code>recv()</code> 다음 호출에는 0
+길이 문자열을 전송받아서, 서버가 소켓 마지막에 <code><a href="https://rdrr.io/r/base/connections.html">close()</a></code> 메쏘드를
+호출하고 더이상의 데이터가 없다는 신호를 준다.</p>
+<p>주석 처리한 <code>time.sleep()</code>을 풀어줌으로써 <code>recv()</code> 연속 호출을 늦출 수
+있다. 이런 방식으로 매번 호출 후에 0.25초 기다리게 한다. 그래서,
+사용자가 <code>recv()</code> 메쏘드를 호출하기 전에 서버가 먼저 도착할 수 있어서 더
+많은 데이터를 보낼 수가 있다. 정지 시간을 넣어서 프로그램을 다시
+실행하면 다음과 같다.</p>
+<pre><code>$ python urljpeg.py
+5120 5120
+5120 10240
+5120 15360
+...
+5120 225280
+5120 230400
+207 230607
+Header length 393
+HTTP/1.1 200 OK
+Date: Wed, 11 Apr 2018 21:42:08 GMT
+Server: Apache/2.4.7 (Ubuntu)
+Last-Modified: Mon, 15 May 2017 12:27:40 GMT
+ETag: "38342-54f8f2e5b6277"
+Accept-Ranges: bytes
+Content-Length: 230210
+Vary: Accept-Encoding
+Cache-Control: max-age=0, no-cache, no-store, must-revalidate
+Pragma: no-cache
+Expires: Wed, 11 Jan 1984 05:00:00 GMT
+Connection: close
+Content-Type: image/jpeg</code></pre>
+<p><code>recv()</code> 메쏘드 호출의 처음과 마지막을 제외하고, 매번 새로운 데이터를
+요청할 때마다 이제 5120 문자가 전송된다.</p>
+<p>서버 <code>send()</code> 요청과 응용프로그램 <code>recv()</code> 요청 사이에 버퍼가 있다.
+프로그램에 지연을 넣어 실행하게 될 때, 어느 지점엔가 서버가 소켓 버퍼를
+채우고 응용프로그램이 버퍼를 비울 때까지 잠시 멈춰야 된다. 송신하는
+응용프로그램 혹은 수신하는 응용프로그램을 멈추게 하는 행위를 “흐름
+제어(flow control)”이라고 한다.</p>
+</div>
+<div id="httr" class="section level2" number="13.4">
+<h2>
+<span class="header-section-number">13.4</span> <code>httr</code> 웹페이지 가져오기<a class="anchor" aria-label="anchor" href="#httr"><i class="fas fa-link"></i></a>
+</h2>
+<p>수작업으로 소켓 라이브러리를 사용하여 HTTP로 데이터를 주고 받을 수
+있지만, <code>httr</code> 패키지를 사용하여 R에서 동일한 작업을 수행하는
+좀더 간편한 방식이 있다.</p>
+<p><code>httr</code>을 사용하여 파일처럼 웹페이지를 다룰 수가 있다. 단순하게 어느
+웹페이지를 가져올 것인지만 지정하면 <code>httr</code> 라이브러리가 모든 HTTP
+프로토콜과 헤더 관련 사항을 처리해 준다.</p>
+<p>웹에서 <code>romeo.txt</code> 파일을 읽도록 <code>urllib</code>를 사용하여 작성한 상응 코드는
+다음과 같다.</p>
+<div class="sourceCode" id="cb530"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://httr.r-lib.org/">httr</a></span><span class="op">)</span>
+
+<span class="va">fhand</span> <span class="op">&lt;-</span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/GET.html">GET</a></span><span class="op">(</span><span class="st">'http://www.py4inf.com/code/romeo.txt'</span><span class="op">)</span>
+
+<span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/content.html">content</a></span><span class="op">(</span><span class="va">fhand</span>, encoding <span class="op">=</span> <span class="st">"UTF-8"</span><span class="op">)</span></code></pre></div>
+<p><code><a href="https://httr.r-lib.org/reference/GET.html">GET()</a></code> 함수를 사용하여 웹페이지를 열게 되면, 파일처럼 다룰 수 있고
+<code><a href="https://httr.r-lib.org/reference/content.html">content()</a></code> 함수를 사용해서 데이터를 읽을 수 있다.</p>
+<p>프로그램을 실행하면, 파일 내용 출력결과만을 볼 수 있다. 헤더정보는
+여전히 전송되었지만, <code><a href="https://httr.r-lib.org/reference/GET.html">GET()</a></code> 함수가 헤더를 받아 내부적으로 처리하고,
+사용자에게는 단지 데이터만 반환한다.</p>
+<pre><code>## [1] "But soft what light through yonder window breaks\nIt is the east and Juliet is the sun\nArise fair sun and kill the envious moon\nWho is already sick and pale with grief\n"</code></pre>
+<p>예제로, <code>romeo.txt</code> 데이터를 가져와서 파일의 각 단어 빈도를 계산하는
+프로그램을 다음과 같이 작성할 수 있다. 웹페이지를 로컬 텍스트로 변환시킨 후에
+공백과 <code>\n</code> 으로 텍스트를 잘게 쪼개고, 단어 빈도수를 <code><a href="https://rdrr.io/r/base/table.html">table()</a></code>로 계산한 후
+데이터 문법 <code>dplyr</code>을 사용해서 최빈 단어를 상위 3개 뽑는다.</p>
+<pre><code>## # A tibble: 3 × 2
+##   단어  빈도수
+##   &lt;chr&gt;  &lt;int&gt;
+## 1 and        3
+## 2 is         3
+## 3 the        3</code></pre>
+<p>다시 한번, 웹페이지를 열게 되면, 로컬 파일처럼 웹페이지를 읽을 수 있다.</p>
+</div>
+<div id="html-webscraping" class="section level2" number="13.5">
+<h2>
+<span class="header-section-number">13.5</span> HTML 파싱과 웹 스크래핑<a class="anchor" aria-label="anchor" href="#html-webscraping"><i class="fas fa-link"></i></a>
+</h2>
+<p>R <code>httr</code> 패키지를 활용하는 일반적인 사례는 웹 <strong>스크래핑(scraping)</strong>이다.
+웹 스크래핑은 웹브라우저를 가장한 프로그램을 작성하는 것이다. 웹페이지를
+가져와서, 패턴을 찾아 페이지 내부의 데이터를 꼼꼼히 조사한다. 예로,
+구글같은 검색엔진은 웹 페이지의 소스를 조사해서 다른 페이지로 가는
+링크를 추출하고, 그 해당 페이지를 가져와서 링크 추출하는 작업을
+반복한다. 이러한 기법으로 구글은 웹상의 거의 모든 페이지를
+<strong>거미(spiders)</strong>줄처럼 연결한다.</p>
+<p>구글은 또한 발견한 웹페이지에서 특정 페이지로 연결되는 링크 빈도를
+사용하여 얼마나 중요한 페이지인지를 측정하고 검색결과에 페이지가 얼마나
+높은 순위로 노출되어야 하는지 평가한다.</p>
+</div>
+<div id="webscarping-regex" class="section level2" number="13.6">
+<h2>
+<span class="header-section-number">13.6</span> 정규 표현식 사용 HTML 파싱하기<a class="anchor" aria-label="anchor" href="#webscarping-regex"><i class="fas fa-link"></i></a>
+</h2>
+<p>HTML을 파싱하는 간단한 방식은 정규 표현식을 사용하여 특정한 패턴과
+매칭되는 부속 문자열을 반복적으로 찾아 추출하는 것이다.</p>
+<p>여기 간단한 웹페이지가 있다.</p>
+<pre><code>    &lt;h1&gt;The First Page&lt;/h1&gt;
+    &lt;p&gt;
+    If you like, you can switch to the
+    &lt;a href="http://www.dr-chuck.com/page2.htm"&gt;
+    Second Page&lt;/a&gt;.
+    &lt;/p&gt;</code></pre>
+<p>모양 좋은 정규표현식을 구성해서 다음과 같이 상기 웹페이지에서 링크를
+매칭하고 추출할 수 있다.</p>
+<pre><code>    href="http://.+?"</code></pre>
+<p>작성된 정규 표현식은 “href=<a href="http://%22%EB%A1%9C" class="uri">http://"로</a> 시작하고, 하나 이상의 문자를”.+?” 가지고 큰 따옴표를 가진 문자열을 찾는다. “.+?”에 물음표가 갖는
+의미는 매칭이 “욕심쟁이(greedy)” 방식보다 “비욕심쟁이(non-greedy)”
+방식으로 수행됨을 나타낸다. 비욕심쟁이(non-greedy) 매칭방식은 가능한
+<em>가장 적게</em> 매칭되는 문자열을 찾는 방식이고, 욕심 방식은 가능한 <em>가장
+크게</em> 매칭되는 문자열을 찾는 방식이다.</p>
+<p>추출하고자 하는 문자열이 매칭된 문자열의 어느 부분인지를 표기하기 위해서
+정규 표현식에 괄호를 추가하여 다음과 같이 프로그램을 작성한다.</p>
+<div class="sourceCode" id="cb535"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://httr.r-lib.org/">httr</a></span><span class="op">)</span>
+
+<span class="va">url</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readline.html">readline</a></span><span class="op">(</span>prompt <span class="op">=</span> <span class="st">"Enter - "</span><span class="op">)</span>
+
+<span class="va">html</span> <span class="op">&lt;-</span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/GET.html">GET</a></span><span class="op">(</span><span class="va">url</span><span class="op">)</span>  
+    
+<span class="va">url_link</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract_all</a></span><span class="op">(</span><span class="va">html</span>, pattern <span class="op">=</span> <span class="st">'href="(http://.*?)"'</span><span class="op">)</span>  
+
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">url_link</span><span class="op">)</span></code></pre></div>
+<p><code>str_extract_all</code> 정규 표현식 함수는 정규 표현식과 매칭되는 모든 문자열
+리스트를 추출하여 큰 따옴표 사이에 링크 텍스트만을 반환한다.</p>
+<p>쉘에서 <code>Rscript.exe</code> 프로그램으로 실행하기 위해 다음과 같이 사용자 입력을 받는 부분을
+다음과 같이 수정한다.</p>
+<div class="sourceCode" id="cb536"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># urlregex.R 프로그램 코드</span>
+
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://httr.r-lib.org/">httr</a></span><span class="op">)</span>
+
+<span class="va">typeline</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">msg</span> <span class="op">=</span> <span class="st">"Enter - "</span><span class="op">)</span> <span class="op">{</span>
+  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span><span class="op">(</span><span class="op">)</span> <span class="op">)</span> <span class="op">{</span>
+    <span class="va">url</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readline.html">readline</a></span><span class="op">(</span><span class="va">msg</span><span class="op">)</span>
+  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="va">msg</span><span class="op">)</span>;
+    <span class="va">url</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span><span class="op">(</span><span class="st">"stdin"</span>,n<span class="op">=</span><span class="fl">1</span><span class="op">)</span>;
+  <span class="op">}</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">url</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="va">url</span> <span class="op">&lt;-</span> <span class="fu">typeline</span><span class="op">(</span><span class="op">)</span>
+
+<span class="va">html</span> <span class="op">&lt;-</span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/GET.html">GET</a></span><span class="op">(</span><span class="va">url</span><span class="op">)</span>
+
+<span class="va">url_link</span> <span class="op">&lt;-</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html">str_extract_all</a></span><span class="op">(</span><span class="va">html</span>, pattern <span class="op">=</span> <span class="st">'href="(http://.*?)"'</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">url_link</span><span class="op">)</span></code></pre></div>
+<p>프로그램을 실행하면, 다음 출력을 얻게된다.</p>
+<pre><code>$ Rscript.exe ./script/urlregex.R
+During startup - Warning message:
+Setting LC_CTYPE=ko_KR.UTF-8@cjknarrow failed
+Enter - http://www.dr-chuck.com/page1.htm
+No encoding supplied: defaulting to UTF-8.
+Warning message:
+In stri_extract_all_regex(string, pattern, simplify = simplify,  :
+  argument is not an atomic vector; coercing
+[[1]]
+[1] "href=\"http://www.dr-chuck.com/page2.htm\""
+
+$ Rscript.exe ./script/urlregex.R
+During startup - Warning message:
+Setting LC_CTYPE=ko_KR.UTF-8@cjknarrow failed
+Enter - http://www.py4inf.com/book.htm
+No encoding supplied: defaulting to UTF-8.
+Warning message:
+In stri_extract_all_regex(string, pattern, simplify = simplify,  :
+  argument is not an atomic vector; coercing
+[[1]]
+ [1] "href=\"http://amzn.to/1KkULF3\""
+ [2] "href=\"http://www.py4e.com/book\""
+ [3] "href=\"http://amzn.to/1KkULF3\""
+ [4] "href=\"http://amzn.to/1hLcoBy\""
+ [5] "href=\"http://amzn.to/1KkV42z\""
+ [6] "href=\"http://amzn.to/1fNOnbd\""
+ [7] "href=\"http://amzn.to/1N74xLt\""
+ [8] "href=\"http://do1.dr-chuck.net/py4inf/EN-us/book.pdf\""
+ [9] "href=\"http://do1.dr-chuck.net/py4inf/ES-es/book.pdf\""
+[10] "href=\"http://do1.dr-chuck.net/py4inf/PT-br/book.pdf\""
+[11] "href=\"http://www.xwmooc.net/python/\""
+[12] "href=\"http://fanwscu.gitbooks.io/py4inf-zh-cn/\""
+[13] "href=\"http://itunes.apple.com/us/book/python-for-informatics/id554638579?mt=13\""
+[14] "href=\"http://www-personal.umich.edu/~csev/books/py4inf/ibooks//python_for_informatics.ibooks\""
+[15] "href=\"http://www.py4inf.com/code\""
+[16] "href=\"http://www.greenteapress.com/thinkpython/thinkCSpy/\""
+[17] "href=\"http://allendowney.com/\""</code></pre>
+<p>정규 표현식은 HTML이 예측가능하고 잘 구성된 경우에 멋지게 작동한다.
+하지만, “망가진” HTML 페이지가 많아서, 정규 표현식만을 사용하는 솔류션은
+유효한 링크를 놓치거나 잘못된 데이터만 찾고 끝날 수 있다.</p>
+<p>이 문제는 강건한 HTML 파싱 라이브러리를 사용해서 해결될 수 있다.</p>
+</div>
+<div id="rvest-scraping" class="section level2" number="13.7">
+<h2>
+<span class="header-section-number">13.7</span> `rvest`` 사용한 HTML 파싱<a class="anchor" aria-label="anchor" href="#rvest-scraping"><i class="fas fa-link"></i></a>
+</h2>
+<p>HTML을 파싱하여 페이지에서 데이터를 추출할 수 있는 R 패키지는
+많이 있다. 패키지 각각은 강점과 약점이 있어서 사용자 필요에 따라
+취사선택한다.</p>
+<p>예로, 간단하게 HTML 입력을 파싱하여 <strong>rvest</strong> 라이브러리를
+사용하여 링크를 추출할 것이다.</p>
+<p>HTML이 XML 처럼 보이고 몇몇 페이지는 XML로 되도록 꼼꼼하게 구축되었지만,
+일반적으로 대부분의 HTML이 깨져서 XML 파서가 HTML 전체 페이지를 잘못
+구성된 것으로 간주하고 받아들이지 않는다. `rvest`` 패키지는
+결점 많은 HTML 페이지에 내성이 있어서 사용자가 필요로하는 데이터를 쉽게
+추출할 수 있게 한다.</p>
+<p><code>httr</code> 패키지를 사용하여 페이지를 읽어들이고, <code>rvest</code>를 사용해서 앵커
+태그 (<code>a</code>)로부터 <code>href</code> 속성을 추출한다.</p>
+<div class="sourceCode" id="cb538"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://httr.r-lib.org/">httr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rvest.tidyverse.org/">rvest</a></span><span class="op">)</span>
+
+<span class="va">html</span> <span class="op">&lt;-</span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/GET.html">GET</a></span><span class="op">(</span><span class="st">'http://www.dr-chuck.com/page1.htm'</span><span class="op">)</span>
+<span class="va">webpage</span> <span class="op">&lt;-</span> <span class="fu">rvest</span><span class="fu">::</span><span class="fu"><a href="http://xml2.r-lib.org/reference/read_xml.html">read_html</a></span><span class="op">(</span><span class="va">html</span><span class="op">)</span>
+
+<span class="va">a_href</span> <span class="op">&lt;-</span> <span class="va">webpage</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements</a></span><span class="op">(</span><span class="st">"a"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_attr.html">html_attr</a></span><span class="op">(</span><span class="st">"href"</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">a_href</span><span class="op">)</span></code></pre></div>
+<p>프로그램이 웹 주소를 입력받고, 웹페이지를 열고, 데이터를 읽어서
+BeautifulSoup 파서에 전달하고, 그리고 나서 모든 앵커 태그를 불러와서 각
+태그별로 <code>href</code> 속성을 출력한다.</p>
+<p>쉘에서 <code>Rscript.exe</code> 프로그램으로 실행하기 위해 다음과 같이 사용자 입력을 받는 부분을
+다음과 같이 수정한다.</p>
+<div class="sourceCode" id="cb539"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## urllinks.R 스크립트</span>
+
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://httr.r-lib.org/">httr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rvest.tidyverse.org/">rvest</a></span><span class="op">)</span>
+
+<span class="va">typeline</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">msg</span> <span class="op">=</span> <span class="st">"Enter - "</span><span class="op">)</span> <span class="op">{</span>
+  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span><span class="op">(</span><span class="op">)</span> <span class="op">)</span> <span class="op">{</span>
+    <span class="va">url</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readline.html">readline</a></span><span class="op">(</span><span class="va">msg</span><span class="op">)</span>
+  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="va">msg</span><span class="op">)</span>;
+    <span class="va">url</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span><span class="op">(</span><span class="st">"stdin"</span>,n<span class="op">=</span><span class="fl">1</span><span class="op">)</span>;
+  <span class="op">}</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">url</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="va">url</span> <span class="op">&lt;-</span> <span class="fu">typeline</span><span class="op">(</span><span class="op">)</span>
+
+<span class="va">html</span> <span class="op">&lt;-</span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/GET.html">GET</a></span><span class="op">(</span><span class="va">url</span><span class="op">)</span>
+<span class="va">webpage</span> <span class="op">&lt;-</span> <span class="fu">rvest</span><span class="fu">::</span><span class="fu"><a href="http://xml2.r-lib.org/reference/read_xml.html">read_html</a></span><span class="op">(</span><span class="va">html</span><span class="op">)</span>
+
+<span class="va">a_href</span> <span class="op">&lt;-</span> <span class="va">webpage</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements</a></span><span class="op">(</span><span class="st">"a"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_attr.html">html_attr</a></span><span class="op">(</span><span class="st">"href"</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">a_href</span><span class="op">)</span></code></pre></div>
+<p>프로그램을 실행하면, 아래와 같다.</p>
+<pre><code>$ Rscript.exe ./script/urllinks.R
+During startup - Warning message:
+Setting LC_CTYPE=ko_KR.UTF-8@cjknarrow failed
+Enter - http://www.dr-chuck.com/page1.htm
+[1] "http://www.dr-chuck.com/page2.htm"
+
+$ Rscript.exe ./script/urllinks.R
+During startup - Warning message:
+Setting LC_CTYPE=ko_KR.UTF-8@cjknarrow failed
+Enter - http://www.py4inf.com/book.htm
+ [1] "http://amzn.to/1KkULF3"
+ [2] "http://www.py4e.com/book"
+ [3] "http://amzn.to/1KkULF3"
+ [4] "http://amzn.to/1hLcoBy"
+ [5] "http://amzn.to/1KkV42z"
+ [6] "http://amzn.to/1fNOnbd"
+ [7] "http://amzn.to/1N74xLt"
+ [8] "http://do1.dr-chuck.net/py4inf/EN-us/book.pdf"
+ [9] "http://do1.dr-chuck.net/py4inf/ES-es/book.pdf"
+[10] "https://twitter.com/fertardio"
+[11] "http://do1.dr-chuck.net/py4inf/PT-br/book.pdf"
+[12] "https://twitter.com/victorjabur"
+[13] "translations/KO/book_009_ko.pdf"
+[14] "http://www.xwmooc.net/python/"
+[15] "http://fanwscu.gitbooks.io/py4inf-zh-cn/"
+[16] "book_270.epub"
+[17] "translations/ES/book_272_es4.epub"
+[18] "https://www.gitbook.com/download/epub/book/fanwscu/py4inf-zh-cn"
+[19] "html-270/"
+[20] "html_270.zip"
+[21] "http://itunes.apple.com/us/book/python-for-informatics/id554638579?mt=13"
+[22] "http://www-personal.umich.edu/~csev/books/py4inf/ibooks//python_for_informatics.ibooks"
+[23] "http://www.py4inf.com/code"
+[24] "http://www.greenteapress.com/thinkpython/thinkCSpy/"
+[25] "http://allendowney.com/"</code></pre>
+<p>`rvest``을 사용하여 다음과 같이 각 태그별로 다양한 부분을 뽑아낼 수
+있다.</p>
+<div class="sourceCode" id="cb541"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://httr.r-lib.org/">httr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rvest.tidyverse.org/">rvest</a></span><span class="op">)</span>
+
+<span class="va">typeline</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">msg</span> <span class="op">=</span> <span class="st">"Enter - "</span><span class="op">)</span> <span class="op">{</span>
+  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span><span class="op">(</span><span class="op">)</span> <span class="op">)</span> <span class="op">{</span>
+    <span class="va">url</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readline.html">readline</a></span><span class="op">(</span><span class="va">msg</span><span class="op">)</span>
+  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="va">msg</span><span class="op">)</span>;
+    <span class="va">url</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span><span class="op">(</span><span class="st">"stdin"</span>,n<span class="op">=</span><span class="fl">1</span><span class="op">)</span>;
+  <span class="op">}</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">url</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="va">url</span> <span class="op">&lt;-</span> <span class="fu">typeline</span><span class="op">(</span><span class="op">)</span>
+
+<span class="va">html</span> <span class="op">&lt;-</span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/GET.html">GET</a></span><span class="op">(</span><span class="va">url</span><span class="op">)</span>
+<span class="va">webpage</span> <span class="op">&lt;-</span> <span class="fu">rvest</span><span class="fu">::</span><span class="fu"><a href="http://xml2.r-lib.org/reference/read_xml.html">read_html</a></span><span class="op">(</span><span class="va">html</span><span class="op">)</span>
+
+<span class="va">a_href</span> <span class="op">&lt;-</span> <span class="va">webpage</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements</a></span><span class="op">(</span><span class="st">"a"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_attr.html">html_attr</a></span><span class="op">(</span><span class="st">"href"</span><span class="op">)</span>
+
+<span class="va">a_text</span> <span class="op">&lt;-</span> <span class="va">webpage</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_element.html">html_elements</a></span><span class="op">(</span><span class="st">"a"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://rvest.tidyverse.org/reference/html_text.html">html_text</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_remove.html">str_remove</a></span><span class="op">(</span><span class="st">"\n"</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"URL: "</span>, <span class="va">a_href</span>, <span class="st">"\n"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Content:"</span>, <span class="va">a_text</span><span class="op">)</span></code></pre></div>
+<p>상기 프로그램은 다음을 출력합니다.</p>
+<pre><code>$ Rscript.exe ./script/urllinks2.R
+During startup - Warning message:
+Setting LC_CTYPE=ko_KR.UTF-8@cjknarrow failed
+Enter - http://www.dr-chuck.com/page1.htm
+URL:  http://www.dr-chuck.com/page2.htm
+Content: Second Page</code></pre>
+<p>HTML을 파싱하는데 <code>rvest</code>가 가진 강력한 기능을 예제로 보여줬다.
+좀더 자세한 사항은 <a href="https://rvest.tidyverse.org/">https://rvest.tidyverse.org/</a> 에서 문서와 예제를
+살펴보세요.</p>
+</div>
+<div id="GET-binary" class="section level2" number="13.8">
+<h2>
+<span class="header-section-number">13.8</span> 바이너리 파일 읽기<a class="anchor" aria-label="anchor" href="#GET-binary"><i class="fas fa-link"></i></a>
+</h2>
+<p>이미지나 비디오 같은 텍스트가 아닌 (혹은 바이너리) 파일을 가져올 때가
+종종 있다. 일반적으로 이런 파일 데이터를 출력하는 것은 유용하지 않다.
+하지만, <code><a href="https://rdrr.io/r/utils/download.file.html">download.file()</a></code> 함수를 사용하여, 하드 디스크 로컬 파일에 URL 사본을 쉽게
+만들 수 있다.</p>
+<p><code><a href="https://rdrr.io/r/utils/download.file.html">download.file()</a></code> 함수 내부에 인터넷에 공개된 이미지 <code>url</code>을 적고,
+<code>destfile</code> 에는 로컬파일에 저장할 파일명을 적어준다.
+중요한 것은 텍스트가 아니라 바이너리 이미지라 <code>mode = "wb"</code>를 지정한다.</p>
+<div class="sourceCode" id="cb543"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span><span class="op">(</span>url <span class="op">=</span> <span class="st">"http://www.py4inf.com/cover.jpg"</span>, 
+              destfile <span class="op">=</span> <span class="st">"assets/images/fox.jpeg"</span>, mode<span class="op">=</span><span class="st">"wb"</span><span class="op">)</span></code></pre></div>
+<p>작성된 프로그램은 네트워크로 모든 데이터를 한번에 읽어서 컴퓨터
+<code>cover.jpg</code> 파일을 다운로드 받아 로컬 디스크에 지정한 디렉토리 파일명으로
+데이터를 쓴다. 이 방식은 파일 크기가 사용자 컴퓨터의 메모리 크기보다
+작다면 정상적으로 작동한다.</p>
+<div class="figure">
+<img src="assets/images/fox.jpeg" style="width:100.0%" alt=""><p class="caption">바이너리 파일 다운로드</p>
+</div>
+<p>UNIX 혹은 매킨토시 컴퓨터를 가지고 있다면, 다음과 같이 상기 동작을
+수행하는 명령어가 운영체제 자체에 내장되어 있다.</p>
+<pre><code>    curl -O http://www.py4inf.com/cover.jpg</code></pre>
+</div>
+<div id="network-terminology" class="section level2" number="13.9">
+<h2>
+<span class="header-section-number">13.9</span> 용어정의<a class="anchor" aria-label="anchor" href="#network-terminology"><i class="fas fa-link"></i></a>
+</h2>
+<ul>
+<li>
+<strong>BeautifulSoup</strong>: 파이썬 라이브러리로 HTML 문서를 파싱하고 브라우저가 일반적으로
+생략하는 HTML의 불완전한 부분을 보정하여 HTML 문서에서 데이터를
+추출한다. <a href="www.crummy.com">www.crummy.com</a> 사이트에서 BeautifulSoup
+코드를 다운로드 받을 수 있다.</li>
+<li>
+<code>**rvest**</code>: 파이썬 BeautifulSoup에 대응되는 R 크롤링 패키징<br>
+</li>
+<li>
+<strong>포트(port)</strong>: 서버에 소켓 연결을 만들 때, 사용자가 무슨 응용프로그램을 연결하는지
+나타내는 숫자. 예로, 웹 트래픽은 통상 80 포트, 전자우편은 25 포트를
+사용한다.</li>
+<li>
+<strong>스크래핑(scraping)</strong>: 프로그램이 웹브라우저를 가장하여 웹페이지를 가져와서 웹 페이지의
+내용을 검색한다. 종종 프로그램이 한 페이지의 링크를 따라 다른
+페이지를 찾게 된다. 그래서, 웹페이지 네트워크 혹은 소셜 네트워크
+전체를 훑을 수 있다.</li>
+<li>
+<strong>소켓(socket)</strong>: 두 응용프로그램 사이 네트워크 연결. 두 응용프로그램은 양 방향으로
+데이터를 주고 받는다.</li>
+<li>
+<strong>스파이더(spider)</strong>:검색 색인을 구축하기 위해서 한 웹페이지를 검색하고, 그 웹페이지에
+링크된 모든 페이지 검색을 반복하여 인터넷에 있는 거의 모든
+웹페이지를 가져오기 위해서 사용되는 검색엔진 행동.</li>
+</ul>
+</div>
+<div id="network-ex" class="section level2" number="13.10">
+<h2>
+<span class="header-section-number">13.10</span> 연습문제<a class="anchor" aria-label="anchor" href="#network-ex"><i class="fas fa-link"></i></a>
+</h2>
+<ol style="list-style-type: decimal">
+<li><p>소켓 프로그램 <code>socket1.py</code>을 변경하여 임의 웹페이지를 읽을 수 있도록
+URL을 사용자가 입력하도록 바꾸세요. <code>split(’/’)</code>을 사용하여 URL을
+컴포턴트로 쪼개서 소켓 <code>connect</code> 호출에 대해 호스트 명을 추출할 수 있다.
+사용자가 적절하지 못한 형식 혹은 존재하지 않는 URL을 입력하는 경우를
+처리할 있도록 <code>try</code>, <code>except</code>를 사용하여 오류 검사기능을 추가하세요.</p></li>
+<li><p>소켓 프로그램을 변경하여 전송받은 문자를 계수(count)하고 3000 문자를
+출력한 후에 그이상 텍스트 출력을 멈추게 하세요. 프로그램은 전체 문서를
+가져와야 하고, 전체 문자를 계수(count)하고, 문서 마지막에 문자
+계수(count)결과를 출력해야 합니다.</p></li>
+<li><p><code>httr</code> 패키지를 사용하여 이전 예제를 반복하세요. (1) 사용자가 입력한 URL에서
+문서 가져오기 (2) 3000 문자까지 화면에 보여주기 (3) 문서의 전체 문자
+계수(count)하기. 이 연습문제에서 헤더에 대해서는 걱정하지 말고, 단지
+문서 본문에서 첫 3000 문자만 화면에 출력하세요.</p></li>
+<li><p><code>urllinks.R</code> 프로그램을 변경하여 가져온 HTML 문서에서 문단 (p) 태그를
+추출하고 프로그램의 출력물로 문단을 계수(count)하고 화면에 출력하세요.
+문단 텍스트를 화면에 출력하지 말고 단지 숫자만 셉니다. 작성한 프로그램을
+작은 웹페이지 뿐만 아니라 조금 큰 웹 페이지에도 테스트해 보세요.</p></li>
+<li><p>(고급) 소켓 프로그램을 변경하여 헤더와 빈 라인 다음에 데이터만 보여지게
+하세요. <code>recv</code>는 라인이 아니라 문자(새줄(newline)과 모든 문자)를
+전송받는다는 것을 기억하세요.</p></li>
+</ol>
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="regex.html"><span class="header-section-number">12</span> 정규 표현식</a></div>
+<div class="next"><a href="r-webservice.html"><span class="header-section-number">14</span> 웹서비스 사용하기</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#network"><span class="header-section-number">13</span> 네트워크 프로그램</a></li>
+<li><a class="nav-link" href="#network-http"><span class="header-section-number">13.1</span> 하이퍼 텍스트 전송 프로토콜</a></li>
+<li><a class="nav-link" href="#network-web-browser"><span class="header-section-number">13.2</span> 가장 간단한 웹 브라우져</a></li>
+<li><a class="nav-link" href="#socket-images"><span class="header-section-number">13.3</span> HTTP 경유 이미지 가져오기</a></li>
+<li><a class="nav-link" href="#httr"><span class="header-section-number">13.4</span> httr 웹페이지 가져오기</a></li>
+<li><a class="nav-link" href="#html-webscraping"><span class="header-section-number">13.5</span> HTML 파싱과 웹 스크래핑</a></li>
+<li><a class="nav-link" href="#webscarping-regex"><span class="header-section-number">13.6</span> 정규 표현식 사용 HTML 파싱하기</a></li>
+<li><a class="nav-link" href="#rvest-scraping"><span class="header-section-number">13.7</span> `rvest`` 사용한 HTML 파싱</a></li>
+<li><a class="nav-link" href="#GET-binary"><span class="header-section-number">13.8</span> 바이너리 파일 읽기</a></li>
+<li><a class="nav-link" href="#network-terminology"><span class="header-section-number">13.9</span> 용어정의</a></li>
+<li><a class="nav-link" href="#network-ex"><span class="header-section-number">13.10</span> 연습문제</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>데이터 과학 프로그래밍</strong>" was written by 한국 알(R) 사용자회. It was last built on 2022-05-19.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

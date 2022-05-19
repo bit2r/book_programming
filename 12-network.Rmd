@@ -9,15 +9,6 @@ editor_options:
 source("_common.R")
 ```
 
-::: {#network-socket .rmdcaution}
-
-파이썬 튜플과 마찬가지로 R에서 네트워크 프로그래밍을 위해
-소켓까지 내려가서 프로그래밍을 할 경우는 많지 않다.
-하지만 네트워크 프로그램에 대한 이해와 개념을 잡기 위해
-파이썬 소켓 네트워크 프로그래밍을 먼저 살펴본다.
-
-:::
-
 # 네트워크 프로그램 {#network}
 
 지금까지 책의 많은 예제는 파일을 읽고 파일의 정보를 찾는데 집중했지만,
@@ -26,6 +17,15 @@ source("_common.R")
 이번 장에서는 웹브라우져로 가장하고 HTTP 프로토콜(HyperText Transport
 Protocol,HTTP)을 사용하여 웹페이지를 검색할 것이다. 웹페이지 데이터를
 읽고 파싱할 것이다.
+
+::: {#network-socket .rmdcaution}
+
+파이썬 튜플과 마찬가지로 R에서 네트워크 프로그래밍을 위해
+소켓까지 내려가서 프로그래밍을 할 경우는 많지 않다.
+하지만 네트워크 프로그램에 대한 이해와 개념을 잡기 위해
+파이썬 소켓 네트워크 프로그래밍을 먼저 살펴본다.
+
+:::
 
 ## 하이퍼 텍스트 전송 프로토콜 {#network-http}
 
@@ -276,7 +276,6 @@ Content-Type: image/jpeg
 제어(flow control)"이라고 한다.
 
 ## `httr` 웹페이지 가져오기 {#httr}
------------------------------------
 
 수작업으로 소켓 라이브러리를 사용하여 HTTP로 데이터를 주고 받을 수
 있지만, `httr` 패키지를 사용하여 R에서 동일한 작업을 수행하는
@@ -306,7 +305,7 @@ httr::content(fhand, encoding = "UTF-8")
 여전히 전송되었지만, `GET()` 함수가 헤더를 받아 내부적으로 처리하고,
 사용자에게는 단지 데이터만 반환한다.
 
-```{r httr-package-output, echo = FALSE}
+```{r httr-package-output-text, echo = FALSE}
 library(httr)
 
 fhand <- httr::GET('http://www.py4inf.com/code/romeo.txt')
@@ -497,192 +496,226 @@ HTML이 XML 처럼 보이고 몇몇 페이지는 XML로 되도록 꼼꼼하게 �
 결점 많은 HTML 페이지에 내성이 있어서 사용자가 필요로하는 데이터를 쉽게
 추출할 수 있게 한다.
 
-`urllib`를 사용하여 페이지를 읽어들이고, `BeautifulSoup`를 사용해서 앵커
+`httr` 패키지를 사용하여 페이지를 읽어들이고, `rvest`를 사용해서 앵커
 태그 (`a`)로부터 `href` 속성을 추출한다.
 
-    import urllib
-    from BeautifulSoup import *
+```{r httr-rvest-combo, eval = FALSE}
+library(httr)
+library(rvest)
 
-    url = raw_input('Enter - ')
-    html = urllib.urlopen(url).read()
-    soup = BeautifulSoup(html)
+html <- httr::GET('http://www.dr-chuck.com/page1.htm')
+webpage <- rvest::read_html(html)
 
-    # Retrieve all of the anchor tags
-    tags = soup('a')
-    for tag in tags:
-       print tag.get('href', None)
+a_href <- webpage %>% 
+  html_elements("a") %>% 
+  html_attr("href")
+
+print(a_href)
+```
+
 
 프로그램이 웹 주소를 입력받고, 웹페이지를 열고, 데이터를 읽어서
 BeautifulSoup 파서에 전달하고, 그리고 나서 모든 앵커 태그를 불러와서 각
 태그별로 `href` 속성을 출력한다.
 
+쉘에서 `Rscript.exe` 프로그램으로 실행하기 위해 다음과 같이 사용자 입력을 받는 부분을 
+다음과 같이 수정한다.
+
+```{r webscraping-interactive-urllinks, eval = FALSE}
+## urllinks.R 스크립트
+
+library(httr)
+library(rvest)
+
+typeline <- function(msg = "Enter - ") {
+  if (interactive() ) {
+    url <- readline(msg)
+  } else {
+    cat(msg);
+    url <- readLines("stdin",n=1);
+  }
+  return(url)
+}
+
+url <- typeline()
+
+html <- httr::GET(url)
+webpage <- rvest::read_html(html)
+
+a_href <- webpage %>%
+  html_elements("a") %>%
+  html_attr("href")
+
+print(a_href)
+```
+
 프로그램을 실행하면, 아래와 같다.
 
-    python urllinks.py 
-    Enter - http://www.dr-chuck.com/page1.htm
-    http://www.dr-chuck.com/page2.htm
+```
+$ Rscript.exe ./script/urllinks.R
+During startup - Warning message:
+Setting LC_CTYPE=ko_KR.UTF-8@cjknarrow failed
+Enter - http://www.dr-chuck.com/page1.htm
+[1] "http://www.dr-chuck.com/page2.htm"
 
-    python urllinks.py 
-    Enter - http://www.py4inf.com/book.htm
-    http://www.greenteapress.com/thinkpython/thinkpython.html
-    http://allendowney.com/
-    http://www.si502.com/
-    http://www.lib.umich.edu/espresso-book-machine
-    http://www.py4inf.com/code
-    http://www.pythonlearn.com/
+$ Rscript.exe ./script/urllinks.R
+During startup - Warning message:
+Setting LC_CTYPE=ko_KR.UTF-8@cjknarrow failed
+Enter - http://www.py4inf.com/book.htm
+ [1] "http://amzn.to/1KkULF3"
+ [2] "http://www.py4e.com/book"
+ [3] "http://amzn.to/1KkULF3"
+ [4] "http://amzn.to/1hLcoBy"
+ [5] "http://amzn.to/1KkV42z"
+ [6] "http://amzn.to/1fNOnbd"
+ [7] "http://amzn.to/1N74xLt"
+ [8] "http://do1.dr-chuck.net/py4inf/EN-us/book.pdf"
+ [9] "http://do1.dr-chuck.net/py4inf/ES-es/book.pdf"
+[10] "https://twitter.com/fertardio"
+[11] "http://do1.dr-chuck.net/py4inf/PT-br/book.pdf"
+[12] "https://twitter.com/victorjabur"
+[13] "translations/KO/book_009_ko.pdf"
+[14] "http://www.xwmooc.net/python/"
+[15] "http://fanwscu.gitbooks.io/py4inf-zh-cn/"
+[16] "book_270.epub"
+[17] "translations/ES/book_272_es4.epub"
+[18] "https://www.gitbook.com/download/epub/book/fanwscu/py4inf-zh-cn"
+[19] "html-270/"
+[20] "html_270.zip"
+[21] "http://itunes.apple.com/us/book/python-for-informatics/id554638579?mt=13"
+[22] "http://www-personal.umich.edu/~csev/books/py4inf/ibooks//python_for_informatics.ibooks"
+[23] "http://www.py4inf.com/code"
+[24] "http://www.greenteapress.com/thinkpython/thinkCSpy/"
+[25] "http://allendowney.com/"
+```
 
-BeautifulSoup을 사용하여 다음과 같이 각 태그별로 다양한 부분을 뽑아낼 수
+`rvest``을 사용하여 다음과 같이 각 태그별로 다양한 부분을 뽑아낼 수
 있다.
 
-    import urllib
-    from BeautifulSoup import *
+```{r rvest-extract-tags, eval = FALSE}
+library(httr)
+library(rvest)
 
-    url = raw_input('Enter - ')
-    html = urllib.urlopen(url).read()
-    soup = BeautifulSoup(html)
+typeline <- function(msg = "Enter - ") {
+  if (interactive() ) {
+    url <- readline(msg)
+  } else {
+    cat(msg);
+    url <- readLines("stdin",n=1);
+  }
+  return(url)
+}
 
-    # Retrieve all of the anchor tags
-    tags = soup('a')
-    for tag in tags:
-       # Look at the parts of a tag
-       print 'TAG:',tag
-       print 'URL:',tag.get('href', None)
-       print 'Content:',tag.contents[0]
-       print 'Attrs:',tag.attrs
+url <- typeline()
+
+html <- httr::GET(url)
+webpage <- rvest::read_html(html)
+
+a_href <- webpage %>%
+  html_elements("a") %>%
+  html_attr("href")
+
+a_text <- webpage %>%
+  html_elements("a") %>% 
+  html_text() %>% 
+  stringr::str_remove("\n")
+
+cat("URL: ", a_href, "\n")
+cat("Content:", a_text)
+```
+
 
 상기 프로그램은 다음을 출력합니다.
 
-    python urllink2.py 
-    Enter - http://www.dr-chuck.com/page1.htm
-    TAG: <a href="http://www.dr-chuck.com/page2.htm">
-    Second Page</a>
-    URL: http://www.dr-chuck.com/page2.htm
-    Content: [u'\nSecond Page']
-    Attrs: [(u'href', u'http://www.dr-chuck.com/page2.htm')]
+```
+$ Rscript.exe ./script/urllinks2.R
+During startup - Warning message:
+Setting LC_CTYPE=ko_KR.UTF-8@cjknarrow failed
+Enter - http://www.dr-chuck.com/page1.htm
+URL:  http://www.dr-chuck.com/page2.htm
+Content: Second Page
+```
 
-HTML을 파싱하는데 BeautifulSoup이 가진 강력한 기능을 예제로 보여줬다.
-좀더 자세한 사항은 [www.crummy.com](www.crummy.com) 에서 문서와 예제를
+HTML을 파싱하는데 `rvest`가 가진 강력한 기능을 예제로 보여줬다.
+좀더 자세한 사항은 [https://rvest.tidyverse.org/](https://rvest.tidyverse.org/) 에서 문서와 예제를
 살펴보세요.
 
-urllib을 사용하여 바이너리 파일 읽기
-------------------------------------
+## 바이너리 파일 읽기 {#GET-binary}
 
 이미지나 비디오 같은 텍스트가 아닌 (혹은 바이너리) 파일을 가져올 때가
 종종 있다. 일반적으로 이런 파일 데이터를 출력하는 것은 유용하지 않다.
-하지만, `urllib`을 사용하여, 하드 디스크 로컬 파일에 URL 사본을 쉽게
+하지만, `download.file()` 함수를 사용하여, 하드 디스크 로컬 파일에 URL 사본을 쉽게
 만들 수 있다.
 
-이 패턴은 URL을 열고, `read`를 사용해서 문서 전체 내용을 다운로드하여
-문자열 변수(`img`)에 다운로드하고, 그리고 나서 다음과 같이 정보를 로컬
-파일에 쓴다.
+`download.file()` 함수 내부에 인터넷에 공개된 이미지 `url`을 적고,
+`destfile` 에는 로컬파일에 저장할 파일명을 적어준다.
+중요한 것은 텍스트가 아니라 바이너리 이미지라 `mode = "wb"`를 지정한다.
 
-    img = urllib.urlopen('http://www.py4inf.com/cover.jpg').read()
-    fhand = open('cover.jpg', 'w')
-    fhand.write(img)
-    fhand.close()
+```{r download-files, eval = FALSE}
+download.file(url = "http://www.py4inf.com/cover.jpg", 
+              destfile = "assets/images/fox.jpeg", mode="wb")
+```
+
 
 작성된 프로그램은 네트워크로 모든 데이터를 한번에 읽어서 컴퓨터
-주기억장치 `img` 변수에 저장하고, `cover.jpg` 파일을 열어 디스크에
+`cover.jpg` 파일을 다운로드 받아 로컬 디스크에 지정한 디렉토리 파일명으로
 데이터를 쓴다. 이 방식은 파일 크기가 사용자 컴퓨터의 메모리 크기보다
 작다면 정상적으로 작동한다.
 
-하지만, 오디오 혹은 비디오 파일 대용량이면, 상기 프로그램은 멈추거나
-사용자 컴퓨터 메모리가 부족할 때 극단적으로 느려질 수 있다. 메모리
-부족을 회피하기 위해서, 데이터를 블럭 혹은 버퍼로 가져와서, 다음 블럭을
-가져오기 전에 디스크에 각각의 블럭을 쓴다. 이런 방식으로 사용자가 가진
-모든 메모리를 사용하지 않고 어떠한 크기 파일도 읽어올 수 있다.
-
-    import urllib
-
-    img = urllib.urlopen('http://www.py4inf.com/cover.jpg')
-    fhand = open('cover.jpg', 'w')
-    size = 0
-    while True:
-        info = img.read(100000)
-        if len(info) < 1 : break
-        size = size + len(info)
-        fhand.write(info)
-
-    print size,'characters copied.'
-    fhand.close()
-
-상기 예제에서, 한번에 100,000 문자만 읽어 오고, 웹에서 다음 100,000
-문자를 가져오기 전에 `cover.jpg` 파일에 읽어온 문자를 쓴다.
-
-프로그램 실행 결과는 다음과 같다.
-
-    python curl2.py 
-    568248 characters copied.
+![바이너리 파일 다운로드](assets/images/fox.jpeg){width=100%}
 
 UNIX 혹은 매킨토시 컴퓨터를 가지고 있다면, 다음과 같이 상기 동작을
 수행하는 명령어가 운영체제 자체에 내장되어 있다.
 
+```
     curl -O http://www.py4inf.com/cover.jpg
+```
 
-`curl`은 "copy URL"의 단축 명령어로 두 예제는 `curl` 명령어와 비슷한
-기능을 구현해서, [www.py4inf.com/code](www.py4inf.com/code) 사이트에
-`curl1.py`, `curl2.py` 이름으로 올라가 있다. 동일한 작업을 좀더
-효과적으로 수행하는 `curl3.py` 샘플 프로그램도 있어서 실무적으로
-작성하는 프로그램에 이런한 패턴을 이용하여 구현할 수 잇다.
 
-용어정의
---------
+## 용어정의{#network-terminology}
 
-BeautifulSoup:
-
-:   파이썬 라이브러리로 HTML 문서를 파싱하고 브라우저가 일반적으로
+- **BeautifulSoup**: 파이썬 라이브러리로 HTML 문서를 파싱하고 브라우저가 일반적으로
     생략하는 HTML의 불완전한 부분을 보정하여 HTML 문서에서 데이터를
     추출한다. [www.crummy.com](www.crummy.com) 사이트에서 BeautifulSoup
     코드를 다운로드 받을 수 있다.
-
-포트(port):
-
-:   서버에 소켓 연결을 만들 때, 사용자가 무슨 응용프로그램을 연결하는지
+- `**rvest**`: 파이썬  BeautifulSoup에 대응되는 R 크롤링 패키징   
+- **포트(port)**: 서버에 소켓 연결을 만들 때, 사용자가 무슨 응용프로그램을 연결하는지
     나타내는 숫자. 예로, 웹 트래픽은 통상 80 포트, 전자우편은 25 포트를
     사용한다.
-
-스크래핑(scraping):
-
-:   프로그램이 웹브라우저를 가장하여 웹페이지를 가져와서 웹 페이지의
+- **스크래핑(scraping)**: 프로그램이 웹브라우저를 가장하여 웹페이지를 가져와서 웹 페이지의
     내용을 검색한다. 종종 프로그램이 한 페이지의 링크를 따라 다른
     페이지를 찾게 된다. 그래서, 웹페이지 네트워크 혹은 소셜 네트워크
     전체를 훑을 수 있다.
-
-소켓(socket):
-
-:   두 응용프로그램 사이 네트워크 연결. 두 응용프로그램은 양 방향으로
+- **소켓(socket)**: 두 응용프로그램 사이 네트워크 연결. 두 응용프로그램은 양 방향으로
     데이터를 주고 받는다.
-
-스파이더(spider):
-
-:   검색 색인을 구축하기 위해서 한 웹페이지를 검색하고, 그 웹페이지에
+- **스파이더(spider)**:검색 색인을 구축하기 위해서 한 웹페이지를 검색하고, 그 웹페이지에
     링크된 모든 페이지 검색을 반복하여 인터넷에 있는 거의 모든
     웹페이지를 가져오기 위해서 사용되는 검색엔진 행동.
 
-연습문제
---------
+## 연습문제{#network-ex}
 
-소켓 프로그램 `socket1.py`을 변경하여 임의 웹페이지를 읽을 수 있도록
+1. 소켓 프로그램 `socket1.py`을 변경하여 임의 웹페이지를 읽을 수 있도록
 URL을 사용자가 입력하도록 바꾸세요. `split(’/’)`을 사용하여 URL을
 컴포턴트로 쪼개서 소켓 `connect` 호출에 대해 호스트 명을 추출할 수 있다.
 사용자가 적절하지 못한 형식 혹은 존재하지 않는 URL을 입력하는 경우를
 처리할 있도록 `try`, `except`를 사용하여 오류 검사기능을 추가하세요.
 
-소켓 프로그램을 변경하여 전송받은 문자를 계수(count)하고 3000 문자를
+2. 소켓 프로그램을 변경하여 전송받은 문자를 계수(count)하고 3000 문자를
 출력한 후에 그이상 텍스트 출력을 멈추게 하세요. 프로그램은 전체 문서를
 가져와야 하고, 전체 문자를 계수(count)하고, 문서 마지막에 문자
 계수(count)결과를 출력해야 합니다.
 
-`urllib`을 사용하여 이전 예제를 반복하세요. (1) 사용자가 입력한 URL에서
+3. `httr` 패키지를 사용하여 이전 예제를 반복하세요. (1) 사용자가 입력한 URL에서
 문서 가져오기 (2) 3000 문자까지 화면에 보여주기 (3) 문서의 전체 문자
 계수(count)하기. 이 연습문제에서 헤더에 대해서는 걱정하지 말고, 단지
 문서 본문에서 첫 3000 문자만 화면에 출력하세요.
 
-`urllinks.py` 프로그램을 변경하여 가져온 HTML 문서에서 문단 (p) 태그를
+4. `urllinks.R` 프로그램을 변경하여 가져온 HTML 문서에서 문단 (p) 태그를
 추출하고 프로그램의 출력물로 문단을 계수(count)하고 화면에 출력하세요.
 문단 텍스트를 화면에 출력하지 말고 단지 숫자만 셉니다. 작성한 프로그램을
 작은 웹페이지 뿐만 아니라 조금 큰 웹 페이지에도 테스트해 보세요.
 
-(고급) 소켓 프로그램을 변경하여 헤더와 빈 라인 다음에 데이터만 보여지게
+5. (고급) 소켓 프로그램을 변경하여 헤더와 빈 라인 다음에 데이터만 보여지게
 하세요. `recv`는 라인이 아니라 문자(새줄(newline)과 모든 문자)를
 전송받는다는 것을 기억하세요.
+

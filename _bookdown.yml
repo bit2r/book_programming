@@ -12,29 +12,29 @@ new_session: yes
 rmd_files: [
   "index.Rmd",
 
-  # # 들어가며
-  # "00-why.Rmd",
-  # "01-intro.Rmd",
-  #
-  # # 프로그래밍
-  # "02-var.Rmd",
-  # "03-cont.Rmd",
-  # "04-func.Rmd",
-  # "05-loop.Rmd",
-  #
-  # # 자료구조
-  # "06-string.Rmd",
-  # "07-file.Rmd",
-  # "08-list.Rmd",
-  # "09-dictionaries.Rmd",
-  # "10-tuples.Rmd",
-  #
-  # # 분야별 도구
-  # "11-regex.Rmd",
-  # "12-database.Rmd",
-  # "13-web.Rmd",
-  # "14-tasks.Rmd",
-  "15-network.Rmd",
+  # 들어가며
+  "00-why.Rmd",
+  "01-intro.Rmd",
+
+  # 프로그래밍
+  "02-var.Rmd",
+  "03-cont.Rmd",
+  "04-func.Rmd",
+  "05-loop.Rmd",
+
+  # 자료구조
+  "06-string.Rmd",
+  "07-file.Rmd",
+  "08-list.Rmd",
+  "09-dictionaries.Rmd",
+  "10-tuples.Rmd",
+
+  # 분야별 도구
+  "11-regex.Rmd",
+  "12-network.Rmd",
+  "13-web.Rmd",
+  "14-database.Rmd",
+  "15-tasks.Rmd",
 
   # 참고문헌
   "references.Rmd"
