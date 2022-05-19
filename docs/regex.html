@@ -7,17 +7,42 @@
 <title>12 . 정규 표현식 | 데이터 과학 프로그래밍</title>
 <meta name="author" content="한국 알(R) 사용자회">
 <meta name="description" content="지금까지 파일을 훑어서 패턴을 찾고, 관심있는 라인에서 다양한 비트(bits)를 뽑아냈다. stringr 패키지 str_split, str_detect 같은 문자열 함수를 사용하였고, 라인에서 일정 부분을 뽑아내기 위해서 리스트와 문자열 슬라이싱(slicing)을 사용했다. 검색하고 추출하는 작업은 너무 자주 있는 일이어서 파이썬은 상기와 같은...">
-<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta name="generator" content="bookdown 0.26 with bs4_book()">
 <meta property="og:title" content="12 . 정규 표현식 | 데이터 과학 프로그래밍">
 <meta property="og:type" content="book">
 <meta property="og:description" content="지금까지 파일을 훑어서 패턴을 찾고, 관심있는 라인에서 다양한 비트(bits)를 뽑아냈다. stringr 패키지 str_split, str_detect 같은 문자열 함수를 사용하였고, 라인에서 일정 부분을 뽑아내기 위해서 리스트와 문자열 슬라이싱(slicing)을 사용했다. 검색하고 추출하는 작업은 너무 자주 있는 일이어서 파이썬은 상기와 같은...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="12 . 정규 표현식 | 데이터 과학 프로그래밍">
 <meta name="twitter:description" content="지금까지 파일을 훑어서 패턴을 찾고, 관심있는 라인에서 다양한 비트(bits)를 뽑아냈다. stringr 패키지 str_split, str_detect 같은 문자열 함수를 사용하였고, 라인에서 일정 부분을 뽑아내기 위해서 리스트와 문자열 슬라이싱(slicing)을 사용했다. 검색하고 추출하는 작업은 너무 자주 있는 일이어서 파이썬은 상기와 같은...">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS -->
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -58,7 +83,7 @@
 <li><a class="active" href="regex.html"><span class="header-section-number">12</span> 정규 표현식</a></li>
 <li><a class="" href="r-db.html"><span class="header-section-number">13</span> 데이터베이스와 SQL</a></li>
 <li><a class="" href="r-webservice.html"><span class="header-section-number">14</span> 웹서비스 사용하기</a></li>
-<li><a class="" href="r-automation.html"><span class="header-section-number">15</span> 일반적인 작업 자동화</a></li>
+<li><a class="" href="r-automation.html"><span class="header-section-number">15</span> 작업 자동화</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -824,42 +849,42 @@ R에 포함되어 있다. 내장 문서 도움말은 인터랙티브 모드의 R
 그래서 다른 사람 R 세션으로 복사해서 붙여넣기 좋게 돕는다.</p>
 <div class="sourceCode" id="cb520"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## R version 4.1.3 (2022-03-10)
-## Platform: x86_64-apple-darwin20.6.0 (64-bit)
-## Running under: macOS Big Sur 11.3.1
+<pre><code>## R version 4.2.0 (2022-04-22 ucrt)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 19043)
 ## 
 ## Matrix products: default
-## BLAS:   /usr/local/Cellar/openblas/0.3.20/lib/libopenblasp-r0.3.20.dylib
-## LAPACK: /usr/local/Cellar/r/4.1.3/lib/R/lib/libRlapack.dylib
 ## 
 ## locale:
-## [1] ko_KR.UTF-8/ko_KR.UTF-8/ko_KR.UTF-8/C/ko_KR.UTF-8/ko_KR.UTF-8
+## [1] LC_COLLATE=Korean_Korea.utf8  LC_CTYPE=Korean_Korea.utf8   
+## [3] LC_MONETARY=Korean_Korea.utf8 LC_NUMERIC=C                 
+## [5] LC_TIME=Korean_Korea.utf8    
 ## 
 ## attached base packages:
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] forcats_0.5.1   stringr_1.4.0   dplyr_1.0.7     purrr_0.3.4    
-##  [5] readr_2.1.1     tidyr_1.1.4     tibble_3.1.6    ggplot2_3.3.5  
-##  [9] tidyverse_1.3.1 DBI_1.1.1      
+##  [1] forcats_0.5.1   stringr_1.4.0   dplyr_1.0.8     purrr_0.3.4    
+##  [5] readr_2.1.2     tidyr_1.2.0     tibble_3.1.6    ggplot2_3.3.5  
+##  [9] tidyverse_1.3.1 DBI_1.1.2      
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_1.0.7       lubridate_1.8.0  assertthat_0.2.1 digest_0.6.29   
-##  [5] utf8_1.2.2       R6_2.5.1         cellranger_1.1.0 backports_1.4.0 
-##  [9] reprex_2.0.1     RSQLite_2.2.12   evaluate_0.14    httr_1.4.2      
-## [13] pillar_1.7.0     rlang_1.0.2      readxl_1.3.1     rstudioapi_0.13 
-## [17] blob_1.2.2       jquerylib_0.1.4  rmarkdown_2.11   bit_4.0.4       
-## [21] munsell_0.5.0    broom_0.7.10     compiler_4.1.3   modelr_0.1.8    
-## [25] xfun_0.28        pkgconfig_2.0.3  htmltools_0.5.2  downlit_0.4.0   
-## [29] tidyselect_1.1.1 bookdown_0.24    fansi_1.0.2      crayon_1.5.0    
-## [33] tzdb_0.2.0       dbplyr_2.1.1     withr_2.4.3      grid_4.1.3      
-## [37] jsonlite_1.7.2   gtable_0.3.0     lifecycle_1.0.1  magrittr_2.0.2  
-## [41] scales_1.1.1     vroom_1.5.7      cli_3.2.0        stringi_1.7.6   
-## [45] cachem_1.0.6     fs_1.5.1         xml2_1.3.3       bslib_0.3.1     
-## [49] ellipsis_0.3.2   generics_0.1.1   vctrs_0.3.8      tools_4.1.3     
-## [53] bit64_4.0.5      glue_1.6.2       hms_1.1.1        parallel_4.1.3  
-## [57] fastmap_1.1.0    yaml_2.2.1       colorspace_2.0-2 rvest_1.0.2     
-## [61] memoise_2.0.1    knitr_1.36       haven_2.4.3      sass_0.4.0</code></pre>
+##  [1] Rcpp_1.0.8.3     lubridate_1.8.0  assertthat_0.2.1 digest_0.6.29   
+##  [5] utf8_1.2.2       R6_2.5.1         cellranger_1.1.0 backports_1.4.1 
+##  [9] reprex_2.0.1     RSQLite_2.2.12   evaluate_0.15    httr_1.4.2      
+## [13] pillar_1.7.0     rlang_1.0.2      readxl_1.4.0     rstudioapi_0.13 
+## [17] blob_1.2.3       jquerylib_0.1.4  rmarkdown_2.13   bit_4.0.4       
+## [21] munsell_0.5.0    broom_0.8.0      compiler_4.2.0   modelr_0.1.8    
+## [25] xfun_0.30        pkgconfig_2.0.3  htmltools_0.5.2  downlit_0.4.0   
+## [29] tidyselect_1.1.2 bookdown_0.26    fansi_1.0.3      crayon_1.5.1    
+## [33] tzdb_0.3.0       dbplyr_2.1.1     withr_2.5.0      grid_4.2.0      
+## [37] jsonlite_1.8.0   gtable_0.3.0     lifecycle_1.0.1  magrittr_2.0.3  
+## [41] scales_1.2.0     vroom_1.5.7      cli_3.2.0        stringi_1.7.6   
+## [45] cachem_1.0.6     fs_1.5.2         xml2_1.3.3       bslib_0.3.1     
+## [49] ellipsis_0.3.2   generics_0.1.2   vctrs_0.4.1      tools_4.2.0     
+## [53] bit64_4.0.5      glue_1.6.2       hms_1.1.1        parallel_4.2.0  
+## [57] fastmap_1.1.0    yaml_2.3.5       colorspace_2.0-3 rvest_1.0.2     
+## [61] memoise_2.0.1    knitr_1.38       haven_2.5.0      sass_0.4.1</code></pre>
 <p><code><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo()</a></code>는 R 현재 버젼 정보과 함께 적재된 팩키지 정보를 출력한다.
 이 정보가 다른 사람이 여러분 문제를 재현하고 디버그하는데 유용할 수 있다.</p>
 </div>

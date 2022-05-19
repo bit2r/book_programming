@@ -66,7 +66,7 @@ SQLite 데이터베이스 파일에 있는 데이터를 다루기 위해서 이�
 
 ## 데이터베이스 테이블 생성 {#r-db-create-table}
 
-데이터베이스는 R 리스트 혹은 딕셔너리보다 좀더 명확히 정의된 구조를 요구한다.[^db-data-structure]
+데이터베이스는 R 리스트 혹은 딕셔너리보다 좀더 명확히 정의된 구조를 요구한다. [^db-data-structure]
 
 [^db-data-structure]: 실질적으로 SQLite는 열에 저장되는 데이터 형식에 대해서 좀더 많은 유연성을 부여하지만, 이번 장에서는 데이터 형식을 엄격하게 적용해서 MySQL 같은 다른 관계형 데이터베이스 시스템에도 동일한 개념이 적용되게 한다.
 
@@ -353,10 +353,9 @@ SQLite에 `name`에 동일한 값을 가진 두 행을 삽입하지 못하게 �
 것을 막는다. 테이블을 생성할 때:
 
 ```
-    cur.execute('''CREATE TABLE IF NOT EXISTS People 
-        (id INTEGER PRIMARY KEY, name TEXT UNIQUE, retrieved INTEGER)''')
-    cur.execute('''CREATE TABLE IF NOT EXISTS Follows 
-        (from_id INTEGER, to_id INTEGER, UNIQUE(from_id, to_id))''')
+dbSendQuery( conn, 'CREATE TABLE IF NOT EXISTS People (id INTEGER PRIMARY KEY, name TEXT UNIQUE, retrieved INTEGER)")
+
+dbSendQuery( conn, 'CREATE TABLE IF NOT EXISTS Follows (from_id INTEGER, to_id INTEGER, UNIQUE(from_id, to_id))')
 ```
 
 `People` 테이블에 `name` 칼럼이 `유일(UNIQUE)`함을 나타낸다. `Follows`
@@ -367,8 +366,7 @@ SQLite에 `name`에 동일한 값을 가진 두 행을 삽입하지 못하게 �
 다음 코드에서 이런 제약사항의 장점을 확인할 수 있다.
 
 ```
-    cur.execute('''INSERT OR IGNORE INTO People (name, retrieved) 
-        VALUES ( ?, 0)''', ( friend, ) )
+dbSendQuery( conn, 'INSERT OR IGNORE INTO People (name, retrieved) VALUES ( ?, 0)', c( 'friend', ) )
 ```
 
 `INSERT` 문에 `OR IGNORE` 절을 추가해서 만약 특정 `INSERT`가 "`name`이
@@ -380,123 +378,11 @@ SQLite에 `name`에 동일한 값을 가진 두 행을 삽입하지 못하게 �
 않는다.
 
 ```
-    cur.execute('''INSERT OR IGNORE INTO Follows 
-        (from_id, to_id) VALUES (?, ?)''', (id, friend_id) )
+dbSendQuery( conn, 'INSERT OR IGNORE INTO Follows (from_id, to_id) VALUES (?, ?)', c(id, friend_id) )
 ```
 
 다시 한번, `Follows` 행에 대해 지정한 유일한 제약사항을 위반하게 되면
 `INSERT` 시도를 무시하도록 데이터베이스에 지시한다.
-
-### 레코드 가져오거나 삽입 {#db-retrieve-insert}
-
-사용자가 트위터 계정을 입력할 때, 만약 계정이 존재한다면, `id` 값을
-찾아야 한다. 만약 `People` 테이블에 계정이 존재하지 않는다면, 레코드를
-삽입하고 삽입된 행에서 `id` 값을 얻어와야 한다.
-
-이것은 매우 일반적인 패턴이고, 상기 프로그램에서 두번 수행되었다. 가져온
-트위터 JSON `사용자(user)` 노드에서 `screen_name`을 추출할 때, 친구
-계정의 `id`를 어떻게 찾는지 코드가 보여준다.
-
-시간이 지남에 따라 점점 더 많은 계정이 데이터베이스에 존재할 것 같기
-때문에, `SELECT`문을 사용해서 `People` 레코드가 존재하는지 먼저
-확인한다.
-
-`try` 구문 내에서 모든 것이 정상적으로 잘 작동하면[^2], `fetchone()`을
-사용하여 레코드를 가져와서, 반환된 튜플의 첫번째 요소만 읽어오고
-`friend_id`에 저장한다.
-
-만약 `SELECT`가 실패하면, `fetchone()[0]` 코드도 실패하고 제어권은
-`except` 블록으로 이관된다.
-
-```
-            friend = u['screen_name']
-            cur.execute('SELECT id FROM People WHERE name = ? LIMIT 1',
-                (friend, ) )
-            try:
-                friend_id = cur.fetchone()[0]
-                countold = countold + 1
-            except:
-                cur.execute('''INSERT OR IGNORE INTO People (name, retrieved) 
-                    VALUES ( ?, 0)''', ( friend, ) )
-                conn.commit()
-                if cur.rowcount != 1 :
-                    print 'Error inserting account:',friend
-                    continue
-                friend_id = cur.lastrowid
-                countnew = countnew + 1
-```
-
-`except` 코드에서 끝나게 되면, 행을 찾지 못해서 행을 삽입해야 한다는
-의미가 된다. `INSERT OR IGNORE`를 사용해서 오류를 피하고 데이터베이스에
-진정으로 갱신하기 위해서 `commit()`을 호출한다. 데이터베이스에 쓰기가
-수행된 후에, 얼마나 많은 행이 영향을 받았는지 확인하기 위해서
-`cur.rowcount`로 확인한다. 단일 행을 삽입하려고 했는데, 영향을 받은 행의
-숫자가 1과 다르다면, 그것은 오류다.
-
-`삽입(INSERT)`이 성공하면, `cur.lastrowid`를 살펴보고 신규로 생성된 행의
-`id` 칼럼에 무슨 값이 대입되었는지 알 수 있다.
-
-### 친구관계 저장하기
-
-트위터 사용자와 JSON 친구에 대한 키값을 알게되면, 다음 코드로 두 개의
-숫자를 `Follows` 테이블에 삽입하는 것은 간단하다.
-
-```
-    cur.execute('INSERT OR IGNORE INTO Follows (from_id, to_id) VALUES (?, ?)',
-        (id, friend_id) )
-```
-
-데이터베이스를 생성할 때 유일(unique)한 제약조건과 `INSERT`문에
-`OR IGNORE`을 추가함으로써 데이터베이스 스스로 관계를 두번 삽입하는 것을
-방지하도록 한 것에 주목한다.
-
-다음에 프로그램의 샘플 실행 결과가 있다.
-
-```
-    Enter a Twitter account, or quit: 
-    No unretrieved Twitter accounts found
-    Enter a Twitter account, or quit: drchuck
-    Retrieving http://api.twitter.com/1.1/friends ...
-    New accounts= 20  revisited= 0
-    Enter a Twitter account, or quit: 
-    Retrieving http://api.twitter.com/1.1/friends ...
-    New accounts= 17  revisited= 3
-    Enter a Twitter account, or quit: 
-    Retrieving http://api.twitter.com/1.1/friends ...
-    New accounts= 17  revisited= 3
-    Enter a Twitter account, or quit: quit
-```
-
-`drchuck` 계정으로 시작해서, 프로그램이 자동적으로 다음 두개의 계정을
-선택해서 데이터베이스에 추가한다.
-
-다음은 프로그램 수행을 완료한 후에 `People`과 `Follows` 테이블에 첫
-몇개의 행이다.
-
-```
-    People:
-    (1, u'drchuck', 1)
-    (2, u'opencontent', 1)
-    (3, u'lhawthorn', 1)
-    (4, u'steve_coppin', 0)
-    (5, u'davidkocher', 0)
-    55 rows.
-    Follows:
-    (1, 2)
-    (1, 3)
-    (1, 4)
-    (1, 5)
-    (1, 6)
-    60 rows.
-```
-
-`People` 테이블의 `id`, `name`, `visited` 필드와 `Follows` 테이블 양
-끝에 관계 숫자를 볼 수 있다. `People` 테이블에서, 사람 첫 세명을
-방문해서, 데이터를 가져온 것을 볼 수 있다. `Follows` 테이블의 데이터는
-`drchuck`(사용자 1)이 첫 다섯개 행에 보여진 모든 사람에 대해 친구임을
-나타낸다. 이것은 당연한데 왜냐하면 처음 가져와서 저장한 데이터가
-`drchuck`의 트위터 친구들이기 때문이다. `Follows` 테이블에서 좀더 많은
-행을 출력하면, 사용자 2, 3 혹은 그 이상의 친구를 볼 수 있다.
 
 ## 세 종류 키 {#db-three-keys}
 
@@ -528,113 +414,434 @@ SQLite에 `name`에 동일한 값을 가진 두 행을 삽입하지 못하게 �
 주키 `id`필드명을 호출하고, 항상 외부키에 임의 필드명에 접미사로 `_id`
 붙이는 명명규칙을 사용한다.
 
-## JOIN 활용 데이터 가져오기 {#db-join-retrieve}
+## DVD 대여 데이터베이스 {#dvd-rental}
 
-데이터 정규화 규칙을 따라서, 데이터를 주키와 외부키로 연결된 두개의
-테이블로 나누어서, 테이블 데이터를 다시 합치기 위해서 `SELECT`를 작성할
-필요가 있다.
+### PostgreSQL [^postgreSQL] [^postgreSQL-D2] {#about-postgreSQL}
 
-SQL은 `JOIN`절을 사용해서 테이블을 다시 연결한다. `JOIN`절에서 테이블
-사이의 행을 다시 연결할 필드를 지정한다.
+[^postgreSQL]: [위키백과, "PostgreSQL"](https://ko.wikipedia.org/wiki/PostgreSQL)
 
-다음은 `JOIN`절을 가진 `SELECT` 예제이다.
+[^postgreSQL-D2]: [NAVER D2 한눈에 살펴보는 PostgreSQL](https://d2.naver.com/helloworld/227936)
 
-```
-    SELECT * FROM Follows JOIN People 
-        ON Follows.from_id = People.id WHERE People.id = 1
-```
+PostgreSQL은 확장 가능성 및 표준 준수를 강조하는 객체-관계형 데이터베이스 관리 시스템(ORDBMS)의 하나로 BSD 라이선스로 배포되며 오픈소스 개발자 및 관련 회사들이 개발에 참여하고 있다. 소규모의 단일 머신 애플리케이션에서부터 수많은 동시 접속 사용자가 있는 대형의 인터넷 애플리케이션(또는 데이터 웨어하우스용)에 이르기까지 여러 부하를 관리할 수 있으며 macOS 서버의 경우 PostgreSQL은 기본 데이터베이스로 상용 오라클 데이터베이스를 대체하는 오픈소스 데이터베이스로 알려져 있다.
 
-`JOIN`절은 `Follows`와 `People` 테이블에서 선택하는 필드를 나타낸다.
-`ON`절은 어떻게 두 테이블이 합쳐지는지를 나타낸다. `Follows`에서 행을
-선택하고 `People`에서 행을 추가하는데, `Follows` 테이블의 `from_id`와
-`People` 테이블의 `id` 값은 동일하다.
+### PostgreSQL 설치 [^install-postgreSQL] {#install-postgreSQL}
 
-![](assets/images/join.png){width=100%}
+[^install-postgreSQL]: [Install PostgreSQL](http://www.postgresqltutorial.com/install-postgresql/)
+
+[PostgreSQL: The World's Most Advanced Open Source Relational Database](https://www.postgresql.org/) 웹사이트에서 
+PostgreSQL [다운로드](https://www.postgresql.org/download/windows/) 한다. 윈도우에 설치하는 경우 다음을 참고한다. 설치과정에서 나중에 도움이 될만한 정보는 다음과 같다.
+
+- 설치 디렉토리: `C:\Program Files\PostgreSQL\11`
+- 포트: `5432`
+- 사용자명: `postgres`
+
+![postgreSQL 설치](assets/images/postgreSQL-shell.png){width=100%}
 
 
-JOIN 결과는 `People` 테이블 필드와 `Follows` 테이블에서 매칭되는 필드를
-가진 "메타-행(meta-row)"을 생성한다. `People` 테이블 `id` 필드와
-`Follows` 테이블 `from_id` 사이에 하나 이상의 매칭이 존재한다면, JOIN은
-필요하면 데이터를 중복하면서, 행에 매칭되는 짝 각각에 대해 메타-행을
-생성한다.
+`PostgreSQL 11` &rarr; `SQL Shell (psql)`을 클릭한 후에 postgreSQL 헬로월드를 찍어본다.
+설치과정에서 등록한 비번만 넣어주고 나머지는 로컬호스트와 
+기본 디폴트 설정된 데이터베이스를 사용할 것이라 `postgres` 사용자 비밀번호만 넣어준다. 
+그리고 나서 `postgre=#` 쉘에 `SELECT version()` 명령어를 넣어준다.
 
-다중 테이블 트위터 프로그램을 수차례 수행한 후에 데이터베이스에 있는
-데이터를 가지고 다음 코드가 시연한다.
+![postgreSQL 헬로월드](assets/images/postgreSQL-helloworld.png){width=100%}
 
-```
-    import sqlite3
 
-    conn = sqlite3.connect('spider.sqlite3')
-    cur = conn.cursor()
+### 예제 데이터베이스 - `pagila` [^postgreSQL-tutorial] {#install-dvd-postgreSQL}
 
-    cur.execute('SELECT * FROM People')
-    count = 0
-    print 'People:'
-    for row in cur :
-       if count < 5: print row
-       count = count + 1
-    print count, 'rows.'
+[^postgreSQL-tutorial]: [PostgreSQL Sample Database](http://www.postgresqltutorial.com/postgresql-sample-database/)
 
-    cur.execute('SELECT * FROM Follows')
-    count = 0
-    print 'Follows:'
-    for row in cur :
-       if count < 5: print row
-       count = count + 1
-    print count, 'rows.'
+[PostgreSQL Sample Database](https://github.com/devrimgunduz/pagila)를 Github에서 구해서 설치하거나, [PostgreSQL Sample Database](http://www.postgresqltutorial.com/postgresql-sample-database/), [Load PostgreSQL Sample Database](http://www.postgresqltutorial.com/load-postgresql-sample-database/)을 참조하여 DVD 대여 데이터베이스를 설치한다.
 
-    cur.execute('''SELECT * FROM Follows JOIN People 
-        ON Follows.from_id = People.id WHERE People.id = 2''')
-    count = 0
-    print 'Connections for id=2:'
-    for row in cur :
-       if count < 5: print row
-       count = count + 1
-    print count, 'rows.'
+1. `SQL Shell (psql)` 쉘을 실행하여 `dvd` 데이터베이스를 생성한다.
 
-    cur.close()
+```{r create-dvd-database, eval=FALSE}
+Database [postgres]:
+Port [5432]:
+Username [postgres]:
+postgres 사용자의 암호:
+psql (11.5)
+도움말을 보려면 "help"를 입력하십시오.
+
+postgres=# CREATE DATABASE dvd;
+CREATE DATABASE
 ```
 
-이 프로그램에서 `People`과 `Follows` 테이블을 먼저 보여주고, 함께 JOIN된
-데이터 일부분을 보여준다.
+2. `Windows + R` 단축키를 실행시켜 `cmd`를 입력하여 윈도우 쉘을 구동시킨다. 그리고 `postgreSQL`을 설치한 윈도우 디렉토리로 이동한다. `C:\Program Files\PostgreSQL\11\bin` 디렉토리가 된다. 그리고 나서 다운받은 `dvdrental.zip` 파일 압축을 풀어 `dvdrental.tar`을 지정한다.
 
-다음이 프로그램 출력이다.
+- `pg_restore` 명령어는 데이터베이스를 생성시키는 역할을 한다.
+- `-U postgres` 인자는 사용자를 지정한다.
+- `-d dvd` 인자는 데이터베이스를 지정한다.
+- `C:\dvdrental\dvdrental.tar` 인자는 파일로 저장된 데이터베이스 정보를 담고 있다.
 
-```
-    python twjoin.py 
-    People:
-    (1, u'drchuck', 1)
-    (2, u'opencontent', 1)
-    (3, u'lhawthorn', 1)
-    (4, u'steve_coppin', 0)
-    (5, u'davidkocher', 0)
-    55 rows.
-    Follows:
-    (1, 2)
-    (1, 3)
-    (1, 4)
-    (1, 5)
-    (1, 6)
-    60 rows.
-    Connections for id=2:
-    (2, 1, 1, u'drchuck', 1)
-    (2, 28, 28, u'cnxorg', 0)
-    (2, 30, 30, u'kthanos', 0)
-    (2, 102, 102, u'SomethingGirl', 0)
-    (2, 103, 103, u'ja_Pac', 0)
-    20 rows.
+```{r load-dvd-database, eval=FALSE}
+C:\Program Files\PostgreSQL\11\bin> pg_restore -U postgres -d dvd C:\dvdrental\dvdrental.tar
+암호:
+C:\Program Files\PostgreSQL\11\bin>
 ```
 
-`People`과 `Follows` 테이블에서 칼럼을 볼 수 있고, 마지막 행의 집합은
-`JOIN`절을 가진 `SELECT`문의 결과다.
+![postgreSQL DVD 데이터베이스](assets/images/postgreSQL-dvd.png){width=100%}
 
-마지막 `SELECT`문에서, "opencontent" (즉 `People.id=2`)를 친구로 가진
-계정을 찾는다.
 
-마지막 `SELECT` "메타-행"의 각각에서 첫 두 열은 `Follows` 테이블에서,
-3번째부터 5번째 열은 `People` 테이블에서 가져왔다. 두번째
-열(`Follows.to_id`)과 세번째 열(`People.id`)은 join된 "메타-열"에서
-매칭됨을 볼 수 있다.
+### DVD 대여 질의문 작성 [^connect-sql] {#query-dvd-postgreSQL}
+
+[^connect-sql]: [Connect To a PostgreSQL Database Server](http://www.postgresqltutorial.com/connect-to-postgresql-database/)
+
+`dvd` 데이터베이스가 설치되었기 때문에 쿼리를 던지기 위해서는 postgreSQL 데이터베이스에 접속을 해야한다. 이를 위해서 `pgAdmin 4`를 실행시키게 되면 웹브라우져에 웹인터페이스가 생기게 된다. 데이터베이스를 `dvd`로 지정하고 하고 나서, `Tools` &rarr; `Query Tool`을 클릭하게 되면 해당 데이터베이스 테이블에 쿼리를 던질 수가 있게 된다.
+
+![postgreSQL select 쿼리문 예시](assets/images/postgreSQL-dvd-select.png){width=100%}
+
+#### 데이터베이스 사용자 추가 {#database-user}
+
+`postgres` 사용자는 이미 존재하기 때문에 별도로 `tidyverse` 사용자를 추가하고 
+권한을 부여한다. `\du` 명령어로 사용자가 정상 등록되었는지 확인한다.
+
+```{r create-user, eval = FALSE}
+postgres=# create user tidyverse with encrypted password '1234';
+CREATE ROLE
+postgres=# grant all privileges on database dvd to tidyverse;
+GRANT
+postgres=# \du
+                                 롤 목록
+  롤 이름  |                      속성                      | 소속 그룹:
+-----------+------------------------------------------------+------------
+ postgres  | 슈퍼유저, 롤 만들기, DB 만들기, 복제, RLS 통과 | {}
+ tidyverse |                                                | {}
+```
+
+
+#### R에서 postgreSQL 연결 {#rstudio-dvd-postgreSQL}
+
+`postgreSQL` DBMS 내부에 `dvd` 데이터베이스가 생성되었다. 이를 R에서 작업하기 위해서 
+`RPostgreSQL`, `DBI` 팩키지를 도입한다. 
+`dbConnect()` 함수에 데이터베이스와 연결에 필요한 모든 정보를 저장시킨다. 
+그리고 나서 `dbGetQuery()` 함수로 쿼리를 던져 원하는 결과를 받아온다.
+
+``` {r rpostgreSQL-example, eval=FALSE}
+library(DBI)
+library(RPostgres)
+
+con <- dbConnect(RPostgres::Postgres(), dbname="dvd", 
+                 host="localhost",
+                 port="5432", 
+                 user="postgres", 
+                 password="1234")
+
+actor <- dbGetQuery(con, "SELECT * FROM actor LIMIT 5")
+
+DBI::dbDisconnect(con)
+```
+
+`dbGetQuery()`로 가져온 데이터프레임을 `dplyr` 동사로 후속작업을 진행한다.
+
+```{r actor-tidyverse, eval = FALSE}
+library(tidyverse)
+
+actor %>% 
+  filter(actor_id ==1)
+```
+
+```
+  actor_id first_name last_name         last_update
+1        1   Penelope   Guiness 2013-05-26 14:47:57
+```
+
+#### 작업에 필요한 테이블 찾기 {#find-table}
+
+데이터베이스에서 쿼리 작업을 수행할 때 가장 먼저 해야 되는 일중의 하나가 적합한 테이블을 찾는 것이다. 이를 위해서 각 DBMS마다 나름대로 정리를 해둔 메타테이블이 존재한다. `postgreSQL`의 경우는 `pg_catalog.pg_tables`가 된다. 가장 많이 사용되는 SQL 데이터베이스별로 동일한 사안에 대해서 찾아보자.
+
+- `postgreSQL`: `SELECT * FROM pg_catalog.pg_tables;`
+- sqlite3: `.tables`
+- MS `SQL 서버 - Transact-SQL`: `SELECT * FROM INFORMATION_SCHEMA.TABLES;`
+- MySQL: `SHOW TABLES;`
+
+```{r find-tables, eval = FALSE}
+qry <- "SELECT *
+        FROM pg_catalog.pg_tables"
+
+dbGetQuery(con, qry) %>% 
+  filter(schemaname == 'public') 
+```
+
+```
+   schemaname     tablename tableowner tablespace hasindexes hasrules hastriggers rowsecurity
+1      public         actor   postgres       <NA>       TRUE    FALSE        TRUE       FALSE
+2      public         store   postgres       <NA>       TRUE    FALSE        TRUE       FALSE
+3      public       address   postgres       <NA>       TRUE    FALSE        TRUE       FALSE
+4      public      category   postgres       <NA>       TRUE    FALSE        TRUE       FALSE
+5      public          city   postgres       <NA>       TRUE    FALSE        TRUE       FALSE
+6      public       country   postgres       <NA>       TRUE    FALSE        TRUE       FALSE
+7      public      customer   postgres       <NA>       TRUE    FALSE        TRUE       FALSE
+8      public    film_actor   postgres       <NA>       TRUE    FALSE        TRUE       FALSE
+9      public film_category   postgres       <NA>       TRUE    FALSE        TRUE       FALSE
+10     public     inventory   postgres       <NA>       TRUE    FALSE        TRUE       FALSE
+11     public      language   postgres       <NA>       TRUE    FALSE        TRUE       FALSE
+12     public        rental   postgres       <NA>       TRUE    FALSE        TRUE       FALSE
+13     public         staff   postgres       <NA>       TRUE    FALSE        TRUE       FALSE
+14     public       payment   postgres       <NA>       TRUE    FALSE        TRUE       FALSE
+15     public          film   postgres       <NA>       TRUE    FALSE        TRUE       FALSE
+```
+
+#### 테이블 별 칼럼명 {#find-table-columns}
+
+다음으로 테이블을 찾았다고 하면, 해당되는 칼럼명을 찾을 수 있어야 한다. 이를 통해서 유의미한 의미를 찾아낼 수 있는데 칼럼명을 통해 영감을 받아 다가설 수 있게 된다.
+
+```{r find-table-column, eval = FALSE}
+col_qry <- "SELECT table_name,
+                   STRING_AGG(column_name, ', ') AS columns
+            FROM information_schema.columns
+            WHERE table_schema = 'public'
+            GROUP BY table_name;"
+
+dbGetQuery(con, col_qry) %>% 
+  filter(table_name %in% c( "actor", "rental", "store"))
+  
+DBI::dbDisconnect(con)
+```
+
+```
+  table_name                                                                               columns
+1      actor                                          actor_id, last_update, first_name, last_name
+2     rental rental_id, rental_date, inventory_id, customer_id, return_date, staff_id, last_update
+3      store                                   store_id, manager_staff_id, address_id, last_update
+```
+
+#### DVD ER 다이어그램 {#dvd-er-diagram}
+
+후속 쿼리 분석 작업을 위해서 도움이 되는 ER 다이어그램은 다음과 같다.
+
+![DVD ER 다이어그램](assets/images/dvd-rental-sample-database-diagram.png){width=100%}
+
+## DVD DB 인사이트 {#dvd-insight-rental}
+
+DVT 대여 데이터베이스를 설치했다면 다음 단계로 다양한 SQL 쿼리문을 던져 뭔가 가치 있는 정보를 추출해야만 한다. [데이터 과학: "postgreSQL - DVD 대여 데이터베이스"](https://statkclee.github.io/data-science/ds-postgreSQL.html)에서 데이터베이스 설치와 접속에 대한 사항은 확인한다.
+
+### DB 접속 헬로월드 [^insight-query] {#dvd-rental-db-insight-sql}
+
+[^insight-query]: [Okoh Anita (2018-12-20), "How I analyzed DVD rental data with SQL", freeCodeCamp](https://www.freecodecamp.org/news/project-1-analyzing-dvd-rentals-with-sql-fd12dd674a64/)
+
+먼저 `DBI::dbConnect()`를 통해 접속하고 SQL 쿼리 헬로월드를 던져보자.
+
+```{r dvd-rental-sql-test, eval = FALSE}
+library(RPostgres)
+
+con <- dbConnect(RPostgres::Postgres(), dbname="dvd", 
+                 host="localhost",
+                 port="5432", 
+                 user="postgres", 
+                 password="1234")
+
+actor <- dbGetQuery(con, "SELECT * FROM actor LIMIT 5")
+
+actor
+```
+
+```
+  actor_id first_name    last_name         last_update
+1        1   Penelope      Guiness 2013-05-26 14:47:57
+2        2       Nick     Wahlberg 2013-05-26 14:47:57
+3        3         Ed        Chase 2013-05-26 14:47:57
+4        4   Jennifer        Davis 2013-05-26 14:47:57
+5        5     Johnny Lollobrigida 2013-05-26 14:47:57
+```
+
+
+### 이탈/잔존고객 구매금액 {#run-statistics-active}
+
+`customer` 테이블에는 `active` 칼럼을 통해 잔존고객과 이탈고객을 파악할 수 있다.
+이를 통해서 잔존고객과 이탈고객이 몇명이고 구매금액을 파악할 수 있다. 
+먼저 `datamodelr` 팩키지를 통해 해당 테이블을 뽑아내서 이를 시각화해보자.
+
+```{r table-schema, eval = FALSE}
+library(tidyverse)
+library(datamodelr)
+
+payment <- tbl(con, "payment") %>% collect()
+customer <- tbl(con, "customer") %>% collect()
+
+payment_customer_model <- dm_from_data_frames(payment, customer)
+
+payment_customer_model <- dm_add_references(
+  payment_customer_model,
+  customer$customer_id ==  payment$customer_id
+)
+
+payment_customer_graph <- dm_create_graph(payment_customer_model, rankdir = "LR", col_attr = c("column", "type"))
+dm_render_graph(payment_customer_graph)
+```
+
+
+![테이블 구조 시각화 - 구매금액](assets/images/dvd-rental-amount.png){width=100%}
+
+`con`을 통해 DVD 대여 데이터베이스에 접속이 이루어진 상태다. 
+이탈고객과 잔존고객별로 구매금액에 대한 평균, 최소, 최대, 총합계를 구하려면 두 테이블을 `INNER JOIN`으로 `customer_id`를 키값으로 합치고 나서 기술통계를 산출한다.
+
+```{r query-payment-schema, eval = FALSE}
+sql_query <- 
+"SELECT active, 
+       COUNT(*) AS num_active, 
+       MIN(amount) AS min_amt, 
+       AVG(amount) AS avg_amt,
+       MAX(amount) AS max_amt, 
+       SUM(amount) AS total_amt
+FROM payment AS p
+INNER JOIN customer AS c
+  ON p.customer_id = c.customer_id
+GROUP BY c.active;"
+
+dbGetQuery(con, sql_query)
+```
+
+```
+  active num_active min_amt  avg_amt max_amt total_amt
+1      0        369    0.99 4.092981   11.99   1510.31
+2      1      14227    0.00 4.203397   11.99  59801.73
+```
+
+### 쟝르별 평균 대여평점 {#run-statistics-rental-rate}
+
+앞서와 마찬가지로 쟝르별 평균 대여평점을 계산할 수 있는 테이블을 쭉 뽑아본다.
+이를 통해서 3개 테이블, 즉 `category`, `film_category`, `film`을 뽑아놓고 각 해당 키값을 사용하여 결합시킨다.
+
+```{r table-schema-category, eval = FALSE}
+category <- tbl(con, "category") %>% collect()
+film_category <- tbl(con, "film_category") %>% collect()
+film <- tbl(con, "film") %>% collect()
+
+rental_rating_model <- dm_from_data_frames(category, film_category, film)
+
+rental_rating_model <- dm_add_references(
+  rental_rating_model,
+  category$category_id == film_category$category_id,
+  film_category$film_id == film$film_id
+)
+
+rental_rating_graph <- dm_create_graph(rental_rating_model, rankdir = "LR", col_attr = c("column", "type"))
+dm_render_graph(rental_rating_graph)
+```
+
+![테이블 구조 시각화 - 쟝르별 대여평점](assets/images/dvd-rental-genre.png){width=100%}
+
+
+먼저 `film_category`와 `category`를 결합시켜 영화(`film`)가 속한 쟝르(`category`)를 파악한다.
+
+```{r table-schema-category-rating, eval = FALSE}
+rate_qry <- 
+"SELECT * 
+FROM category AS c
+INNER JOIN film_category AS fc
+  ON c.category_id = fc.category_id
+LIMIT 5;"
+
+dbGetQuery(con, rate_qry)
+```
+
+```
+  category_id        name         last_update film_id category_id..5      last_update..6
+1           6 Documentary 2006-02-15 09:46:27       1              6 2006-02-15 10:07:09
+2          11      Horror 2006-02-15 09:46:27       2             11 2006-02-15 10:07:09
+3           6 Documentary 2006-02-15 09:46:27       3              6 2006-02-15 10:07:09
+4          11      Horror 2006-02-15 09:46:27       4             11 2006-02-15 10:07:09
+5           8      Family 2006-02-15 09:46:27       5              8 2006-02-15 10:07:09
+```
+
+다음으로 `film` 테이블을 조인하여 `rental_rate`를 결합하고 
+쟝르(`category`) 별로 평균평점을 구하고 이를 `ORDER BY ... DESC`를 사용해서 내림차순으로 정렬한다. 
+
+```{r table-schema-category2, eval = FALSE}
+rate_qry <- 
+"SELECT c.name,
+        AVG(rental_rate) AS avg_rental_rate
+FROM category AS c
+INNER JOIN film_category AS fc
+  ON c.category_id = fc.category_id 
+INNER JOIN film AS f
+  ON fc.film_id = f.film_id
+GROUP BY c.category_id
+ORDER BY avg_rental_rate DESC;"
+
+dbGetQuery(con, rate_qry)
+```
+
+```
+          name avg_rental_rate
+1        Games        3.252295
+2       Travel        3.235614
+3       Sci-Fi        3.219508
+4       Comedy        3.162414
+5       Sports        3.125135
+6          New        3.116984
+7      Foreign        3.099589
+8       Horror        3.025714
+9        Drama        3.022258
+10       Music        2.950784
+11    Children        2.890000
+12   Animation        2.808182
+13      Family        2.758116
+14    Classics        2.744386
+15 Documentary        2.666471
+16      Action        2.646250
+```
+
+### Top 10 DVD 영화  {#run-statistics-rental-rate-top10}
+
+가장 많이 대여된 Top 10 DVD 영화를 찾아내기 위해서 이에 해당되는 연관 테이블을 검색하여 찾아낸다. `film`, `inventory`, `rental` 테이블을 특정하고 서로 연결시킬 수 있는 키값을 찾아 연결시킨다.
+
+```{r table-schema-category-top, eval = FALSE}
+film <- tbl(con, "film") %>% collect()
+inventory <- tbl(con, "inventory") %>% collect()
+rental <- tbl(con, "rental") %>% collect()
+
+top_10_model <- dm_from_data_frames(film, inventory, rental)
+
+top_10_model <- dm_add_references(
+  top_10_model,
+  film$film_id == inventory$film_id,
+  inventory$inventory_id == rental$inventory_id
+)
+
+top_10_graph <- dm_create_graph(top_10_model, rankdir = "LR", col_attr = c("column", "type"))
+dm_render_graph(top_10_graph)
+```
+
+![테이블 구조 시각화 - Top 10 DVD 영화](assets/images/dvd-rental-top10.png){width=100%}
+
+`film` &rarr; `inventory` &rarr; `rental` 테이블을 순차적으로 `film_id`, `inventory_id`를 키값으로 삼아 결합시킨다. 그리고 나서 가장 많이 대여된 영화를 찾기 위해서 `COUNT()` 함수로 개수하고 나서 이를 내림차순 정리한다.
+
+```{r top-10-rental-movies, eval = FALSE}
+top_query <- 
+"SELECT f.title AS movie_title, 
+        COUNT(f.title) AS num_rentals
+FROM film AS f
+INNER JOIN inventory AS i
+  ON f.film_id = i.film_id
+INNER JOIN rental AS r
+  ON i.inventory_id = r.inventory_id
+GROUP BY f.title
+ORDER BY num_rentals DESC;"
+
+dbGetQuery(con, top_query) %>% 
+  slice_max(n=10, order_by = num_rentals)
+```
+
+```
+           movie_title num_rentals
+1   Bucket Brotherhood          34
+2     Rocketeer Mother          33
+3       Juggler Hardly          32
+4  Ridgemont Submarine          32
+5        Scalawag Duck          32
+6       Grit Clockwork          32
+7       Forward Temple          32
+8       Timberland Sky          31
+9            Zorro Ark          31
+10        Robbers Joon          31
+11        Hobbit Alien          31
+12        Network Peak          31
+13       Apache Divine          31
+14     Rush Goodfellas          31
+15           Wife Turn          31
+16   Goodfellas Salute          31
+```
 
 ## 요약 {#db-summary}
 
@@ -705,10 +912,6 @@ SQLite에서 두 프로그램이 동시에 동일한 데이터를 변경하지 �
 - **튜플(tuple)**:데이터베이스 테이블에 단일 항목으로 속성 집합이다. 좀더 일반적으로
     "행(row)"이라고 한다.
 
-[^1]: 실질적으로 SQLite는 열에 저장되는 데이터 형식에 대해서 좀더 많은
-    유연성을 부여하지만, 이번 장에서는 데이터 형식을 엄격하게 적용해서
-    MySQL 같은 다른 관계형 데이터베이스 시스템에도 동일한 개념이
-    적용되게 한다.
 
-[^2]: 일반적으로, 문장이 "만약 모든 것이 잘 된다면"으로 시작하면, 코드는
-    필히 try/except를 필요로 한다.
+
+

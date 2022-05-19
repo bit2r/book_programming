@@ -7,17 +7,42 @@
 <title>13 . 데이터베이스와 SQL | 데이터 과학 프로그래밍</title>
 <meta name="author" content="한국 알(R) 사용자회">
 <meta name="description" content="13.1 데이터베이스가 뭔가요? 데이터베이스(database)는 데이터를 저장하기 위한 목적으로 조직된 파일이다. 대부분의 데이터베이스는 키(key)와 값(value)를 매핑한다는 의미에서 딕셔너리처럼 조직되었다. 가장 큰 차이점은 데이터베이스는 디스크(혹은 다른 영구 저장소)에 위치하고 있어서, 프로그램 종료 후에도 정보가 계속 저장된다....">
-<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta name="generator" content="bookdown 0.26 with bs4_book()">
 <meta property="og:title" content="13 . 데이터베이스와 SQL | 데이터 과학 프로그래밍">
 <meta property="og:type" content="book">
 <meta property="og:description" content="13.1 데이터베이스가 뭔가요? 데이터베이스(database)는 데이터를 저장하기 위한 목적으로 조직된 파일이다. 대부분의 데이터베이스는 키(key)와 값(value)를 매핑한다는 의미에서 딕셔너리처럼 조직되었다. 가장 큰 차이점은 데이터베이스는 디스크(혹은 다른 영구 저장소)에 위치하고 있어서, 프로그램 종료 후에도 정보가 계속 저장된다....">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="13 . 데이터베이스와 SQL | 데이터 과학 프로그래밍">
 <meta name="twitter:description" content="13.1 데이터베이스가 뭔가요? 데이터베이스(database)는 데이터를 저장하기 위한 목적으로 조직된 파일이다. 대부분의 데이터베이스는 키(key)와 값(value)를 매핑한다는 의미에서 딕셔너리처럼 조직되었다. 가장 큰 차이점은 데이터베이스는 디스크(혹은 다른 영구 저장소)에 위치하고 있어서, 프로그램 종료 후에도 정보가 계속 저장된다....">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS -->
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -58,7 +83,7 @@
 <li><a class="" href="regex.html"><span class="header-section-number">12</span> 정규 표현식</a></li>
 <li><a class="active" href="r-db.html"><span class="header-section-number">13</span> 데이터베이스와 SQL</a></li>
 <li><a class="" href="r-webservice.html"><span class="header-section-number">14</span> 웹서비스 사용하기</a></li>
-<li><a class="" href="r-automation.html"><span class="header-section-number">15</span> 일반적인 작업 자동화</a></li>
+<li><a class="" href="r-automation.html"><span class="header-section-number">15</span> 작업 자동화</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -129,7 +154,7 @@ Oracle, MySQL, Microsoft SQL Server, PostgreSQL, SQLite이 여기에 포함된�
 <h2>
 <span class="header-section-number">13.4</span> 데이터베이스 테이블 생성<a class="anchor" aria-label="anchor" href="#r-db-create-table"><i class="fas fa-link"></i></a>
 </h2>
-<p>데이터베이스는 R 리스트 혹은 딕셔너리보다 좀더 명확히 정의된 구조를 요구한다.<a href="references.html#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a></p>
+<p>데이터베이스는 R 리스트 혹은 딕셔너리보다 좀더 명확히 정의된 구조를 요구한다. <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;실질적으로 SQLite는 열에 저장되는 데이터 형식에 대해서 좀더 많은 유연성을 부여하지만, 이번 장에서는 데이터 형식을 엄격하게 적용해서 MySQL 같은 다른 관계형 데이터베이스 시스템에도 동일한 개념이 적용되게 한다.&lt;/p&gt;"><sup>10</sup></a></p>
 <p>데이터베이스에 테이블(table)을 생성할 때, 열(column)의 명칭과 각 열(column)에 저장하는 테이터 형식을 사전에 정의해야 한다.
 데이터베이스 소프트웨어가 각 열의 데이터 형식을 인식하게 되면, 데이터 형식에 따라 데이터를 저장하고 찾아오는 방법을 가장 효율적인 방식을 선택할 수 있다.</p>
 <p>다음 url에서 SQLite에서 지원되는 다양한 데이터 형식을 살펴볼 수 있다.</p>
@@ -158,7 +183,7 @@ Oracle, MySQL, Microsoft SQL Server, PostgreSQL, SQLite이 여기에 포함된�
 <div class="figure">
 <img src="assets/images/db-cursor.png" style="width:100.0%" alt=""><p class="caption">데이터베이스 커서</p>
 </div>
-<p>커서가 생성되면, <code>dbGetQuery()</code> 함수를 사용하여 데이터베이스 콘텐츠에 명령어 실행을 할 수 있다.</p>
+<p>커서가 생성되면, <code><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html">dbGetQuery()</a></code> 함수를 사용하여 데이터베이스 콘텐츠에 명령어 실행을 할 수 있다.</p>
 <p>데이터베이스 명령어는 특별한 언어로 표현된다.
 단일 데이터베이스 언어를 학습하도록 서로 다른 많은 데이터베이스 업체 사이에서 표준화되었다.</p>
 <p>데이터베이스 언어를 <strong>SQL(Structured Query Language 구조적 질의 언어)</strong>로 부른다.</p>
@@ -332,119 +357,24 @@ SQLite에 <code>name</code>에 동일한 값을 가진 두 행을 삽입하지 �
 <p>테이블 구조를 설계할 때, 데이터베이스 시스템에 몇 가지 규칙을 설정할 수
 있다. 이러한 규칙은 실수를 방지하고 잘못된 데이터가 테이블에 들어가는
 것을 막는다. 테이블을 생성할 때:</p>
-<pre><code>    cur.execute('''CREATE TABLE IF NOT EXISTS People 
-        (id INTEGER PRIMARY KEY, name TEXT UNIQUE, retrieved INTEGER)''')
-    cur.execute('''CREATE TABLE IF NOT EXISTS Follows 
-        (from_id INTEGER, to_id INTEGER, UNIQUE(from_id, to_id))''')</code></pre>
+<pre><code>dbSendQuery( conn, 'CREATE TABLE IF NOT EXISTS People (id INTEGER PRIMARY KEY, name TEXT UNIQUE, retrieved INTEGER)")
+
+dbSendQuery( conn, 'CREATE TABLE IF NOT EXISTS Follows (from_id INTEGER, to_id INTEGER, UNIQUE(from_id, to_id))')</code></pre>
 <p><code>People</code> 테이블에 <code>name</code> 칼럼이 <code>유일(UNIQUE)</code>함을 나타낸다. <code>Follows</code>
 테이블의 각 행에서 두 숫자 조합은 유일하다는 것도 나타낸다. 하나 이상의
 동일한 관계를 추가하는 것 같은 실수를 이러한 제약 사항을 통해서
 방지한다.</p>
 <p>다음 코드에서 이런 제약사항의 장점을 확인할 수 있다.</p>
-<pre><code>    cur.execute('''INSERT OR IGNORE INTO People (name, retrieved) 
-        VALUES ( ?, 0)''', ( friend, ) )</code></pre>
+<pre><code>dbSendQuery( conn, 'INSERT OR IGNORE INTO People (name, retrieved) VALUES ( ?, 0)', c( 'friend', ) )</code></pre>
 <p><code>INSERT</code> 문에 <code>OR IGNORE</code> 절을 추가해서 만약 특정 <code>INSERT</code>가 “<code>name</code>이
 유일(unique)해야 한다”를 위반하게 되면, 데이터베이스 시스템은 <code>INSERT</code>를
 무시한다. 데이터베이스 제약 사항을 안전망으로 사용해서 무언가가 우연히
 잘못되지 않게 방지한다.</p>
 <p>마찬가지로, 다음 코드는 정확히 동일 <code>Follows</code>관계를 두번 추가하지
 않는다.</p>
-<pre><code>    cur.execute('''INSERT OR IGNORE INTO Follows 
-        (from_id, to_id) VALUES (?, ?)''', (id, friend_id) )</code></pre>
+<pre><code>dbSendQuery( conn, 'INSERT OR IGNORE INTO Follows (from_id, to_id) VALUES (?, ?)', c(id, friend_id) )</code></pre>
 <p>다시 한번, <code>Follows</code> 행에 대해 지정한 유일한 제약사항을 위반하게 되면
 <code>INSERT</code> 시도를 무시하도록 데이터베이스에 지시한다.</p>
-</div>
-<div id="db-retrieve-insert" class="section level3" number="13.6.2">
-<h3>
-<span class="header-section-number">13.6.2</span> 레코드 가져오거나 삽입<a class="anchor" aria-label="anchor" href="#db-retrieve-insert"><i class="fas fa-link"></i></a>
-</h3>
-<p>사용자가 트위터 계정을 입력할 때, 만약 계정이 존재한다면, <code>id</code> 값을
-찾아야 한다. 만약 <code>People</code> 테이블에 계정이 존재하지 않는다면, 레코드를
-삽입하고 삽입된 행에서 <code>id</code> 값을 얻어와야 한다.</p>
-<p>이것은 매우 일반적인 패턴이고, 상기 프로그램에서 두번 수행되었다. 가져온
-트위터 JSON <code>사용자(user)</code> 노드에서 <code>screen_name</code>을 추출할 때, 친구
-계정의 <code>id</code>를 어떻게 찾는지 코드가 보여준다.</p>
-<p>시간이 지남에 따라 점점 더 많은 계정이 데이터베이스에 존재할 것 같기
-때문에, <code>SELECT</code>문을 사용해서 <code>People</code> 레코드가 존재하는지 먼저
-확인한다.</p>
-<p><code>try</code> 구문 내에서 모든 것이 정상적으로 잘 작동하면<a href="references.html#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a>, <code>fetchone()</code>을
-사용하여 레코드를 가져와서, 반환된 튜플의 첫번째 요소만 읽어오고
-<code>friend_id</code>에 저장한다.</p>
-<p>만약 <code>SELECT</code>가 실패하면, <code>fetchone()[0]</code> 코드도 실패하고 제어권은
-<code>except</code> 블록으로 이관된다.</p>
-<pre><code>            friend = u['screen_name']
-            cur.execute('SELECT id FROM People WHERE name = ? LIMIT 1',
-                (friend, ) )
-            try:
-                friend_id = cur.fetchone()[0]
-                countold = countold + 1
-            except:
-                cur.execute('''INSERT OR IGNORE INTO People (name, retrieved) 
-                    VALUES ( ?, 0)''', ( friend, ) )
-                conn.commit()
-                if cur.rowcount != 1 :
-                    print 'Error inserting account:',friend
-                    continue
-                friend_id = cur.lastrowid
-                countnew = countnew + 1</code></pre>
-<p><code>except</code> 코드에서 끝나게 되면, 행을 찾지 못해서 행을 삽입해야 한다는
-의미가 된다. <code>INSERT OR IGNORE</code>를 사용해서 오류를 피하고 데이터베이스에
-진정으로 갱신하기 위해서 <code>commit()</code>을 호출한다. 데이터베이스에 쓰기가
-수행된 후에, 얼마나 많은 행이 영향을 받았는지 확인하기 위해서
-<code>cur.rowcount</code>로 확인한다. 단일 행을 삽입하려고 했는데, 영향을 받은 행의
-숫자가 1과 다르다면, 그것은 오류다.</p>
-<p><code>삽입(INSERT)</code>이 성공하면, <code>cur.lastrowid</code>를 살펴보고 신규로 생성된 행의
-<code>id</code> 칼럼에 무슨 값이 대입되었는지 알 수 있다.</p>
-</div>
-<div id="친구관계-저장하기" class="section level3" number="13.6.3">
-<h3>
-<span class="header-section-number">13.6.3</span> 친구관계 저장하기<a class="anchor" aria-label="anchor" href="#%EC%B9%9C%EA%B5%AC%EA%B4%80%EA%B3%84-%EC%A0%80%EC%9E%A5%ED%95%98%EA%B8%B0"><i class="fas fa-link"></i></a>
-</h3>
-<p>트위터 사용자와 JSON 친구에 대한 키값을 알게되면, 다음 코드로 두 개의
-숫자를 <code>Follows</code> 테이블에 삽입하는 것은 간단하다.</p>
-<pre><code>    cur.execute('INSERT OR IGNORE INTO Follows (from_id, to_id) VALUES (?, ?)',
-        (id, friend_id) )</code></pre>
-<p>데이터베이스를 생성할 때 유일(unique)한 제약조건과 <code>INSERT</code>문에
-<code>OR IGNORE</code>을 추가함으로써 데이터베이스 스스로 관계를 두번 삽입하는 것을
-방지하도록 한 것에 주목한다.</p>
-<p>다음에 프로그램의 샘플 실행 결과가 있다.</p>
-<pre><code>    Enter a Twitter account, or quit: 
-    No unretrieved Twitter accounts found
-    Enter a Twitter account, or quit: drchuck
-    Retrieving http://api.twitter.com/1.1/friends ...
-    New accounts= 20  revisited= 0
-    Enter a Twitter account, or quit: 
-    Retrieving http://api.twitter.com/1.1/friends ...
-    New accounts= 17  revisited= 3
-    Enter a Twitter account, or quit: 
-    Retrieving http://api.twitter.com/1.1/friends ...
-    New accounts= 17  revisited= 3
-    Enter a Twitter account, or quit: quit</code></pre>
-<p><code>drchuck</code> 계정으로 시작해서, 프로그램이 자동적으로 다음 두개의 계정을
-선택해서 데이터베이스에 추가한다.</p>
-<p>다음은 프로그램 수행을 완료한 후에 <code>People</code>과 <code>Follows</code> 테이블에 첫
-몇개의 행이다.</p>
-<pre><code>    People:
-    (1, u'drchuck', 1)
-    (2, u'opencontent', 1)
-    (3, u'lhawthorn', 1)
-    (4, u'steve_coppin', 0)
-    (5, u'davidkocher', 0)
-    55 rows.
-    Follows:
-    (1, 2)
-    (1, 3)
-    (1, 4)
-    (1, 5)
-    (1, 6)
-    60 rows.</code></pre>
-<p><code>People</code> 테이블의 <code>id</code>, <code>name</code>, <code>visited</code> 필드와 <code>Follows</code> 테이블 양
-끝에 관계 숫자를 볼 수 있다. <code>People</code> 테이블에서, 사람 첫 세명을
-방문해서, 데이터를 가져온 것을 볼 수 있다. <code>Follows</code> 테이블의 데이터는
-<code>drchuck</code>(사용자 1)이 첫 다섯개 행에 보여진 모든 사람에 대해 친구임을
-나타낸다. 이것은 당연한데 왜냐하면 처음 가져와서 저장한 데이터가
-<code>drchuck</code>의 트위터 친구들이기 때문이다. <code>Follows</code> 테이블에서 좀더 많은
-행을 출력하면, 사용자 2, 3 혹은 그 이상의 친구를 볼 수 있다.</p>
 </div>
 </div>
 <div id="db-three-keys" class="section level2" number="13.7">
@@ -477,98 +407,414 @@ SQLite에 <code>name</code>에 동일한 값을 가진 두 행을 삽입하지 �
 <p>주키 <code>id</code>필드명을 호출하고, 항상 외부키에 임의 필드명에 접미사로 <code>_id</code>
 붙이는 명명규칙을 사용한다.</p>
 </div>
-<div id="db-join-retrieve" class="section level2" number="13.8">
+<div id="dvd-rental" class="section level2" number="13.8">
 <h2>
-<span class="header-section-number">13.8</span> JOIN 활용 데이터 가져오기<a class="anchor" aria-label="anchor" href="#db-join-retrieve"><i class="fas fa-link"></i></a>
+<span class="header-section-number">13.8</span> DVD 대여 데이터베이스<a class="anchor" aria-label="anchor" href="#dvd-rental"><i class="fas fa-link"></i></a>
 </h2>
-<p>데이터 정규화 규칙을 따라서, 데이터를 주키와 외부키로 연결된 두개의
-테이블로 나누어서, 테이블 데이터를 다시 합치기 위해서 <code>SELECT</code>를 작성할
-필요가 있다.</p>
-<p>SQL은 <code>JOIN</code>절을 사용해서 테이블을 다시 연결한다. <code>JOIN</code>절에서 테이블
-사이의 행을 다시 연결할 필드를 지정한다.</p>
-<p>다음은 <code>JOIN</code>절을 가진 <code>SELECT</code> 예제이다.</p>
-<pre><code>    SELECT * FROM Follows JOIN People 
-        ON Follows.from_id = People.id WHERE People.id = 1</code></pre>
-<p><code>JOIN</code>절은 <code>Follows</code>와 <code>People</code> 테이블에서 선택하는 필드를 나타낸다.
-<code>ON</code>절은 어떻게 두 테이블이 합쳐지는지를 나타낸다. <code>Follows</code>에서 행을
-선택하고 <code>People</code>에서 행을 추가하는데, <code>Follows</code> 테이블의 <code>from_id</code>와
-<code>People</code> 테이블의 <code>id</code> 값은 동일하다.</p>
-<div class="inline-figure"><img src="assets/images/join.png" style="width:100.0%"></div>
-<p>JOIN 결과는 <code>People</code> 테이블 필드와 <code>Follows</code> 테이블에서 매칭되는 필드를
-가진 “메타-행(meta-row)”을 생성한다. <code>People</code> 테이블 <code>id</code> 필드와
-<code>Follows</code> 테이블 <code>from_id</code> 사이에 하나 이상의 매칭이 존재한다면, JOIN은
-필요하면 데이터를 중복하면서, 행에 매칭되는 짝 각각에 대해 메타-행을
-생성한다.</p>
-<p>다중 테이블 트위터 프로그램을 수차례 수행한 후에 데이터베이스에 있는
-데이터를 가지고 다음 코드가 시연한다.</p>
-<pre><code>    import sqlite3
-
-    conn = sqlite3.connect('spider.sqlite3')
-    cur = conn.cursor()
-
-    cur.execute('SELECT * FROM People')
-    count = 0
-    print 'People:'
-    for row in cur :
-       if count &lt; 5: print row
-       count = count + 1
-    print count, 'rows.'
-
-    cur.execute('SELECT * FROM Follows')
-    count = 0
-    print 'Follows:'
-    for row in cur :
-       if count &lt; 5: print row
-       count = count + 1
-    print count, 'rows.'
-
-    cur.execute('''SELECT * FROM Follows JOIN People 
-        ON Follows.from_id = People.id WHERE People.id = 2''')
-    count = 0
-    print 'Connections for id=2:'
-    for row in cur :
-       if count &lt; 5: print row
-       count = count + 1
-    print count, 'rows.'
-
-    cur.close()</code></pre>
-<p>이 프로그램에서 <code>People</code>과 <code>Follows</code> 테이블을 먼저 보여주고, 함께 JOIN된
-데이터 일부분을 보여준다.</p>
-<p>다음이 프로그램 출력이다.</p>
-<pre><code>    python twjoin.py 
-    People:
-    (1, u'drchuck', 1)
-    (2, u'opencontent', 1)
-    (3, u'lhawthorn', 1)
-    (4, u'steve_coppin', 0)
-    (5, u'davidkocher', 0)
-    55 rows.
-    Follows:
-    (1, 2)
-    (1, 3)
-    (1, 4)
-    (1, 5)
-    (1, 6)
-    60 rows.
-    Connections for id=2:
-    (2, 1, 1, u'drchuck', 1)
-    (2, 28, 28, u'cnxorg', 0)
-    (2, 30, 30, u'kthanos', 0)
-    (2, 102, 102, u'SomethingGirl', 0)
-    (2, 103, 103, u'ja_Pac', 0)
-    20 rows.</code></pre>
-<p><code>People</code>과 <code>Follows</code> 테이블에서 칼럼을 볼 수 있고, 마지막 행의 집합은
-<code>JOIN</code>절을 가진 <code>SELECT</code>문의 결과다.</p>
-<p>마지막 <code>SELECT</code>문에서, “opencontent” (즉 <code>People.id=2</code>)를 친구로 가진
-계정을 찾는다.</p>
-<p>마지막 <code>SELECT</code> “메타-행”의 각각에서 첫 두 열은 <code>Follows</code> 테이블에서,
-3번째부터 5번째 열은 <code>People</code> 테이블에서 가져왔다. 두번째
-열(<code>Follows.to_id</code>)과 세번째 열(<code>People.id</code>)은 join된 “메타-열”에서
-매칭됨을 볼 수 있다.</p>
+<div id="about-postgreSQL" class="section level3" number="13.8.1">
+<h3>
+<span class="header-section-number">13.8.1</span> PostgreSQL <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://ko.wikipedia.org/wiki/PostgreSQL"&gt;위키백과, “PostgreSQL”&lt;/a&gt;&lt;/p&gt;'><sup>11</sup></a> <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://d2.naver.com/helloworld/227936"&gt;NAVER D2 한눈에 살펴보는 PostgreSQL&lt;/a&gt;&lt;/p&gt;'><sup>12</sup></a><a class="anchor" aria-label="anchor" href="#about-postgreSQL"><i class="fas fa-link"></i></a>
+</h3>
+<p>PostgreSQL은 확장 가능성 및 표준 준수를 강조하는 객체-관계형 데이터베이스 관리 시스템(ORDBMS)의 하나로 BSD 라이선스로 배포되며 오픈소스 개발자 및 관련 회사들이 개발에 참여하고 있다. 소규모의 단일 머신 애플리케이션에서부터 수많은 동시 접속 사용자가 있는 대형의 인터넷 애플리케이션(또는 데이터 웨어하우스용)에 이르기까지 여러 부하를 관리할 수 있으며 macOS 서버의 경우 PostgreSQL은 기본 데이터베이스로 상용 오라클 데이터베이스를 대체하는 오픈소스 데이터베이스로 알려져 있다.</p>
 </div>
-<div id="db-summary" class="section level2" number="13.9">
+<div id="install-postgreSQL" class="section level3" number="13.8.2">
+<h3>
+<span class="header-section-number">13.8.2</span> PostgreSQL 설치 <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="http://www.postgresqltutorial.com/install-postgresql/"&gt;Install PostgreSQL&lt;/a&gt;&lt;/p&gt;'><sup>13</sup></a><a class="anchor" aria-label="anchor" href="#install-postgreSQL"><i class="fas fa-link"></i></a>
+</h3>
+<p><a href="https://www.postgresql.org/">PostgreSQL: The World’s Most Advanced Open Source Relational Database</a> 웹사이트에서
+PostgreSQL <a href="https://www.postgresql.org/download/windows/">다운로드</a> 한다. 윈도우에 설치하는 경우 다음을 참고한다. 설치과정에서 나중에 도움이 될만한 정보는 다음과 같다.</p>
+<ul>
+<li>설치 디렉토리: <code>C:\Program Files\PostgreSQL\11</code>
+</li>
+<li>포트: <code>5432</code>
+</li>
+<li>사용자명: <code>postgres</code>
+</li>
+</ul>
+<div class="figure">
+<img src="assets/images/postgreSQL-shell.png" style="width:100.0%" alt=""><p class="caption">postgreSQL 설치</p>
+</div>
+<p><code>PostgreSQL 11</code> → <code>SQL Shell (psql)</code>을 클릭한 후에 postgreSQL 헬로월드를 찍어본다.
+설치과정에서 등록한 비번만 넣어주고 나머지는 로컬호스트와
+기본 디폴트 설정된 데이터베이스를 사용할 것이라 <code>postgres</code> 사용자 비밀번호만 넣어준다.
+그리고 나서 <code>postgre=#</code> 쉘에 <code>SELECT version()</code> 명령어를 넣어준다.</p>
+<div class="figure">
+<img src="assets/images/postgreSQL-helloworld.png" style="width:100.0%" alt=""><p class="caption">postgreSQL 헬로월드</p>
+</div>
+</div>
+<div id="install-dvd-postgreSQL" class="section level3" number="13.8.3">
+<h3>
+<span class="header-section-number">13.8.3</span> 예제 데이터베이스 - <code>pagila</code> <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="http://www.postgresqltutorial.com/postgresql-sample-database/"&gt;PostgreSQL Sample Database&lt;/a&gt;&lt;/p&gt;'><sup>14</sup></a><a class="anchor" aria-label="anchor" href="#install-dvd-postgreSQL"><i class="fas fa-link"></i></a>
+</h3>
+<p><a href="https://github.com/devrimgunduz/pagila">PostgreSQL Sample Database</a>를 Github에서 구해서 설치하거나, <a href="http://www.postgresqltutorial.com/postgresql-sample-database/">PostgreSQL Sample Database</a>, <a href="http://www.postgresqltutorial.com/load-postgresql-sample-database/">Load PostgreSQL Sample Database</a>을 참조하여 DVD 대여 데이터베이스를 설치한다.</p>
+<ol style="list-style-type: decimal">
+<li>
+<code>SQL Shell (psql)</code> 쉘을 실행하여 <code>dvd</code> 데이터베이스를 생성한다.</li>
+</ol>
+<div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb543-1"><a href="r-db.html#cb543-1" aria-hidden="true" tabindex="-1"></a>Database [postgres]<span class="sc">:</span></span>
+<span id="cb543-2"><a href="r-db.html#cb543-2" aria-hidden="true" tabindex="-1"></a>Port [<span class="dv">5432</span>]<span class="sc">:</span></span>
+<span id="cb543-3"><a href="r-db.html#cb543-3" aria-hidden="true" tabindex="-1"></a>Username [postgres]<span class="sc">:</span></span>
+<span id="cb543-4"><a href="r-db.html#cb543-4" aria-hidden="true" tabindex="-1"></a>postgres 사용자의 암호<span class="sc">:</span></span>
+<span id="cb543-5"><a href="r-db.html#cb543-5" aria-hidden="true" tabindex="-1"></a><span class="fu">psql</span> (<span class="fl">11.5</span>)</span>
+<span id="cb543-6"><a href="r-db.html#cb543-6" aria-hidden="true" tabindex="-1"></a>도움말을 보려면 <span class="st">"help"</span>를 입력하십시오.</span>
+<span id="cb543-7"><a href="r-db.html#cb543-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb543-8"><a href="r-db.html#cb543-8" aria-hidden="true" tabindex="-1"></a>postgres<span class="ot">=</span><span class="co"># CREATE DATABASE dvd;</span></span>
+<span id="cb543-9"><a href="r-db.html#cb543-9" aria-hidden="true" tabindex="-1"></a>CREATE DATABASE</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>
+<code>Windows + R</code> 단축키를 실행시켜 <code>cmd</code>를 입력하여 윈도우 쉘을 구동시킨다. 그리고 <code>postgreSQL</code>을 설치한 윈도우 디렉토리로 이동한다. <code>C:\Program Files\PostgreSQL\11\bin</code> 디렉토리가 된다. 그리고 나서 다운받은 <code>dvdrental.zip</code> 파일 압축을 풀어 <code>dvdrental.tar</code>을 지정한다.</li>
+</ol>
+<ul>
+<li>
+<code>pg_restore</code> 명령어는 데이터베이스를 생성시키는 역할을 한다.</li>
+<li>
+<code>-U postgres</code> 인자는 사용자를 지정한다.</li>
+<li>
+<code>-d dvd</code> 인자는 데이터베이스를 지정한다.</li>
+<li>
+<code>C:\dvdrental\dvdrental.tar</code> 인자는 파일로 저장된 데이터베이스 정보를 담고 있다.</li>
+</ul>
+<div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb544-1"><a href="r-db.html#cb544-1" aria-hidden="true" tabindex="-1"></a>C<span class="sc">:</span>\Program Files\PostgreSQL\<span class="dv">11</span>\bin<span class="sc">&gt;</span> pg_restore <span class="sc">-</span>U postgres <span class="sc">-</span>d dvd C<span class="sc">:</span>\dvdrental\dvdrental.tar</span>
+<span id="cb544-2"><a href="r-db.html#cb544-2" aria-hidden="true" tabindex="-1"></a>암호<span class="sc">:</span></span>
+<span id="cb544-3"><a href="r-db.html#cb544-3" aria-hidden="true" tabindex="-1"></a>C<span class="sc">:</span>\Program Files\PostgreSQL\<span class="dv">11</span>\bin<span class="sc">&gt;</span></span></code></pre></div>
+<div class="figure">
+<img src="assets/images/postgreSQL-dvd.png" style="width:100.0%" alt=""><p class="caption">postgreSQL DVD 데이터베이스</p>
+</div>
+</div>
+<div id="query-dvd-postgreSQL" class="section level3" number="13.8.4">
+<h3>
+<span class="header-section-number">13.8.4</span> DVD 대여 질의문 작성 <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="http://www.postgresqltutorial.com/connect-to-postgresql-database/"&gt;Connect To a PostgreSQL Database Server&lt;/a&gt;&lt;/p&gt;'><sup>15</sup></a><a class="anchor" aria-label="anchor" href="#query-dvd-postgreSQL"><i class="fas fa-link"></i></a>
+</h3>
+<p><code>dvd</code> 데이터베이스가 설치되었기 때문에 쿼리를 던지기 위해서는 postgreSQL 데이터베이스에 접속을 해야한다. 이를 위해서 <code>pgAdmin 4</code>를 실행시키게 되면 웹브라우져에 웹인터페이스가 생기게 된다. 데이터베이스를 <code>dvd</code>로 지정하고 하고 나서, <code>Tools</code> → <code>Query Tool</code>을 클릭하게 되면 해당 데이터베이스 테이블에 쿼리를 던질 수가 있게 된다.</p>
+<div class="figure">
+<img src="assets/images/postgreSQL-dvd-select.png" style="width:100.0%" alt=""><p class="caption">postgreSQL select 쿼리문 예시</p>
+</div>
+<div id="database-user" class="section level4" number="13.8.4.1">
+<h4>
+<span class="header-section-number">13.8.4.1</span> 데이터베이스 사용자 추가<a class="anchor" aria-label="anchor" href="#database-user"><i class="fas fa-link"></i></a>
+</h4>
+<p><code>postgres</code> 사용자는 이미 존재하기 때문에 별도로 <code>tidyverse</code> 사용자를 추가하고
+권한을 부여한다. <code>\du</code> 명령어로 사용자가 정상 등록되었는지 확인한다.</p>
+<div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb545-1"><a href="r-db.html#cb545-1" aria-hidden="true" tabindex="-1"></a>postgres<span class="ot">=</span><span class="co"># create user tidyverse with encrypted password '1234';</span></span>
+<span id="cb545-2"><a href="r-db.html#cb545-2" aria-hidden="true" tabindex="-1"></a>CREATE ROLE</span>
+<span id="cb545-3"><a href="r-db.html#cb545-3" aria-hidden="true" tabindex="-1"></a>postgres<span class="ot">=</span><span class="co"># grant all privileges on database dvd to tidyverse;</span></span>
+<span id="cb545-4"><a href="r-db.html#cb545-4" aria-hidden="true" tabindex="-1"></a>GRANT</span>
+<span id="cb545-5"><a href="r-db.html#cb545-5" aria-hidden="true" tabindex="-1"></a>postgres<span class="ot">=</span><span class="co"># \du</span></span>
+<span id="cb545-6"><a href="r-db.html#cb545-6" aria-hidden="true" tabindex="-1"></a>                                 롤 목록</span>
+<span id="cb545-7"><a href="r-db.html#cb545-7" aria-hidden="true" tabindex="-1"></a>  롤 이름  <span class="sc">|</span>                      속성                      <span class="sc">|</span> 소속 그룹<span class="sc">:</span></span>
+<span id="cb545-8"><a href="r-db.html#cb545-8" aria-hidden="true" tabindex="-1"></a><span class="sc">-----------+------------------------------------------------+------------</span></span>
+<span id="cb545-9"><a href="r-db.html#cb545-9" aria-hidden="true" tabindex="-1"></a> postgres  <span class="sc">|</span> 슈퍼유저, 롤 만들기, DB 만들기, 복제, RLS 통과 <span class="sc">|</span> {}</span>
+<span id="cb545-10"><a href="r-db.html#cb545-10" aria-hidden="true" tabindex="-1"></a> tidyverse <span class="sc">|</span>                                                <span class="er">|</span> {}</span></code></pre></div>
+</div>
+<div id="rstudio-dvd-postgreSQL" class="section level4" number="13.8.4.2">
+<h4>
+<span class="header-section-number">13.8.4.2</span> R에서 postgreSQL 연결<a class="anchor" aria-label="anchor" href="#rstudio-dvd-postgreSQL"><i class="fas fa-link"></i></a>
+</h4>
+<p><code>postgreSQL</code> DBMS 내부에 <code>dvd</code> 데이터베이스가 생성되었다. 이를 R에서 작업하기 위해서
+<code>RPostgreSQL</code>, <code>DBI</code> 팩키지를 도입한다.
+<code><a href="https://dbi.r-dbi.org/reference/dbConnect.html">dbConnect()</a></code> 함수에 데이터베이스와 연결에 필요한 모든 정보를 저장시킨다.
+그리고 나서 <code><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html">dbGetQuery()</a></code> 함수로 쿼리를 던져 원하는 결과를 받아온다.</p>
+<div class="sourceCode" id="cb546"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dbi.r-dbi.org">DBI</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rpostgres.r-dbi.org">RPostgres</a></span><span class="op">)</span>
+
+<span class="va">con</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html">dbConnect</a></span><span class="op">(</span><span class="fu">RPostgres</span><span class="fu">::</span><span class="fu"><a href="https://rpostgres.r-dbi.org/reference/Postgres.html">Postgres</a></span><span class="op">(</span><span class="op">)</span>, dbname<span class="op">=</span><span class="st">"dvd"</span>, 
+                 host<span class="op">=</span><span class="st">"localhost"</span>,
+                 port<span class="op">=</span><span class="st">"5432"</span>, 
+                 user<span class="op">=</span><span class="st">"postgres"</span>, 
+                 password<span class="op">=</span><span class="st">"1234"</span><span class="op">)</span>
+
+<span class="va">actor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html">dbGetQuery</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"SELECT * FROM actor LIMIT 5"</span><span class="op">)</span>
+
+<span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbDisconnect.html">dbDisconnect</a></span><span class="op">(</span><span class="va">con</span><span class="op">)</span></code></pre></div>
+<p><code><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html">dbGetQuery()</a></code>로 가져온 데이터프레임을 <code>dplyr</code> 동사로 후속작업을 진행한다.</p>
+<div class="sourceCode" id="cb547"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+
+<span class="va">actor</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">actor_id</span> <span class="op">==</span><span class="fl">1</span><span class="op">)</span></code></pre></div>
+<pre><code>  actor_id first_name last_name         last_update
+1        1   Penelope   Guiness 2013-05-26 14:47:57</code></pre>
+</div>
+<div id="find-table" class="section level4" number="13.8.4.3">
+<h4>
+<span class="header-section-number">13.8.4.3</span> 작업에 필요한 테이블 찾기<a class="anchor" aria-label="anchor" href="#find-table"><i class="fas fa-link"></i></a>
+</h4>
+<p>데이터베이스에서 쿼리 작업을 수행할 때 가장 먼저 해야 되는 일중의 하나가 적합한 테이블을 찾는 것이다. 이를 위해서 각 DBMS마다 나름대로 정리를 해둔 메타테이블이 존재한다. <code>postgreSQL</code>의 경우는 <code>pg_catalog.pg_tables</code>가 된다. 가장 많이 사용되는 SQL 데이터베이스별로 동일한 사안에 대해서 찾아보자.</p>
+<ul>
+<li>
+<code>postgreSQL</code>: <code>SELECT * FROM pg_catalog.pg_tables;</code>
+</li>
+<li>sqlite3: <code>.tables</code>
+</li>
+<li>MS <code>SQL 서버 - Transact-SQL</code>: <code>SELECT * FROM INFORMATION_SCHEMA.TABLES;</code>
+</li>
+<li>MySQL: <code>SHOW TABLES;</code>
+</li>
+</ul>
+<div class="sourceCode" id="cb549"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">qry</span> <span class="op">&lt;-</span> <span class="st">"SELECT *
+        FROM pg_catalog.pg_tables"</span>
+
+<span class="fu"><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html">dbGetQuery</a></span><span class="op">(</span><span class="va">con</span>, <span class="va">qry</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">schemaname</span> <span class="op">==</span> <span class="st">'public'</span><span class="op">)</span> </code></pre></div>
+<pre><code>   schemaname     tablename tableowner tablespace hasindexes hasrules hastriggers rowsecurity
+1      public         actor   postgres       &lt;NA&gt;       TRUE    FALSE        TRUE       FALSE
+2      public         store   postgres       &lt;NA&gt;       TRUE    FALSE        TRUE       FALSE
+3      public       address   postgres       &lt;NA&gt;       TRUE    FALSE        TRUE       FALSE
+4      public      category   postgres       &lt;NA&gt;       TRUE    FALSE        TRUE       FALSE
+5      public          city   postgres       &lt;NA&gt;       TRUE    FALSE        TRUE       FALSE
+6      public       country   postgres       &lt;NA&gt;       TRUE    FALSE        TRUE       FALSE
+7      public      customer   postgres       &lt;NA&gt;       TRUE    FALSE        TRUE       FALSE
+8      public    film_actor   postgres       &lt;NA&gt;       TRUE    FALSE        TRUE       FALSE
+9      public film_category   postgres       &lt;NA&gt;       TRUE    FALSE        TRUE       FALSE
+10     public     inventory   postgres       &lt;NA&gt;       TRUE    FALSE        TRUE       FALSE
+11     public      language   postgres       &lt;NA&gt;       TRUE    FALSE        TRUE       FALSE
+12     public        rental   postgres       &lt;NA&gt;       TRUE    FALSE        TRUE       FALSE
+13     public         staff   postgres       &lt;NA&gt;       TRUE    FALSE        TRUE       FALSE
+14     public       payment   postgres       &lt;NA&gt;       TRUE    FALSE        TRUE       FALSE
+15     public          film   postgres       &lt;NA&gt;       TRUE    FALSE        TRUE       FALSE</code></pre>
+</div>
+<div id="find-table-columns" class="section level4" number="13.8.4.4">
+<h4>
+<span class="header-section-number">13.8.4.4</span> 테이블 별 칼럼명<a class="anchor" aria-label="anchor" href="#find-table-columns"><i class="fas fa-link"></i></a>
+</h4>
+<p>다음으로 테이블을 찾았다고 하면, 해당되는 칼럼명을 찾을 수 있어야 한다. 이를 통해서 유의미한 의미를 찾아낼 수 있는데 칼럼명을 통해 영감을 받아 다가설 수 있게 된다.</p>
+<div class="sourceCode" id="cb551"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">col_qry</span> <span class="op">&lt;-</span> <span class="st">"SELECT table_name,
+                   STRING_AGG(column_name, ', ') AS columns
+            FROM information_schema.columns
+            WHERE table_schema = 'public'
+            GROUP BY table_name;"</span>
+
+<span class="fu"><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html">dbGetQuery</a></span><span class="op">(</span><span class="va">con</span>, <span class="va">col_qry</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">table_name</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span> <span class="st">"actor"</span>, <span class="st">"rental"</span>, <span class="st">"store"</span><span class="op">)</span><span class="op">)</span>
+  
+<span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbDisconnect.html">dbDisconnect</a></span><span class="op">(</span><span class="va">con</span><span class="op">)</span></code></pre></div>
+<pre><code>  table_name                                                                               columns
+1      actor                                          actor_id, last_update, first_name, last_name
+2     rental rental_id, rental_date, inventory_id, customer_id, return_date, staff_id, last_update
+3      store                                   store_id, manager_staff_id, address_id, last_update</code></pre>
+</div>
+<div id="dvd-er-diagram" class="section level4" number="13.8.4.5">
+<h4>
+<span class="header-section-number">13.8.4.5</span> DVD ER 다이어그램<a class="anchor" aria-label="anchor" href="#dvd-er-diagram"><i class="fas fa-link"></i></a>
+</h4>
+<p>후속 쿼리 분석 작업을 위해서 도움이 되는 ER 다이어그램은 다음과 같다.</p>
+<div class="figure">
+<img src="assets/images/dvd-rental-sample-database-diagram.png" style="width:100.0%" alt=""><p class="caption">DVD ER 다이어그램</p>
+</div>
+</div>
+</div>
+</div>
+<div id="dvd-insight-rental" class="section level2" number="13.9">
 <h2>
-<span class="header-section-number">13.9</span> 요약<a class="anchor" aria-label="anchor" href="#db-summary"><i class="fas fa-link"></i></a>
+<span class="header-section-number">13.9</span> DVD DB 인사이트<a class="anchor" aria-label="anchor" href="#dvd-insight-rental"><i class="fas fa-link"></i></a>
+</h2>
+<p>DVT 대여 데이터베이스를 설치했다면 다음 단계로 다양한 SQL 쿼리문을 던져 뭔가 가치 있는 정보를 추출해야만 한다. <a href="https://statkclee.github.io/data-science/ds-postgreSQL.html">데이터 과학: “postgreSQL - DVD 대여 데이터베이스”</a>에서 데이터베이스 설치와 접속에 대한 사항은 확인한다.</p>
+<div id="dvd-rental-db-insight-sql" class="section level3" number="13.9.1">
+<h3>
+<span class="header-section-number">13.9.1</span> DB 접속 헬로월드 <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.freecodecamp.org/news/project-1-analyzing-dvd-rentals-with-sql-fd12dd674a64/"&gt;Okoh Anita (2018-12-20), “How I analyzed DVD rental data with SQL”, freeCodeCamp&lt;/a&gt;&lt;/p&gt;'><sup>16</sup></a><a class="anchor" aria-label="anchor" href="#dvd-rental-db-insight-sql"><i class="fas fa-link"></i></a>
+</h3>
+<p>먼저 <code><a href="https://dbi.r-dbi.org/reference/dbConnect.html">DBI::dbConnect()</a></code>를 통해 접속하고 SQL 쿼리 헬로월드를 던져보자.</p>
+<div class="sourceCode" id="cb553"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rpostgres.r-dbi.org">RPostgres</a></span><span class="op">)</span>
+
+<span class="va">con</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html">dbConnect</a></span><span class="op">(</span><span class="fu">RPostgres</span><span class="fu">::</span><span class="fu"><a href="https://rpostgres.r-dbi.org/reference/Postgres.html">Postgres</a></span><span class="op">(</span><span class="op">)</span>, dbname<span class="op">=</span><span class="st">"dvd"</span>, 
+                 host<span class="op">=</span><span class="st">"localhost"</span>,
+                 port<span class="op">=</span><span class="st">"5432"</span>, 
+                 user<span class="op">=</span><span class="st">"postgres"</span>, 
+                 password<span class="op">=</span><span class="st">"1234"</span><span class="op">)</span>
+
+<span class="va">actor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html">dbGetQuery</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"SELECT * FROM actor LIMIT 5"</span><span class="op">)</span>
+
+<span class="va">actor</span></code></pre></div>
+<pre><code>  actor_id first_name    last_name         last_update
+1        1   Penelope      Guiness 2013-05-26 14:47:57
+2        2       Nick     Wahlberg 2013-05-26 14:47:57
+3        3         Ed        Chase 2013-05-26 14:47:57
+4        4   Jennifer        Davis 2013-05-26 14:47:57
+5        5     Johnny Lollobrigida 2013-05-26 14:47:57</code></pre>
+</div>
+<div id="run-statistics-active" class="section level3" number="13.9.2">
+<h3>
+<span class="header-section-number">13.9.2</span> 이탈/잔존고객 구매금액<a class="anchor" aria-label="anchor" href="#run-statistics-active"><i class="fas fa-link"></i></a>
+</h3>
+<p><code>customer</code> 테이블에는 <code>active</code> 칼럼을 통해 잔존고객과 이탈고객을 파악할 수 있다.
+이를 통해서 잔존고객과 이탈고객이 몇명이고 구매금액을 파악할 수 있다.
+먼저 <code>datamodelr</code> 팩키지를 통해 해당 테이블을 뽑아내서 이를 시각화해보자.</p>
+<div class="sourceCode" id="cb555"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">datamodelr</span><span class="op">)</span>
+
+<span class="va">payment</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"payment"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">collect</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">customer</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"customer"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">collect</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="va">payment_customer_model</span> <span class="op">&lt;-</span> <span class="fu">dm_from_data_frames</span><span class="op">(</span><span class="va">payment</span>, <span class="va">customer</span><span class="op">)</span>
+
+<span class="va">payment_customer_model</span> <span class="op">&lt;-</span> <span class="fu">dm_add_references</span><span class="op">(</span>
+  <span class="va">payment_customer_model</span>,
+  <span class="va">customer</span><span class="op">$</span><span class="va">customer_id</span> <span class="op">==</span>  <span class="va">payment</span><span class="op">$</span><span class="va">customer_id</span>
+<span class="op">)</span>
+
+<span class="va">payment_customer_graph</span> <span class="op">&lt;-</span> <span class="fu">dm_create_graph</span><span class="op">(</span><span class="va">payment_customer_model</span>, rankdir <span class="op">=</span> <span class="st">"LR"</span>, col_attr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"column"</span>, <span class="st">"type"</span><span class="op">)</span><span class="op">)</span>
+<span class="fu">dm_render_graph</span><span class="op">(</span><span class="va">payment_customer_graph</span><span class="op">)</span></code></pre></div>
+<div class="figure">
+<img src="assets/images/dvd-rental-amount.png" style="width:100.0%" alt=""><p class="caption">테이블 구조 시각화 - 구매금액</p>
+</div>
+<p><code>con</code>을 통해 DVD 대여 데이터베이스에 접속이 이루어진 상태다.
+이탈고객과 잔존고객별로 구매금액에 대한 평균, 최소, 최대, 총합계를 구하려면 두 테이블을 <code>INNER JOIN</code>으로 <code>customer_id</code>를 키값으로 합치고 나서 기술통계를 산출한다.</p>
+<div class="sourceCode" id="cb556"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">sql_query</span> <span class="op">&lt;-</span> 
+<span class="st">"SELECT active, 
+       COUNT(*) AS num_active, 
+       MIN(amount) AS min_amt, 
+       AVG(amount) AS avg_amt,
+       MAX(amount) AS max_amt, 
+       SUM(amount) AS total_amt
+FROM payment AS p
+INNER JOIN customer AS c
+  ON p.customer_id = c.customer_id
+GROUP BY c.active;"</span>
+
+<span class="fu"><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html">dbGetQuery</a></span><span class="op">(</span><span class="va">con</span>, <span class="va">sql_query</span><span class="op">)</span></code></pre></div>
+<pre><code>  active num_active min_amt  avg_amt max_amt total_amt
+1      0        369    0.99 4.092981   11.99   1510.31
+2      1      14227    0.00 4.203397   11.99  59801.73</code></pre>
+</div>
+<div id="run-statistics-rental-rate" class="section level3" number="13.9.3">
+<h3>
+<span class="header-section-number">13.9.3</span> 쟝르별 평균 대여평점<a class="anchor" aria-label="anchor" href="#run-statistics-rental-rate"><i class="fas fa-link"></i></a>
+</h3>
+<p>앞서와 마찬가지로 쟝르별 평균 대여평점을 계산할 수 있는 테이블을 쭉 뽑아본다.
+이를 통해서 3개 테이블, 즉 <code>category</code>, <code>film_category</code>, <code>film</code>을 뽑아놓고 각 해당 키값을 사용하여 결합시킨다.</p>
+<div class="sourceCode" id="cb558"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">category</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"category"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">collect</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">film_category</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"film_category"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">collect</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">film</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"film"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">collect</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="va">rental_rating_model</span> <span class="op">&lt;-</span> <span class="fu">dm_from_data_frames</span><span class="op">(</span><span class="va">category</span>, <span class="va">film_category</span>, <span class="va">film</span><span class="op">)</span>
+
+<span class="va">rental_rating_model</span> <span class="op">&lt;-</span> <span class="fu">dm_add_references</span><span class="op">(</span>
+  <span class="va">rental_rating_model</span>,
+  <span class="va">category</span><span class="op">$</span><span class="va">category_id</span> <span class="op">==</span> <span class="va">film_category</span><span class="op">$</span><span class="va">category_id</span>,
+  <span class="va">film_category</span><span class="op">$</span><span class="va">film_id</span> <span class="op">==</span> <span class="va">film</span><span class="op">$</span><span class="va">film_id</span>
+<span class="op">)</span>
+
+<span class="va">rental_rating_graph</span> <span class="op">&lt;-</span> <span class="fu">dm_create_graph</span><span class="op">(</span><span class="va">rental_rating_model</span>, rankdir <span class="op">=</span> <span class="st">"LR"</span>, col_attr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"column"</span>, <span class="st">"type"</span><span class="op">)</span><span class="op">)</span>
+<span class="fu">dm_render_graph</span><span class="op">(</span><span class="va">rental_rating_graph</span><span class="op">)</span></code></pre></div>
+<div class="figure">
+<img src="assets/images/dvd-rental-genre.png" style="width:100.0%" alt=""><p class="caption">테이블 구조 시각화 - 쟝르별 대여평점</p>
+</div>
+<p>먼저 <code>film_category</code>와 <code>category</code>를 결합시켜 영화(<code>film</code>)가 속한 쟝르(<code>category</code>)를 파악한다.</p>
+<div class="sourceCode" id="cb559"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">rate_qry</span> <span class="op">&lt;-</span> 
+<span class="st">"SELECT * 
+FROM category AS c
+INNER JOIN film_category AS fc
+  ON c.category_id = fc.category_id
+LIMIT 5;"</span>
+
+<span class="fu"><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html">dbGetQuery</a></span><span class="op">(</span><span class="va">con</span>, <span class="va">rate_qry</span><span class="op">)</span></code></pre></div>
+<pre><code>  category_id        name         last_update film_id category_id..5      last_update..6
+1           6 Documentary 2006-02-15 09:46:27       1              6 2006-02-15 10:07:09
+2          11      Horror 2006-02-15 09:46:27       2             11 2006-02-15 10:07:09
+3           6 Documentary 2006-02-15 09:46:27       3              6 2006-02-15 10:07:09
+4          11      Horror 2006-02-15 09:46:27       4             11 2006-02-15 10:07:09
+5           8      Family 2006-02-15 09:46:27       5              8 2006-02-15 10:07:09</code></pre>
+<p>다음으로 <code>film</code> 테이블을 조인하여 <code>rental_rate</code>를 결합하고
+쟝르(<code>category</code>) 별로 평균평점을 구하고 이를 <code>ORDER BY ... DESC</code>를 사용해서 내림차순으로 정렬한다.</p>
+<div class="sourceCode" id="cb561"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">rate_qry</span> <span class="op">&lt;-</span> 
+<span class="st">"SELECT c.name,
+        AVG(rental_rate) AS avg_rental_rate
+FROM category AS c
+INNER JOIN film_category AS fc
+  ON c.category_id = fc.category_id 
+INNER JOIN film AS f
+  ON fc.film_id = f.film_id
+GROUP BY c.category_id
+ORDER BY avg_rental_rate DESC;"</span>
+
+<span class="fu"><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html">dbGetQuery</a></span><span class="op">(</span><span class="va">con</span>, <span class="va">rate_qry</span><span class="op">)</span></code></pre></div>
+<pre><code>          name avg_rental_rate
+1        Games        3.252295
+2       Travel        3.235614
+3       Sci-Fi        3.219508
+4       Comedy        3.162414
+5       Sports        3.125135
+6          New        3.116984
+7      Foreign        3.099589
+8       Horror        3.025714
+9        Drama        3.022258
+10       Music        2.950784
+11    Children        2.890000
+12   Animation        2.808182
+13      Family        2.758116
+14    Classics        2.744386
+15 Documentary        2.666471
+16      Action        2.646250</code></pre>
+</div>
+<div id="run-statistics-rental-rate-top10" class="section level3" number="13.9.4">
+<h3>
+<span class="header-section-number">13.9.4</span> Top 10 DVD 영화<a class="anchor" aria-label="anchor" href="#run-statistics-rental-rate-top10"><i class="fas fa-link"></i></a>
+</h3>
+<p>가장 많이 대여된 Top 10 DVD 영화를 찾아내기 위해서 이에 해당되는 연관 테이블을 검색하여 찾아낸다. <code>film</code>, <code>inventory</code>, <code>rental</code> 테이블을 특정하고 서로 연결시킬 수 있는 키값을 찾아 연결시킨다.</p>
+<div class="sourceCode" id="cb563"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">film</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"film"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">collect</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">inventory</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"inventory"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">collect</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">rental</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"rental"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">collect</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="va">top_10_model</span> <span class="op">&lt;-</span> <span class="fu">dm_from_data_frames</span><span class="op">(</span><span class="va">film</span>, <span class="va">inventory</span>, <span class="va">rental</span><span class="op">)</span>
+
+<span class="va">top_10_model</span> <span class="op">&lt;-</span> <span class="fu">dm_add_references</span><span class="op">(</span>
+  <span class="va">top_10_model</span>,
+  <span class="va">film</span><span class="op">$</span><span class="va">film_id</span> <span class="op">==</span> <span class="va">inventory</span><span class="op">$</span><span class="va">film_id</span>,
+  <span class="va">inventory</span><span class="op">$</span><span class="va">inventory_id</span> <span class="op">==</span> <span class="va">rental</span><span class="op">$</span><span class="va">inventory_id</span>
+<span class="op">)</span>
+
+<span class="va">top_10_graph</span> <span class="op">&lt;-</span> <span class="fu">dm_create_graph</span><span class="op">(</span><span class="va">top_10_model</span>, rankdir <span class="op">=</span> <span class="st">"LR"</span>, col_attr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"column"</span>, <span class="st">"type"</span><span class="op">)</span><span class="op">)</span>
+<span class="fu">dm_render_graph</span><span class="op">(</span><span class="va">top_10_graph</span><span class="op">)</span></code></pre></div>
+<div class="figure">
+<img src="assets/images/dvd-rental-top10.png" style="width:100.0%" alt=""><p class="caption">테이블 구조 시각화 - Top 10 DVD 영화</p>
+</div>
+<p><code>film</code> → <code>inventory</code> → <code>rental</code> 테이블을 순차적으로 <code>film_id</code>, <code>inventory_id</code>를 키값으로 삼아 결합시킨다. 그리고 나서 가장 많이 대여된 영화를 찾기 위해서 <code>COUNT()</code> 함수로 개수하고 나서 이를 내림차순 정리한다.</p>
+<div class="sourceCode" id="cb564"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">top_query</span> <span class="op">&lt;-</span> 
+<span class="st">"SELECT f.title AS movie_title, 
+        COUNT(f.title) AS num_rentals
+FROM film AS f
+INNER JOIN inventory AS i
+  ON f.film_id = i.film_id
+INNER JOIN rental AS r
+  ON i.inventory_id = r.inventory_id
+GROUP BY f.title
+ORDER BY num_rentals DESC;"</span>
+
+<span class="fu"><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html">dbGetQuery</a></span><span class="op">(</span><span class="va">con</span>, <span class="va">top_query</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_max</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span>, order_by <span class="op">=</span> <span class="va">num_rentals</span><span class="op">)</span></code></pre></div>
+<pre><code>           movie_title num_rentals
+1   Bucket Brotherhood          34
+2     Rocketeer Mother          33
+3       Juggler Hardly          32
+4  Ridgemont Submarine          32
+5        Scalawag Duck          32
+6       Grit Clockwork          32
+7       Forward Temple          32
+8       Timberland Sky          31
+9            Zorro Ark          31
+10        Robbers Joon          31
+11        Hobbit Alien          31
+12        Network Peak          31
+13       Apache Divine          31
+14     Rush Goodfellas          31
+15           Wife Turn          31
+16   Goodfellas Salute          31</code></pre>
+</div>
+</div>
+<div id="db-summary" class="section level2" number="13.10">
+<h2>
+<span class="header-section-number">13.10</span> 요약<a class="anchor" aria-label="anchor" href="#db-summary"><i class="fas fa-link"></i></a>
 </h2>
 <p>이번 장은 파이썬에서 데이터베이스 사용 기본적인 개요에 대해 폭넓게
 다루었다. 데이터를 저장하기 위해서 파이썬 딕셔너리나 일반적인 파일보다
@@ -588,9 +834,9 @@ SQLite에 <code>name</code>에 동일한 값을 가진 두 행을 삽입하지 �
 효과적으로 모델링해서 프로그램이 가능하면 빠르게 실행되게 만드는 것이
 중요하다.</p>
 </div>
-<div id="db-debugging" class="section level2" number="13.10">
+<div id="db-debugging" class="section level2" number="13.11">
 <h2>
-<span class="header-section-number">13.10</span> 디버깅<a class="anchor" aria-label="anchor" href="#db-debugging"><i class="fas fa-link"></i></a>
+<span class="header-section-number">13.11</span> 디버깅<a class="anchor" aria-label="anchor" href="#db-debugging"><i class="fas fa-link"></i></a>
 </h2>
 <p>SQLite 데이터베이스에 연결하는 파이썬 프로그램을 개발할 때 하나의
 일반적인 패턴은 파이썬 프로그램을 실행하고 SQLite 데이터베이스
@@ -607,9 +853,9 @@ SQLite에 <code>name</code>에 동일한 값을 가진 두 행을 삽입하지 �
 브라우져를 닫거나 혹은 <strong>File</strong> 메뉴를 사용해서 브라우져 데이터베이스를
 닫는 것이다.</p>
 </div>
-<div id="db-terminology" class="section level2" number="13.11">
+<div id="db-terminology" class="section level2" number="13.12">
 <h2>
-<span class="header-section-number">13.11</span> 용어정의<a class="anchor" aria-label="anchor" href="#db-terminology"><i class="fas fa-link"></i></a>
+<span class="header-section-number">13.12</span> 용어정의<a class="anchor" aria-label="anchor" href="#db-terminology"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>
@@ -652,6 +898,7 @@ SQLite에 <code>name</code>에 동일한 값을 가진 두 행을 삽입하지 �
 </ul>
 </div>
 </div>
+
   <div class="chapter-nav">
 <div class="prev"><a href="regex.html"><span class="header-section-number">12</span> 정규 표현식</a></div>
 <div class="next"><a href="r-webservice.html"><span class="header-section-number">14</span> 웹서비스 사용하기</a></div>
@@ -665,17 +912,28 @@ SQLite에 <code>name</code>에 동일한 값을 가진 두 행을 삽입하지 �
 <li><a class="nav-link" href="#r-db-create-table"><span class="header-section-number">13.4</span> 데이터베이스 테이블 생성</a></li>
 <li><a class="nav-link" href="#r-db-sql"><span class="header-section-number">13.5</span> SQL 요약</a></li>
 <li>
-<a class="nav-link" href="#r-datamodeling-basics"><span class="header-section-number">13.6</span> 데이터 모델링 기초</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#db-constraints"><span class="header-section-number">13.6.1</span> 테이블 제약사항</a></li>
-<li><a class="nav-link" href="#db-retrieve-insert"><span class="header-section-number">13.6.2</span> 레코드 가져오거나 삽입</a></li>
-<li><a class="nav-link" href="#%EC%B9%9C%EA%B5%AC%EA%B4%80%EA%B3%84-%EC%A0%80%EC%9E%A5%ED%95%98%EA%B8%B0"><span class="header-section-number">13.6.3</span> 친구관계 저장하기</a></li>
-</ul>
+<a class="nav-link" href="#r-datamodeling-basics"><span class="header-section-number">13.6</span> 데이터 모델링 기초</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#db-constraints"><span class="header-section-number">13.6.1</span> 테이블 제약사항</a></li></ul>
 </li>
 <li><a class="nav-link" href="#db-three-keys"><span class="header-section-number">13.7</span> 세 종류 키</a></li>
-<li><a class="nav-link" href="#db-join-retrieve"><span class="header-section-number">13.8</span> JOIN 활용 데이터 가져오기</a></li>
-<li><a class="nav-link" href="#db-summary"><span class="header-section-number">13.9</span> 요약</a></li>
-<li><a class="nav-link" href="#db-debugging"><span class="header-section-number">13.10</span> 디버깅</a></li>
-<li><a class="nav-link" href="#db-terminology"><span class="header-section-number">13.11</span> 용어정의</a></li>
+<li>
+<a class="nav-link" href="#dvd-rental"><span class="header-section-number">13.8</span> DVD 대여 데이터베이스</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#about-postgreSQL"><span class="header-section-number">13.8.1</span> PostgreSQL 11 12</a></li>
+<li><a class="nav-link" href="#install-postgreSQL"><span class="header-section-number">13.8.2</span> PostgreSQL 설치 13</a></li>
+<li><a class="nav-link" href="#install-dvd-postgreSQL"><span class="header-section-number">13.8.3</span> 예제 데이터베이스 - pagila 14</a></li>
+<li><a class="nav-link" href="#query-dvd-postgreSQL"><span class="header-section-number">13.8.4</span> DVD 대여 질의문 작성 15</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#dvd-insight-rental"><span class="header-section-number">13.9</span> DVD DB 인사이트</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#dvd-rental-db-insight-sql"><span class="header-section-number">13.9.1</span> DB 접속 헬로월드 16</a></li>
+<li><a class="nav-link" href="#run-statistics-active"><span class="header-section-number">13.9.2</span> 이탈/잔존고객 구매금액</a></li>
+<li><a class="nav-link" href="#run-statistics-rental-rate"><span class="header-section-number">13.9.3</span> 쟝르별 평균 대여평점</a></li>
+<li><a class="nav-link" href="#run-statistics-rental-rate-top10"><span class="header-section-number">13.9.4</span> Top 10 DVD 영화</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#db-summary"><span class="header-section-number">13.10</span> 요약</a></li>
+<li><a class="nav-link" href="#db-debugging"><span class="header-section-number">13.11</span> 디버깅</a></li>
+<li><a class="nav-link" href="#db-terminology"><span class="header-section-number">13.12</span> 용어정의</a></li>
 </ul>
 
       <div class="book-extra">
