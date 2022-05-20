@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>18 . 함수형 프로그래밍 | 데이터 과학 프로그래밍</title>
+<meta name="author" content="한국 알(R) 사용자회">
+<meta name="description" content="데이터 과학 맥락에서 함수형 프로그래밍을 이해하고, 수치해석 예제를 통해 코드를 작성하고, 함수형 프로그래밍과 짝꿍인 단위 테스트에 대해서 살펴본다. 함수형 프로그래밍(functional programming)은 코드를 작성하는 한 방식으로 특정 연산을 수행하는 함수를 먼저 작성하고 나서, 사용자가 함수를 호출해서 작업을 수행하는 방식이다. 순수...">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta property="og:title" content="18 . 함수형 프로그래밍 | 데이터 과학 프로그래밍">
+<meta property="og:type" content="book">
+<meta property="og:description" content="데이터 과학 맥락에서 함수형 프로그래밍을 이해하고, 수치해석 예제를 통해 코드를 작성하고, 함수형 프로그래밍과 짝꿍인 단위 테스트에 대해서 살펴본다. 함수형 프로그래밍(functional programming)은 코드를 작성하는 한 방식으로 특정 연산을 수행하는 함수를 먼저 작성하고 나서, 사용자가 함수를 호출해서 작업을 수행하는 방식이다. 순수...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="18 . 함수형 프로그래밍 | 데이터 과학 프로그래밍">
+<meta name="twitter:description" content="데이터 과학 맥락에서 함수형 프로그래밍을 이해하고, 수치해석 예제를 통해 코드를 작성하고, 함수형 프로그래밍과 짝꿍인 단위 테스트에 대해서 살펴본다. 함수형 프로그래밍(functional programming)은 코드를 작성하는 한 방식으로 특정 연산을 수행하는 함수를 먼저 작성하고 나서, 사용자가 함수를 호출해서 작업을 수행하는 방식이다. 순수...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS -->
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">데이터 과학 프로그래밍</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">기계와의 경쟁 1</a></li>
+<li class="book-part">들어가며</li>
+<li><a class="" href="r-vs-python.html"><span class="header-section-number">1</span> R vs 파이썬</a></li>
+<li><a class="" href="r-intro.html"><span class="header-section-number">2</span> 프로그래밍 학습 이유</a></li>
+<li class="book-part">프로그래밍</li>
+<li><a class="" href="r-var.html"><span class="header-section-number">3</span> 변수, 표현식, 문장</a></li>
+<li><a class="" href="r-cont.html"><span class="header-section-number">4</span> 조건부 실행</a></li>
+<li><a class="" href="r-func.html"><span class="header-section-number">5</span> 함수</a></li>
+<li><a class="" href="r-iter.html"><span class="header-section-number">6</span> 반복(Iteration)</a></li>
+<li class="book-part">자료구조</li>
+<li><a class="" href="r-string.html"><span class="header-section-number">7</span> 문자열</a></li>
+<li><a class="" href="r-file.html"><span class="header-section-number">8</span> 파일</a></li>
+<li><a class="" href="r-list.html"><span class="header-section-number">9</span> 리스트 (List)</a></li>
+<li><a class="" href="named-list.html"><span class="header-section-number">10</span> 딕셔너리</a></li>
+<li><a class="" href="r-tuple.html"><span class="header-section-number">11</span> 튜플(Tuples)</a></li>
+<li><a class="" href="dataframe.html"><span class="header-section-number">12</span> 데이터프레임</a></li>
+<li class="book-part">분야별 도구</li>
+<li><a class="" href="regex.html"><span class="header-section-number">13</span> 정규 표현식</a></li>
+<li><a class="" href="network.html"><span class="header-section-number">14</span> 네트워크 프로그램</a></li>
+<li><a class="" href="r-webservice.html"><span class="header-section-number">15</span> 웹서비스 사용하기</a></li>
+<li><a class="" href="r-db.html"><span class="header-section-number">16</span> 데이터베이스와 SQL</a></li>
+<li><a class="" href="r-automation.html"><span class="header-section-number">17</span> 작업 자동화</a></li>
+<li><a class="active" href="r-functional-programming.html"><span class="header-section-number">18</span> 함수형 프로그래밍</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="r-functional-programming" class="section level1" number="18">
+<h1>
+<span class="header-section-number">18 . </span> 함수형 프로그래밍<a class="anchor" aria-label="anchor" href="#r-functional-programming"><i class="fas fa-link"></i></a>
+</h1>
+<p>데이터 과학 맥락에서 함수형 프로그래밍을 이해하고, 수치해석 예제를 통해 코드를 작성하고,
+함수형 프로그래밍과 짝꿍인 단위 테스트에 대해서 살펴본다.</p>
+<p><strong>함수형 프로그래밍(functional programming)</strong>은 코드를 작성하는 한 방식으로
+특정 연산을 수행하는 함수를 먼저 작성하고 나서,
+사용자가 함수를 호출해서 작업을 수행하는 방식이다. 순수 함수형 언어, 예를 들어 <a href="https://ko.wikipedia.org/wiki/%ED%95%98%EC%8A%A4%EC%BC%88">하스케(Haskell)</a>은 루프가 없다.
+루푸없이 어떻게 프로그램을 작성할 수 있을까? 루프는 재귀(recursion)로 대체된다. 이런 이유로 아래에서
+뉴톤 방법을 통해 근을 구하는 방식을 R코드로 두가지 방법을 보여준다. R은 아직
+<a href="http://hanmomhanda.github.io/2015/07/27/%EC%9E%AC%EA%B7%80-%EB%B0%98%EB%B3%B5-Tail-Recursion/">꼬리 호출(tail-call recurssion)</a> 기능을
+제공하지 않기 때문에 루프를 사용하는 것이 더 낫다.</p>
+<p>수학 함수는 멋진 특성이 있는데, 즉 해당 입력에 항상 동일한 결과를 갖는다.
+이 특성을 <strong>참조 투명성(referential transparaency)</strong> 이라고 부른다.
+참조 투명성은 <strong>부수효과(side effect)</strong> 없음을 표현하는 속성인데, 함수가 결과값 외에 다른 상태를 변경시킬 때 부수효과(side effect)가 있다고 한다.
+부수 효과는 프로그램 버그를 발생시키는 온상으로, 부수 효과를 없애면 디버깅이 용이해진다.
+따라서, 부수 효과를 제거하고 참조 투명성을 유지함으로써 데이터 분석 수행 결과를 예측 가능한 상태로 유지시켜 <strong>재현가능한 과학</strong>이 가능하게 된다.</p>
+<div id="about-fp" class="rmdcaution">
+<p><strong>함수형 프로그래밍</strong></p>
+<p>R 함수형 프로그래밍을 이해하기 위해서는 먼저 자료구조에 대한 이해가 선행되어야 한다.
+그리고 나서, 함수를 작성하는 이유와 더불어 작성법에 대한 이해도 확고히 해야만 한다.</p>
+<p>객체(object)가 함수를 갖는 데이터라면, 클러져는 데이터를 갖는 함수다.</p>
+<blockquote>
+<p>“An object is data with functions. A closure is a function with data.” – John D. Cook</p>
+</blockquote>
+</div>
+<p>명령형 언어(Imperative Language) 방식으로 R코드를 쭉 작성하게 되면,
+각 단계별로 상태가 변경되는 것에 대해 신경을 쓰고 관리를 해나가야 된다.
+그렇지 않으면 예기치 않은 부수 효과가 발생하여 데이터 분석 및 모형을 잘못 해석하게 된다.</p>
+<p>그렇다고, 부수효과가 없는 순수 함수가 반듯이 좋은 것은 아니다.
+예를 들어 <code><a href="https://rdrr.io/r/stats/Normal.html">rnorm()</a></code> 함수를 통해 평균 0, 분산 1인 난수를 생성시키는데,
+항상 동일한 값만 뽑아내면 사용자에게 의미있는 함수는 아니다.</p>
+<p>결국, 함수형 프로그래밍을 통해 <strong>테스팅(testing)</strong>과 <strong>디버깅(debugging)</strong>을
+수월하게 하는 것이 추구하는 바이다. 이를 위해
+다음 3가지 요인이 중요하다.</p>
+<ul>
+<li>한번에 한가지 작업을 수행하는 함수</li>
+<li>부수효과(side effect) 회피</li>
+<li>참조 투명성(Referential transparaency)</li>
+</ul>
+<div id="why-functional-programming" class="section level2" number="18.1">
+<h2>
+<span class="header-section-number">18.1</span> 왜 함수형 프로그래밍인가?<a class="anchor" aria-label="anchor" href="#why-functional-programming"><i class="fas fa-link"></i></a>
+</h2>
+<p>데이터 분석을 아주 추상화해서 간략하게 얘기한다면 데이터프레임을
+함수에 넣어 새로운 데이터프레임으로 만들어 내는 것이다.</p>
+<div class="figure">
+<img src="assets/images/fp-data-analysis.png" style="width:100.0%" alt=""><p class="caption">데이터 분석 과정 추상화</p>
+</div>
+<p>데이터 분석, 데이터 전처리, 변수 선택, 모형 개발이 한번에 해결되는 것이 아니라서,
+데이터프레임을 함수에 넣어 상태가 변경된 데이터프레임이 생성되고,
+이를 다시 함수에 넣어 또다른 변경된 상태
+데이터프레임을 얻게 되는 과정을 쭉 반복해 나간다.</p>
+<div class="figure">
+<img src="assets/images/fp-data-analysis-workflow.png" style="width:100.0%" alt=""><p class="caption">데이터 분석 작업흐름</p>
+</div>
+<p>따라서… 데이터 분석에는 함수형 프로그래밍 패러다임을 활용하고, 툴/패키지 개발에는 객체지향 프로그래밍(OOP) 패러다임 사용이 권장된다.</p>
+<div class="figure">
+<img src="assets/images/fp-data-analysis-choice.png" style="width:100.0%" alt=""><p class="caption">데이터 분석은 함수형 프로그래밍, 툴/패키지 개발에는 OOP</p>
+</div>
+</div>
+<div id="functional-programming-newton" class="section level2" number="18.2">
+<h2>
+<span class="header-section-number">18.2</span> 사례: <a href="https://en.wikipedia.org/wiki/Newton%27s_method">뉴튼 방법(Newton’s Method)</a><a class="anchor" aria-label="anchor" href="#functional-programming-newton"><i class="fas fa-link"></i></a>
+</h2>
+<p>뉴튼-랩슨 알고리즘으로도 알려진 뉴튼(Newton Method) 방법은
+컴퓨터를 사용해서 수치해석 방법으로 실함수의 근을 찾아내는 방법이다.</p>
+<p>특정 함수 <span class="math inline">\(f\)</span> 의 근을 찾을 경우, 함수 미분값 <span class="math inline">\(f'\)</span>, 초기값 <span class="math inline">\(x_0\)</span>가 주어지면
+근사적 근에 가까운 값은 다음과 같이 정의된다.</p>
+<p><span class="math display">\[x_{1} = x_0 - \frac{f(x_0)}{f'(x_0)}\]</span></p>
+<p>이 과정을 반복하게 되면 오차가 매우 적게 근의 값에 도달하게 된다.</p>
+<p><span class="math display">\[x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}\]</span></p>
+<p>기하적으로 보면, 파란 선은 함수 <span class="math inline">\(f\)</span> 이고,
+<span class="math inline">\(f\)</span>를 미분한 <span class="math inline">\(f'\)</span> 빨간 선은 뉴턴방법을 활용하여 근을 구해가는 과정을 시각적으로 보여주고 있다.
+<span class="math inline">\(x_{n-1}\)</span> 보다 <span class="math inline">\(x_n\)</span>이, <span class="math inline">\(x_n\)</span> 보다 <span class="math inline">\(x_{n+1}\)</span>이 함수 <span class="math inline">\(f\)</span> 근에 더 가깝게 접근해 나가는 것이 확인된다.</p>
+<div class="figure">
+<img src="assets/images/newton_method_ani.gif" style="width:100.0%" alt=""><p class="caption">뉴튼 방법 도식</p>
+</div>
+<div id="functional-programming-newton-method" class="section level3" number="18.2.1">
+<h3>
+<span class="header-section-number">18.2.1</span> 뉴튼 방법 R 코드 <a href="references.html#fn27" class="footnote-ref" id="fnref27"><sup>27</sup></a><a class="anchor" aria-label="anchor" href="#functional-programming-newton-method"><i class="fas fa-link"></i></a>
+</h3>
+<p>뉴튼 방법을 R코들 구현하면 다음과 같이 612의 제곱근 값을 수치적으로 컴퓨터를 활용하여 구할 수 있다.
+<code>while</code>같은 루프를 활용하여 반복적으로 해를 구하는 것도 가능하지만 재귀를 활용하여 해를 구하는 방법이
+코드를 작성하고 읽는 개발자 관점에서는 훨씬 더 편리하고 권장된다.</p>
+<p>하지만, 속도는 <code>while</code> 루프를 사용하는 것이 R에서는 득이 많다. 이유는 오랜 세월에 걸쳐 최적화 과정을 거쳐 진화했기 때문이다.</p>
+<div class="row">
+<div class="col-md-6">
+<p><strong>while 루프를 사용한 방법</strong></p>
+<div class="sourceCode" id="cb680"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">find_root</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">guess</span>, <span class="va">init</span>, <span class="va">eps</span> <span class="op">=</span> <span class="fl">10</span><span class="op">^</span><span class="op">(</span><span class="op">-</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+    <span class="kw">while</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">init</span><span class="op">**</span><span class="fl">2</span> <span class="op">-</span> <span class="va">guess</span><span class="op">)</span> <span class="op">&gt;</span> <span class="va">eps</span><span class="op">)</span><span class="op">{</span>
+        <span class="va">init</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">/</span><span class="fl">2</span> <span class="op">*</span><span class="op">(</span><span class="va">init</span> <span class="op">+</span> <span class="va">guess</span><span class="op">/</span><span class="va">init</span><span class="op">)</span>
+        <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"현재 값: "</span>, <span class="va">init</span>, <span class="st">"\n"</span><span class="op">)</span>
+    <span class="op">}</span>
+    <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">init</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="fu">find_root</span><span class="op">(</span><span class="fl">612</span>, <span class="fl">10</span><span class="op">)</span></code></pre></div>
+<pre><code>## 현재 값:  35.6 
+## 현재 값:  26.4 
+## 현재 값:  24.8 
+## 현재 값:  24.7 
+## 현재 값:  24.7 
+## 현재 값:  24.7</code></pre>
+<pre><code>## [1] 24.7</code></pre>
+</div>
+<div class="col-md-6">
+<p><strong>재귀를 사용한 방법</strong></p>
+<div class="sourceCode" id="cb683"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">find_root_recur</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">guess</span>, <span class="va">init</span>, <span class="va">eps</span> <span class="op">=</span> <span class="fl">10</span><span class="op">^</span><span class="op">(</span><span class="op">-</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+    <span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">init</span><span class="op">**</span><span class="fl">2</span> <span class="op">-</span> <span class="va">guess</span><span class="op">)</span> <span class="op">&lt;</span> <span class="va">eps</span><span class="op">)</span><span class="op">{</span>
+        <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">init</span><span class="op">)</span>
+    <span class="op">}</span> <span class="kw">else</span><span class="op">{</span>
+        <span class="va">init</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">/</span><span class="fl">2</span> <span class="op">*</span><span class="op">(</span><span class="va">init</span> <span class="op">+</span> <span class="va">guess</span><span class="op">/</span><span class="va">init</span><span class="op">)</span>
+        <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"재귀방법 현재 값: "</span>, <span class="va">init</span>, <span class="st">"\n"</span><span class="op">)</span>
+        <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="fu">find_root_recur</span><span class="op">(</span><span class="va">guess</span>, <span class="va">init</span>, <span class="va">eps</span><span class="op">)</span><span class="op">)</span>
+    <span class="op">}</span>
+<span class="op">}</span>
+
+<span class="fu">find_root_recur</span><span class="op">(</span><span class="fl">612</span>, <span class="fl">10</span><span class="op">)</span></code></pre></div>
+<pre><code>## 재귀방법 현재 값:  35.6 
+## 재귀방법 현재 값:  26.4 
+## 재귀방법 현재 값:  24.8 
+## 재귀방법 현재 값:  24.7 
+## 재귀방법 현재 값:  24.7 
+## 재귀방법 현재 값:  24.7</code></pre>
+<pre><code>## [1] 24.7</code></pre>
+</div>
+</div>
+</div>
+<div id="map-reduce-apply" class="section level3" number="18.2.2">
+<h3>
+<span class="header-section-number">18.2.2</span> <code>Map()</code>, <code>Reduce()</code> 함수와 <code>*apply()</code> 함수 가족 <a href="references.html#fn28" class="footnote-ref" id="fnref28"><sup>28</sup></a> <a href="references.html#fn29" class="footnote-ref" id="fnref29"><sup>29</sup></a><a class="anchor" aria-label="anchor" href="#map-reduce-apply"><i class="fas fa-link"></i></a>
+</h3>
+<p>함수를 인자로 받는 함수를 고차함수(High-order function)라고 부른다.
+대표적으로 <code><a href="https://rdrr.io/r/base/funprog.html">Map()</a></code>, <code><a href="https://rdrr.io/r/base/funprog.html">Reduce()</a></code>가 있다. 숫자 하나가 아닌 벡터에 대한 제곱근을 구하기 위해서
+<code>Map</code> 함수를 사용한다.</p>
+<div class="sourceCode" id="cb686"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># 제곱근 함수 -------------------------------------------</span>
+
+<span class="va">find_root_recur</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">guess</span>, <span class="va">init</span>, <span class="va">eps</span> <span class="op">=</span> <span class="fl">10</span><span class="op">^</span><span class="op">(</span><span class="op">-</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+    <span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">init</span><span class="op">**</span><span class="fl">2</span> <span class="op">-</span> <span class="va">guess</span><span class="op">)</span> <span class="op">&lt;</span> <span class="va">eps</span><span class="op">)</span><span class="op">{</span>
+        <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">init</span><span class="op">)</span>
+    <span class="op">}</span> <span class="kw">else</span><span class="op">{</span>
+        <span class="va">init</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">/</span><span class="fl">2</span> <span class="op">*</span><span class="op">(</span><span class="va">init</span> <span class="op">+</span> <span class="va">guess</span><span class="op">/</span><span class="va">init</span><span class="op">)</span>
+        <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="fu">find_root_recur</span><span class="op">(</span><span class="va">guess</span>, <span class="va">init</span>, <span class="va">eps</span><span class="op">)</span><span class="op">)</span>
+    <span class="op">}</span>
+<span class="op">}</span>
+
+<span class="co"># 벡터에 대한 제곱근 계산 </span>
+
+<span class="va">numbers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">16</span>, <span class="fl">25</span>, <span class="fl">36</span>, <span class="fl">49</span>, <span class="fl">64</span>, <span class="fl">81</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/funprog.html">Map</a></span><span class="op">(</span><span class="va">find_root_recur</span>, <span class="va">numbers</span>, init<span class="op">=</span><span class="fl">1</span>, eps <span class="op">=</span> <span class="fl">10</span><span class="op">^</span><span class="op">-</span><span class="fl">10</span><span class="op">)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 4
+## 
+## [[2]]
+## [1] 5
+## 
+## [[3]]
+## [1] 6
+## 
+## [[4]]
+## [1] 7
+## 
+## [[5]]
+## [1] 8
+## 
+## [[6]]
+## [1] 9</code></pre>
+<p>숫자 하나를 받는 함수가 아니라, 벡터를 인자로 받아 제곱근을 계산하는 함수를
+작성할 경우 함수 내부에서 함수를 인자로 받을 수 있도록 <code>Map</code> 함수를 활용한다.</p>
+<div class="sourceCode" id="cb688"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># `Map` 벡터 제곱근 계산</span>
+
+<span class="va">find_vec_root_recur</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">numbers</span>, <span class="va">init</span>, <span class="va">eps</span> <span class="op">=</span> <span class="fl">10</span><span class="op">^</span><span class="op">(</span><span class="op">-</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+    <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/funprog.html">Map</a></span><span class="op">(</span><span class="va">find_root_recur</span>, <span class="va">numbers</span>, <span class="va">init</span>, <span class="va">eps</span><span class="op">)</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="va">numbers_z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">9</span>, <span class="fl">16</span>, <span class="fl">25</span>, <span class="fl">49</span>, <span class="fl">121</span><span class="op">)</span>
+<span class="fu">find_vec_root_recur</span><span class="op">(</span><span class="va">numbers_z</span>, init<span class="op">=</span><span class="fl">1</span>, eps<span class="op">=</span><span class="fl">10</span><span class="op">^</span><span class="op">(</span><span class="op">-</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 3
+## 
+## [[2]]
+## [1] 4
+## 
+## [[3]]
+## [1] 5
+## 
+## [[4]]
+## [1] 7
+## 
+## [[5]]
+## [1] 11</code></pre>
+<p>이러한 패턴이 많이 활용되어 <code>*apply</code> 함수가 있어, 이전에 많이 사용했을 것이다.
+벡터를 인자로 먼저 넣고, 함수명을 두번째 인자로 넣고, 함수에 들어갈 매개변수를 순서대로 쭉 나열하여 <code>lapply</code>, <code>sapply</code> 함수에 넣는다.</p>
+<div class="sourceCode" id="cb690"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># `lapply` 활용 제급근 계산</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">numbers_z</span>, <span class="va">find_root_recur</span>, init<span class="op">=</span><span class="fl">1</span>, eps<span class="op">=</span><span class="fl">10</span><span class="op">^</span><span class="op">(</span><span class="op">-</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 3
+## 
+## [[2]]
+## [1] 4
+## 
+## [[3]]
+## [1] 5
+## 
+## [[4]]
+## [1] 7
+## 
+## [[5]]
+## [1] 11</code></pre>
+<div class="sourceCode" id="cb692"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">numbers_z</span>, <span class="va">find_root_recur</span>, init<span class="op">=</span><span class="fl">1</span>, eps<span class="op">=</span><span class="fl">10</span><span class="op">^</span><span class="op">(</span><span class="op">-</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1]  3  4  5  7 11</code></pre>
+<p><code>Reduce</code> 함수도 삶을 편안하게 할 수 있는, 루프를 회피하는 또다른 방법이다.
+이름에서 알 수 있듯이 <code>numbers_z</code> 벡터 원소 각각에 대해 해당 연산작업 <code>+</code>, <code>%%</code>을 수행시킨다.
+<code>%%</code>는 나머지 연산자로 기본디폴트 설정으로 <span class="math inline">\(\frac{10}{7}\)</span>로 몫 대신에 나머지 3을 우선 계산하고,
+그 다음으로 <span class="math inline">\(\frac{3}{5}\)</span>로 최종 나머지 3을 순차적으로 계산하여 결과를 도출한다.</p>
+<div class="sourceCode" id="cb694"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Reduce ----------------------------------------------</span>
+<span class="va">numbers_z</span></code></pre></div>
+<pre><code>## [1]   9  16  25  49 121</code></pre>
+<div class="sourceCode" id="cb696"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/funprog.html">Reduce</a></span><span class="op">(</span><span class="va">`+`</span>, <span class="va">numbers_z</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 220</code></pre>
+<div class="sourceCode" id="cb698"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">numbers_z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">7</span>,<span class="fl">5</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/funprog.html">Reduce</a></span><span class="op">(</span><span class="va">`%%`</span>, <span class="va">numbers_z</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+</div>
+<div id="functional-programming-newton-purrr" class="section level3" number="18.2.3">
+<h3>
+<span class="header-section-number">18.2.3</span> <code>purrr</code> 뉴톤 방법 코드<a class="anchor" aria-label="anchor" href="#functional-programming-newton-purrr"><i class="fas fa-link"></i></a>
+</h3>
+<p>초창기 <code>for</code>나 <code>while</code> 루프를 사용해서 뉴톤이 고안한 방식에 따라 해를
+구했다면 <code>base</code> 내장 패키지 <code>apply</code> 계열 함수를 사용하여 간결하게
+코드 작성이 가능했다면 현재는 <code>purrr</code> 패키지를 통해 동일한 개념을
+훨씬 더 깔끔하게 작성하게 되었다.</p>
+<p><code>*apply</code> 계열 함수는 각각의 자료형에 맞춰 기억하기가 쉽지 않아,
+매번 도움말을 찾아 확인하고 코딩을 해야하는 번거러움이 많다.
+데이터 분석을 함수형 프로그래밍 패러다임으로 실행하도록 <code>purrr</code> 팩키지가 개발되었다. 이를 통해 데이터 분석 작업이 수월하게 되어 저녁이 있는 삶이 길어질 것으로 기대된다.</p>
+<p><code>purrr</code> 팩키지를 불러와서 <code><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl()</a></code> 함수에 구문에 맞게 작성하면 동일한 결과를 깔끔하게 얻을 수 있다. 즉,</p>
+<ul>
+<li>
+<code><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl()</a></code>: 벡터, 데이터프레임, 리스트에 대해 함수를 원소별로 적용시켜 결과를 <code>double</code> 숫자형으로 출력시킨다.</li>
+<li>
+<code>numbers</code>: 함수를 각 원소별로 적용시킬 벡터 입력값</li>
+<li>
+<code>find_root_recur</code>: 앞서 작성한 뉴톤 방법으로 제곱근을 수치적으로 구하는 사용자 정의함수.</li>
+<li>
+<code>init=1, eps = 10^-10</code>: 뉴톤 방법을 구현한 사용자 정의함수에 필요한 초기값.</li>
+</ul>
+<div class="sourceCode" id="cb700"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># `purrr` 활용 제급근 계산</span>
+
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://purrr.tidyverse.org">purrr</a></span><span class="op">)</span>
+<span class="va">numbers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">16</span>, <span class="fl">25</span>, <span class="fl">36</span>, <span class="fl">49</span>, <span class="fl">64</span>, <span class="fl">81</span><span class="op">)</span>
+<span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span><span class="op">(</span><span class="va">numbers</span>, <span class="va">find_root_recur</span>, init<span class="op">=</span><span class="fl">1</span>, eps <span class="op">=</span> <span class="fl">10</span><span class="op">^</span><span class="op">-</span><span class="fl">10</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 4 5 6 7 8 9</code></pre>
+</div>
+</div>
+<div id="functional-programming-purrr-read-iris" class="section level2" number="18.3">
+<h2>
+<span class="header-section-number">18.3</span> 사례: 붓꽃 데이터<a class="anchor" aria-label="anchor" href="#functional-programming-purrr-read-iris"><i class="fas fa-link"></i></a>
+</h2>
+<p>구글 검색을 통해서 쉽게 <a href="https://gist.githubusercontent.com/curran/a08a1080b88344b0c8a7/raw/d546eaee765268bf2f487608c537c05e22e4b221/iris.csv">iris(붓꽃) 데이터</a>를 구할 수 있다. 이를 불러와서 각 종별로 <code>setosa</code>
+<code>versicolor</code>, <code>virginica</code>로 나눠 로컬 <code>.csv</code> 파일로 저장하고 나서 이를 다시 불러오는 사례를 함수형 프로그래밍으로 구현해본다.</p>
+<div class="figure">
+<img src="assets/images/fp-iris.png" style="width:100.0%" alt=""><p class="caption">붓꽃 데이터 품종별 불러오기</p>
+</div>
+<p>먼저 <code>iris.csv</code> 파일을 R로 불러와서 각 종별로 나눠서 <code>iris_종명.csv</code> 파일형식으로 저장시킨다.</p>
+<div class="sourceCode" id="cb702"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="va">iris_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"https://gist.githubusercontent.com/curran/a08a1080b88344b0c8a7/raw/d546eaee765268bf2f487608c537c05e22e4b221/iris.csv"</span><span class="op">)</span>
+
+<span class="va">iris_species</span> <span class="op">&lt;-</span> <span class="va">iris_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">species</span><span class="op">)</span>
+
+<span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">iris_df</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">tmp_df</span> <span class="op">&lt;-</span> <span class="va">iris_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">species</span> <span class="op">==</span> <span class="va">iris_species</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span>
+  <span class="va">species_name</span> <span class="op">&lt;-</span> <span class="va">iris_species</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>
+  <span class="va">tmp_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"data/iris_"</span>, <span class="va">species_name</span>, <span class="st">".csv"</span><span class="op">)</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/Sys.glob.html">Sys.glob</a></span><span class="op">(</span><span class="st">"data/iris_*.csv"</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "data/iris_NA.csv"         "data/iris_setosa.csv"    
+## [3] "data/iris_versicolor.csv" "data/iris_virginica.csv"</code></pre>
+<p>로컬 파일 <code>iris_종명.csv</code> 형식으로 저장된 데이터를 함수형 프로그래밍을 통해 불러와서 분석작업을 수행해보자. <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> 함수를 사용해서 각 종별로 데이터를 깔끔하게 불러왔다.</p>
+<p><code>iris_filename</code> 벡터에 <code>iris_종명.csv</code>과 경로명이 포함된 문자열을 저장시켜 놓고 <code><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv()</a></code> 함수를 각 벡터 원소에 적용시켜 출력값으로 리스트 <code>iris_list</code> 객체를 생성시켰다.</p>
+<div class="sourceCode" id="cb704"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">iris_filename</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"data/iris_setosa.csv"</span>, <span class="st">"data/iris_versicolor.csv"</span>, <span class="st">"data/iris_virginica.csv"</span><span class="op">)</span>
+
+<span class="va">iris_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">iris_filename</span>, <span class="va">read_csv</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://purrr.tidyverse.org/reference/set_names.html">set_names</a></span><span class="op">(</span><span class="va">iris_species</span><span class="op">)</span>
+
+<span class="va">iris_list</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tibble.tidyverse.org/reference/enframe.html">enframe</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 2
+##   name       value                 
+##   &lt;chr&gt;      &lt;list&gt;                
+## 1 setosa     &lt;spec_tbl_df [50 × 5]&gt;
+## 2 versicolor &lt;spec_tbl_df [50 × 5]&gt;
+## 3 virginica  &lt;spec_tbl_df [50 × 5]&gt;</code></pre>
+</div>
+<div id="functional-programming-purrr-analysis" class="section level2" number="18.4">
+<h2>
+<span class="header-section-number">18.4</span> 사례: 데이터 분석<a class="anchor" aria-label="anchor" href="#functional-programming-purrr-analysis"><i class="fas fa-link"></i></a>
+</h2>
+<p><code>iris_list</code> 각 원소는 데이터프레임이라 <code>summary</code> 함수를 사용해서 기술 통계량을 구할 수도 있다. 물론 <code><a href="https://rdrr.io/r/stats/cor.html">cor()</a></code> 함수를 사용해서 <code>iris_list</code>의 각 원소를 지정하는 <code>.x</code> 여기서는 종별 데이터프레임에서 변수 두개를 추출하여 <code>sepal_length</code>, <code>sepal_width</code> 이 둘간의 스피커만 상관계수를 계산하는데 출력값이 <code>double</code> 연속형이라 <code>map_dbl</code>로 저정하여 작업시킨다.</p>
+<div class="sourceCode" id="cb706"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">iris_list</span>, <span class="va">summary</span><span class="op">)</span></code></pre></div>
+<pre><code>## $setosa
+##   sepal_length   sepal_width    petal_length   petal_width   
+##  Min.   :4.30   Min.   :2.30   Min.   :1.00   Min.   :0.100  
+##  1st Qu.:4.80   1st Qu.:3.12   1st Qu.:1.40   1st Qu.:0.200  
+##  Median :5.00   Median :3.40   Median :1.50   Median :0.200  
+##  Mean   :5.01   Mean   :3.42   Mean   :1.46   Mean   :0.244  
+##  3rd Qu.:5.20   3rd Qu.:3.67   3rd Qu.:1.57   3rd Qu.:0.300  
+##  Max.   :5.80   Max.   :4.40   Max.   :1.90   Max.   :0.600  
+##    species         
+##  Length:50         
+##  Class :character  
+##  Mode  :character  
+##                    
+##                    
+##                    
+## 
+## $versicolor
+##   sepal_length   sepal_width    petal_length   petal_width     species         
+##  Min.   :4.90   Min.   :2.00   Min.   :3.00   Min.   :1.00   Length:50         
+##  1st Qu.:5.60   1st Qu.:2.52   1st Qu.:4.00   1st Qu.:1.20   Class :character  
+##  Median :5.90   Median :2.80   Median :4.35   Median :1.30   Mode  :character  
+##  Mean   :5.94   Mean   :2.77   Mean   :4.26   Mean   :1.33                     
+##  3rd Qu.:6.30   3rd Qu.:3.00   3rd Qu.:4.60   3rd Qu.:1.50                     
+##  Max.   :7.00   Max.   :3.40   Max.   :5.10   Max.   :1.80                     
+## 
+## $virginica
+##   sepal_length   sepal_width    petal_length   petal_width     species         
+##  Min.   :4.90   Min.   :2.20   Min.   :4.50   Min.   :1.40   Length:50         
+##  1st Qu.:6.22   1st Qu.:2.80   1st Qu.:5.10   1st Qu.:1.80   Class :character  
+##  Median :6.50   Median :3.00   Median :5.55   Median :2.00   Mode  :character  
+##  Mean   :6.59   Mean   :2.97   Mean   :5.55   Mean   :2.03                     
+##  3rd Qu.:6.90   3rd Qu.:3.17   3rd Qu.:5.88   3rd Qu.:2.30                     
+##  Max.   :7.90   Max.   :3.80   Max.   :6.90   Max.   :2.50</code></pre>
+<div class="sourceCode" id="cb708"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span><span class="op">(</span><span class="va">iris_list</span>, <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">.x</span><span class="op">$</span><span class="va">sepal_length</span>, <span class="va">.x</span><span class="op">$</span><span class="va">sepal_width</span>, method <span class="op">=</span> <span class="st">"spearman"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>##     setosa versicolor  virginica 
+##      0.769      0.518      0.427</code></pre>
+</div>
+<div id="functional-programming-purrr-ggplot" class="section level2" number="18.5">
+<h2>
+<span class="header-section-number">18.5</span> 사례: <code>ggplot</code> 시각화 <a href="references.html#fn30" class="footnote-ref" id="fnref30"><sup>30</sup></a><a class="anchor" aria-label="anchor" href="#functional-programming-purrr-ggplot"><i class="fas fa-link"></i></a>
+</h2>
+<p><code>list-column</code>을 활용하여 티블(tibble) 데이터프레임에 담아서 시각화를 진행해도 되고,
+다른 방법으로 리스트에 담아서 이를 한장에 찍는 것도 가능하다.</p>
+<div class="sourceCode" id="cb710"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jennybc/gapminder">gapminder</a></span><span class="op">)</span>
+
+<span class="co">## 데이터 -----</span>
+<span class="va">three_country</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Korea, Rep."</span>, <span class="st">"Japan"</span>, <span class="st">"China"</span><span class="op">)</span>
+
+<span class="va">gapminder_tbl</span> <span class="op">&lt;-</span> <span class="va">gapminder</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="co"># filter(str_detect(continent, "Asia")) %&gt;% </span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">continent</span>, <span class="va">country</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html">nest</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">country</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">three_country</span> <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="co">## 티블 데이터 시각화 -----</span>
+<span class="va">gapminder_plot_tbl</span> <span class="op">&lt;-</span> <span class="va">gapminder_tbl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">continent</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>graph <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">map2</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">three_country</span>, 
+                     <span class="op">~</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">.x</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">year</span>, y<span class="op">=</span><span class="va">gdpPercap</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+                       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+                       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title<span class="op">=</span><span class="va">.y</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">gapminder_plot_tbl</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 3
+##   country     data              graph 
+##   &lt;fct&gt;       &lt;list&gt;            &lt;list&gt;
+## 1 China       &lt;tibble [12 × 4]&gt; &lt;gg&gt;  
+## 2 Japan       &lt;tibble [12 × 4]&gt; &lt;gg&gt;  
+## 3 Korea, Rep. &lt;tibble [12 × 4]&gt; &lt;gg&gt;</code></pre>
+<div class="sourceCode" id="cb712"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## 리스트 데이터 시각화 -----</span>
+<span class="va">gapminder_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">map2</a></span><span class="op">(</span><span class="va">gapminder_tbl</span><span class="op">$</span><span class="va">data</span> , <span class="va">three_country</span>, 
+                     <span class="op">~</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">.x</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">year</span>, y<span class="op">=</span><span class="va">gdpPercap</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+                       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+                       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title<span class="op">=</span><span class="va">.y</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># walk(gapminder_plot, print)</span>
+
+<span class="co">## 리스트 데이터 시각화 - 한장에 찍기 -----</span>
+<span class="fu">cowplot</span><span class="fu">::</span><span class="fu"><a href="https://wilkelab.org/cowplot/reference/plot_grid.html">plot_grid</a></span><span class="op">(</span>plotlist <span class="op">=</span> <span class="va">gapminder_plot</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="B-func-prog_files/figure-html/fp-iris-viz-1.png" width="576" style="display: block; margin: auto;"></div>
+</div>
+<div id="fp-theory-practice" class="section level2" number="18.6">
+<h2>
+<span class="header-section-number">18.6</span> FP 이론과 실제<a class="anchor" aria-label="anchor" href="#fp-theory-practice"><i class="fas fa-link"></i></a>
+</h2>
+<p>함수는 다음과 같이 될 수도 있어 함수형 프로그래밍(Functional Programming, FP) 언어가 된다. <a href="references.html#fn31" class="footnote-ref" id="fnref31"><sup>31</sup></a></p>
+<ul>
+<li>함수의 인자</li>
+<li>함수로 반환</li>
+<li>리스트에 저장</li>
+<li>변수에 저장</li>
+<li>무명함수</li>
+<li>조작할 수 있다.</li>
+</ul>
+<div id="john-chambers" class="rmdcaution">
+<p>John Chambers 창시자가 말하는 R 계산의 기본원칙</p>
+<ul>
+<li>존재하는 모든 것은 객체다. (Everything that exists is an object.)</li>
+<li>일어나는 모든 것은 함수호출이다. (Everything that happens is a function call.)</li>
+</ul>
+</div>
+<div class="sourceCode" id="cb713"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">`%&gt;%`</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "function"</code></pre>
+<div class="sourceCode" id="cb715"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">`$`</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "function"</code></pre>
+<div class="sourceCode" id="cb717"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">`&lt;-`</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "function"</code></pre>
+<div class="sourceCode" id="cb719"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">`+`</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "function"</code></pre>
+<div id="pure-vs-impure-function" class="section level3" number="18.6.1">
+<h3>
+<span class="header-section-number">18.6.1</span> (비)순수한 함수<a class="anchor" aria-label="anchor" href="#pure-vs-impure-function"><i class="fas fa-link"></i></a>
+</h3>
+<p><strong>순수한 함수(pure function)</strong>는 입력값에만 출력값이 의존하게 되는 특성과 부수효과(side-effect)를 갖지 않는 반면 <strong>순수하지 않은 함수(impure function)</strong>는 환경에 의존하며 부수효과도 갖는다.</p>
+<div class="row">
+<div class="col-md-6">
+<p><strong>순수한 함수(pure function)</strong></p>
+<div class="sourceCode" id="cb721"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">100</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb723"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">100</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 50.5</code></pre>
+</div>
+<div class="col-md-6">
+<p><strong>순수하지 않은 함수(impure function)</strong></p>
+<div class="sourceCode" id="cb725"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.time</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "2022-05-20 12:32:52 KST"</code></pre>
+<div class="sourceCode" id="cb727"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></code></pre></div>
+<pre><code>##  [1]  0.492 -0.410 -0.931 -0.722  0.724  0.246  1.674  0.313 -0.224 -1.144</code></pre>
+<div class="sourceCode" id="cb729"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># write_csv("data/sample.csv")</span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="fp-lambda-functin" class="section level3" number="18.6.2">
+<h3>
+<span class="header-section-number">18.6.2</span> 무명함수와 매퍼<a class="anchor" aria-label="anchor" href="#fp-lambda-functin"><i class="fas fa-link"></i></a>
+</h3>
+<p><span class="math inline">\(\lambda\)</span> (람다) 함수는 무명(anonymous) 함수는 함수명을 갖는 일반적인 함수와 비교하여 함수의 좋은 점은 그대로 누리면서 함수가 많아 함수명으로 메모리가 난잡하게 지져분해지는 것을 막을 수 있다.</p>
+<p>무명함수로 기능르 구현한 후에 매퍼(mapper)를 사용해서 <code><a href="https://purrr.tidyverse.org/reference/as_mapper.html">as_mapper()</a></code> 명칭을 부여하여 함수처럼 사용하는 것도 가능하다. 매퍼(mapper)를 사용하는 이유를 다음과 같이 정리할 수 있다.</p>
+<ul>
+<li>간결함(Concise)</li>
+<li>가독성(Easy to read)</li>
+<li>재사용성(Reusable)</li>
+</ul>
+<p>정치인 페이스북 페이지에서 팬수를 추출한다. 그리고 이를 이름이 부은 리스트(named list)로 일자별 팬수 추이를 리스트로 준비한다. 그리고 나서 안철수, 문재인, 심상정 세 후보에 대한 최고 팬수증가를 무명함수로 계산한다.</p>
+<div class="sourceCode" id="cb730"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="co">## 데이터프레임을 리스트로 변환</span>
+<span class="va">ahn_df</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/fb_ahn.csv"</span><span class="op">)</span>  <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>fans <span class="op">=</span> <span class="va">ahn_fans</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>fans_lag <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/lead-lag.html">lag</a></span><span class="op">(</span><span class="va">fans</span><span class="op">)</span>,
+         fans_diff <span class="op">=</span> <span class="va">fans</span> <span class="op">-</span> <span class="va">fans_lag</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">fdate</span>, fans <span class="op">=</span> <span class="va">fans_diff</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">fans</span><span class="op">)</span><span class="op">)</span>
+<span class="va">moon_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/fb_moon.csv"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>fans <span class="op">=</span> <span class="va">moon_fans</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>fans_lag <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/lead-lag.html">lag</a></span><span class="op">(</span><span class="va">fans</span><span class="op">)</span>,
+         fans_diff <span class="op">=</span> <span class="va">fans</span> <span class="op">-</span> <span class="va">fans_lag</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">fdate</span>, fans <span class="op">=</span> <span class="va">fans_diff</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">fans</span><span class="op">)</span><span class="op">)</span>
+<span class="va">sim_df</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span><span class="op">(</span><span class="st">"data/fb_sim.csv"</span><span class="op">)</span>  <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>fans <span class="op">=</span> <span class="va">sim_fans</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>fans_lag <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/lead-lag.html">lag</a></span><span class="op">(</span><span class="va">fans</span><span class="op">)</span>,
+         fans_diff <span class="op">=</span> <span class="va">fans</span> <span class="op">-</span> <span class="va">fans_lag</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">fdate</span>, fans <span class="op">=</span> <span class="va">fans_diff</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">fans</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">convert_to_list</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">df</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">df_fans_v</span> <span class="op">&lt;-</span> <span class="va">df</span><span class="op">$</span><span class="va">fans</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://purrr.tidyverse.org/reference/set_names.html">set_names</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">fdate</span><span class="op">)</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">df_fans_v</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="va">ahn_v</span>  <span class="op">&lt;-</span> <span class="fu">convert_to_list</span><span class="op">(</span><span class="va">ahn_df</span><span class="op">)</span>
+<span class="va">moon_v</span> <span class="op">&lt;-</span> <span class="fu">convert_to_list</span><span class="op">(</span><span class="va">moon_df</span><span class="op">)</span>
+<span class="va">sim_v</span>  <span class="op">&lt;-</span> <span class="fu">convert_to_list</span><span class="op">(</span><span class="va">sim_df</span><span class="op">)</span>
+
+<span class="va">fans_lst</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>ahn_fans  <span class="op">=</span> <span class="va">ahn_v</span>,
+                 moon_fans <span class="op">=</span> <span class="va">moon_v</span>,
+                 sim_fans  <span class="op">=</span> <span class="va">sim_v</span><span class="op">)</span>
+
+<span class="va">fans_lst</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/enframe.html">enframe</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 2
+##   name      value      
+##   &lt;chr&gt;     &lt;list&gt;     
+## 1 ahn_fans  &lt;dbl [114]&gt;
+## 2 moon_fans &lt;dbl [114]&gt;
+## 3 sim_fans  &lt;dbl [114]&gt;</code></pre>
+<div class="sourceCode" id="cb732"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## 무명함수 테스트</span>
+<span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span><span class="op">(</span><span class="va">fans_lst</span>, <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">.x</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>##  ahn_fans moon_fans  sim_fans 
+##       796      1464      2029</code></pre>
+<p><code>rlang_lambda_function</code> 무명함수로 <code>increase_1000_fans</code> 작성해서 일별 팬수 증가가 1000명 이상인 경우 <code><a href="https://purrr.tidyverse.org/reference/keep.html">keep()</a></code> 함수를 사용해서 각 후보별로 추출할 수 있다. <code><a href="https://purrr.tidyverse.org/reference/keep.html">discard()</a></code> 함수를 사용해서 반대로 버려버릴 수도 있다.</p>
+<div class="sourceCode" id="cb734"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">increase_1000_fans</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/as_mapper.html">as_mapper</a></span><span class="op">(</span> <span class="op">~</span><span class="va">.x</span> <span class="op">&gt;</span> <span class="fl">1000</span><span class="op">)</span>
+
+<span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">fans_lst</span>, <span class="op">~</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/keep.html">keep</a></span><span class="op">(</span><span class="va">.x</span>, <span class="va">increase_1000_fans</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## $ahn_fans
+## named numeric(0)
+## 
+## $moon_fans
+## 2017-03-28 2017-04-18 2017-04-20 
+##       1464       1310       1093 
+## 
+## $sim_fans
+## 2017-03-12 2017-03-13 2017-04-14 2017-04-19 2017-04-20 2017-04-21 2017-04-24 
+##       1301       1079       1070       1441       1190       1025       1948 
+## 2017-04-25 
+##       2029</code></pre>
+<p><a href="https://terms.naver.com/entry.nhn?docId=1116302&amp;cid=40942&amp;categoryId=31530">술어논리(predicate logic)</a>은 조건을 테스트하여 참(<code>TRUE</code>), 거짓(<code>FALSE</code>)을 반환시킨다. <code>every</code>, <code>some</code>을 사용하여 팬수가 증가한 날이 매일 1,000명이 증가했는지, 전부는 아니고 일부 특정한 날에 1,000명이 증가했는지 파악할 수 있다.</p>
+<div class="sourceCode" id="cb736"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## 세후보 팬수가 매일 모두 1000명 이상 증가했나요?</span>
+<span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">fans_lst</span>, <span class="op">~</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/every.html">every</a></span><span class="op">(</span><span class="va">.x</span>, <span class="va">increase_1000_fans</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## $ahn_fans
+## [1] FALSE
+## 
+## $moon_fans
+## [1] FALSE
+## 
+## $sim_fans
+## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb738"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## 세후보 팬수가 전체는 아니고 일부 특정한 날에 1000명 이상 증가했나요?</span>
+<span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">fans_lst</span>, <span class="op">~</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/every.html">some</a></span><span class="op">(</span><span class="va">.x</span>, <span class="va">increase_1000_fans</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## $ahn_fans
+## [1] FALSE
+## 
+## $moon_fans
+## [1] TRUE
+## 
+## $sim_fans
+## [1] TRUE</code></pre>
+</div>
+<div id="high-order-function" class="section level3" number="18.6.3">
+<h3>
+<span class="header-section-number">18.6.3</span> 고차 함수(High order function)<a class="anchor" aria-label="anchor" href="#high-order-function"><i class="fas fa-link"></i></a>
+</h3>
+<p>고차 함수(High order function)는 함수의 인자로 함수를 받아 함수로 반환시키는 함수를 지칭한다. <code>high_order_fun</code> 함수는 함수를 인자(<code>func</code>)로 받아 함수를 반환시키는 고차함수다.
+평균 함수(<code>mean</code>)를 인자로 넣어 출력값으로 <code>mean_na()</code> 함수를 새롭게 생성시킨다.
+<code>NA</code>가 포함된 벡터를 넣어 평균값을 계산하게 된다.</p>
+<div class="sourceCode" id="cb740"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">high_order_fun</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">func</span><span class="op">)</span><span class="op">{</span>
+  <span class="kw">function</span><span class="op">(</span><span class="va">...</span><span class="op">)</span><span class="op">{</span>
+    <span class="fu">func</span><span class="op">(</span><span class="va">...</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+  <span class="op">}</span>
+<span class="op">}</span>
+
+<span class="va">mean_na</span> <span class="op">&lt;-</span> <span class="fu">high_order_fun</span><span class="op">(</span><span class="va">mean</span><span class="op">)</span>
+<span class="fu">mean_na</span><span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span> <span class="op">)</span></code></pre></div>
+<pre><code>## [1] 5.5</code></pre>
+<p>벡터가 입력값으로 들어가서 벡터가 출력값으로 나오는 보통 함수(Regular Function)외에 고차함수는 3가지 유형이 있다.</p>
+<ul>
+<li>벡터 → 함수: 함수공장(Function Factory)</li>
+<li>함수 → 벡터: Functional - <code>for</code>루프를 <code>purrr</code> 팩키지 <code><a href="https://purrr.tidyverse.org/reference/map.html">map()</a></code> 함수로 대체</li>
+<li>함수 → 함수: 함수연산자(Function Operator) - <code>Functional</code>과 함께 사용될 경우 <code>adverbs</code>로서 강력한 기능을 발휘</li>
+</ul>
+<div class="figure">
+<img src="assets/images/fp.png" style="width:100.0%" alt=""><p class="caption">고차함수 유형</p>
+</div>
+</div>
+<div id="adverbs-safely-possibly" class="section level3" number="18.6.4">
+<h3>
+<span class="header-section-number">18.6.4</span> 부사(<code>adverbs</code>)<a class="anchor" aria-label="anchor" href="#adverbs-safely-possibly"><i class="fas fa-link"></i></a>
+</h3>
+<p><code>purrr</code> 팩키지의 대표적인 부사(adverbs)에는 <code><a href="https://purrr.tidyverse.org/reference/safely.html">possibly()</a></code>와 <code><a href="https://purrr.tidyverse.org/reference/safely.html">safely()</a></code>가 있다.
+그외에도 <code>silently()</code>, <code>surely()</code> 등 다른 부사도 있으니 필요한 경우 <code>purrr</code> 팩키지 문서를 참조한다.</p>
+<p><code>safely(mean)</code>은 동사 함수(<code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code>)를 받아 부사 <code><a href="https://purrr.tidyverse.org/reference/safely.html">safely()</a></code>로 “부사 + 동사”로 기능이 추가된 부사 동사를 반환시킨다. 따라서, <code>NA</code>가 추가된 벡터를 넣을 경우 <code>$result</code>와 <code>$error</code>를 원소로 갖는 리스트를 반환시킨다.</p>
+<div class="sourceCode" id="cb742"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">mean_safe</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/safely.html">safely</a></span><span class="op">(</span><span class="va">mean</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">mean_safe</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "function"</code></pre>
+<div class="sourceCode" id="cb744"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">mean_safe</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## $result
+## [1] NA
+## 
+## $error
+## NULL</code></pre>
+<p>이를 활용하여 오류처리작업을 간결하게 수행시킬 수 있다.
+<code>$result</code>와 <code>$error</code>을 원소로 갖는 리스트를 반환시키기 때문에 오류와 결과값을 추출하여 후속작업을 수행하여 디버깅하는데 유용하게 활용할 수 있다.</p>
+<div class="sourceCode" id="cb746"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">test_lst</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"NA"</span>, <span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span><span class="op">)</span>
+<span class="va">log_safe</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/safely.html">safely</a></span><span class="op">(</span><span class="va">log</span><span class="op">)</span>
+
+<span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">test_lst</span>, <span class="va">log_safe</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="st">"result"</span><span class="op">)</span></code></pre></div>
+<pre><code>## [[1]]
+## NULL
+## 
+## [[2]]
+## [1] 0
+## 
+## [[3]]
+## [1] 0.693
+## 
+## [[4]]
+## [1] 1.1
+## 
+## [[5]]
+## [1] 1.39
+## 
+## [[6]]
+## [1] 1.61</code></pre>
+<div class="sourceCode" id="cb748"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">test_lst</span>, <span class="va">log_safe</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="st">"error"</span><span class="op">)</span></code></pre></div>
+<pre><code>## [[1]]
+## &lt;simpleError in .Primitive("log")(x, base): 수학함수에 숫자가 아닌 인자가 전달되었습니다&gt;
+## 
+## [[2]]
+## NULL
+## 
+## [[3]]
+## NULL
+## 
+## [[4]]
+## NULL
+## 
+## [[5]]
+## NULL
+## 
+## [[6]]
+## NULL</code></pre>
+<p>반면에 <code><a href="https://purrr.tidyverse.org/reference/safely.html">possibly()</a></code>는 결과와 <code>otherwise</code> 값을 반환시켜서 오류가 발생되면 중단되는 것이 아니라 오류가 있다는 사실을 알고 예외처리시킨 후에 쭉 정상진행시킨다.</p>
+<div class="sourceCode" id="cb750"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">max_possibly</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/safely.html">possibly</a></span><span class="op">(</span><span class="va">sum</span>, otherwise <span class="op">=</span> <span class="st">"watch out"</span><span class="op">)</span>
+
+<span class="fu">max_possibly</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 55</code></pre>
+<div class="sourceCode" id="cb752"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">max_possibly</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] NA</code></pre>
+<div class="sourceCode" id="cb754"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">max_possibly</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"NA"</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "watch out"</code></pre>
+<p><code><a href="https://purrr.tidyverse.org/reference/safely.html">possibly()</a></code>는 부울 논리값, <code>NA</code>, 문자열, 숫자를 반환시킬 수 있다.</p>
+<p><code><a href="https://purrr.tidyverse.org/reference/transpose.html">transpose()</a></code>와 결합하여 <code><a href="https://purrr.tidyverse.org/reference/safely.html">safely()</a></code>, <code><a href="https://purrr.tidyverse.org/reference/safely.html">possibly()</a></code> 결과를 변형시킬 수도 있다.</p>
+<div class="sourceCode" id="cb756"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">test_lst</span>, <span class="va">log_safe</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<div class="sourceCode" id="cb758"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">test_lst</span>, <span class="va">log_safe</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/transpose.html">transpose</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<p><code><a href="https://purrr.tidyverse.org/reference/keep.html">compact()</a></code>를 사용해서 <code>NULL</code>을 제거하는데, 앞서 <code><a href="https://purrr.tidyverse.org/reference/safely.html">possibly()</a></code>의 인자로 <code>otherwise=</code>를 지정하는 경우 <code>otherwise=NULL</code>와 같이 정의해서 예외처리로 <code>NULL</code>을 만들어 내고 <code><a href="https://purrr.tidyverse.org/reference/keep.html">compact()</a></code>로 정상처리된 데이터만 얻는 작업흐름을 갖춘다.</p>
+<div class="sourceCode" id="cb760"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">null_lst</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">1</span>, <span class="cn">NULL</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="cn">NULL</span>, <span class="fl">6</span>, <span class="fl">7</span>, <span class="cn">NA</span><span class="op">)</span>
+<span class="fu"><a href="https://purrr.tidyverse.org/reference/keep.html">compact</a></span><span class="op">(</span><span class="va">null_lst</span><span class="op">)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] 3
+## 
+## [[3]]
+## [1] 4
+## 
+## [[4]]
+## [1] 6
+## 
+## [[5]]
+## [1] 7
+## 
+## [[6]]
+## [1] NA</code></pre>
+<div class="sourceCode" id="cb762"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">possibly_log</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/safely.html">possibly</a></span><span class="op">(</span><span class="va">log</span>, otherwise <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
+<span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">null_lst</span>, <span class="va">possibly_log</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/keep.html">compact</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 0
+## 
+## [[2]]
+## [1] 1.1
+## 
+## [[3]]
+## [1] 1.39
+## 
+## [[4]]
+## [1] 1.79
+## 
+## [[5]]
+## [1] 1.95
+## 
+## [[6]]
+## [1] NA</code></pre>
+</div>
+</div>
+<div id="fp-clean-code" class="section level2" number="18.7">
+<h2>
+<span class="header-section-number">18.7</span> 깨끗한 코드(clean code) <a href="references.html#fn32" class="footnote-ref" id="fnref32"><sup>32</sup></a><a class="anchor" aria-label="anchor" href="#fp-clean-code"><i class="fas fa-link"></i></a>
+</h2>
+<p><code>round_mean()</code> 함수를 <code><a href="https://purrr.tidyverse.org/reference/compose.html">compose()</a></code> 함수를 사용해서 <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> 함수로 평균을 구한 후에 <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code>함수로 반올림하는 코드를 다음과 같이 쉽게 작성할 수 있다.</p>
+<div class="sourceCode" id="cb764"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">round_mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/compose.html">compose</a></span><span class="op">(</span><span class="va">round</span>, <span class="va">mean</span><span class="op">)</span>
+<span class="fu">round_mean</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<p>두번째 사례로 전형적인 데이터 분석 사례로 <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> → <code><a href="https://rdrr.io/r/stats/anova.html">anova()</a></code> → <code>tidy()</code>를 통해 한방에 선형회귀 모형 산출물을 깨끗한 코드로 작성하는 사례를 살펴보자.</p>
+<p><code>mtcars</code> 데이터셋에서 연비 예측에 변수 두개를 넣고 일반적인 <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> 선형예측모형 제작방식과 동일하게 인자를 넣는다.</p>
+<div class="sourceCode" id="cb766"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">clean_lm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/compose.html">compose</a></span><span class="op">(</span><span class="fu">broom</span><span class="fu">::</span><span class="va"><a href="https://generics.r-lib.org/reference/tidy.html">tidy</a></span>, <span class="va">anova</span>, <span class="va">lm</span><span class="op">)</span>
+<span class="fu">clean_lm</span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">wt</span>, data<span class="op">=</span><span class="va">mtcars</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 6
+##   term         df sumsq meansq statistic   p.value
+##   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 hp            1  678. 678.       101.   5.99e-11
+## 2 wt            1  253. 253.        37.6  1.12e- 6
+## 3 Residuals    29  195.   6.73      NA   NA</code></pre>
+<p><code><a href="https://purrr.tidyverse.org/reference/compose.html">compose()</a></code>를 통해 함수를 조합하는 경우 함수의 인자를 함께 전달해야될 경우가 있다. 이와 같은 경우 <code><a href="https://purrr.tidyverse.org/reference/partial.html">partial()</a></code>을 사용해서 인자를 넘기는 함수를 제작하여 <code><a href="https://purrr.tidyverse.org/reference/compose.html">compose()</a></code>에 넣어준다.</p>
+<div class="sourceCode" id="cb768"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">robust_round_mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/compose.html">compose</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://purrr.tidyverse.org/reference/partial.html">partial</a></span><span class="op">(</span><span class="va">round</span>, digits<span class="op">=</span><span class="fl">1</span><span class="op">)</span>,
+  <span class="fu"><a href="https://purrr.tidyverse.org/reference/partial.html">partial</a></span><span class="op">(</span><span class="va">mean</span>, na.rm<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
+<span class="fu">robust_round_mean</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 5.5</code></pre>
+<p>리스트 칼럼(list-column)과 결합하여 모형에서 나온 데이터 분석결과를 깔끔하게 코드로 제작해보자. 먼저 <code>lm</code>을 돌려 모형 요약하는 함수 <code>summary</code>를 통해 <code>r.squared</code>값을 추출하는 함수를 <code>summary_lm</code>으로 제작한다.</p>
+<p>그리고 나서 <code><a href="https://tidyr.tidyverse.org/reference/nest.html">nest()</a></code> 함수로 리스트 칼럼(list-column)을 만들고 두개의 집단 수동/자동을 나타내는 <code>am</code> 변수를 그룹으로 삼아 두 집단에 속한 수동/자동 데이터에 대한 선형 회귀모형을 적합시키고 나서 “r.squared”값을 추출하여 이를 티블 데이터프레임에 저장시킨다.</p>
+<div class="sourceCode" id="cb770"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">summary_lm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/compose.html">compose</a></span><span class="op">(</span><span class="va">summary</span>, <span class="va">lm</span><span class="op">)</span> 
+
+<span class="va">mtcars</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">am</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html">nest</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>lm_mod <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">data</span>, <span class="op">~</span> <span class="fu">summary_lm</span><span class="op">(</span><span class="va">mpg</span> <span class="op">~</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">wt</span>, data <span class="op">=</span> <span class="va">.x</span><span class="op">)</span><span class="op">)</span>,
+         r_squared <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">lm_mod</span>, <span class="st">"r.squared"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/nest.html">unnest</a></span><span class="op">(</span><span class="va">r_squared</span><span class="op">)</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 4
+## # Groups:   am [2]
+##      am data               lm_mod     r_squared
+##   &lt;dbl&gt; &lt;list&gt;             &lt;list&gt;         &lt;dbl&gt;
+## 1     1 &lt;tibble [13 × 10]&gt; &lt;smmry.lm&gt;     0.837
+## 2     0 &lt;tibble [19 × 10]&gt; &lt;smmry.lm&gt;     0.768</code></pre>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="r-automation.html"><span class="header-section-number">17</span> 작업 자동화</a></div>
+<div class="next"><a href="references.html">References</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#r-functional-programming"><span class="header-section-number">18</span> 함수형 프로그래밍</a></li>
+<li><a class="nav-link" href="#why-functional-programming"><span class="header-section-number">18.1</span> 왜 함수형 프로그래밍인가?</a></li>
+<li>
+<a class="nav-link" href="#functional-programming-newton"><span class="header-section-number">18.2</span> 사례: 뉴튼 방법(Newton’s Method)</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#functional-programming-newton-method"><span class="header-section-number">18.2.1</span> 뉴튼 방법 R 코드 27</a></li>
+<li><a class="nav-link" href="#map-reduce-apply"><span class="header-section-number">18.2.2</span> Map(), Reduce() 함수와 *apply() 함수 가족 28 29</a></li>
+<li><a class="nav-link" href="#functional-programming-newton-purrr"><span class="header-section-number">18.2.3</span> purrr 뉴톤 방법 코드</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#functional-programming-purrr-read-iris"><span class="header-section-number">18.3</span> 사례: 붓꽃 데이터</a></li>
+<li><a class="nav-link" href="#functional-programming-purrr-analysis"><span class="header-section-number">18.4</span> 사례: 데이터 분석</a></li>
+<li><a class="nav-link" href="#functional-programming-purrr-ggplot"><span class="header-section-number">18.5</span> 사례: ggplot 시각화 30</a></li>
+<li>
+<a class="nav-link" href="#fp-theory-practice"><span class="header-section-number">18.6</span> FP 이론과 실제</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#pure-vs-impure-function"><span class="header-section-number">18.6.1</span> (비)순수한 함수</a></li>
+<li><a class="nav-link" href="#fp-lambda-functin"><span class="header-section-number">18.6.2</span> 무명함수와 매퍼</a></li>
+<li><a class="nav-link" href="#high-order-function"><span class="header-section-number">18.6.3</span> 고차 함수(High order function)</a></li>
+<li><a class="nav-link" href="#adverbs-safely-possibly"><span class="header-section-number">18.6.4</span> 부사(adverbs)</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#fp-clean-code"><span class="header-section-number">18.7</span> 깨끗한 코드(clean code) 32</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>데이터 과학 프로그래밍</strong>" was written by 한국 알(R) 사용자회. It was last built on 2022-05-20.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>

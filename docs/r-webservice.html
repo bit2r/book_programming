@@ -7,42 +7,17 @@
 <title>15 . 웹서비스 사용하기 | 데이터 과학 프로그래밍</title>
 <meta name="author" content="한국 알(R) 사용자회">
 <meta name="description" content="프로그램을 사용하여 HTTP상에서 문서를 가져와서 파싱하는 것이 익숙해지면, 다른 프로그램(즉, 브라우져에서 HTML로 보여지지 않는 것)에서 활용되도록 특별히 설계된 문서를 생성하는 것은 그다지 오래 걸리지 않는다. 웹상에서 데이터를 교환할 때 두 가지 형식이 많이 사용된다. XML(“eXtensible Markup Language”)은 오랜 기간...">
-<meta name="generator" content="bookdown 0.26 with bs4_book()">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
 <meta property="og:title" content="15 . 웹서비스 사용하기 | 데이터 과학 프로그래밍">
 <meta property="og:type" content="book">
 <meta property="og:description" content="프로그램을 사용하여 HTTP상에서 문서를 가져와서 파싱하는 것이 익숙해지면, 다른 프로그램(즉, 브라우져에서 HTML로 보여지지 않는 것)에서 활용되도록 특별히 설계된 문서를 생성하는 것은 그다지 오래 걸리지 않는다. 웹상에서 데이터를 교환할 때 두 가지 형식이 많이 사용된다. XML(“eXtensible Markup Language”)은 오랜 기간...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="15 . 웹서비스 사용하기 | 데이터 과학 프로그래밍">
 <meta name="twitter:description" content="프로그램을 사용하여 HTTP상에서 문서를 가져와서 파싱하는 것이 익숙해지면, 다른 프로그램(즉, 브라우져에서 HTML로 보여지지 않는 것)에서 활용되도록 특별히 설계된 문서를 생성하는 것은 그다지 오래 걸리지 않는다. 웹상에서 데이터를 교환할 때 두 가지 형식이 많이 사용된다. XML(“eXtensible Markup Language”)은 오랜 기간...">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
-    
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  </style>
-<style type="text/css">
-    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-    div.csl-bib-body { }
-    div.csl-entry {
-      clear: both;
-        }
-    .hanging div.csl-entry {
-      margin-left:2em;
-      text-indent:-2em;
-    }
-    div.csl-left-margin {
-      min-width:2em;
-      float:left;
-    }
-    div.csl-right-inline {
-      margin-left:2em;
-      padding-left:1em;
-    }
-    div.csl-indent {
-      margin-left: 2em;
-    }
-  </style>
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS -->
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -86,6 +61,7 @@
 <li><a class="active" href="r-webservice.html"><span class="header-section-number">15</span> 웹서비스 사용하기</a></li>
 <li><a class="" href="r-db.html"><span class="header-section-number">16</span> 데이터베이스와 SQL</a></li>
 <li><a class="" href="r-automation.html"><span class="header-section-number">17</span> 작업 자동화</a></li>
+<li><a class="" href="r-functional-programming.html"><span class="header-section-number">18</span> 함수형 프로그래밍</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -340,7 +316,7 @@ SOA 개발 방식은 전반적인 응용 프로그램이 다른 응용 프로그
 </div>
 <div id="google-geocoding" class="section level2" number="15.7">
 <h2>
-<span class="header-section-number">15.7</span> 구글 지오코딩 웹서비스<a class="anchor" aria-label="anchor" href="#google-geocoding"><i class="fas fa-link"></i></a>
+<span class="header-section-number">15.7</span> 지오코딩 웹서비스<a class="anchor" aria-label="anchor" href="#google-geocoding"><i class="fas fa-link"></i></a>
 </h2>
 <p>구글이 자체적으로 구축한 대용량 지리 정보 데이터베이스를 누구나 이용할
 수 있게 하는 훌륭한 웹서비스가 있다. “Ann Arbor, MI” 같은 지리 검색
@@ -363,85 +339,83 @@ drop or significantly curtail its free service.)</p>
 제거했는지 확인하세요.</p>
 <p>다음은 간단한 응용 프로그램이다. 사용자가 검색 문자열을 입력하고 구글
 지오코딩 API를 호출하여 반환된 JSON에서 정보를 추출한다.</p>
-<pre><code>    import urllib
-    import json
+<p>구글 지리정보 API는 상용으로 전환되었기에 다음카카오 지도 API를 대체하여
+동일한 개발작업을 수행한다.</p>
+<div class="sourceCode" id="cb600"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://httr.r-lib.org/">httr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://arxiv.org/abs/1403.2805">jsonlite</a></span><span class="op">)</span>
 
-    serviceurl = 'http://maps.googleapis.com/maps/api/geocode/json?'
+<span class="co"># usethis::edit_r_environ()</span>
 
-    while True:
-        address = raw_input('Enter location: ')
-        if len(address) &lt; 1 : break
+<span class="co"># 주소를 지정합니다. </span>
+<span class="va">kpmg_addr</span> <span class="op">&lt;-</span> <span class="st">'서울특별시 강남구 역삼동 737'</span> 
 
-        url = serviceurl + urllib.urlencode({'sensor':'false', 
-              'address': address})
-        print 'Retrieving', url
-        uh = urllib.urlopen(url)
-        data = uh.read()
-        print 'Retrieved',len(data),'characters'
+<span class="co"># HTTP 요청을 실행합니다. </span>
+<span class="va">kpmg_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://httr.r-lib.org/reference/GET.html">GET</a></span><span class="op">(</span>url <span class="op">=</span> <span class="st">'https://dapi.kakao.com/v2/local/search/address.json'</span>,
+                query <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>query <span class="op">=</span> <span class="va">kpmg_addr</span><span class="op">)</span>,
+                <span class="fu"><a href="https://httr.r-lib.org/reference/add_headers.html">add_headers</a></span><span class="op">(</span>Authorization <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"KakaoAK "</span>, <span class="va">DAUM_MAP_API_KEY</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 
-        try: js = json.loads(str(data))
-        except: js = None
-        if 'status' not in js or js['status'] != 'OK':
-            print '==== Failure To Retrieve ===='
-            print data
-            continue
+<span class="co"># KPMG 지리정보 데이터프레임</span>
+<span class="va">kpmg_list</span> <span class="op">&lt;-</span> <span class="va">kpmg_res</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://httr.r-lib.org/reference/content.html">content</a></span><span class="op">(</span>as <span class="op">=</span> <span class="st">'text'</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html">fromJSON</a></span><span class="op">(</span><span class="op">)</span>
 
-        print json.dumps(js, indent=4)
-
-        lat = js["results"][0]["geometry"]["location"]["lat"]
-        lng = js["results"][0]["geometry"]["location"]["lng"]
-        print 'lat',lat,'lng',lng
-        location = js['results'][0]['formatted_address']
-        print location</code></pre>
+<span class="co">## 도로명주소</span>
+<span class="va">kpmg_list</span><span class="op">$</span><span class="va">documents</span><span class="op">$</span><span class="va">road_address</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>주소 <span class="op">=</span> <span class="va">address_name</span>, 경도 <span class="op">=</span> <span class="va">x</span>, 위도<span class="op">=</span><span class="va">y</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb601-1"><a href="r-webservice.html#cb601-1" aria-hidden="true" tabindex="-1"></a>                      주소             경도             위도</span>
+<span id="cb601-2"><a href="r-webservice.html#cb601-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> 서울 강남구 테헤란로 <span class="dv">152</span> <span class="fl">127.036508620542</span> <span class="fl">37.5000242405515</span></span></code></pre></div>
 <p>프로그램이 사용자로부터 검색 문자열을 받는다. 적절히 인코딩된 매개
-변수로 검색문자열을 변환하여 URL을 만든다. 그리고 나서 <strong>urllib</strong>을
-사용하여 구글 지오코딩 API에서 텍스트를 가져온다. 고정된 웹페이지와
-달리, 반환되는 데이터는 전송한 매개변수와 구글 서버에 저장된 지리정보
+변수로 검색문자열을 변환하여 URL을 만든다. 그리고 나서 <strong>httr</strong> 패키지를
+사용하여 카카오 지오코딩 API에서 텍스트를 가져온다. 고정된 웹페이지와
+달리, 반환되는 데이터는 전송한 매개변수와 카카오 서버에 저장된 지리정보
 데이터에 따라 달라진다.</p>
-<p>JSON 데이터를 가져오면, <strong>json</strong> 라이브러리로 파싱하고 전송받은 데이터가
+<p>JSON 데이터를 가져오면, <strong>jsonlite</strong> 패키지로 파싱하고 전송받은 데이터가
 올바른지 확인하는 몇가지 절차를 거친 후에 찾고자 하는 정보를 추출한다.</p>
-<p>프로그램 출력결과는 다음과 같다. (몇몇 JSON 출력은 의도적으로 삭제했다.)</p>
-<pre><code>    $ python geojson.py
-    Enter location: Ann Arbor, MI
-    Retrieving http://maps.googleapis.com/maps/api/
-      geocode/json?sensor=false&amp;address=Ann+Arbor%2C+MI
-    Retrieved 1669 characters
-    {
-        "status": "OK", 
-        "results": [
-            {
-                "geometry": {
-                    "location_type": "APPROXIMATE", 
-                    "location": {
-                        "lat": 42.2808256, 
-                        "lng": -83.7430378
-                    }
-                }, 
-                "address_components": [
-                    {
-                        "long_name": "Ann Arbor", 
-                        "types": [
-                            "locality", 
-                            "political"
-                        ], 
-                        "short_name": "Ann Arbor"
-                    } 
-                ], 
-                "formatted_address": "Ann Arbor, MI, USA", 
-                "types": [
-                    "locality", 
-                    "political"
-                ]
-            }
-        ]
-    }
-    lat 42.2808256 lng -83.7430378
-    Ann Arbor, MI, USA
-    Enter location:</code></pre>
-<p>다양한 구글 지오코딩 API의 XML과 JSON을 좀더 살펴보기 위해서
-<a href="www.py4inf.com/code/geojson.py">www.py4inf.com/code/geojson.py</a>,
-<a href="www.py4inf.com/code/geoxml.py">www.py4inf.com/code/geoxml.py</a>을
-다운로드 받아보기 바란다.</p>
+<p><code>Rscript</code> 프로그램 실행을 위해서 사용자 입력과 API키 외부 유출 방지를
+위한 조치를 취한 후에 일반화를 위해 코드를 일부 수정한다.</p>
+<div class="sourceCode" id="cb602"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://httr.r-lib.org/">httr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://arxiv.org/abs/1403.2805">jsonlite</a></span><span class="op">)</span>
+
+<span class="co"># 주소를 지정합니다.</span>
+
+<span class="va">typeline</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">msg</span> <span class="op">=</span> <span class="st">"주소를 입력하세요 - "</span><span class="op">)</span> <span class="op">{</span>
+  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span><span class="op">(</span><span class="op">)</span> <span class="op">)</span> <span class="op">{</span>
+    <span class="va">url</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readline.html">readline</a></span><span class="op">(</span><span class="va">msg</span><span class="op">)</span>
+  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="va">msg</span><span class="op">)</span>;
+    <span class="va">url</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span><span class="op">(</span><span class="st">"stdin"</span>,n<span class="op">=</span><span class="fl">1</span><span class="op">)</span>;
+  <span class="op">}</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">url</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="va">address</span> <span class="op">&lt;-</span> <span class="fu">typeline</span><span class="op">(</span><span class="op">)</span> <span class="co"># '서울특별시 강남구 역삼동 737'</span>
+
+<span class="co"># HTTP 요청을 실행합니다.</span>
+<span class="va">address_res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://httr.r-lib.org/reference/GET.html">GET</a></span><span class="op">(</span>url <span class="op">=</span> <span class="st">'https://dapi.kakao.com/v2/local/search/address.json'</span>,
+                query <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>query <span class="op">=</span> <span class="va">address</span><span class="op">)</span>,
+                <span class="fu"><a href="https://httr.r-lib.org/reference/add_headers.html">add_headers</a></span><span class="op">(</span>Authorization <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"KakaoAK "</span>, <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span><span class="op">(</span><span class="st">"DAUM_MAP_API_KEY"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">)</span>
+
+<span class="co"># 지리정보 데이터프레임 변환</span>
+<span class="va">address_list</span> <span class="op">&lt;-</span> <span class="va">address_res</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://httr.r-lib.org/reference/content.html">content</a></span><span class="op">(</span>as <span class="op">=</span> <span class="st">'text'</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html">fromJSON</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="co">## 도로명주소</span>
+<span class="va">address_list</span><span class="op">$</span><span class="va">documents</span><span class="op">$</span><span class="va">road_address</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>주소 <span class="op">=</span> <span class="va">address_name</span>, 경도 <span class="op">=</span> <span class="va">x</span>, 위도<span class="op">=</span><span class="va">y</span><span class="op">)</span></code></pre></div>
+<p>프로그램 출력결과는 다음과 같다.</p>
+<pre><code>$ Rscript script/geocoding.R 
+
+주소를 입력하세요 - '서울특별시 강남구 역삼동 737'
+                      주소             경도             위도
+1 서울 강남구 테헤란로 152 127.036508620542 37.5000242405515</code></pre>
+<p>다음카카오 지도 API 외 다른 지오코딩 관련 자세한 사항은
+<a href="https://statkclee.github.io/spatial/geo-info-lonlat.html">공간통계를 위한 데이터 사이언스 - 지리정보 API - 주소와 위도경도</a> 웹사이트를
+참조한다.</p>
 </div>
 <div id="ws-security" class="section level2" number="15.8">
 <h2>
@@ -514,7 +488,7 @@ drop or significantly curtail its free service.)</p>
 <li><a class="nav-link" href="#webservice-json"><span class="header-section-number">15.4</span> JSON</a></li>
 <li><a class="nav-link" href="#webservice-json-parsing"><span class="header-section-number">15.5</span> JSON 파싱하기</a></li>
 <li><a class="nav-link" href="#ws-api"><span class="header-section-number">15.6</span> API(응용 프로그램 인터페이스)</a></li>
-<li><a class="nav-link" href="#google-geocoding"><span class="header-section-number">15.7</span> 구글 지오코딩 웹서비스</a></li>
+<li><a class="nav-link" href="#google-geocoding"><span class="header-section-number">15.7</span> 지오코딩 웹서비스</a></li>
 <li><a class="nav-link" href="#ws-security"><span class="header-section-number">15.8</span> 보안과 API 사용</a></li>
 <li><a class="nav-link" href="#ws-term"><span class="header-section-number">15.9</span> 용어정의</a></li>
 </ul>

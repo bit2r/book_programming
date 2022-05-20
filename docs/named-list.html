@@ -7,42 +7,17 @@
 <title>10 . 딕셔너리 | 데이터 과학 프로그래밍</title>
 <meta name="author" content="한국 알(R) 사용자회">
 <meta name="description" content="명칭을 갖는 리스트(named list)는 딕셔너리로 더 잘 알려져 있고, 딕셔너리(dictionary)는 리스트 같지만 좀더 일반적이다. 리스트에서 위치(인텍스)는 정수이지만, 딕셔너리에서는 인덱스는 임의 자료형(type)이 될 수 있다. 딕셔너리를 인덱스 집합(키(keys)라고 부름)에서 값(value) 집합으로 사상(mapping)하는 것으로...">
-<meta name="generator" content="bookdown 0.26 with bs4_book()">
+<meta name="generator" content="bookdown 0.24 with bs4_book()">
 <meta property="og:title" content="10 . 딕셔너리 | 데이터 과학 프로그래밍">
 <meta property="og:type" content="book">
 <meta property="og:description" content="명칭을 갖는 리스트(named list)는 딕셔너리로 더 잘 알려져 있고, 딕셔너리(dictionary)는 리스트 같지만 좀더 일반적이다. 리스트에서 위치(인텍스)는 정수이지만, 딕셔너리에서는 인덱스는 임의 자료형(type)이 될 수 있다. 딕셔너리를 인덱스 집합(키(keys)라고 부름)에서 값(value) 집합으로 사상(mapping)하는 것으로...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="10 . 딕셔너리 | 데이터 과학 프로그래밍">
 <meta name="twitter:description" content="명칭을 갖는 리스트(named list)는 딕셔너리로 더 잘 알려져 있고, 딕셔너리(dictionary)는 리스트 같지만 좀더 일반적이다. 리스트에서 위치(인텍스)는 정수이지만, 딕셔너리에서는 인덱스는 임의 자료형(type)이 될 수 있다. 딕셔너리를 인덱스 집합(키(keys)라고 부름)에서 값(value) 집합으로 사상(mapping)하는 것으로...">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
-    
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  </style>
-<style type="text/css">
-    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-    div.csl-bib-body { }
-    div.csl-entry {
-      clear: both;
-        }
-    .hanging div.csl-entry {
-      margin-left:2em;
-      text-indent:-2em;
-    }
-    div.csl-left-margin {
-      min-width:2em;
-      float:left;
-    }
-    div.csl-right-inline {
-      margin-left:2em;
-      padding-left:1em;
-    }
-    div.csl-indent {
-      margin-left: 2em;
-    }
-  </style>
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS -->
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -86,6 +61,7 @@
 <li><a class="" href="r-webservice.html"><span class="header-section-number">15</span> 웹서비스 사용하기</a></li>
 <li><a class="" href="r-db.html"><span class="header-section-number">16</span> 데이터베이스와 SQL</a></li>
 <li><a class="" href="r-automation.html"><span class="header-section-number">17</span> 작업 자동화</a></li>
+<li><a class="" href="r-functional-programming.html"><span class="header-section-number">18</span> 함수형 프로그래밍</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 

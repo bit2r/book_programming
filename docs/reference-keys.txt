@@ -141,6 +141,7 @@ data-type-vector
 data-type-dataframe-in-r
 data-type-factor
 is-na-null
+fp-list-columns
 regex
 regex-char-matching
 regex-extraction
@@ -225,3 +226,18 @@ tasks-pipe
 tasks-pipe-unix
 tasks-terminology
 tasks-exercise
+r-functional-programming
+why-functional-programming
+functional-programming-newton
+functional-programming-newton-method
+map-reduce-apply
+functional-programming-newton-purrr
+functional-programming-purrr-read-iris
+functional-programming-purrr-analysis
+functional-programming-purrr-ggplot
+fp-theory-practice
+pure-vs-impure-function
+fp-lambda-functin
+high-order-function
+adverbs-safely-possibly
+fp-clean-code

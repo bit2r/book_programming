@@ -36,6 +36,7 @@ rmd_files: [
   "13-web.Rmd",
   "14-database.Rmd",
   "15-tasks.Rmd",
+  "B-func-prog.Rmd",
 
   # 참고문헌
   "references.Rmd"

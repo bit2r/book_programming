@@ -295,7 +295,7 @@ SOA 개발 방식은 전반적인 응용 프로그램이 다른 응용 프로그
 응응프로그램이 웹상에 이용가능한 API로 서비스 집합을 만들 때,
 **웹서비스(web services)**라고 부른다.
 
-## 구글 지오코딩 웹서비스 {#google-geocoding}
+## 지오코딩 웹서비스 {#google-geocoding}
 
 구글이 자체적으로 구축한 대용량 지리 정보 데이터베이스를 누구나 이용할
 수 있게 하는 훌륭한 웹서비스가 있다. "Ann Arbor, MI" 같은 지리 검색
@@ -325,94 +325,102 @@ drop or significantly curtail its free service.)
 다음은 간단한 응용 프로그램이다. 사용자가 검색 문자열을 입력하고 구글
 지오코딩 API를 호출하여 반환된 JSON에서 정보를 추출한다.
 
+구글 지리정보 API는 상용으로 전환되었기에 다음카카오 지도 API를 대체하여 
+동일한 개발작업을 수행한다.
+
+
+```r
+library(tidyverse)
+library(httr)
+library(jsonlite)
+
+# usethis::edit_r_environ()
+
+# 주소를 지정합니다. 
+kpmg_addr <- '서울특별시 강남구 역삼동 737' 
+
+# HTTP 요청을 실행합니다. 
+kpmg_res <- GET(url = 'https://dapi.kakao.com/v2/local/search/address.json',
+                query = list(query = kpmg_addr),
+                add_headers(Authorization = paste0("KakaoAK ", DAUM_MAP_API_KEY)))
+
+# KPMG 지리정보 데이터프레임
+kpmg_list <- kpmg_res %>% 
+  content(as = 'text') %>% 
+  fromJSON()
+
+## 도로명주소
+kpmg_list$documents$road_address %>% 
+  select(주소 = address_name, 경도 = x, 위도=y)
 ```
-    import urllib
-    import json
 
-    serviceurl = 'http://maps.googleapis.com/maps/api/geocode/json?'
 
-    while True:
-        address = raw_input('Enter location: ')
-        if len(address) < 1 : break
-
-        url = serviceurl + urllib.urlencode({'sensor':'false', 
-              'address': address})
-        print 'Retrieving', url
-        uh = urllib.urlopen(url)
-        data = uh.read()
-        print 'Retrieved',len(data),'characters'
-
-        try: js = json.loads(str(data))
-        except: js = None
-        if 'status' not in js or js['status'] != 'OK':
-            print '==== Failure To Retrieve ===='
-            print data
-            continue
-
-        print json.dumps(js, indent=4)
-
-        lat = js["results"][0]["geometry"]["location"]["lat"]
-        lng = js["results"][0]["geometry"]["location"]["lng"]
-        print 'lat',lat,'lng',lng
-        location = js['results'][0]['formatted_address']
-        print location
+```r
+                      주소             경도             위도
+1 서울 강남구 테헤란로 152 127.036508620542 37.5000242405515
 ```
+
 
 프로그램이 사용자로부터 검색 문자열을 받는다. 적절히 인코딩된 매개
-변수로 검색문자열을 변환하여 URL을 만든다. 그리고 나서 **urllib**을
-사용하여 구글 지오코딩 API에서 텍스트를 가져온다. 고정된 웹페이지와
-달리, 반환되는 데이터는 전송한 매개변수와 구글 서버에 저장된 지리정보
+변수로 검색문자열을 변환하여 URL을 만든다. 그리고 나서 **httr** 패키지를
+사용하여 카카오 지오코딩 API에서 텍스트를 가져온다. 고정된 웹페이지와
+달리, 반환되는 데이터는 전송한 매개변수와 카카오 서버에 저장된 지리정보
 데이터에 따라 달라진다.
 
-JSON 데이터를 가져오면, **json** 라이브러리로 파싱하고 전송받은 데이터가
+JSON 데이터를 가져오면, **jsonlite** 패키지로 파싱하고 전송받은 데이터가
 올바른지 확인하는 몇가지 절차를 거친 후에 찾고자 하는 정보를 추출한다.
 
-프로그램 출력결과는 다음과 같다. (몇몇 JSON 출력은 의도적으로 삭제했다.)
+`Rscript` 프로그램 실행을 위해서 사용자 입력과 API키 외부 유출 방지를 
+위한 조치를 취한 후에 일반화를 위해 코드를 일부 수정한다.
 
-```
-    $ python geojson.py
-    Enter location: Ann Arbor, MI
-    Retrieving http://maps.googleapis.com/maps/api/
-      geocode/json?sensor=false&address=Ann+Arbor%2C+MI
-    Retrieved 1669 characters
-    {
-        "status": "OK", 
-        "results": [
-            {
-                "geometry": {
-                    "location_type": "APPROXIMATE", 
-                    "location": {
-                        "lat": 42.2808256, 
-                        "lng": -83.7430378
-                    }
-                }, 
-                "address_components": [
-                    {
-                        "long_name": "Ann Arbor", 
-                        "types": [
-                            "locality", 
-                            "political"
-                        ], 
-                        "short_name": "Ann Arbor"
-                    } 
-                ], 
-                "formatted_address": "Ann Arbor, MI, USA", 
-                "types": [
-                    "locality", 
-                    "political"
-                ]
-            }
-        ]
-    }
-    lat 42.2808256 lng -83.7430378
-    Ann Arbor, MI, USA
-    Enter location:
+
+```r
+library(tidyverse)
+library(httr)
+library(jsonlite)
+
+# 주소를 지정합니다.
+
+typeline <- function(msg = "주소를 입력하세요 - ") {
+  if (interactive() ) {
+    url <- readline(msg)
+  } else {
+    cat(msg);
+    url <- readLines("stdin",n=1);
+  }
+  return(url)
+}
+
+address <- typeline() # '서울특별시 강남구 역삼동 737'
+
+# HTTP 요청을 실행합니다.
+address_res <- GET(url = 'https://dapi.kakao.com/v2/local/search/address.json',
+                query = list(query = address),
+                add_headers(Authorization = paste0("KakaoAK ", Sys.getenv("DAUM_MAP_API_KEY"))) )
+
+# 지리정보 데이터프레임 변환
+address_list <- address_res %>%
+  content(as = 'text') %>%
+  fromJSON()
+
+## 도로명주소
+address_list$documents$road_address %>%
+  select(주소 = address_name, 경도 = x, 위도=y)
 ```
 
-다양한 구글 지오코딩 API의 XML과 JSON을 좀더 살펴보기 위해서
-[www.py4inf.com/code/geojson.py](www.py4inf.com/code/geojson.py),
-[www.py4inf.com/code/geoxml.py](www.py4inf.com/code/geoxml.py)을
-다운로드 받아보기 바란다.
+프로그램 출력결과는 다음과 같다. 
+
+```
+$ Rscript script/geocoding.R 
+
+주소를 입력하세요 - '서울특별시 강남구 역삼동 737'
+                      주소             경도             위도
+1 서울 강남구 테헤란로 152 127.036508620542 37.5000242405515
+```
+
+다음카카오 지도 API 외 다른 지오코딩 관련 자세한 사항은 
+[공간통계를 위한 데이터 사이언스 - 지리정보 API - 주소와 위도경도](https://statkclee.github.io/spatial/geo-info-lonlat.html) 웹사이트를
+참조한다.
 
 ## 보안과 API 사용 {#ws-security}
 
