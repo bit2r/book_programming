@@ -4,15 +4,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>13 . 네트워크 프로그램 | 데이터 과학 프로그래밍</title>
+<title>14 . 네트워크 프로그램 | 데이터 과학 프로그래밍</title>
 <meta name="author" content="한국 알(R) 사용자회">
 <meta name="description" content="지금까지 책의 많은 예제는 파일을 읽고 파일의 정보를 찾는데 집중했지만, 다양한 많은 정보의 원천이 인터넷에 있다. 이번 장에서는 웹브라우져로 가장하고 HTTP 프로토콜(HyperText Transport Protocol,HTTP)을 사용하여 웹페이지를 검색할 것이다. 웹페이지 데이터를 읽고 파싱할 것이다. 파이썬 튜플과 마찬가지로 R에서 네트워크...">
 <meta name="generator" content="bookdown 0.26 with bs4_book()">
-<meta property="og:title" content="13 . 네트워크 프로그램 | 데이터 과학 프로그래밍">
+<meta property="og:title" content="14 . 네트워크 프로그램 | 데이터 과학 프로그래밍">
 <meta property="og:type" content="book">
 <meta property="og:description" content="지금까지 책의 많은 예제는 파일을 읽고 파일의 정보를 찾는데 집중했지만, 다양한 많은 정보의 원천이 인터넷에 있다. 이번 장에서는 웹브라우져로 가장하고 HTTP 프로토콜(HyperText Transport Protocol,HTTP)을 사용하여 웹페이지를 검색할 것이다. 웹페이지 데이터를 읽고 파싱할 것이다. 파이썬 튜플과 마찬가지로 R에서 네트워크...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="13 . 네트워크 프로그램 | 데이터 과학 프로그래밍">
+<meta name="twitter:title" content="14 . 네트워크 프로그램 | 데이터 과학 프로그래밍">
 <meta name="twitter:description" content="지금까지 책의 많은 예제는 파일을 읽고 파일의 정보를 찾는데 집중했지만, 다양한 많은 정보의 원천이 인터넷에 있다. 이번 장에서는 웹브라우져로 가장하고 HTTP 프로토콜(HyperText Transport Protocol,HTTP)을 사용하여 웹페이지를 검색할 것이다. 웹페이지 데이터를 읽고 파싱할 것이다. 파이썬 튜플과 마찬가지로 R에서 네트워크...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -79,12 +79,13 @@
 <li><a class="" href="r-list.html"><span class="header-section-number">9</span> 리스트 (List)</a></li>
 <li><a class="" href="named-list.html"><span class="header-section-number">10</span> 딕셔너리</a></li>
 <li><a class="" href="r-tuple.html"><span class="header-section-number">11</span> 튜플(Tuples)</a></li>
+<li><a class="" href="dataframe.html"><span class="header-section-number">12</span> 데이터프레임</a></li>
 <li class="book-part">분야별 도구</li>
-<li><a class="" href="regex.html"><span class="header-section-number">12</span> 정규 표현식</a></li>
-<li><a class="active" href="network.html"><span class="header-section-number">13</span> 네트워크 프로그램</a></li>
-<li><a class="" href="r-webservice.html"><span class="header-section-number">14</span> 웹서비스 사용하기</a></li>
-<li><a class="" href="r-db.html"><span class="header-section-number">15</span> 데이터베이스와 SQL</a></li>
-<li><a class="" href="r-automation.html"><span class="header-section-number">16</span> 작업 자동화</a></li>
+<li><a class="" href="regex.html"><span class="header-section-number">13</span> 정규 표현식</a></li>
+<li><a class="active" href="network.html"><span class="header-section-number">14</span> 네트워크 프로그램</a></li>
+<li><a class="" href="r-webservice.html"><span class="header-section-number">15</span> 웹서비스 사용하기</a></li>
+<li><a class="" href="r-db.html"><span class="header-section-number">16</span> 데이터베이스와 SQL</a></li>
+<li><a class="" href="r-automation.html"><span class="header-section-number">17</span> 작업 자동화</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -93,9 +94,9 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="network" class="section level1" number="13">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="network" class="section level1" number="14">
 <h1>
-<span class="header-section-number">13 . </span> 네트워크 프로그램<a class="anchor" aria-label="anchor" href="#network"><i class="fas fa-link"></i></a>
+<span class="header-section-number">14 . </span> 네트워크 프로그램<a class="anchor" aria-label="anchor" href="#network"><i class="fas fa-link"></i></a>
 </h1>
 <p>지금까지 책의 많은 예제는 파일을 읽고 파일의 정보를 찾는데 집중했지만,
 다양한 많은 정보의 원천이 인터넷에 있다.</p>
@@ -108,9 +109,9 @@ Protocol,HTTP)을 사용하여 웹페이지를 검색할 것이다. 웹페이지
 하지만 네트워크 프로그램에 대한 이해와 개념을 잡기 위해
 파이썬 소켓 네트워크 프로그래밍을 먼저 살펴본다.</p>
 </div>
-<div id="network-http" class="section level2" number="13.1">
+<div id="network-http" class="section level2" number="14.1">
 <h2>
-<span class="header-section-number">13.1</span> 하이퍼 텍스트 전송 프로토콜<a class="anchor" aria-label="anchor" href="#network-http"><i class="fas fa-link"></i></a>
+<span class="header-section-number">14.1</span> 하이퍼 텍스트 전송 프로토콜<a class="anchor" aria-label="anchor" href="#network-http"><i class="fas fa-link"></i></a>
 </h2>
 <p>웹에 동력을 공급하는 네트워크 프로토콜(HyperText Transport Protocol - HTTP)은
 실제로 매우 단순하다.
@@ -145,28 +146,28 @@ Protocol,HTTP)을 사용하여 웹페이지를 검색할 것이다. 웹페이지
 전송한다. 웹서버는 문서에 대한 헤더 정보와 빈 라인 그리고 문서 본문으로
 응답한다.</p>
 </div>
-<div id="network-web-browser" class="section level2" number="13.2">
+<div id="network-web-browser" class="section level2" number="14.2">
 <h2>
-<span class="header-section-number">13.2</span> 가장 간단한 웹 브라우져<a class="anchor" aria-label="anchor" href="#network-web-browser"><i class="fas fa-link"></i></a>
+<span class="header-section-number">14.2</span> 가장 간단한 웹 브라우져<a class="anchor" aria-label="anchor" href="#network-web-browser"><i class="fas fa-link"></i></a>
 </h2>
 <p>아마도 HTTP 프로토콜이 어떻게 작동하는지 알아보는 가장 간단한 방법은
 매우 간단한 파이썬 프로그램을 작성하는 것이다. 웹서버에 접속하고 HTTP
 프로토콜 규칙에 따라 문서를 요청하고 서버가 다시 보내주는 결과를
 보여주는 것이다.</p>
-<div class="sourceCode" id="cb525"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb525-1"><a href="network.html#cb525-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> socket</span>
-<span id="cb525-2"><a href="network.html#cb525-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb525-3"><a href="network.html#cb525-3" aria-hidden="true" tabindex="-1"></a>mysock <span class="op">=</span> socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span>
-<span id="cb525-4"><a href="network.html#cb525-4" aria-hidden="true" tabindex="-1"></a>mysock.<span class="ex">connect</span>((<span class="st">'data.pr4e.org'</span>, <span class="dv">80</span>))</span>
-<span id="cb525-5"><a href="network.html#cb525-5" aria-hidden="true" tabindex="-1"></a>cmd <span class="op">=</span> <span class="st">'GET http://data.pr4e.org/romeo.txt HTTP/1.0</span><span class="ch">\r\n\r\n</span><span class="st">'</span>.encode()</span>
-<span id="cb525-6"><a href="network.html#cb525-6" aria-hidden="true" tabindex="-1"></a>mysock.send(cmd)</span>
-<span id="cb525-7"><a href="network.html#cb525-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb525-8"><a href="network.html#cb525-8" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb525-9"><a href="network.html#cb525-9" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> mysock.recv(<span class="dv">512</span>)</span>
-<span id="cb525-10"><a href="network.html#cb525-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(data) <span class="op">&lt;</span> <span class="dv">1</span>:</span>
-<span id="cb525-11"><a href="network.html#cb525-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
-<span id="cb525-12"><a href="network.html#cb525-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(data.decode(),end<span class="op">=</span><span class="st">''</span>)</span>
-<span id="cb525-13"><a href="network.html#cb525-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb525-14"><a href="network.html#cb525-14" aria-hidden="true" tabindex="-1"></a>mysock.close()</span></code></pre></div>
+<div class="sourceCode" id="cb568"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb568-1"><a href="network.html#cb568-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> socket</span>
+<span id="cb568-2"><a href="network.html#cb568-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb568-3"><a href="network.html#cb568-3" aria-hidden="true" tabindex="-1"></a>mysock <span class="op">=</span> socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span>
+<span id="cb568-4"><a href="network.html#cb568-4" aria-hidden="true" tabindex="-1"></a>mysock.<span class="ex">connect</span>((<span class="st">'data.pr4e.org'</span>, <span class="dv">80</span>))</span>
+<span id="cb568-5"><a href="network.html#cb568-5" aria-hidden="true" tabindex="-1"></a>cmd <span class="op">=</span> <span class="st">'GET http://data.pr4e.org/romeo.txt HTTP/1.0</span><span class="ch">\r\n\r\n</span><span class="st">'</span>.encode()</span>
+<span id="cb568-6"><a href="network.html#cb568-6" aria-hidden="true" tabindex="-1"></a>mysock.send(cmd)</span>
+<span id="cb568-7"><a href="network.html#cb568-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb568-8"><a href="network.html#cb568-8" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb568-9"><a href="network.html#cb568-9" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> mysock.recv(<span class="dv">512</span>)</span>
+<span id="cb568-10"><a href="network.html#cb568-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(data) <span class="op">&lt;</span> <span class="dv">1</span>:</span>
+<span id="cb568-11"><a href="network.html#cb568-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb568-12"><a href="network.html#cb568-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(data.decode(),end<span class="op">=</span><span class="st">''</span>)</span>
+<span id="cb568-13"><a href="network.html#cb568-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb568-14"><a href="network.html#cb568-14" aria-hidden="true" tabindex="-1"></a>mysock.close()</span></code></pre></div>
 <p>처음에 프로그램은 <a href="www.py4e.com">www.py4e.com</a> 서버에 80 포트로
 연결한다. “웹 브라우져” 역할로 작성된 프로그램이 하기 때문에 HTTP
 프로토콜은 GET 명령어를 공백 라인과 함께 보낸다.</p>
@@ -207,9 +208,9 @@ Who is already sick and pale with grief</code></pre>
 파이썬에는 HTTP 프로토컬을 지원하기 위해 특별히 설계된 라이브러리가
 있다. 이것을 통해서 웹상에서 데이터나 문서를 검색을 쉽게 할 수 있다.</p>
 </div>
-<div id="socket-images" class="section level2" number="13.3">
+<div id="socket-images" class="section level2" number="14.3">
 <h2>
-<span class="header-section-number">13.3</span> HTTP 경유 이미지 가져오기<a class="anchor" aria-label="anchor" href="#socket-images"><i class="fas fa-link"></i></a>
+<span class="header-section-number">14.3</span> HTTP 경유 이미지 가져오기<a class="anchor" aria-label="anchor" href="#socket-images"><i class="fas fa-link"></i></a>
 </h2>
 <p>상기 예제에서는 파일에 새줄(newline)이 있는 일반 텍스트 파일을 가져왔다.
 그리고 나서, 프로그램을 실행해서 데이터를 단순히 화면에 복사했다. HTTP를
@@ -217,39 +218,39 @@ Who is already sick and pale with grief</code></pre>
 프로그램 실행 시에 화면에 데이터를 복사하는 대신에, 데이터를 문자열로
 누적하고, 다음과 같이 헤더를 잘라내고 나서 파일에 이미지 데이터를
 저장한다.</p>
-<div class="sourceCode" id="cb527"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb527-1"><a href="network.html#cb527-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> socket</span>
-<span id="cb527-2"><a href="network.html#cb527-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
-<span id="cb527-3"><a href="network.html#cb527-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb527-4"><a href="network.html#cb527-4" aria-hidden="true" tabindex="-1"></a>HOST <span class="op">=</span> <span class="st">'data.pr4e.org'</span></span>
-<span id="cb527-5"><a href="network.html#cb527-5" aria-hidden="true" tabindex="-1"></a>PORT <span class="op">=</span> <span class="dv">80</span></span>
-<span id="cb527-6"><a href="network.html#cb527-6" aria-hidden="true" tabindex="-1"></a>mysock <span class="op">=</span> socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span>
-<span id="cb527-7"><a href="network.html#cb527-7" aria-hidden="true" tabindex="-1"></a>mysock.<span class="ex">connect</span>((HOST, PORT))</span>
-<span id="cb527-8"><a href="network.html#cb527-8" aria-hidden="true" tabindex="-1"></a>mysock.sendall(<span class="st">b'GET http://data.pr4e.org/cover3.jpg HTTP/1.0</span><span class="ch">\r\n\r\n</span><span class="st">'</span>)</span>
-<span id="cb527-9"><a href="network.html#cb527-9" aria-hidden="true" tabindex="-1"></a>count <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb527-10"><a href="network.html#cb527-10" aria-hidden="true" tabindex="-1"></a>picture <span class="op">=</span> <span class="st">b""</span></span>
-<span id="cb527-11"><a href="network.html#cb527-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb527-12"><a href="network.html#cb527-12" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb527-13"><a href="network.html#cb527-13" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> mysock.recv(<span class="dv">5120</span>)</span>
-<span id="cb527-14"><a href="network.html#cb527-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(data) <span class="op">&lt;</span> <span class="dv">1</span>: <span class="cf">break</span></span>
-<span id="cb527-15"><a href="network.html#cb527-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">#time.sleep(0.25)</span></span>
-<span id="cb527-16"><a href="network.html#cb527-16" aria-hidden="true" tabindex="-1"></a>    count <span class="op">=</span> count <span class="op">+</span> <span class="bu">len</span>(data)</span>
-<span id="cb527-17"><a href="network.html#cb527-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="bu">len</span>(data), count)</span>
-<span id="cb527-18"><a href="network.html#cb527-18" aria-hidden="true" tabindex="-1"></a>    picture <span class="op">=</span> picture <span class="op">+</span> data</span>
-<span id="cb527-19"><a href="network.html#cb527-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb527-20"><a href="network.html#cb527-20" aria-hidden="true" tabindex="-1"></a>mysock.close()</span>
-<span id="cb527-21"><a href="network.html#cb527-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb527-22"><a href="network.html#cb527-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Look for the end of the header (2 CRLF)</span></span>
-<span id="cb527-23"><a href="network.html#cb527-23" aria-hidden="true" tabindex="-1"></a>pos <span class="op">=</span> picture.find(<span class="st">b"</span><span class="ch">\r\n\r\n</span><span class="st">"</span>)</span>
-<span id="cb527-24"><a href="network.html#cb527-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Header length'</span>, pos)</span>
-<span id="cb527-25"><a href="network.html#cb527-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(picture[:pos].decode())</span>
-<span id="cb527-26"><a href="network.html#cb527-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb527-27"><a href="network.html#cb527-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Skip past the header and save the picture data</span></span>
-<span id="cb527-28"><a href="network.html#cb527-28" aria-hidden="true" tabindex="-1"></a>picture <span class="op">=</span> picture[pos<span class="op">+</span><span class="dv">4</span>:]</span>
-<span id="cb527-29"><a href="network.html#cb527-29" aria-hidden="true" tabindex="-1"></a>fhand <span class="op">=</span> <span class="bu">open</span>(<span class="st">"stuff.jpg"</span>, <span class="st">"wb"</span>)</span>
-<span id="cb527-30"><a href="network.html#cb527-30" aria-hidden="true" tabindex="-1"></a>fhand.write(picture)</span>
-<span id="cb527-31"><a href="network.html#cb527-31" aria-hidden="true" tabindex="-1"></a>fhand.close()</span>
-<span id="cb527-32"><a href="network.html#cb527-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb527-33"><a href="network.html#cb527-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Code: http://www.py4e.com/code3/urljpeg.py</span></span></code></pre></div>
+<div class="sourceCode" id="cb570"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb570-1"><a href="network.html#cb570-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> socket</span>
+<span id="cb570-2"><a href="network.html#cb570-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb570-3"><a href="network.html#cb570-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb570-4"><a href="network.html#cb570-4" aria-hidden="true" tabindex="-1"></a>HOST <span class="op">=</span> <span class="st">'data.pr4e.org'</span></span>
+<span id="cb570-5"><a href="network.html#cb570-5" aria-hidden="true" tabindex="-1"></a>PORT <span class="op">=</span> <span class="dv">80</span></span>
+<span id="cb570-6"><a href="network.html#cb570-6" aria-hidden="true" tabindex="-1"></a>mysock <span class="op">=</span> socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span>
+<span id="cb570-7"><a href="network.html#cb570-7" aria-hidden="true" tabindex="-1"></a>mysock.<span class="ex">connect</span>((HOST, PORT))</span>
+<span id="cb570-8"><a href="network.html#cb570-8" aria-hidden="true" tabindex="-1"></a>mysock.sendall(<span class="st">b'GET http://data.pr4e.org/cover3.jpg HTTP/1.0</span><span class="ch">\r\n\r\n</span><span class="st">'</span>)</span>
+<span id="cb570-9"><a href="network.html#cb570-9" aria-hidden="true" tabindex="-1"></a>count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb570-10"><a href="network.html#cb570-10" aria-hidden="true" tabindex="-1"></a>picture <span class="op">=</span> <span class="st">b""</span></span>
+<span id="cb570-11"><a href="network.html#cb570-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb570-12"><a href="network.html#cb570-12" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb570-13"><a href="network.html#cb570-13" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> mysock.recv(<span class="dv">5120</span>)</span>
+<span id="cb570-14"><a href="network.html#cb570-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(data) <span class="op">&lt;</span> <span class="dv">1</span>: <span class="cf">break</span></span>
+<span id="cb570-15"><a href="network.html#cb570-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">#time.sleep(0.25)</span></span>
+<span id="cb570-16"><a href="network.html#cb570-16" aria-hidden="true" tabindex="-1"></a>    count <span class="op">=</span> count <span class="op">+</span> <span class="bu">len</span>(data)</span>
+<span id="cb570-17"><a href="network.html#cb570-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="bu">len</span>(data), count)</span>
+<span id="cb570-18"><a href="network.html#cb570-18" aria-hidden="true" tabindex="-1"></a>    picture <span class="op">=</span> picture <span class="op">+</span> data</span>
+<span id="cb570-19"><a href="network.html#cb570-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb570-20"><a href="network.html#cb570-20" aria-hidden="true" tabindex="-1"></a>mysock.close()</span>
+<span id="cb570-21"><a href="network.html#cb570-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb570-22"><a href="network.html#cb570-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Look for the end of the header (2 CRLF)</span></span>
+<span id="cb570-23"><a href="network.html#cb570-23" aria-hidden="true" tabindex="-1"></a>pos <span class="op">=</span> picture.find(<span class="st">b"</span><span class="ch">\r\n\r\n</span><span class="st">"</span>)</span>
+<span id="cb570-24"><a href="network.html#cb570-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Header length'</span>, pos)</span>
+<span id="cb570-25"><a href="network.html#cb570-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(picture[:pos].decode())</span>
+<span id="cb570-26"><a href="network.html#cb570-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb570-27"><a href="network.html#cb570-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Skip past the header and save the picture data</span></span>
+<span id="cb570-28"><a href="network.html#cb570-28" aria-hidden="true" tabindex="-1"></a>picture <span class="op">=</span> picture[pos<span class="op">+</span><span class="dv">4</span>:]</span>
+<span id="cb570-29"><a href="network.html#cb570-29" aria-hidden="true" tabindex="-1"></a>fhand <span class="op">=</span> <span class="bu">open</span>(<span class="st">"stuff.jpg"</span>, <span class="st">"wb"</span>)</span>
+<span id="cb570-30"><a href="network.html#cb570-30" aria-hidden="true" tabindex="-1"></a>fhand.write(picture)</span>
+<span id="cb570-31"><a href="network.html#cb570-31" aria-hidden="true" tabindex="-1"></a>fhand.close()</span>
+<span id="cb570-32"><a href="network.html#cb570-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb570-33"><a href="network.html#cb570-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Code: http://www.py4e.com/code3/urljpeg.py</span></span></code></pre></div>
 <p>프로그램을 실행하면, 다음과 같은 출력을 생성한다.</p>
 <pre><code>$ python urljpeg.py
 5120 5120
@@ -322,9 +323,9 @@ Content-Type: image/jpeg</code></pre>
 응용프로그램 혹은 수신하는 응용프로그램을 멈추게 하는 행위를 “흐름
 제어(flow control)”이라고 한다.</p>
 </div>
-<div id="httr" class="section level2" number="13.4">
+<div id="httr" class="section level2" number="14.4">
 <h2>
-<span class="header-section-number">13.4</span> <code>httr</code> 웹페이지 가져오기<a class="anchor" aria-label="anchor" href="#httr"><i class="fas fa-link"></i></a>
+<span class="header-section-number">14.4</span> <code>httr</code> 웹페이지 가져오기<a class="anchor" aria-label="anchor" href="#httr"><i class="fas fa-link"></i></a>
 </h2>
 <p>수작업으로 소켓 라이브러리를 사용하여 HTTP로 데이터를 주고 받을 수
 있지만, <code>httr</code> 패키지를 사용하여 R에서 동일한 작업을 수행하는
@@ -334,7 +335,7 @@ Content-Type: image/jpeg</code></pre>
 프로토콜과 헤더 관련 사항을 처리해 준다.</p>
 <p>웹에서 <code>romeo.txt</code> 파일을 읽도록 <code>urllib</code>를 사용하여 작성한 상응 코드는
 다음과 같다.</p>
-<div class="sourceCode" id="cb530"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb573"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://httr.r-lib.org/">httr</a></span><span class="op">)</span>
 
 <span class="va">fhand</span> <span class="op">&lt;-</span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/GET.html">GET</a></span><span class="op">(</span><span class="st">'http://www.py4inf.com/code/romeo.txt'</span><span class="op">)</span>
@@ -358,9 +359,9 @@ Content-Type: image/jpeg</code></pre>
 ## 3 the        3</code></pre>
 <p>다시 한번, 웹페이지를 열게 되면, 로컬 파일처럼 웹페이지를 읽을 수 있다.</p>
 </div>
-<div id="html-webscraping" class="section level2" number="13.5">
+<div id="html-webscraping" class="section level2" number="14.5">
 <h2>
-<span class="header-section-number">13.5</span> HTML 파싱과 웹 스크래핑<a class="anchor" aria-label="anchor" href="#html-webscraping"><i class="fas fa-link"></i></a>
+<span class="header-section-number">14.5</span> HTML 파싱과 웹 스크래핑<a class="anchor" aria-label="anchor" href="#html-webscraping"><i class="fas fa-link"></i></a>
 </h2>
 <p>R <code>httr</code> 패키지를 활용하는 일반적인 사례는 웹 <strong>스크래핑(scraping)</strong>이다.
 웹 스크래핑은 웹브라우저를 가장한 프로그램을 작성하는 것이다. 웹페이지를
@@ -373,9 +374,9 @@ Content-Type: image/jpeg</code></pre>
 사용하여 얼마나 중요한 페이지인지를 측정하고 검색결과에 페이지가 얼마나
 높은 순위로 노출되어야 하는지 평가한다.</p>
 </div>
-<div id="webscarping-regex" class="section level2" number="13.6">
+<div id="webscarping-regex" class="section level2" number="14.6">
 <h2>
-<span class="header-section-number">13.6</span> 정규 표현식 사용 HTML 파싱하기<a class="anchor" aria-label="anchor" href="#webscarping-regex"><i class="fas fa-link"></i></a>
+<span class="header-section-number">14.6</span> 정규 표현식 사용 HTML 파싱하기<a class="anchor" aria-label="anchor" href="#webscarping-regex"><i class="fas fa-link"></i></a>
 </h2>
 <p>HTML을 파싱하는 간단한 방식은 정규 표현식을 사용하여 특정한 패턴과
 매칭되는 부속 문자열을 반복적으로 찾아 추출하는 것이다.</p>
@@ -396,7 +397,7 @@ Content-Type: image/jpeg</code></pre>
 크게</em> 매칭되는 문자열을 찾는 방식이다.</p>
 <p>추출하고자 하는 문자열이 매칭된 문자열의 어느 부분인지를 표기하기 위해서
 정규 표현식에 괄호를 추가하여 다음과 같이 프로그램을 작성한다.</p>
-<div class="sourceCode" id="cb535"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb578"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://httr.r-lib.org/">httr</a></span><span class="op">)</span>
 
@@ -411,7 +412,7 @@ Content-Type: image/jpeg</code></pre>
 리스트를 추출하여 큰 따옴표 사이에 링크 텍스트만을 반환한다.</p>
 <p>쉘에서 <code>Rscript.exe</code> 프로그램으로 실행하기 위해 다음과 같이 사용자 입력을 받는 부분을
 다음과 같이 수정한다.</p>
-<div class="sourceCode" id="cb536"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb579"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># urlregex.R 프로그램 코드</span>
 
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://httr.r-lib.org/">httr</a></span><span class="op">)</span>
@@ -476,9 +477,9 @@ In stri_extract_all_regex(string, pattern, simplify = simplify,  :
 유효한 링크를 놓치거나 잘못된 데이터만 찾고 끝날 수 있다.</p>
 <p>이 문제는 강건한 HTML 파싱 라이브러리를 사용해서 해결될 수 있다.</p>
 </div>
-<div id="rvest-scraping" class="section level2" number="13.7">
+<div id="rvest-scraping" class="section level2" number="14.7">
 <h2>
-<span class="header-section-number">13.7</span> `rvest`` 사용한 HTML 파싱<a class="anchor" aria-label="anchor" href="#rvest-scraping"><i class="fas fa-link"></i></a>
+<span class="header-section-number">14.7</span> `rvest`` 사용한 HTML 파싱<a class="anchor" aria-label="anchor" href="#rvest-scraping"><i class="fas fa-link"></i></a>
 </h2>
 <p>HTML을 파싱하여 페이지에서 데이터를 추출할 수 있는 R 패키지는
 많이 있다. 패키지 각각은 강점과 약점이 있어서 사용자 필요에 따라
@@ -492,7 +493,7 @@ In stri_extract_all_regex(string, pattern, simplify = simplify,  :
 추출할 수 있게 한다.</p>
 <p><code>httr</code> 패키지를 사용하여 페이지를 읽어들이고, <code>rvest</code>를 사용해서 앵커
 태그 (<code>a</code>)로부터 <code>href</code> 속성을 추출한다.</p>
-<div class="sourceCode" id="cb538"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb581"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://httr.r-lib.org/">httr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rvest.tidyverse.org/">rvest</a></span><span class="op">)</span>
 
@@ -509,7 +510,7 @@ BeautifulSoup 파서에 전달하고, 그리고 나서 모든 앵커 태그를 �
 태그별로 <code>href</code> 속성을 출력한다.</p>
 <p>쉘에서 <code>Rscript.exe</code> 프로그램으로 실행하기 위해 다음과 같이 사용자 입력을 받는 부분을
 다음과 같이 수정한다.</p>
-<div class="sourceCode" id="cb539"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb582"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## urllinks.R 스크립트</span>
 
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://httr.r-lib.org/">httr</a></span><span class="op">)</span>
@@ -573,7 +574,7 @@ Enter - http://www.py4inf.com/book.htm
 [25] "http://allendowney.com/"</code></pre>
 <p>`rvest``을 사용하여 다음과 같이 각 태그별로 다양한 부분을 뽑아낼 수
 있다.</p>
-<div class="sourceCode" id="cb541"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb584"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://httr.r-lib.org/">httr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rvest.tidyverse.org/">rvest</a></span><span class="op">)</span>
 
@@ -614,9 +615,9 @@ Content: Second Page</code></pre>
 좀더 자세한 사항은 <a href="https://rvest.tidyverse.org/">https://rvest.tidyverse.org/</a> 에서 문서와 예제를
 살펴보세요.</p>
 </div>
-<div id="GET-binary" class="section level2" number="13.8">
+<div id="GET-binary" class="section level2" number="14.8">
 <h2>
-<span class="header-section-number">13.8</span> 바이너리 파일 읽기<a class="anchor" aria-label="anchor" href="#GET-binary"><i class="fas fa-link"></i></a>
+<span class="header-section-number">14.8</span> 바이너리 파일 읽기<a class="anchor" aria-label="anchor" href="#GET-binary"><i class="fas fa-link"></i></a>
 </h2>
 <p>이미지나 비디오 같은 텍스트가 아닌 (혹은 바이너리) 파일을 가져올 때가
 종종 있다. 일반적으로 이런 파일 데이터를 출력하는 것은 유용하지 않다.
@@ -625,7 +626,7 @@ Content: Second Page</code></pre>
 <p><code><a href="https://rdrr.io/r/utils/download.file.html">download.file()</a></code> 함수 내부에 인터넷에 공개된 이미지 <code>url</code>을 적고,
 <code>destfile</code> 에는 로컬파일에 저장할 파일명을 적어준다.
 중요한 것은 텍스트가 아니라 바이너리 이미지라 <code>mode = "wb"</code>를 지정한다.</p>
-<div class="sourceCode" id="cb543"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb586"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span><span class="op">(</span>url <span class="op">=</span> <span class="st">"http://www.py4inf.com/cover.jpg"</span>, 
               destfile <span class="op">=</span> <span class="st">"assets/images/fox.jpeg"</span>, mode<span class="op">=</span><span class="st">"wb"</span><span class="op">)</span></code></pre></div>
 <p>작성된 프로그램은 네트워크로 모든 데이터를 한번에 읽어서 컴퓨터
@@ -639,9 +640,9 @@ Content: Second Page</code></pre>
 수행하는 명령어가 운영체제 자체에 내장되어 있다.</p>
 <pre><code>    curl -O http://www.py4inf.com/cover.jpg</code></pre>
 </div>
-<div id="network-terminology" class="section level2" number="13.9">
+<div id="network-terminology" class="section level2" number="14.9">
 <h2>
-<span class="header-section-number">13.9</span> 용어정의<a class="anchor" aria-label="anchor" href="#network-terminology"><i class="fas fa-link"></i></a>
+<span class="header-section-number">14.9</span> 용어정의<a class="anchor" aria-label="anchor" href="#network-terminology"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>
@@ -670,9 +671,9 @@ Content: Second Page</code></pre>
 웹페이지를 가져오기 위해서 사용되는 검색엔진 행동.</li>
 </ul>
 </div>
-<div id="network-ex" class="section level2" number="13.10">
+<div id="network-ex" class="section level2" number="14.10">
 <h2>
-<span class="header-section-number">13.10</span> 연습문제<a class="anchor" aria-label="anchor" href="#network-ex"><i class="fas fa-link"></i></a>
+<span class="header-section-number">14.10</span> 연습문제<a class="anchor" aria-label="anchor" href="#network-ex"><i class="fas fa-link"></i></a>
 </h2>
 <ol style="list-style-type: decimal">
 <li><p>소켓 프로그램 <code>socket1.py</code>을 변경하여 임의 웹페이지를 읽을 수 있도록
@@ -699,22 +700,22 @@ URL을 사용자가 입력하도록 바꾸세요. <code>split(’/’)</code>을
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="regex.html"><span class="header-section-number">12</span> 정규 표현식</a></div>
-<div class="next"><a href="r-webservice.html"><span class="header-section-number">14</span> 웹서비스 사용하기</a></div>
+<div class="prev"><a href="regex.html"><span class="header-section-number">13</span> 정규 표현식</a></div>
+<div class="next"><a href="r-webservice.html"><span class="header-section-number">15</span> 웹서비스 사용하기</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#network"><span class="header-section-number">13</span> 네트워크 프로그램</a></li>
-<li><a class="nav-link" href="#network-http"><span class="header-section-number">13.1</span> 하이퍼 텍스트 전송 프로토콜</a></li>
-<li><a class="nav-link" href="#network-web-browser"><span class="header-section-number">13.2</span> 가장 간단한 웹 브라우져</a></li>
-<li><a class="nav-link" href="#socket-images"><span class="header-section-number">13.3</span> HTTP 경유 이미지 가져오기</a></li>
-<li><a class="nav-link" href="#httr"><span class="header-section-number">13.4</span> httr 웹페이지 가져오기</a></li>
-<li><a class="nav-link" href="#html-webscraping"><span class="header-section-number">13.5</span> HTML 파싱과 웹 스크래핑</a></li>
-<li><a class="nav-link" href="#webscarping-regex"><span class="header-section-number">13.6</span> 정규 표현식 사용 HTML 파싱하기</a></li>
-<li><a class="nav-link" href="#rvest-scraping"><span class="header-section-number">13.7</span> `rvest`` 사용한 HTML 파싱</a></li>
-<li><a class="nav-link" href="#GET-binary"><span class="header-section-number">13.8</span> 바이너리 파일 읽기</a></li>
-<li><a class="nav-link" href="#network-terminology"><span class="header-section-number">13.9</span> 용어정의</a></li>
-<li><a class="nav-link" href="#network-ex"><span class="header-section-number">13.10</span> 연습문제</a></li>
+<li><a class="nav-link" href="#network"><span class="header-section-number">14</span> 네트워크 프로그램</a></li>
+<li><a class="nav-link" href="#network-http"><span class="header-section-number">14.1</span> 하이퍼 텍스트 전송 프로토콜</a></li>
+<li><a class="nav-link" href="#network-web-browser"><span class="header-section-number">14.2</span> 가장 간단한 웹 브라우져</a></li>
+<li><a class="nav-link" href="#socket-images"><span class="header-section-number">14.3</span> HTTP 경유 이미지 가져오기</a></li>
+<li><a class="nav-link" href="#httr"><span class="header-section-number">14.4</span> httr 웹페이지 가져오기</a></li>
+<li><a class="nav-link" href="#html-webscraping"><span class="header-section-number">14.5</span> HTML 파싱과 웹 스크래핑</a></li>
+<li><a class="nav-link" href="#webscarping-regex"><span class="header-section-number">14.6</span> 정규 표현식 사용 HTML 파싱하기</a></li>
+<li><a class="nav-link" href="#rvest-scraping"><span class="header-section-number">14.7</span> `rvest`` 사용한 HTML 파싱</a></li>
+<li><a class="nav-link" href="#GET-binary"><span class="header-section-number">14.8</span> 바이너리 파일 읽기</a></li>
+<li><a class="nav-link" href="#network-terminology"><span class="header-section-number">14.9</span> 용어정의</a></li>
+<li><a class="nav-link" href="#network-ex"><span class="header-section-number">14.10</span> 연습문제</a></li>
 </ul>
 
       <div class="book-extra">
@@ -731,7 +732,7 @@ URL을 사용자가 입력하도록 바꾸세요. <code>split(’/’)</code>을
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>데이터 과학 프로그래밍</strong>" was written by 한국 알(R) 사용자회. It was last built on 2022-05-19.</p>
+    <p>"<strong>데이터 과학 프로그래밍</strong>" was written by 한국 알(R) 사용자회. It was last built on 2022-05-20.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

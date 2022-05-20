@@ -4,16 +4,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>15 . 데이터베이스와 SQL | 데이터 과학 프로그래밍</title>
+<title>16 . 데이터베이스와 SQL | 데이터 과학 프로그래밍</title>
 <meta name="author" content="한국 알(R) 사용자회">
-<meta name="description" content="15.1 데이터베이스가 뭔가요? 데이터베이스(database)는 데이터를 저장하기 위한 목적으로 조직된 파일이다. 대부분의 데이터베이스는 키(key)와 값(value)를 매핑한다는 의미에서 딕셔너리처럼 조직되었다. 가장 큰 차이점은 데이터베이스는 디스크(혹은 다른 영구 저장소)에 위치하고 있어서, 프로그램 종료 후에도 정보가 계속 저장된다....">
+<meta name="description" content="16.1 데이터베이스가 뭔가요? 데이터베이스(database)는 데이터를 저장하기 위한 목적으로 조직된 파일이다. 대부분의 데이터베이스는 키(key)와 값(value)를 매핑한다는 의미에서 딕셔너리처럼 조직되었다. 가장 큰 차이점은 데이터베이스는 디스크(혹은 다른 영구 저장소)에 위치하고 있어서, 프로그램 종료 후에도 정보가 계속 저장된다....">
 <meta name="generator" content="bookdown 0.26 with bs4_book()">
-<meta property="og:title" content="15 . 데이터베이스와 SQL | 데이터 과학 프로그래밍">
+<meta property="og:title" content="16 . 데이터베이스와 SQL | 데이터 과학 프로그래밍">
 <meta property="og:type" content="book">
-<meta property="og:description" content="15.1 데이터베이스가 뭔가요? 데이터베이스(database)는 데이터를 저장하기 위한 목적으로 조직된 파일이다. 대부분의 데이터베이스는 키(key)와 값(value)를 매핑한다는 의미에서 딕셔너리처럼 조직되었다. 가장 큰 차이점은 데이터베이스는 디스크(혹은 다른 영구 저장소)에 위치하고 있어서, 프로그램 종료 후에도 정보가 계속 저장된다....">
+<meta property="og:description" content="16.1 데이터베이스가 뭔가요? 데이터베이스(database)는 데이터를 저장하기 위한 목적으로 조직된 파일이다. 대부분의 데이터베이스는 키(key)와 값(value)를 매핑한다는 의미에서 딕셔너리처럼 조직되었다. 가장 큰 차이점은 데이터베이스는 디스크(혹은 다른 영구 저장소)에 위치하고 있어서, 프로그램 종료 후에도 정보가 계속 저장된다....">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="15 . 데이터베이스와 SQL | 데이터 과학 프로그래밍">
-<meta name="twitter:description" content="15.1 데이터베이스가 뭔가요? 데이터베이스(database)는 데이터를 저장하기 위한 목적으로 조직된 파일이다. 대부분의 데이터베이스는 키(key)와 값(value)를 매핑한다는 의미에서 딕셔너리처럼 조직되었다. 가장 큰 차이점은 데이터베이스는 디스크(혹은 다른 영구 저장소)에 위치하고 있어서, 프로그램 종료 후에도 정보가 계속 저장된다....">
+<meta name="twitter:title" content="16 . 데이터베이스와 SQL | 데이터 과학 프로그래밍">
+<meta name="twitter:description" content="16.1 데이터베이스가 뭔가요? 데이터베이스(database)는 데이터를 저장하기 위한 목적으로 조직된 파일이다. 대부분의 데이터베이스는 키(key)와 값(value)를 매핑한다는 의미에서 딕셔너리처럼 조직되었다. 가장 큰 차이점은 데이터베이스는 디스크(혹은 다른 영구 저장소)에 위치하고 있어서, 프로그램 종료 후에도 정보가 계속 저장된다....">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
@@ -79,12 +79,13 @@
 <li><a class="" href="r-list.html"><span class="header-section-number">9</span> 리스트 (List)</a></li>
 <li><a class="" href="named-list.html"><span class="header-section-number">10</span> 딕셔너리</a></li>
 <li><a class="" href="r-tuple.html"><span class="header-section-number">11</span> 튜플(Tuples)</a></li>
+<li><a class="" href="dataframe.html"><span class="header-section-number">12</span> 데이터프레임</a></li>
 <li class="book-part">분야별 도구</li>
-<li><a class="" href="regex.html"><span class="header-section-number">12</span> 정규 표현식</a></li>
-<li><a class="" href="network.html"><span class="header-section-number">13</span> 네트워크 프로그램</a></li>
-<li><a class="" href="r-webservice.html"><span class="header-section-number">14</span> 웹서비스 사용하기</a></li>
-<li><a class="active" href="r-db.html"><span class="header-section-number">15</span> 데이터베이스와 SQL</a></li>
-<li><a class="" href="r-automation.html"><span class="header-section-number">16</span> 작업 자동화</a></li>
+<li><a class="" href="regex.html"><span class="header-section-number">13</span> 정규 표현식</a></li>
+<li><a class="" href="network.html"><span class="header-section-number">14</span> 네트워크 프로그램</a></li>
+<li><a class="" href="r-webservice.html"><span class="header-section-number">15</span> 웹서비스 사용하기</a></li>
+<li><a class="active" href="r-db.html"><span class="header-section-number">16</span> 데이터베이스와 SQL</a></li>
+<li><a class="" href="r-automation.html"><span class="header-section-number">17</span> 작업 자동화</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -93,13 +94,13 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="r-db" class="section level1" number="15">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="r-db" class="section level1" number="16">
 <h1>
-<span class="header-section-number">15 . </span> 데이터베이스와 SQL<a class="anchor" aria-label="anchor" href="#r-db"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16 . </span> 데이터베이스와 SQL<a class="anchor" aria-label="anchor" href="#r-db"><i class="fas fa-link"></i></a>
 </h1>
-<div id="r-db-what-it-is" class="section level2" number="15.1">
+<div id="r-db-what-it-is" class="section level2" number="16.1">
 <h2>
-<span class="header-section-number">15.1</span> 데이터베이스가 뭔가요?<a class="anchor" aria-label="anchor" href="#r-db-what-it-is"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.1</span> 데이터베이스가 뭔가요?<a class="anchor" aria-label="anchor" href="#r-db-what-it-is"><i class="fas fa-link"></i></a>
 </h2>
 <p><strong>데이터베이스(database)</strong>는 데이터를 저장하기 위한 목적으로 조직된 파일이다.
 대부분의 데이터베이스는 <strong>키(key)</strong>와 <strong>값(value)</strong>를 매핑한다는 의미에서 딕셔너리처럼 조직되었다.
@@ -119,9 +120,9 @@ Oracle, MySQL, Microsoft SQL Server, PostgreSQL, SQLite이 여기에 포함된�
 </ul>
 <p>이번 장에서 기술하는 트위터 스파이더링 응용프로그램처럼 정보과학(Informatics)에서 마주치는 몇몇 데이터 조작 문제에 SQLite가 적합하다.</p>
 </div>
-<div id="r-db-concept" class="section level2" number="15.2">
+<div id="r-db-concept" class="section level2" number="16.2">
 <h2>
-<span class="header-section-number">15.2</span> 데이터베이스 개념<a class="anchor" aria-label="anchor" href="#r-db-concept"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.2</span> 데이터베이스 개념<a class="anchor" aria-label="anchor" href="#r-db-concept"><i class="fas fa-link"></i></a>
 </h2>
 <p>처음 데이터베이스를 볼때 드는 생각은 마치 엑셀같은 다중 시트를 지닌 스프레드쉬트(spreadsheet)같다는 것이다.
 데이터베이스에서 주요 데이터 구조물은 테이블(tables), 행(rows), and 열(columns)이 된다.</p>
@@ -132,9 +133,9 @@ Oracle, MySQL, Microsoft SQL Server, PostgreSQL, SQLite이 여기에 포함된�
 <strong>관계(relation)</strong>, <strong>튜플(tuple)</strong>, <strong>속성(attribute)</strong> 각각 형식적으로 매칭된다.
 이번 장에서는 조금 덜 형식 용어를 사용한다.</p>
 </div>
-<div id="r-db-firefox" class="section level2" number="15.3">
+<div id="r-db-firefox" class="section level2" number="16.3">
 <h2>
-<span class="header-section-number">15.3</span> 파이어폭스 SQLite 관리자<a class="anchor" aria-label="anchor" href="#r-db-firefox"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.3</span> 파이어폭스 SQLite 관리자<a class="anchor" aria-label="anchor" href="#r-db-firefox"><i class="fas fa-link"></i></a>
 </h2>
 <p>SQLite 데이터베이스 파일에 있는 데이터를 다루기 위해서 이번장에서 주로 R 사용에 집중을 하지만,
 다음 웹사이트에서 무료로 이용 가능한 SQLite 데이터베이스 매니저(SQLite Database Manager)로 불리는 <strong>파이어폭스 애드온(add-on)</strong>을 사용해서 좀더 쉽게 많은 작업을 수행할 수 있다.
@@ -151,11 +152,11 @@ Oracle, MySQL, Microsoft SQL Server, PostgreSQL, SQLite이 여기에 포함된�
 간단한 작업은 데이터베이스 매니저를 통해서 수행하고,
 좀더 복잡한 작업은 R로 수행하는 것이 더 편리하다.</p>
 </div>
-<div id="r-db-create-table" class="section level2" number="15.4">
+<div id="r-db-create-table" class="section level2" number="16.4">
 <h2>
-<span class="header-section-number">15.4</span> 데이터베이스 테이블 생성<a class="anchor" aria-label="anchor" href="#r-db-create-table"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.4</span> 데이터베이스 테이블 생성<a class="anchor" aria-label="anchor" href="#r-db-create-table"><i class="fas fa-link"></i></a>
 </h2>
-<p>데이터베이스는 R 리스트 혹은 딕셔너리보다 좀더 명확히 정의된 구조를 요구한다. <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;실질적으로 SQLite는 열에 저장되는 데이터 형식에 대해서 좀더 많은 유연성을 부여하지만, 이번 장에서는 데이터 형식을 엄격하게 적용해서 MySQL 같은 다른 관계형 데이터베이스 시스템에도 동일한 개념이 적용되게 한다.&lt;/p&gt;"><sup>10</sup></a></p>
+<p>데이터베이스는 R 리스트 혹은 딕셔너리보다 좀더 명확히 정의된 구조를 요구한다. <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;실질적으로 SQLite는 열에 저장되는 데이터 형식에 대해서 좀더 많은 유연성을 부여하지만, 이번 장에서는 데이터 형식을 엄격하게 적용해서 MySQL 같은 다른 관계형 데이터베이스 시스템에도 동일한 개념이 적용되게 한다.&lt;/p&gt;"><sup>14</sup></a></p>
 <p>데이터베이스에 테이블(table)을 생성할 때, 열(column)의 명칭과 각 열(column)에 저장하는 테이터 형식을 사전에 정의해야 한다.
 데이터베이스 소프트웨어가 각 열의 데이터 형식을 인식하게 되면, 데이터 형식에 따라 데이터를 저장하고 찾아오는 방법을 가장 효율적인 방식을 선택할 수 있다.</p>
 <p>다음 url에서 SQLite에서 지원되는 다양한 데이터 형식을 살펴볼 수 있다.</p>
@@ -164,7 +165,7 @@ Oracle, MySQL, Microsoft SQL Server, PostgreSQL, SQLite이 여기에 포함된�
 </ul>
 <p>처음에는 데이터 구조를 사전에 정의하는 것이 불편하게 보이지만, 대용량의 데이터가 데이터베이스에 포함되더라도 데이터의 빠른 접근을 보장하는 잇점이 있다.</p>
 <p>데이터베이스 파일과 데이터베이스에 두개의 열을 가진 <code>Tracks</code> 이름의 테이블을 생성하는 코드는 다음과 같다.</p>
-<div class="sourceCode" id="cb559"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb602"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rsqlite.r-dbi.org">RSQLite</a></span><span class="op">)</span>
 
 <span class="va">music_db</span>  <span class="op">&lt;-</span> <span class="st">"data/music.sqlite"</span>
@@ -207,7 +208,7 @@ Oracle, MySQL, Microsoft SQL Server, PostgreSQL, SQLite이 여기에 포함된�
 <p>SQL <code>INSERT</code> 명령어는 어느 테이블을 사용할지 특정한다.
 그리고 나서 <code>(title, plays)</code> 포함할 필드 목록과 테이블 새로운 행에 저장될 VALUES 나열해서 신규 행을 정의를 마친다.
 실제 값이 <code>execute()</code> 호출의 두번째 매개변수로 튜플 <code>('My Way', 15)</code> 로 넘겨는 것을 표기하기 위해서 값을 물음표 <code>(?, ?)</code>로 명기한다.</p>
-<div class="sourceCode" id="cb562"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb605"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rsqlite.r-dbi.org">RSQLite</a></span><span class="op">)</span>
 
 <span class="va">music_db</span>  <span class="op">&lt;-</span> <span class="st">"data/music.sqlite"</span>
@@ -229,10 +230,10 @@ Oracle, MySQL, Microsoft SQL Server, PostgreSQL, SQLite이 여기에 포함된�
 그리고 나서, <code>SELECT</code> 명령어를 사용하여 테이블에 방금 전에 삽입한 행을 불러왔다.
 <code>SELECT</code> 명령어에서 데이터를 어느 열<code>(title, plays)</code>에서, 어느 테이블<code>Tracks</code>에서
 가져올지 명세한다. 프로그램 실행결과는 다음과 같다.</p>
-<div class="sourceCode" id="cb563"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb563-1"><a href="r-db.html#cb563-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">dbGetQuery</span>(conn, <span class="st">'SELECT title, plays FROM Tracks'</span>)</span>
-<span id="cb563-2"><a href="r-db.html#cb563-2" aria-hidden="true" tabindex="-1"></a>          title plays</span>
-<span id="cb563-3"><a href="r-db.html#cb563-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> Thunderstruck    <span class="dv">20</span></span>
-<span id="cb563-4"><a href="r-db.html#cb563-4" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>        My Way    <span class="dv">15</span></span></code></pre></div>
+<div class="sourceCode" id="cb606"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb606-1"><a href="r-db.html#cb606-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">dbGetQuery</span>(conn, <span class="st">'SELECT title, plays FROM Tracks'</span>)</span>
+<span id="cb606-2"><a href="r-db.html#cb606-2" aria-hidden="true" tabindex="-1"></a>          title plays</span>
+<span id="cb606-3"><a href="r-db.html#cb606-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> Thunderstruck    <span class="dv">20</span></span>
+<span id="cb606-4"><a href="r-db.html#cb606-4" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>        My Way    <span class="dv">15</span></span></code></pre></div>
 <p>프로그램 마지막에 SQL 명령어를 실행 사용해서 방금전에 생성한 행을
 모두 삭제(<code>DELETE</code>)했기 때문에 프로그램을 반복해서 실행할 수 있다.
 삭제(<code>DELETE</code>) 명령어는 <code>WHERE</code> 문을 사용하여 선택 조건을 표현할 수 있다.
@@ -241,9 +242,9 @@ Oracle, MySQL, Microsoft SQL Server, PostgreSQL, SQLite이 여기에 포함된�
 따라서 프로그램을 반복적으로 실행할 수 있다.
 삭제(DELETE)를 실행한 후에 데이터베이스에서 데이터를 완전히 제거했다.</p>
 </div>
-<div id="r-db-sql" class="section level2" number="15.5">
+<div id="r-db-sql" class="section level2" number="16.5">
 <h2>
-<span class="header-section-number">15.5</span> SQL 요약<a class="anchor" aria-label="anchor" href="#r-db-sql"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.5</span> SQL 요약<a class="anchor" aria-label="anchor" href="#r-db-sql"><i class="fas fa-link"></i></a>
 </h2>
 <p>지금까지, R 예제를 통해서 SQL(Structured Query Language)을 사용했고,
 SQL 명령어에 대한 기본을 다루었다.
@@ -283,9 +284,9 @@ WHERE에서 인정되는 다른 논리 연산자는
 <p>네가지 기본 SQL 명령문(<strong>INSERT</strong>, <strong>SELECT</strong>, <strong>UPDATE</strong>, <strong>DELETE</strong>)은
 데이터를 생성하고 유지 관리하는데 필요한 기본적인 4가지 작업을 가능케 한다.</p>
 </div>
-<div id="r-datamodeling-basics" class="section level2" number="15.6">
+<div id="r-datamodeling-basics" class="section level2" number="16.6">
 <h2>
-<span class="header-section-number">15.6</span> 데이터 모델링 기초<a class="anchor" aria-label="anchor" href="#r-datamodeling-basics"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.6</span> 데이터 모델링 기초<a class="anchor" aria-label="anchor" href="#r-datamodeling-basics"><i class="fas fa-link"></i></a>
 </h2>
 <p>관계형 데이터베이스의 진정한 힘은 다중 테이블과 테이블 사이의 관계를
 생성할 때 생긴다. 응용프로그램 데이터를 쪼개서 다중 테이블과 두 테이블
@@ -351,9 +352,9 @@ SQLite에 <code>name</code>에 동일한 값을 가진 두 행을 삽입하지 �
 <div class="figure">
 <img src="assets/images/twitter.png" style="width:100.0%" alt=""><p class="caption">트위터 관계 데이터베이스 모델링</p>
 </div>
-<div id="db-constraints" class="section level3" number="15.6.1">
+<div id="db-constraints" class="section level3" number="16.6.1">
 <h3>
-<span class="header-section-number">15.6.1</span> 테이블 제약사항<a class="anchor" aria-label="anchor" href="#db-constraints"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.6.1</span> 테이블 제약사항<a class="anchor" aria-label="anchor" href="#db-constraints"><i class="fas fa-link"></i></a>
 </h3>
 <p>테이블 구조를 설계할 때, 데이터베이스 시스템에 몇 가지 규칙을 설정할 수
 있다. 이러한 규칙은 실수를 방지하고 잘못된 데이터가 테이블에 들어가는
@@ -378,9 +379,9 @@ dbSendQuery( conn, 'CREATE TABLE IF NOT EXISTS Follows (from_id INTEGER, to_id I
 <code>INSERT</code> 시도를 무시하도록 데이터베이스에 지시한다.</p>
 </div>
 </div>
-<div id="db-three-keys" class="section level2" number="15.7">
+<div id="db-three-keys" class="section level2" number="16.7">
 <h2>
-<span class="header-section-number">15.7</span> 세 종류 키<a class="anchor" aria-label="anchor" href="#db-three-keys"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.7</span> 세 종류 키<a class="anchor" aria-label="anchor" href="#db-three-keys"><i class="fas fa-link"></i></a>
 </h2>
 <p>지금까지 데이터를 다중 연결된 테이블에 넣고 <strong>키(keys)</strong>를 사용하여 행을
 연결하는 방식으로 데이터 모델을 생성했는데, 키와 관련된 몇몇 용어를
@@ -408,19 +409,19 @@ dbSendQuery( conn, 'CREATE TABLE IF NOT EXISTS Follows (from_id INTEGER, to_id I
 <p>주키 <code>id</code>필드명을 호출하고, 항상 외부키에 임의 필드명에 접미사로 <code>_id</code>
 붙이는 명명규칙을 사용한다.</p>
 </div>
-<div id="dvd-rental" class="section level2" number="15.8">
+<div id="dvd-rental" class="section level2" number="16.8">
 <h2>
-<span class="header-section-number">15.8</span> DVD 대여 데이터베이스<a class="anchor" aria-label="anchor" href="#dvd-rental"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.8</span> DVD 대여 데이터베이스<a class="anchor" aria-label="anchor" href="#dvd-rental"><i class="fas fa-link"></i></a>
 </h2>
-<div id="about-postgreSQL" class="section level3" number="15.8.1">
+<div id="about-postgreSQL" class="section level3" number="16.8.1">
 <h3>
-<span class="header-section-number">15.8.1</span> PostgreSQL <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://ko.wikipedia.org/wiki/PostgreSQL"&gt;위키백과, “PostgreSQL”&lt;/a&gt;&lt;/p&gt;'><sup>11</sup></a> <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://d2.naver.com/helloworld/227936"&gt;NAVER D2 한눈에 살펴보는 PostgreSQL&lt;/a&gt;&lt;/p&gt;'><sup>12</sup></a><a class="anchor" aria-label="anchor" href="#about-postgreSQL"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.8.1</span> PostgreSQL <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://ko.wikipedia.org/wiki/PostgreSQL"&gt;위키백과, “PostgreSQL”&lt;/a&gt;&lt;/p&gt;'><sup>15</sup></a> <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://d2.naver.com/helloworld/227936"&gt;NAVER D2 한눈에 살펴보는 PostgreSQL&lt;/a&gt;&lt;/p&gt;'><sup>16</sup></a><a class="anchor" aria-label="anchor" href="#about-postgreSQL"><i class="fas fa-link"></i></a>
 </h3>
 <p>PostgreSQL은 확장 가능성 및 표준 준수를 강조하는 객체-관계형 데이터베이스 관리 시스템(ORDBMS)의 하나로 BSD 라이선스로 배포되며 오픈소스 개발자 및 관련 회사들이 개발에 참여하고 있다. 소규모의 단일 머신 애플리케이션에서부터 수많은 동시 접속 사용자가 있는 대형의 인터넷 애플리케이션(또는 데이터 웨어하우스용)에 이르기까지 여러 부하를 관리할 수 있으며 macOS 서버의 경우 PostgreSQL은 기본 데이터베이스로 상용 오라클 데이터베이스를 대체하는 오픈소스 데이터베이스로 알려져 있다.</p>
 </div>
-<div id="install-postgreSQL" class="section level3" number="15.8.2">
+<div id="install-postgreSQL" class="section level3" number="16.8.2">
 <h3>
-<span class="header-section-number">15.8.2</span> PostgreSQL 설치 <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="http://www.postgresqltutorial.com/install-postgresql/"&gt;Install PostgreSQL&lt;/a&gt;&lt;/p&gt;'><sup>13</sup></a><a class="anchor" aria-label="anchor" href="#install-postgreSQL"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.8.2</span> PostgreSQL 설치 <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="http://www.postgresqltutorial.com/install-postgresql/"&gt;Install PostgreSQL&lt;/a&gt;&lt;/p&gt;'><sup>17</sup></a><a class="anchor" aria-label="anchor" href="#install-postgreSQL"><i class="fas fa-link"></i></a>
 </h3>
 <p><a href="https://www.postgresql.org/">PostgreSQL: The World’s Most Advanced Open Source Relational Database</a> 웹사이트에서
 PostgreSQL <a href="https://www.postgresql.org/download/windows/">다운로드</a> 한다. 윈도우에 설치하는 경우 다음을 참고한다. 설치과정에서 나중에 도움이 될만한 정보는 다음과 같다.</p>
@@ -443,24 +444,24 @@ PostgreSQL <a href="https://www.postgresql.org/download/windows/">다운로드</
 <img src="assets/images/postgreSQL-helloworld.png" style="width:100.0%" alt=""><p class="caption">postgreSQL 헬로월드</p>
 </div>
 </div>
-<div id="install-dvd-postgreSQL" class="section level3" number="15.8.3">
+<div id="install-dvd-postgreSQL" class="section level3" number="16.8.3">
 <h3>
-<span class="header-section-number">15.8.3</span> 예제 데이터베이스 - <code>pagila</code> <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="http://www.postgresqltutorial.com/postgresql-sample-database/"&gt;PostgreSQL Sample Database&lt;/a&gt;&lt;/p&gt;'><sup>14</sup></a><a class="anchor" aria-label="anchor" href="#install-dvd-postgreSQL"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.8.3</span> 예제 데이터베이스 - <code>pagila</code> <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="http://www.postgresqltutorial.com/postgresql-sample-database/"&gt;PostgreSQL Sample Database&lt;/a&gt;&lt;/p&gt;'><sup>18</sup></a><a class="anchor" aria-label="anchor" href="#install-dvd-postgreSQL"><i class="fas fa-link"></i></a>
 </h3>
 <p><a href="https://github.com/devrimgunduz/pagila">PostgreSQL Sample Database</a>를 Github에서 구해서 설치하거나, <a href="http://www.postgresqltutorial.com/postgresql-sample-database/">PostgreSQL Sample Database</a>, <a href="http://www.postgresqltutorial.com/load-postgresql-sample-database/">Load PostgreSQL Sample Database</a>을 참조하여 DVD 대여 데이터베이스를 설치한다.</p>
 <ol style="list-style-type: decimal">
 <li>
 <code>SQL Shell (psql)</code> 쉘을 실행하여 <code>dvd</code> 데이터베이스를 생성한다.</li>
 </ol>
-<div class="sourceCode" id="cb577"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb577-1"><a href="r-db.html#cb577-1" aria-hidden="true" tabindex="-1"></a>Database [postgres]<span class="sc">:</span></span>
-<span id="cb577-2"><a href="r-db.html#cb577-2" aria-hidden="true" tabindex="-1"></a>Port [<span class="dv">5432</span>]<span class="sc">:</span></span>
-<span id="cb577-3"><a href="r-db.html#cb577-3" aria-hidden="true" tabindex="-1"></a>Username [postgres]<span class="sc">:</span></span>
-<span id="cb577-4"><a href="r-db.html#cb577-4" aria-hidden="true" tabindex="-1"></a>postgres 사용자의 암호<span class="sc">:</span></span>
-<span id="cb577-5"><a href="r-db.html#cb577-5" aria-hidden="true" tabindex="-1"></a><span class="fu">psql</span> (<span class="fl">11.5</span>)</span>
-<span id="cb577-6"><a href="r-db.html#cb577-6" aria-hidden="true" tabindex="-1"></a>도움말을 보려면 <span class="st">"help"</span>를 입력하십시오.</span>
-<span id="cb577-7"><a href="r-db.html#cb577-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb577-8"><a href="r-db.html#cb577-8" aria-hidden="true" tabindex="-1"></a>postgres<span class="ot">=</span><span class="co"># CREATE DATABASE dvd;</span></span>
-<span id="cb577-9"><a href="r-db.html#cb577-9" aria-hidden="true" tabindex="-1"></a>CREATE DATABASE</span></code></pre></div>
+<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb620-1"><a href="r-db.html#cb620-1" aria-hidden="true" tabindex="-1"></a>Database [postgres]<span class="sc">:</span></span>
+<span id="cb620-2"><a href="r-db.html#cb620-2" aria-hidden="true" tabindex="-1"></a>Port [<span class="dv">5432</span>]<span class="sc">:</span></span>
+<span id="cb620-3"><a href="r-db.html#cb620-3" aria-hidden="true" tabindex="-1"></a>Username [postgres]<span class="sc">:</span></span>
+<span id="cb620-4"><a href="r-db.html#cb620-4" aria-hidden="true" tabindex="-1"></a>postgres 사용자의 암호<span class="sc">:</span></span>
+<span id="cb620-5"><a href="r-db.html#cb620-5" aria-hidden="true" tabindex="-1"></a><span class="fu">psql</span> (<span class="fl">11.5</span>)</span>
+<span id="cb620-6"><a href="r-db.html#cb620-6" aria-hidden="true" tabindex="-1"></a>도움말을 보려면 <span class="st">"help"</span>를 입력하십시오.</span>
+<span id="cb620-7"><a href="r-db.html#cb620-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb620-8"><a href="r-db.html#cb620-8" aria-hidden="true" tabindex="-1"></a>postgres<span class="ot">=</span><span class="co"># CREATE DATABASE dvd;</span></span>
+<span id="cb620-9"><a href="r-db.html#cb620-9" aria-hidden="true" tabindex="-1"></a>CREATE DATABASE</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>
 <code>Windows + R</code> 단축키를 실행시켜 <code>cmd</code>를 입력하여 윈도우 쉘을 구동시킨다. 그리고 <code>postgreSQL</code>을 설치한 윈도우 디렉토리로 이동한다. <code>C:\Program Files\PostgreSQL\11\bin</code> 디렉토리가 된다. 그리고 나서 다운받은 <code>dvdrental.zip</code> 파일 압축을 풀어 <code>dvdrental.tar</code>을 지정한다.</li>
@@ -475,47 +476,47 @@ PostgreSQL <a href="https://www.postgresql.org/download/windows/">다운로드</
 <li>
 <code>C:\dvdrental\dvdrental.tar</code> 인자는 파일로 저장된 데이터베이스 정보를 담고 있다.</li>
 </ul>
-<div class="sourceCode" id="cb578"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb578-1"><a href="r-db.html#cb578-1" aria-hidden="true" tabindex="-1"></a>C<span class="sc">:</span>\Program Files\PostgreSQL\<span class="dv">11</span>\bin<span class="sc">&gt;</span> pg_restore <span class="sc">-</span>U postgres <span class="sc">-</span>d dvd C<span class="sc">:</span>\dvdrental\dvdrental.tar</span>
-<span id="cb578-2"><a href="r-db.html#cb578-2" aria-hidden="true" tabindex="-1"></a>암호<span class="sc">:</span></span>
-<span id="cb578-3"><a href="r-db.html#cb578-3" aria-hidden="true" tabindex="-1"></a>C<span class="sc">:</span>\Program Files\PostgreSQL\<span class="dv">11</span>\bin<span class="sc">&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb621-1"><a href="r-db.html#cb621-1" aria-hidden="true" tabindex="-1"></a>C<span class="sc">:</span>\Program Files\PostgreSQL\<span class="dv">11</span>\bin<span class="sc">&gt;</span> pg_restore <span class="sc">-</span>U postgres <span class="sc">-</span>d dvd C<span class="sc">:</span>\dvdrental\dvdrental.tar</span>
+<span id="cb621-2"><a href="r-db.html#cb621-2" aria-hidden="true" tabindex="-1"></a>암호<span class="sc">:</span></span>
+<span id="cb621-3"><a href="r-db.html#cb621-3" aria-hidden="true" tabindex="-1"></a>C<span class="sc">:</span>\Program Files\PostgreSQL\<span class="dv">11</span>\bin<span class="sc">&gt;</span></span></code></pre></div>
 <div class="figure">
 <img src="assets/images/postgreSQL-dvd.png" style="width:100.0%" alt=""><p class="caption">postgreSQL DVD 데이터베이스</p>
 </div>
 </div>
-<div id="query-dvd-postgreSQL" class="section level3" number="15.8.4">
+<div id="query-dvd-postgreSQL" class="section level3" number="16.8.4">
 <h3>
-<span class="header-section-number">15.8.4</span> DVD 대여 질의문 작성 <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="http://www.postgresqltutorial.com/connect-to-postgresql-database/"&gt;Connect To a PostgreSQL Database Server&lt;/a&gt;&lt;/p&gt;'><sup>15</sup></a><a class="anchor" aria-label="anchor" href="#query-dvd-postgreSQL"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.8.4</span> DVD 대여 질의문 작성 <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="http://www.postgresqltutorial.com/connect-to-postgresql-database/"&gt;Connect To a PostgreSQL Database Server&lt;/a&gt;&lt;/p&gt;'><sup>19</sup></a><a class="anchor" aria-label="anchor" href="#query-dvd-postgreSQL"><i class="fas fa-link"></i></a>
 </h3>
 <p><code>dvd</code> 데이터베이스가 설치되었기 때문에 쿼리를 던지기 위해서는 postgreSQL 데이터베이스에 접속을 해야한다. 이를 위해서 <code>pgAdmin 4</code>를 실행시키게 되면 웹브라우져에 웹인터페이스가 생기게 된다. 데이터베이스를 <code>dvd</code>로 지정하고 하고 나서, <code>Tools</code> → <code>Query Tool</code>을 클릭하게 되면 해당 데이터베이스 테이블에 쿼리를 던질 수가 있게 된다.</p>
 <div class="figure">
 <img src="assets/images/postgreSQL-dvd-select.png" style="width:100.0%" alt=""><p class="caption">postgreSQL select 쿼리문 예시</p>
 </div>
-<div id="database-user" class="section level4" number="15.8.4.1">
+<div id="database-user" class="section level4" number="16.8.4.1">
 <h4>
-<span class="header-section-number">15.8.4.1</span> 데이터베이스 사용자 추가<a class="anchor" aria-label="anchor" href="#database-user"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.8.4.1</span> 데이터베이스 사용자 추가<a class="anchor" aria-label="anchor" href="#database-user"><i class="fas fa-link"></i></a>
 </h4>
 <p><code>postgres</code> 사용자는 이미 존재하기 때문에 별도로 <code>tidyverse</code> 사용자를 추가하고
 권한을 부여한다. <code>\du</code> 명령어로 사용자가 정상 등록되었는지 확인한다.</p>
-<div class="sourceCode" id="cb579"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb579-1"><a href="r-db.html#cb579-1" aria-hidden="true" tabindex="-1"></a>postgres<span class="ot">=</span><span class="co"># create user tidyverse with encrypted password '1234';</span></span>
-<span id="cb579-2"><a href="r-db.html#cb579-2" aria-hidden="true" tabindex="-1"></a>CREATE ROLE</span>
-<span id="cb579-3"><a href="r-db.html#cb579-3" aria-hidden="true" tabindex="-1"></a>postgres<span class="ot">=</span><span class="co"># grant all privileges on database dvd to tidyverse;</span></span>
-<span id="cb579-4"><a href="r-db.html#cb579-4" aria-hidden="true" tabindex="-1"></a>GRANT</span>
-<span id="cb579-5"><a href="r-db.html#cb579-5" aria-hidden="true" tabindex="-1"></a>postgres<span class="ot">=</span><span class="co"># \du</span></span>
-<span id="cb579-6"><a href="r-db.html#cb579-6" aria-hidden="true" tabindex="-1"></a>                                 롤 목록</span>
-<span id="cb579-7"><a href="r-db.html#cb579-7" aria-hidden="true" tabindex="-1"></a>  롤 이름  <span class="sc">|</span>                      속성                      <span class="sc">|</span> 소속 그룹<span class="sc">:</span></span>
-<span id="cb579-8"><a href="r-db.html#cb579-8" aria-hidden="true" tabindex="-1"></a><span class="sc">-----------+------------------------------------------------+------------</span></span>
-<span id="cb579-9"><a href="r-db.html#cb579-9" aria-hidden="true" tabindex="-1"></a> postgres  <span class="sc">|</span> 슈퍼유저, 롤 만들기, DB 만들기, 복제, RLS 통과 <span class="sc">|</span> {}</span>
-<span id="cb579-10"><a href="r-db.html#cb579-10" aria-hidden="true" tabindex="-1"></a> tidyverse <span class="sc">|</span>                                                <span class="er">|</span> {}</span></code></pre></div>
+<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="r-db.html#cb622-1" aria-hidden="true" tabindex="-1"></a>postgres<span class="ot">=</span><span class="co"># create user tidyverse with encrypted password '1234';</span></span>
+<span id="cb622-2"><a href="r-db.html#cb622-2" aria-hidden="true" tabindex="-1"></a>CREATE ROLE</span>
+<span id="cb622-3"><a href="r-db.html#cb622-3" aria-hidden="true" tabindex="-1"></a>postgres<span class="ot">=</span><span class="co"># grant all privileges on database dvd to tidyverse;</span></span>
+<span id="cb622-4"><a href="r-db.html#cb622-4" aria-hidden="true" tabindex="-1"></a>GRANT</span>
+<span id="cb622-5"><a href="r-db.html#cb622-5" aria-hidden="true" tabindex="-1"></a>postgres<span class="ot">=</span><span class="co"># \du</span></span>
+<span id="cb622-6"><a href="r-db.html#cb622-6" aria-hidden="true" tabindex="-1"></a>                                 롤 목록</span>
+<span id="cb622-7"><a href="r-db.html#cb622-7" aria-hidden="true" tabindex="-1"></a>  롤 이름  <span class="sc">|</span>                      속성                      <span class="sc">|</span> 소속 그룹<span class="sc">:</span></span>
+<span id="cb622-8"><a href="r-db.html#cb622-8" aria-hidden="true" tabindex="-1"></a><span class="sc">-----------+------------------------------------------------+------------</span></span>
+<span id="cb622-9"><a href="r-db.html#cb622-9" aria-hidden="true" tabindex="-1"></a> postgres  <span class="sc">|</span> 슈퍼유저, 롤 만들기, DB 만들기, 복제, RLS 통과 <span class="sc">|</span> {}</span>
+<span id="cb622-10"><a href="r-db.html#cb622-10" aria-hidden="true" tabindex="-1"></a> tidyverse <span class="sc">|</span>                                                <span class="er">|</span> {}</span></code></pre></div>
 </div>
-<div id="rstudio-dvd-postgreSQL" class="section level4" number="15.8.4.2">
+<div id="rstudio-dvd-postgreSQL" class="section level4" number="16.8.4.2">
 <h4>
-<span class="header-section-number">15.8.4.2</span> R에서 postgreSQL 연결<a class="anchor" aria-label="anchor" href="#rstudio-dvd-postgreSQL"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.8.4.2</span> R에서 postgreSQL 연결<a class="anchor" aria-label="anchor" href="#rstudio-dvd-postgreSQL"><i class="fas fa-link"></i></a>
 </h4>
 <p><code>postgreSQL</code> DBMS 내부에 <code>dvd</code> 데이터베이스가 생성되었다. 이를 R에서 작업하기 위해서
 <code>RPostgreSQL</code>, <code>DBI</code> 팩키지를 도입한다.
 <code><a href="https://dbi.r-dbi.org/reference/dbConnect.html">dbConnect()</a></code> 함수에 데이터베이스와 연결에 필요한 모든 정보를 저장시킨다.
 그리고 나서 <code><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html">dbGetQuery()</a></code> 함수로 쿼리를 던져 원하는 결과를 받아온다.</p>
-<div class="sourceCode" id="cb580"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb623"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dbi.r-dbi.org">DBI</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rpostgres.r-dbi.org">RPostgres</a></span><span class="op">)</span>
 
@@ -529,7 +530,7 @@ PostgreSQL <a href="https://www.postgresql.org/download/windows/">다운로드</
 
 <span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbDisconnect.html">dbDisconnect</a></span><span class="op">(</span><span class="va">con</span><span class="op">)</span></code></pre></div>
 <p><code><a href="https://dbi.r-dbi.org/reference/dbGetQuery.html">dbGetQuery()</a></code>로 가져온 데이터프레임을 <code>dplyr</code> 동사로 후속작업을 진행한다.</p>
-<div class="sourceCode" id="cb581"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb624"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 
 <span class="va">actor</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
@@ -537,9 +538,9 @@ PostgreSQL <a href="https://www.postgresql.org/download/windows/">다운로드</
 <pre><code>  actor_id first_name last_name         last_update
 1        1   Penelope   Guiness 2013-05-26 14:47:57</code></pre>
 </div>
-<div id="find-table" class="section level4" number="15.8.4.3">
+<div id="find-table" class="section level4" number="16.8.4.3">
 <h4>
-<span class="header-section-number">15.8.4.3</span> 작업에 필요한 테이블 찾기<a class="anchor" aria-label="anchor" href="#find-table"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.8.4.3</span> 작업에 필요한 테이블 찾기<a class="anchor" aria-label="anchor" href="#find-table"><i class="fas fa-link"></i></a>
 </h4>
 <p>데이터베이스에서 쿼리 작업을 수행할 때 가장 먼저 해야 되는 일중의 하나가 적합한 테이블을 찾는 것이다. 이를 위해서 각 DBMS마다 나름대로 정리를 해둔 메타테이블이 존재한다. <code>postgreSQL</code>의 경우는 <code>pg_catalog.pg_tables</code>가 된다. 가장 많이 사용되는 SQL 데이터베이스별로 동일한 사안에 대해서 찾아보자.</p>
 <ul>
@@ -553,7 +554,7 @@ PostgreSQL <a href="https://www.postgresql.org/download/windows/">다운로드</
 <li>MySQL: <code>SHOW TABLES;</code>
 </li>
 </ul>
-<div class="sourceCode" id="cb583"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb626"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">qry</span> <span class="op">&lt;-</span> <span class="st">"SELECT *
         FROM pg_catalog.pg_tables"</span>
 
@@ -576,12 +577,12 @@ PostgreSQL <a href="https://www.postgresql.org/download/windows/">다운로드</
 14     public       payment   postgres       &lt;NA&gt;       TRUE    FALSE        TRUE       FALSE
 15     public          film   postgres       &lt;NA&gt;       TRUE    FALSE        TRUE       FALSE</code></pre>
 </div>
-<div id="find-table-columns" class="section level4" number="15.8.4.4">
+<div id="find-table-columns" class="section level4" number="16.8.4.4">
 <h4>
-<span class="header-section-number">15.8.4.4</span> 테이블 별 칼럼명<a class="anchor" aria-label="anchor" href="#find-table-columns"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.8.4.4</span> 테이블 별 칼럼명<a class="anchor" aria-label="anchor" href="#find-table-columns"><i class="fas fa-link"></i></a>
 </h4>
 <p>다음으로 테이블을 찾았다고 하면, 해당되는 칼럼명을 찾을 수 있어야 한다. 이를 통해서 유의미한 의미를 찾아낼 수 있는데 칼럼명을 통해 영감을 받아 다가설 수 있게 된다.</p>
-<div class="sourceCode" id="cb585"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb628"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">col_qry</span> <span class="op">&lt;-</span> <span class="st">"SELECT table_name,
                    STRING_AGG(column_name, ', ') AS columns
             FROM information_schema.columns
@@ -597,9 +598,9 @@ PostgreSQL <a href="https://www.postgresql.org/download/windows/">다운로드</
 2     rental rental_id, rental_date, inventory_id, customer_id, return_date, staff_id, last_update
 3      store                                   store_id, manager_staff_id, address_id, last_update</code></pre>
 </div>
-<div id="dvd-er-diagram" class="section level4" number="15.8.4.5">
+<div id="dvd-er-diagram" class="section level4" number="16.8.4.5">
 <h4>
-<span class="header-section-number">15.8.4.5</span> DVD ER 다이어그램<a class="anchor" aria-label="anchor" href="#dvd-er-diagram"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.8.4.5</span> DVD ER 다이어그램<a class="anchor" aria-label="anchor" href="#dvd-er-diagram"><i class="fas fa-link"></i></a>
 </h4>
 <p>후속 쿼리 분석 작업을 위해서 도움이 되는 ER 다이어그램은 다음과 같다.</p>
 <div class="figure">
@@ -608,17 +609,17 @@ PostgreSQL <a href="https://www.postgresql.org/download/windows/">다운로드</
 </div>
 </div>
 </div>
-<div id="dvd-insight-rental" class="section level2" number="15.9">
+<div id="dvd-insight-rental" class="section level2" number="16.9">
 <h2>
-<span class="header-section-number">15.9</span> DVD DB 인사이트<a class="anchor" aria-label="anchor" href="#dvd-insight-rental"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.9</span> DVD DB 인사이트<a class="anchor" aria-label="anchor" href="#dvd-insight-rental"><i class="fas fa-link"></i></a>
 </h2>
 <p>DVT 대여 데이터베이스를 설치했다면 다음 단계로 다양한 SQL 쿼리문을 던져 뭔가 가치 있는 정보를 추출해야만 한다. <a href="https://statkclee.github.io/data-science/ds-postgreSQL.html">데이터 과학: “postgreSQL - DVD 대여 데이터베이스”</a>에서 데이터베이스 설치와 접속에 대한 사항은 확인한다.</p>
-<div id="dvd-rental-db-insight-sql" class="section level3" number="15.9.1">
+<div id="dvd-rental-db-insight-sql" class="section level3" number="16.9.1">
 <h3>
-<span class="header-section-number">15.9.1</span> DB 접속 헬로월드 <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.freecodecamp.org/news/project-1-analyzing-dvd-rentals-with-sql-fd12dd674a64/"&gt;Okoh Anita (2018-12-20), “How I analyzed DVD rental data with SQL”, freeCodeCamp&lt;/a&gt;&lt;/p&gt;'><sup>16</sup></a><a class="anchor" aria-label="anchor" href="#dvd-rental-db-insight-sql"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.9.1</span> DB 접속 헬로월드 <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.freecodecamp.org/news/project-1-analyzing-dvd-rentals-with-sql-fd12dd674a64/"&gt;Okoh Anita (2018-12-20), “How I analyzed DVD rental data with SQL”, freeCodeCamp&lt;/a&gt;&lt;/p&gt;'><sup>20</sup></a><a class="anchor" aria-label="anchor" href="#dvd-rental-db-insight-sql"><i class="fas fa-link"></i></a>
 </h3>
 <p>먼저 <code><a href="https://dbi.r-dbi.org/reference/dbConnect.html">DBI::dbConnect()</a></code>를 통해 접속하고 SQL 쿼리 헬로월드를 던져보자.</p>
-<div class="sourceCode" id="cb587"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb630"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rpostgres.r-dbi.org">RPostgres</a></span><span class="op">)</span>
 
 <span class="va">con</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html">dbConnect</a></span><span class="op">(</span><span class="fu">RPostgres</span><span class="fu">::</span><span class="fu"><a href="https://rpostgres.r-dbi.org/reference/Postgres.html">Postgres</a></span><span class="op">(</span><span class="op">)</span>, dbname<span class="op">=</span><span class="st">"dvd"</span>, 
@@ -637,14 +638,14 @@ PostgreSQL <a href="https://www.postgresql.org/download/windows/">다운로드</
 4        4   Jennifer        Davis 2013-05-26 14:47:57
 5        5     Johnny Lollobrigida 2013-05-26 14:47:57</code></pre>
 </div>
-<div id="run-statistics-active" class="section level3" number="15.9.2">
+<div id="run-statistics-active" class="section level3" number="16.9.2">
 <h3>
-<span class="header-section-number">15.9.2</span> 이탈/잔존고객 구매금액<a class="anchor" aria-label="anchor" href="#run-statistics-active"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.9.2</span> 이탈/잔존고객 구매금액<a class="anchor" aria-label="anchor" href="#run-statistics-active"><i class="fas fa-link"></i></a>
 </h3>
 <p><code>customer</code> 테이블에는 <code>active</code> 칼럼을 통해 잔존고객과 이탈고객을 파악할 수 있다.
 이를 통해서 잔존고객과 이탈고객이 몇명이고 구매금액을 파악할 수 있다.
 먼저 <code>datamodelr</code> 팩키지를 통해 해당 테이블을 뽑아내서 이를 시각화해보자.</p>
-<div class="sourceCode" id="cb589"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb632"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">datamodelr</span><span class="op">)</span>
 
@@ -665,7 +666,7 @@ PostgreSQL <a href="https://www.postgresql.org/download/windows/">다운로드</
 </div>
 <p><code>con</code>을 통해 DVD 대여 데이터베이스에 접속이 이루어진 상태다.
 이탈고객과 잔존고객별로 구매금액에 대한 평균, 최소, 최대, 총합계를 구하려면 두 테이블을 <code>INNER JOIN</code>으로 <code>customer_id</code>를 키값으로 합치고 나서 기술통계를 산출한다.</p>
-<div class="sourceCode" id="cb590"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb633"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">sql_query</span> <span class="op">&lt;-</span> 
 <span class="st">"SELECT active, 
        COUNT(*) AS num_active, 
@@ -683,13 +684,13 @@ GROUP BY c.active;"</span>
 1      0        369    0.99 4.092981   11.99   1510.31
 2      1      14227    0.00 4.203397   11.99  59801.73</code></pre>
 </div>
-<div id="run-statistics-rental-rate" class="section level3" number="15.9.3">
+<div id="run-statistics-rental-rate" class="section level3" number="16.9.3">
 <h3>
-<span class="header-section-number">15.9.3</span> 쟝르별 평균 대여평점<a class="anchor" aria-label="anchor" href="#run-statistics-rental-rate"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.9.3</span> 쟝르별 평균 대여평점<a class="anchor" aria-label="anchor" href="#run-statistics-rental-rate"><i class="fas fa-link"></i></a>
 </h3>
 <p>앞서와 마찬가지로 쟝르별 평균 대여평점을 계산할 수 있는 테이블을 쭉 뽑아본다.
 이를 통해서 3개 테이블, 즉 <code>category</code>, <code>film_category</code>, <code>film</code>을 뽑아놓고 각 해당 키값을 사용하여 결합시킨다.</p>
-<div class="sourceCode" id="cb592"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb635"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">category</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"category"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">collect</a></span><span class="op">(</span><span class="op">)</span>
 <span class="va">film_category</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"film_category"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">collect</a></span><span class="op">(</span><span class="op">)</span>
 <span class="va">film</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"film"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">collect</a></span><span class="op">(</span><span class="op">)</span>
@@ -708,7 +709,7 @@ GROUP BY c.active;"</span>
 <img src="assets/images/dvd-rental-genre.png" style="width:100.0%" alt=""><p class="caption">테이블 구조 시각화 - 쟝르별 대여평점</p>
 </div>
 <p>먼저 <code>film_category</code>와 <code>category</code>를 결합시켜 영화(<code>film</code>)가 속한 쟝르(<code>category</code>)를 파악한다.</p>
-<div class="sourceCode" id="cb593"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb636"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">rate_qry</span> <span class="op">&lt;-</span> 
 <span class="st">"SELECT * 
 FROM category AS c
@@ -725,7 +726,7 @@ LIMIT 5;"</span>
 5           8      Family 2006-02-15 09:46:27       5              8 2006-02-15 10:07:09</code></pre>
 <p>다음으로 <code>film</code> 테이블을 조인하여 <code>rental_rate</code>를 결합하고
 쟝르(<code>category</code>) 별로 평균평점을 구하고 이를 <code>ORDER BY ... DESC</code>를 사용해서 내림차순으로 정렬한다.</p>
-<div class="sourceCode" id="cb595"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb638"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">rate_qry</span> <span class="op">&lt;-</span> 
 <span class="st">"SELECT c.name,
         AVG(rental_rate) AS avg_rental_rate
@@ -756,12 +757,12 @@ ORDER BY avg_rental_rate DESC;"</span>
 15 Documentary        2.666471
 16      Action        2.646250</code></pre>
 </div>
-<div id="run-statistics-rental-rate-top10" class="section level3" number="15.9.4">
+<div id="run-statistics-rental-rate-top10" class="section level3" number="16.9.4">
 <h3>
-<span class="header-section-number">15.9.4</span> Top 10 DVD 영화<a class="anchor" aria-label="anchor" href="#run-statistics-rental-rate-top10"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.9.4</span> Top 10 DVD 영화<a class="anchor" aria-label="anchor" href="#run-statistics-rental-rate-top10"><i class="fas fa-link"></i></a>
 </h3>
 <p>가장 많이 대여된 Top 10 DVD 영화를 찾아내기 위해서 이에 해당되는 연관 테이블을 검색하여 찾아낸다. <code>film</code>, <code>inventory</code>, <code>rental</code> 테이블을 특정하고 서로 연결시킬 수 있는 키값을 찾아 연결시킨다.</p>
-<div class="sourceCode" id="cb597"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb640"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">film</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"film"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">collect</a></span><span class="op">(</span><span class="op">)</span>
 <span class="va">inventory</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"inventory"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">collect</a></span><span class="op">(</span><span class="op">)</span>
 <span class="va">rental</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"rental"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">collect</a></span><span class="op">(</span><span class="op">)</span>
@@ -780,7 +781,7 @@ ORDER BY avg_rental_rate DESC;"</span>
 <img src="assets/images/dvd-rental-top10.png" style="width:100.0%" alt=""><p class="caption">테이블 구조 시각화 - Top 10 DVD 영화</p>
 </div>
 <p><code>film</code> → <code>inventory</code> → <code>rental</code> 테이블을 순차적으로 <code>film_id</code>, <code>inventory_id</code>를 키값으로 삼아 결합시킨다. 그리고 나서 가장 많이 대여된 영화를 찾기 위해서 <code>COUNT()</code> 함수로 개수하고 나서 이를 내림차순 정리한다.</p>
-<div class="sourceCode" id="cb598"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb641"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">top_query</span> <span class="op">&lt;-</span> 
 <span class="st">"SELECT f.title AS movie_title, 
         COUNT(f.title) AS num_rentals
@@ -813,9 +814,9 @@ ORDER BY num_rentals DESC;"</span>
 16   Goodfellas Salute          31</code></pre>
 </div>
 </div>
-<div id="db-summary" class="section level2" number="15.10">
+<div id="db-summary" class="section level2" number="16.10">
 <h2>
-<span class="header-section-number">15.10</span> 요약<a class="anchor" aria-label="anchor" href="#db-summary"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.10</span> 요약<a class="anchor" aria-label="anchor" href="#db-summary"><i class="fas fa-link"></i></a>
 </h2>
 <p>이번 장은 파이썬에서 데이터베이스 사용 기본적인 개요에 대해 폭넓게
 다루었다. 데이터를 저장하기 위해서 파이썬 딕셔너리나 일반적인 파일보다
@@ -835,9 +836,9 @@ ORDER BY num_rentals DESC;"</span>
 효과적으로 모델링해서 프로그램이 가능하면 빠르게 실행되게 만드는 것이
 중요하다.</p>
 </div>
-<div id="db-debugging" class="section level2" number="15.11">
+<div id="db-debugging" class="section level2" number="16.11">
 <h2>
-<span class="header-section-number">15.11</span> 디버깅<a class="anchor" aria-label="anchor" href="#db-debugging"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.11</span> 디버깅<a class="anchor" aria-label="anchor" href="#db-debugging"><i class="fas fa-link"></i></a>
 </h2>
 <p>SQLite 데이터베이스에 연결하는 파이썬 프로그램을 개발할 때 하나의
 일반적인 패턴은 파이썬 프로그램을 실행하고 SQLite 데이터베이스
@@ -854,9 +855,9 @@ ORDER BY num_rentals DESC;"</span>
 브라우져를 닫거나 혹은 <strong>File</strong> 메뉴를 사용해서 브라우져 데이터베이스를
 닫는 것이다.</p>
 </div>
-<div id="db-terminology" class="section level2" number="15.12">
+<div id="db-terminology" class="section level2" number="16.12">
 <h2>
-<span class="header-section-number">15.12</span> 용어정의<a class="anchor" aria-label="anchor" href="#db-terminology"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.12</span> 용어정의<a class="anchor" aria-label="anchor" href="#db-terminology"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>
@@ -901,40 +902,40 @@ ORDER BY num_rentals DESC;"</span>
 </div>
 
   <div class="chapter-nav">
-<div class="prev"><a href="r-webservice.html"><span class="header-section-number">14</span> 웹서비스 사용하기</a></div>
-<div class="next"><a href="r-automation.html"><span class="header-section-number">16</span> 작업 자동화</a></div>
+<div class="prev"><a href="r-webservice.html"><span class="header-section-number">15</span> 웹서비스 사용하기</a></div>
+<div class="next"><a href="r-automation.html"><span class="header-section-number">17</span> 작업 자동화</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#r-db"><span class="header-section-number">15</span> 데이터베이스와 SQL</a></li>
-<li><a class="nav-link" href="#r-db-what-it-is"><span class="header-section-number">15.1</span> 데이터베이스가 뭔가요?</a></li>
-<li><a class="nav-link" href="#r-db-concept"><span class="header-section-number">15.2</span> 데이터베이스 개념</a></li>
-<li><a class="nav-link" href="#r-db-firefox"><span class="header-section-number">15.3</span> 파이어폭스 SQLite 관리자</a></li>
-<li><a class="nav-link" href="#r-db-create-table"><span class="header-section-number">15.4</span> 데이터베이스 테이블 생성</a></li>
-<li><a class="nav-link" href="#r-db-sql"><span class="header-section-number">15.5</span> SQL 요약</a></li>
+<li><a class="nav-link" href="#r-db"><span class="header-section-number">16</span> 데이터베이스와 SQL</a></li>
+<li><a class="nav-link" href="#r-db-what-it-is"><span class="header-section-number">16.1</span> 데이터베이스가 뭔가요?</a></li>
+<li><a class="nav-link" href="#r-db-concept"><span class="header-section-number">16.2</span> 데이터베이스 개념</a></li>
+<li><a class="nav-link" href="#r-db-firefox"><span class="header-section-number">16.3</span> 파이어폭스 SQLite 관리자</a></li>
+<li><a class="nav-link" href="#r-db-create-table"><span class="header-section-number">16.4</span> 데이터베이스 테이블 생성</a></li>
+<li><a class="nav-link" href="#r-db-sql"><span class="header-section-number">16.5</span> SQL 요약</a></li>
 <li>
-<a class="nav-link" href="#r-datamodeling-basics"><span class="header-section-number">15.6</span> 데이터 모델링 기초</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#db-constraints"><span class="header-section-number">15.6.1</span> 테이블 제약사항</a></li></ul>
+<a class="nav-link" href="#r-datamodeling-basics"><span class="header-section-number">16.6</span> 데이터 모델링 기초</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#db-constraints"><span class="header-section-number">16.6.1</span> 테이블 제약사항</a></li></ul>
 </li>
-<li><a class="nav-link" href="#db-three-keys"><span class="header-section-number">15.7</span> 세 종류 키</a></li>
+<li><a class="nav-link" href="#db-three-keys"><span class="header-section-number">16.7</span> 세 종류 키</a></li>
 <li>
-<a class="nav-link" href="#dvd-rental"><span class="header-section-number">15.8</span> DVD 대여 데이터베이스</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#about-postgreSQL"><span class="header-section-number">15.8.1</span> PostgreSQL 11 12</a></li>
-<li><a class="nav-link" href="#install-postgreSQL"><span class="header-section-number">15.8.2</span> PostgreSQL 설치 13</a></li>
-<li><a class="nav-link" href="#install-dvd-postgreSQL"><span class="header-section-number">15.8.3</span> 예제 데이터베이스 - pagila 14</a></li>
-<li><a class="nav-link" href="#query-dvd-postgreSQL"><span class="header-section-number">15.8.4</span> DVD 대여 질의문 작성 15</a></li>
+<a class="nav-link" href="#dvd-rental"><span class="header-section-number">16.8</span> DVD 대여 데이터베이스</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#about-postgreSQL"><span class="header-section-number">16.8.1</span> PostgreSQL 15 16</a></li>
+<li><a class="nav-link" href="#install-postgreSQL"><span class="header-section-number">16.8.2</span> PostgreSQL 설치 17</a></li>
+<li><a class="nav-link" href="#install-dvd-postgreSQL"><span class="header-section-number">16.8.3</span> 예제 데이터베이스 - pagila 18</a></li>
+<li><a class="nav-link" href="#query-dvd-postgreSQL"><span class="header-section-number">16.8.4</span> DVD 대여 질의문 작성 19</a></li>
 </ul>
 </li>
 <li>
-<a class="nav-link" href="#dvd-insight-rental"><span class="header-section-number">15.9</span> DVD DB 인사이트</a><ul class="nav navbar-nav">
-<li><a class="nav-link" href="#dvd-rental-db-insight-sql"><span class="header-section-number">15.9.1</span> DB 접속 헬로월드 16</a></li>
-<li><a class="nav-link" href="#run-statistics-active"><span class="header-section-number">15.9.2</span> 이탈/잔존고객 구매금액</a></li>
-<li><a class="nav-link" href="#run-statistics-rental-rate"><span class="header-section-number">15.9.3</span> 쟝르별 평균 대여평점</a></li>
-<li><a class="nav-link" href="#run-statistics-rental-rate-top10"><span class="header-section-number">15.9.4</span> Top 10 DVD 영화</a></li>
+<a class="nav-link" href="#dvd-insight-rental"><span class="header-section-number">16.9</span> DVD DB 인사이트</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#dvd-rental-db-insight-sql"><span class="header-section-number">16.9.1</span> DB 접속 헬로월드 20</a></li>
+<li><a class="nav-link" href="#run-statistics-active"><span class="header-section-number">16.9.2</span> 이탈/잔존고객 구매금액</a></li>
+<li><a class="nav-link" href="#run-statistics-rental-rate"><span class="header-section-number">16.9.3</span> 쟝르별 평균 대여평점</a></li>
+<li><a class="nav-link" href="#run-statistics-rental-rate-top10"><span class="header-section-number">16.9.4</span> Top 10 DVD 영화</a></li>
 </ul>
 </li>
-<li><a class="nav-link" href="#db-summary"><span class="header-section-number">15.10</span> 요약</a></li>
-<li><a class="nav-link" href="#db-debugging"><span class="header-section-number">15.11</span> 디버깅</a></li>
-<li><a class="nav-link" href="#db-terminology"><span class="header-section-number">15.12</span> 용어정의</a></li>
+<li><a class="nav-link" href="#db-summary"><span class="header-section-number">16.10</span> 요약</a></li>
+<li><a class="nav-link" href="#db-debugging"><span class="header-section-number">16.11</span> 디버깅</a></li>
+<li><a class="nav-link" href="#db-terminology"><span class="header-section-number">16.12</span> 용어정의</a></li>
 </ul>
 
       <div class="book-extra">
@@ -951,7 +952,7 @@ ORDER BY num_rentals DESC;"</span>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>데이터 과학 프로그래밍</strong>" was written by 한국 알(R) 사용자회. It was last built on 2022-05-19.</p>
+    <p>"<strong>데이터 과학 프로그래밍</strong>" was written by 한국 알(R) 사용자회. It was last built on 2022-05-20.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

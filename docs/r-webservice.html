@@ -4,15 +4,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>14 . 웹서비스 사용하기 | 데이터 과학 프로그래밍</title>
+<title>15 . 웹서비스 사용하기 | 데이터 과학 프로그래밍</title>
 <meta name="author" content="한국 알(R) 사용자회">
 <meta name="description" content="프로그램을 사용하여 HTTP상에서 문서를 가져와서 파싱하는 것이 익숙해지면, 다른 프로그램(즉, 브라우져에서 HTML로 보여지지 않는 것)에서 활용되도록 특별히 설계된 문서를 생성하는 것은 그다지 오래 걸리지 않는다. 웹상에서 데이터를 교환할 때 두 가지 형식이 많이 사용된다. XML(“eXtensible Markup Language”)은 오랜 기간...">
 <meta name="generator" content="bookdown 0.26 with bs4_book()">
-<meta property="og:title" content="14 . 웹서비스 사용하기 | 데이터 과학 프로그래밍">
+<meta property="og:title" content="15 . 웹서비스 사용하기 | 데이터 과학 프로그래밍">
 <meta property="og:type" content="book">
 <meta property="og:description" content="프로그램을 사용하여 HTTP상에서 문서를 가져와서 파싱하는 것이 익숙해지면, 다른 프로그램(즉, 브라우져에서 HTML로 보여지지 않는 것)에서 활용되도록 특별히 설계된 문서를 생성하는 것은 그다지 오래 걸리지 않는다. 웹상에서 데이터를 교환할 때 두 가지 형식이 많이 사용된다. XML(“eXtensible Markup Language”)은 오랜 기간...">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="14 . 웹서비스 사용하기 | 데이터 과학 프로그래밍">
+<meta name="twitter:title" content="15 . 웹서비스 사용하기 | 데이터 과학 프로그래밍">
 <meta name="twitter:description" content="프로그램을 사용하여 HTTP상에서 문서를 가져와서 파싱하는 것이 익숙해지면, 다른 프로그램(즉, 브라우져에서 HTML로 보여지지 않는 것)에서 활용되도록 특별히 설계된 문서를 생성하는 것은 그다지 오래 걸리지 않는다. 웹상에서 데이터를 교환할 때 두 가지 형식이 많이 사용된다. XML(“eXtensible Markup Language”)은 오랜 기간...">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
@@ -79,12 +79,13 @@
 <li><a class="" href="r-list.html"><span class="header-section-number">9</span> 리스트 (List)</a></li>
 <li><a class="" href="named-list.html"><span class="header-section-number">10</span> 딕셔너리</a></li>
 <li><a class="" href="r-tuple.html"><span class="header-section-number">11</span> 튜플(Tuples)</a></li>
+<li><a class="" href="dataframe.html"><span class="header-section-number">12</span> 데이터프레임</a></li>
 <li class="book-part">분야별 도구</li>
-<li><a class="" href="regex.html"><span class="header-section-number">12</span> 정규 표현식</a></li>
-<li><a class="" href="network.html"><span class="header-section-number">13</span> 네트워크 프로그램</a></li>
-<li><a class="active" href="r-webservice.html"><span class="header-section-number">14</span> 웹서비스 사용하기</a></li>
-<li><a class="" href="r-db.html"><span class="header-section-number">15</span> 데이터베이스와 SQL</a></li>
-<li><a class="" href="r-automation.html"><span class="header-section-number">16</span> 작업 자동화</a></li>
+<li><a class="" href="regex.html"><span class="header-section-number">13</span> 정규 표현식</a></li>
+<li><a class="" href="network.html"><span class="header-section-number">14</span> 네트워크 프로그램</a></li>
+<li><a class="active" href="r-webservice.html"><span class="header-section-number">15</span> 웹서비스 사용하기</a></li>
+<li><a class="" href="r-db.html"><span class="header-section-number">16</span> 데이터베이스와 SQL</a></li>
+<li><a class="" href="r-automation.html"><span class="header-section-number">17</span> 작업 자동화</a></li>
 <li><a class="" href="references.html">References</a></li>
 </ul>
 
@@ -93,9 +94,9 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="r-webservice" class="section level1" number="14">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="r-webservice" class="section level1" number="15">
 <h1>
-<span class="header-section-number">14 . </span> 웹서비스 사용하기<a class="anchor" aria-label="anchor" href="#r-webservice"><i class="fas fa-link"></i></a>
+<span class="header-section-number">15 . </span> 웹서비스 사용하기<a class="anchor" aria-label="anchor" href="#r-webservice"><i class="fas fa-link"></i></a>
 </h1>
 <p>프로그램을 사용하여 HTTP상에서 문서를 가져와서 파싱하는 것이 익숙해지면,
 다른 프로그램(즉, 브라우져에서 HTML로 보여지지 않는 것)에서 활용되도록
@@ -106,9 +107,9 @@ XML(“eXtensible Markup Language”)은 오랜 기간 사용되어져 왔고
 리스트 혹은 다른 내부 정보를 프로그램으로 서로 교환할 때,
 JSON(JavaScript Object Notation, <a href="www.json.org">www.json.org</a>)을
 사용한다. 두 가지 형식에 대해 모두 살펴볼 것이다.</p>
-<div id="ws-xml" class="section level2" number="14.1">
+<div id="ws-xml" class="section level2" number="15.1">
 <h2>
-<span class="header-section-number">14.1</span> XML<a class="anchor" aria-label="anchor" href="#ws-xml"><i class="fas fa-link"></i></a>
+<span class="header-section-number">15.1</span> XML<a class="anchor" aria-label="anchor" href="#ws-xml"><i class="fas fa-link"></i></a>
 </h2>
 <p>XML(eXtensible Markup Language)은 HTML과 매우 유사하지만, XML이 좀더 HTML보다 구조화되었다. 여기 XML
 문서 샘플이 있다.</p>
@@ -126,13 +127,13 @@ JSON(JavaScript Object Notation, <a href="www.json.org">www.json.org</a>)을
 <img src="assets/images/xml-tree.png" style="width:100.0%" alt=""><p class="caption">XML 나무구조 도식화</p>
 </div>
 </div>
-<div id="ws-xml-parsing" class="section level2" number="14.2">
+<div id="ws-xml-parsing" class="section level2" number="15.2">
 <h2>
-<span class="header-section-number">14.2</span> XML 파싱<a class="anchor" aria-label="anchor" href="#ws-xml-parsing"><i class="fas fa-link"></i></a>
+<span class="header-section-number">15.2</span> XML 파싱<a class="anchor" aria-label="anchor" href="#ws-xml-parsing"><i class="fas fa-link"></i></a>
 </h2>
 <p>다음은 XML을 파싱하고 XML에서 데이터 요소를 추출하는 간단한
 응용프로그램이다.</p>
-<div class="sourceCode" id="cb546"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb589"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://xml2.r-lib.org/">xml2</a></span><span class="op">)</span>
 
 <span class="va">data</span> <span class="op">&lt;-</span> <span class="st">'
@@ -167,13 +168,13 @@ XML은 매우 간단하지만, 적합한 XML에 관해서 규칙이 많이 있�
 규칙에 얽매이지 않고 <code>xml2</code>를 사용해서 XML에서 데이터를 추출할 수
 있다.</p>
 </div>
-<div id="ws-xml-nodes" class="section level2" number="14.3">
+<div id="ws-xml-nodes" class="section level2" number="15.3">
 <h2>
-<span class="header-section-number">14.3</span> 노드 반복하기<a class="anchor" aria-label="anchor" href="#ws-xml-nodes"><i class="fas fa-link"></i></a>
+<span class="header-section-number">15.3</span> 노드 반복하기<a class="anchor" aria-label="anchor" href="#ws-xml-nodes"><i class="fas fa-link"></i></a>
 </h2>
 <p>종종 XML이 다중 노드를 가지고 있어서 모든 노드를 처리하는 루프를 작성할
 필요가 있다. 다음 프로그램에서 모든 <code>user</code> 노드를 루프로 반복한다.</p>
-<div class="sourceCode" id="cb548"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb591"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://xml2.r-lib.org/">xml2</a></span><span class="op">)</span>
 
 <span class="va">input</span> <span class="op">&lt;-</span> <span class="st">'
@@ -196,7 +197,7 @@ XML은 매우 간단하지만, 적합한 XML에 관해서 규칙이 많이 있�
 
 <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"User count:"</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">lst</span><span class="op">)</span>, <span class="st">"\n"</span><span class="op">)</span></code></pre></div>
 <pre><code>## User count: 2</code></pre>
-<div class="sourceCode" id="cb550"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb593"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">lst</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
   
   <span class="va">lst_name</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://xml2.r-lib.org/reference/xml_find_all.html">xml_find_all</a></span><span class="op">(</span><span class="va">lst</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span>, <span class="st">".//name"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="http://xml2.r-lib.org/reference/xml_text.html">xml_text</a></span><span class="op">(</span><span class="op">)</span>
@@ -224,9 +225,9 @@ Name:  Brent
 Id:  009 
 Attribute:  7 </code></pre>
 </div>
-<div id="webservice-json" class="section level2" number="14.4">
+<div id="webservice-json" class="section level2" number="15.4">
 <h2>
-<span class="header-section-number">14.4</span> JSON<a class="anchor" aria-label="anchor" href="#webservice-json"><i class="fas fa-link"></i></a>
+<span class="header-section-number">15.4</span> JSON<a class="anchor" aria-label="anchor" href="#webservice-json"><i class="fas fa-link"></i></a>
 </h2>
 <p>JSON(JavaScript Object Notation) 형식은 자바스크립트 언어에서 사용되는 객체와
 배열 형식에서 영감을 얻었다.
@@ -255,9 +256,9 @@ Attribute:  7 </code></pre>
 <p>XML에 비해서 상대적으로 단순하기 때문에, JSON이 응용프로그램 간 거의
 모든 데이터를 교환하는데 있어 빠르게 선택되고 있다.</p>
 </div>
-<div id="webservice-json-parsing" class="section level2" number="14.5">
+<div id="webservice-json-parsing" class="section level2" number="15.5">
 <h2>
-<span class="header-section-number">14.5</span> JSON 파싱하기<a class="anchor" aria-label="anchor" href="#webservice-json-parsing"><i class="fas fa-link"></i></a>
+<span class="header-section-number">15.5</span> JSON 파싱하기<a class="anchor" aria-label="anchor" href="#webservice-json-parsing"><i class="fas fa-link"></i></a>
 </h2>
 <p>딕셔너리(객체)와 리스트를 중첩함으로써 JSON을 생성한다. 이번 예제에서,
 user 리스트를 표현하는데, 각 user가 키-값 페어(key-value pair, 즉,
@@ -267,7 +268,7 @@ user 리스트를 표현하는데, 각 user가 키-값 페어(key-value pair, �
 JSON은 조금 덜 정교해서 사전에 미리 리스트를 가져오고, 리스트가
 사용자이고, 각 사용자가 키-값 페어 집합임을 알고 있어야 한다. JSON은
 좀더 간략(장점)하고 하지만 좀더 덜 서술적(단점)이다.</p>
-<div class="sourceCode" id="cb554"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb597"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://arxiv.org/abs/1403.2805">jsonlite</a></span><span class="op">)</span>
 
 <span class="va">input</span> <span class="op">&lt;-</span> <span class="st">'
@@ -287,7 +288,7 @@ JSON은 조금 덜 정교해서 사전에 미리 리스트를 가져오고, 리�
 <code><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html">fromJSON()</a></code> 함수는 JSON 파일을 즉시 정형 데이터프레임을 변환시킨다.</p>
 <p>프로그램 출력은 정확하게 상기 XML 버젼과 동일한 정보를 데이터프레임으로
 표현하고 있어 후속 작업에 훨씬 유연하게 대응할 수 있다.</p>
-<div class="sourceCode" id="cb555"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb598"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">input_df</span></code></pre></div>
 <pre><code>##    id x  name
 ## 1 001 2 Chuck
@@ -300,9 +301,9 @@ JSON은 조금 덜 정교해서 사전에 미리 리스트를 가져오고, 리�
 들어, 대부분의 워드 프로세서는 JSON보다는 XML을 사용하여 내부적으로
 문서를 저장한다.</p>
 </div>
-<div id="ws-api" class="section level2" number="14.6">
+<div id="ws-api" class="section level2" number="15.6">
 <h2>
-<span class="header-section-number">14.6</span> API(응용 프로그램 인터페이스)<a class="anchor" aria-label="anchor" href="#ws-api"><i class="fas fa-link"></i></a>
+<span class="header-section-number">15.6</span> API(응용 프로그램 인터페이스)<a class="anchor" aria-label="anchor" href="#ws-api"><i class="fas fa-link"></i></a>
 </h2>
 <p>이제 HTTP를 사용하여 응용프로그램간에 데이터를 교환할 수 있게 되었다.
 또한, XML 혹은 JSON을 사용하여 응용프로그램간에도 복잡한 데이터를 주고
@@ -337,9 +338,9 @@ SOA 개발 방식은 전반적인 응용 프로그램이 다른 응용 프로그
 <p>응응프로그램이 웹상에 이용가능한 API로 서비스 집합을 만들 때,
 <strong>웹서비스(web services)</strong>라고 부른다.</p>
 </div>
-<div id="google-geocoding" class="section level2" number="14.7">
+<div id="google-geocoding" class="section level2" number="15.7">
 <h2>
-<span class="header-section-number">14.7</span> 구글 지오코딩 웹서비스<a class="anchor" aria-label="anchor" href="#google-geocoding"><i class="fas fa-link"></i></a>
+<span class="header-section-number">15.7</span> 구글 지오코딩 웹서비스<a class="anchor" aria-label="anchor" href="#google-geocoding"><i class="fas fa-link"></i></a>
 </h2>
 <p>구글이 자체적으로 구축한 대용량 지리 정보 데이터베이스를 누구나 이용할
 수 있게 하는 훌륭한 웹서비스가 있다. “Ann Arbor, MI” 같은 지리 검색
@@ -442,9 +443,9 @@ drop or significantly curtail its free service.)</p>
 <a href="www.py4inf.com/code/geoxml.py">www.py4inf.com/code/geoxml.py</a>을
 다운로드 받아보기 바란다.</p>
 </div>
-<div id="ws-security" class="section level2" number="14.8">
+<div id="ws-security" class="section level2" number="15.8">
 <h2>
-<span class="header-section-number">14.8</span> 보안과 API 사용<a class="anchor" aria-label="anchor" href="#ws-security"><i class="fas fa-link"></i></a>
+<span class="header-section-number">15.8</span> 보안과 API 사용<a class="anchor" aria-label="anchor" href="#ws-security"><i class="fas fa-link"></i></a>
 </h2>
 <p>상용업체 API를 사용하기 위해서는 일종의 “API키(API key)”가 일반적으로
 필요하다. 서비스 제공자 입장에서 누가 서비스를 사용하고 있으며 각
@@ -474,9 +475,9 @@ drop or significantly curtail its free service.)</p>
 검색을 할 수는 있지만, 하루에 수백만 API 호출로 데이터를 추출하여 제품을
 개발 못하게 제한하는 기능도 동시에 한다.</p>
 </div>
-<div id="ws-term" class="section level2" number="14.9">
+<div id="ws-term" class="section level2" number="15.9">
 <h2>
-<span class="header-section-number">14.9</span> 용어정의<a class="anchor" aria-label="anchor" href="#ws-term"><i class="fas fa-link"></i></a>
+<span class="header-section-number">15.9</span> 용어정의<a class="anchor" aria-label="anchor" href="#ws-term"><i class="fas fa-link"></i></a>
 </h2>
 <ul>
 <li>
@@ -501,21 +502,21 @@ drop or significantly curtail its free service.)</p>
 </div>
 </div>
   <div class="chapter-nav">
-<div class="prev"><a href="network.html"><span class="header-section-number">13</span> 네트워크 프로그램</a></div>
-<div class="next"><a href="r-db.html"><span class="header-section-number">15</span> 데이터베이스와 SQL</a></div>
+<div class="prev"><a href="network.html"><span class="header-section-number">14</span> 네트워크 프로그램</a></div>
+<div class="next"><a href="r-db.html"><span class="header-section-number">16</span> 데이터베이스와 SQL</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">
-<li><a class="nav-link" href="#r-webservice"><span class="header-section-number">14</span> 웹서비스 사용하기</a></li>
-<li><a class="nav-link" href="#ws-xml"><span class="header-section-number">14.1</span> XML</a></li>
-<li><a class="nav-link" href="#ws-xml-parsing"><span class="header-section-number">14.2</span> XML 파싱</a></li>
-<li><a class="nav-link" href="#ws-xml-nodes"><span class="header-section-number">14.3</span> 노드 반복하기</a></li>
-<li><a class="nav-link" href="#webservice-json"><span class="header-section-number">14.4</span> JSON</a></li>
-<li><a class="nav-link" href="#webservice-json-parsing"><span class="header-section-number">14.5</span> JSON 파싱하기</a></li>
-<li><a class="nav-link" href="#ws-api"><span class="header-section-number">14.6</span> API(응용 프로그램 인터페이스)</a></li>
-<li><a class="nav-link" href="#google-geocoding"><span class="header-section-number">14.7</span> 구글 지오코딩 웹서비스</a></li>
-<li><a class="nav-link" href="#ws-security"><span class="header-section-number">14.8</span> 보안과 API 사용</a></li>
-<li><a class="nav-link" href="#ws-term"><span class="header-section-number">14.9</span> 용어정의</a></li>
+<li><a class="nav-link" href="#r-webservice"><span class="header-section-number">15</span> 웹서비스 사용하기</a></li>
+<li><a class="nav-link" href="#ws-xml"><span class="header-section-number">15.1</span> XML</a></li>
+<li><a class="nav-link" href="#ws-xml-parsing"><span class="header-section-number">15.2</span> XML 파싱</a></li>
+<li><a class="nav-link" href="#ws-xml-nodes"><span class="header-section-number">15.3</span> 노드 반복하기</a></li>
+<li><a class="nav-link" href="#webservice-json"><span class="header-section-number">15.4</span> JSON</a></li>
+<li><a class="nav-link" href="#webservice-json-parsing"><span class="header-section-number">15.5</span> JSON 파싱하기</a></li>
+<li><a class="nav-link" href="#ws-api"><span class="header-section-number">15.6</span> API(응용 프로그램 인터페이스)</a></li>
+<li><a class="nav-link" href="#google-geocoding"><span class="header-section-number">15.7</span> 구글 지오코딩 웹서비스</a></li>
+<li><a class="nav-link" href="#ws-security"><span class="header-section-number">15.8</span> 보안과 API 사용</a></li>
+<li><a class="nav-link" href="#ws-term"><span class="header-section-number">15.9</span> 용어정의</a></li>
 </ul>
 
       <div class="book-extra">
@@ -532,7 +533,7 @@ drop or significantly curtail its free service.)</p>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>데이터 과학 프로그래밍</strong>" was written by 한국 알(R) 사용자회. It was last built on 2022-05-19.</p>
+    <p>"<strong>데이터 과학 프로그래밍</strong>" was written by 한국 알(R) 사용자회. It was last built on 2022-05-20.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

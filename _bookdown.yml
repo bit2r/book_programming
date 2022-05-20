@@ -28,6 +28,7 @@ rmd_files: [
   "08-list.Rmd",
   "09-dictionaries.Rmd",
   "10-tuples.Rmd",
+  "A-dataframe.Rmd",
 
   # 분야별 도구
   "11-regex.Rmd",

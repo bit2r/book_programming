@@ -133,6 +133,14 @@ tuple-sequences
 tuple-debugging
 r-tuple-terminology
 tuple-ex
+dataframe
+data-type-for-data-science
+data-type-basics
+extended-data-type
+data-type-vector
+data-type-dataframe-in-r
+data-type-factor
+is-na-null
 regex
 regex-char-matching
 regex-extraction
