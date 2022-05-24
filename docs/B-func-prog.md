@@ -612,7 +612,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2022-05-20 12:32:52 KST"
+## [1] "2022-05-24 17:29:58 KST"
 ```
 
 ```r
@@ -856,7 +856,7 @@ map(test_lst, log_safe) %>%
 
 ```
 ## [[1]]
-## <simpleError in .Primitive("log")(x, base): 수학함수에 숫자가 아닌 인자가 전달되었습니다>
+## <simpleError in .Primitive("log")(x, base): non-numeric argument to mathematical function>
 ## 
 ## [[2]]
 ## NULL

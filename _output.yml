@@ -7,4 +7,6 @@ bookdown::gitbook:
       after: |
         <li><a href="https://github.com/bit2r/book_programming" target="blank">Published with bookdown</a></li>
     edit: https://github.com/bit2r/book_programming/edit/master/%s
-bookdown::bs4_book: default
+bookdown::bs4_book:
+  includes:
+    in_header: google_analytics.html

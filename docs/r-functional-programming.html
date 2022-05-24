@@ -7,17 +7,48 @@
 <title>18 . 함수형 프로그래밍 | 데이터 과학 프로그래밍</title>
 <meta name="author" content="한국 알(R) 사용자회">
 <meta name="description" content="데이터 과학 맥락에서 함수형 프로그래밍을 이해하고, 수치해석 예제를 통해 코드를 작성하고, 함수형 프로그래밍과 짝꿍인 단위 테스트에 대해서 살펴본다. 함수형 프로그래밍(functional programming)은 코드를 작성하는 한 방식으로 특정 연산을 수행하는 함수를 먼저 작성하고 나서, 사용자가 함수를 호출해서 작업을 수행하는 방식이다. 순수...">
-<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta name="generator" content="bookdown 0.26 with bs4_book()">
 <meta property="og:title" content="18 . 함수형 프로그래밍 | 데이터 과학 프로그래밍">
 <meta property="og:type" content="book">
 <meta property="og:description" content="데이터 과학 맥락에서 함수형 프로그래밍을 이해하고, 수치해석 예제를 통해 코드를 작성하고, 함수형 프로그래밍과 짝꿍인 단위 테스트에 대해서 살펴본다. 함수형 프로그래밍(functional programming)은 코드를 작성하는 한 방식으로 특정 연산을 수행하는 함수를 먼저 작성하고 나서, 사용자가 함수를 호출해서 작업을 수행하는 방식이다. 순수...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="18 . 함수형 프로그래밍 | 데이터 과학 프로그래밍">
 <meta name="twitter:description" content="데이터 과학 맥락에서 함수형 프로그래밍을 이해하고, 수치해석 예제를 통해 코드를 작성하고, 함수형 프로그래밍과 짝꿍인 단위 테스트에 대해서 살펴본다. 함수형 프로그래밍(functional programming)은 코드를 작성하는 한 방식으로 특정 연산을 수행하는 함수를 먼저 작성하고 나서, 사용자가 함수를 호출해서 작업을 수행하는 방식이다. 순수...">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS -->
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-229551680-1"></script><script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-229551680-1');
+    </script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -151,7 +182,7 @@
 </div>
 <div id="functional-programming-newton-method" class="section level3" number="18.2.1">
 <h3>
-<span class="header-section-number">18.2.1</span> 뉴튼 방법 R 코드 <a href="references.html#fn27" class="footnote-ref" id="fnref27"><sup>27</sup></a><a class="anchor" aria-label="anchor" href="#functional-programming-newton-method"><i class="fas fa-link"></i></a>
+<span class="header-section-number">18.2.1</span> 뉴튼 방법 R 코드 <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="http://www.brodrigues.co/fput/"&gt;Bruno Rodrigues(2016), “Functional programming and unit testing for data munging with R”, LeanPub, 2016-12-23&lt;/a&gt;&lt;/p&gt;'><sup>27</sup></a><a class="anchor" aria-label="anchor" href="#functional-programming-newton-method"><i class="fas fa-link"></i></a>
 </h3>
 <p>뉴튼 방법을 R코들 구현하면 다음과 같이 612의 제곱근 값을 수치적으로 컴퓨터를 활용하여 구할 수 있다.
 <code>while</code>같은 루프를 활용하여 반복적으로 해를 구하는 것도 가능하지만 재귀를 활용하여 해를 구하는 방법이
@@ -204,7 +235,7 @@
 </div>
 <div id="map-reduce-apply" class="section level3" number="18.2.2">
 <h3>
-<span class="header-section-number">18.2.2</span> <code>Map()</code>, <code>Reduce()</code> 함수와 <code>*apply()</code> 함수 가족 <a href="references.html#fn28" class="footnote-ref" id="fnref28"><sup>28</sup></a> <a href="references.html#fn29" class="footnote-ref" id="fnref29"><sup>29</sup></a><a class="anchor" aria-label="anchor" href="#map-reduce-apply"><i class="fas fa-link"></i></a>
+<span class="header-section-number">18.2.2</span> <code>Map()</code>, <code>Reduce()</code> 함수와 <code>*apply()</code> 함수 가족 <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://jennybc.github.io/purrr-tutorial/index.html"&gt;&lt;code&gt;purrr&lt;/code&gt; tutorial: Lessons and Examples&lt;/a&gt;&lt;/p&gt;'><sup>28</sup></a> <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://github.com/jennybc/purrr-tutorial/"&gt;&lt;code&gt;purrr&lt;/code&gt; tutorial GitHub Webpage&lt;/a&gt;&lt;/p&gt;'><sup>29</sup></a><a class="anchor" aria-label="anchor" href="#map-reduce-apply"><i class="fas fa-link"></i></a>
 </h3>
 <p>함수를 인자로 받는 함수를 고차함수(High-order function)라고 부른다.
 대표적으로 <code><a href="https://rdrr.io/r/base/funprog.html">Map()</a></code>, <code><a href="https://rdrr.io/r/base/funprog.html">Reduce()</a></code>가 있다. 숫자 하나가 아닌 벡터에 대한 제곱근을 구하기 위해서
@@ -428,7 +459,7 @@
 </div>
 <div id="functional-programming-purrr-ggplot" class="section level2" number="18.5">
 <h2>
-<span class="header-section-number">18.5</span> 사례: <code>ggplot</code> 시각화 <a href="references.html#fn30" class="footnote-ref" id="fnref30"><sup>30</sup></a><a class="anchor" aria-label="anchor" href="#functional-programming-purrr-ggplot"><i class="fas fa-link"></i></a>
+<span class="header-section-number">18.5</span> 사례: <code>ggplot</code> 시각화 <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://aosmith.rbind.io/2018/08/20/automating-exploratory-plots/"&gt;Very statisticious (August 20, 2018), “Automating exploratory plots with ggplot2 and purrr”&lt;/a&gt;&lt;/p&gt;'><sup>30</sup></a><a class="anchor" aria-label="anchor" href="#functional-programming-purrr-ggplot"><i class="fas fa-link"></i></a>
 </h2>
 <p><code>list-column</code>을 활용하여 티블(tibble) 데이터프레임에 담아서 시각화를 진행해도 되고,
 다른 방법으로 리스트에 담아서 이를 한장에 찍는 것도 가능하다.</p>
@@ -477,7 +508,7 @@
 <h2>
 <span class="header-section-number">18.6</span> FP 이론과 실제<a class="anchor" aria-label="anchor" href="#fp-theory-practice"><i class="fas fa-link"></i></a>
 </h2>
-<p>함수는 다음과 같이 될 수도 있어 함수형 프로그래밍(Functional Programming, FP) 언어가 된다. <a href="references.html#fn31" class="footnote-ref" id="fnref31"><sup>31</sup></a></p>
+<p>함수는 다음과 같이 될 수도 있어 함수형 프로그래밍(Functional Programming, FP) 언어가 된다. <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://adv-r.hadley.nz/fp.html"&gt;Advanced R, “Introduction”&lt;/a&gt;&lt;/p&gt;'><sup>31</sup></a></p>
 <ul>
 <li>함수의 인자</li>
 <li>함수로 반환</li>
@@ -525,7 +556,7 @@
 <p><strong>순수하지 않은 함수(impure function)</strong></p>
 <div class="sourceCode" id="cb725"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.time</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "2022-05-20 12:32:52 KST"</code></pre>
+<pre><code>## [1] "2022-05-24 17:29:58 KST"</code></pre>
 <div class="sourceCode" id="cb727"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></code></pre></div>
 <pre><code>##  [1]  0.492 -0.410 -0.931 -0.722  0.724  0.246  1.674  0.313 -0.224 -1.144</code></pre>
@@ -706,7 +737,7 @@
 <code class="sourceCode R"><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">test_lst</span>, <span class="va">log_safe</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="st">"error"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [[1]]
-## &lt;simpleError in .Primitive("log")(x, base): 수학함수에 숫자가 아닌 인자가 전달되었습니다&gt;
+## &lt;simpleError in .Primitive("log")(x, base): non-numeric argument to mathematical function&gt;
 ## 
 ## [[2]]
 ## NULL
@@ -787,7 +818,7 @@
 </div>
 <div id="fp-clean-code" class="section level2" number="18.7">
 <h2>
-<span class="header-section-number">18.7</span> 깨끗한 코드(clean code) <a href="references.html#fn32" class="footnote-ref" id="fnref32"><sup>32</sup></a><a class="anchor" aria-label="anchor" href="#fp-clean-code"><i class="fas fa-link"></i></a>
+<span class="header-section-number">18.7</span> 깨끗한 코드(clean code) <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://colinfay.me/purrr-code-optim/"&gt;Colin Fay, “A Crazy Little Thing Called {purrr} - Part 5: code optimization”&lt;/a&gt;&lt;/p&gt;'><sup>32</sup></a><a class="anchor" aria-label="anchor" href="#fp-clean-code"><i class="fas fa-link"></i></a>
 </h2>
 <p><code>round_mean()</code> 함수를 <code><a href="https://purrr.tidyverse.org/reference/compose.html">compose()</a></code> 함수를 사용해서 <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> 함수로 평균을 구한 후에 <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code>함수로 반올림하는 코드를 다음과 같이 쉽게 작성할 수 있다.</p>
 <div class="sourceCode" id="cb764"><pre class="downlit sourceCode r">
@@ -832,6 +863,7 @@
 
 </div>
 </div>
+
   <div class="chapter-nav">
 <div class="prev"><a href="r-automation.html"><span class="header-section-number">17</span> 작업 자동화</a></div>
 <div class="next"><a href="references.html">References</a></div>
@@ -875,7 +907,7 @@
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>데이터 과학 프로그래밍</strong>" was written by 한국 알(R) 사용자회. It was last built on 2022-05-20.</p>
+    <p>"<strong>데이터 과학 프로그래밍</strong>" was written by 한국 알(R) 사용자회. It was last built on 2022-05-24.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

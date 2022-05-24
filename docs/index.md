@@ -1,7 +1,7 @@
 --- 
 title: "데이터 과학 프로그래밍"
 author: "한국 알(R) 사용자회"
-date: "2022-05-20"
+date: "2022-05-24"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book

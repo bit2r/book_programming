@@ -7,17 +7,48 @@
 <title>12 . 데이터프레임 | 데이터 과학 프로그래밍</title>
 <meta name="author" content="한국 알(R) 사용자회">
 <meta name="description" content="다른 프로그래밍 언어에서 다루지 않는 독특한 자료구조가 데이터프레임(Dataframe)이다. R도 프로그래밍 언어이기 때문에 다른 언어에서 갖고 있는 자료구조를 대부분 갖추고 있지만, 데이터분석, 시각화, 모형개발 등에 꼭 필요한 기본 자료구조가 데이터프레임이다. 데이터프레임을 본격적으로 살펴보기 전에 통계학에서 다루는 측정에 대해 살펴보고, 측정...">
-<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta name="generator" content="bookdown 0.26 with bs4_book()">
 <meta property="og:title" content="12 . 데이터프레임 | 데이터 과학 프로그래밍">
 <meta property="og:type" content="book">
 <meta property="og:description" content="다른 프로그래밍 언어에서 다루지 않는 독특한 자료구조가 데이터프레임(Dataframe)이다. R도 프로그래밍 언어이기 때문에 다른 언어에서 갖고 있는 자료구조를 대부분 갖추고 있지만, 데이터분석, 시각화, 모형개발 등에 꼭 필요한 기본 자료구조가 데이터프레임이다. 데이터프레임을 본격적으로 살펴보기 전에 통계학에서 다루는 측정에 대해 살펴보고, 측정...">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="12 . 데이터프레임 | 데이터 과학 프로그래밍">
 <meta name="twitter:description" content="다른 프로그래밍 언어에서 다루지 않는 독특한 자료구조가 데이터프레임(Dataframe)이다. R도 프로그래밍 언어이기 때문에 다른 언어에서 갖고 있는 자료구조를 대부분 갖추고 있지만, 데이터분석, 시각화, 모형개발 등에 꼭 필요한 기본 자료구조가 데이터프레임이다. 데이터프레임을 본격적으로 살펴보기 전에 통계학에서 다루는 측정에 대해 살펴보고, 측정...">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS -->
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-229551680-1"></script><script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-229551680-1');
+    </script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -83,7 +114,7 @@ R도 프로그래밍 언어이기 때문에 다른 언어에서 갖고 있는 �
 많이 다뤄지는 리스트에 대한 차별점도 살펴보자.</p>
 <div id="data-type-for-data-science" class="section level2" number="12.1">
 <h2>
-<span class="header-section-number">12.1</span> 측정 변수의 구분 <a href="references.html#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a> <a href="references.html#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a> <a href="references.html#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a><a class="anchor" aria-label="anchor" href="#data-type-for-data-science"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.1</span> 측정 변수의 구분 <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="http://psychology.okstate.edu/faculty/jgrice/psyc3214/Stevens_FourScales_1946.pdf"&gt;Stevens, Stanley Smith. “On the theory of scales of measurement.” (1946).&lt;/a&gt;&lt;/p&gt;'><sup>10</sup></a> <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;Wiener, Norbert. “A new theory of measurement: a study in the logic of mathematics.” Proceedings of the London Mathematical Society 2.1 (1921): 181-205.&lt;/p&gt;"><sup>11</sup></a> <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;이경화 외 (2020), “고등학교 실용통계”, 통계청 통계교육원&lt;/p&gt;"><sup>12</sup></a><a class="anchor" aria-label="anchor" href="#data-type-for-data-science"><i class="fas fa-link"></i></a>
 </h2>
 <p>자료가 갖는 고유한 특성을 숫자료 표현한 측정 척도에 따라, 명목형, 순서형, 구간형, 비율형 네가지로 구분된다.
 측정 척도에 따라 유의미한 통계량도 함께 정해진다. 자세한 사항은 <a href="http://psychology.okstate.edu/faculty/jgrice/psyc3214/Stevens_FourScales_1946.pdf">Stevens, Stanley Smith. “On the theory of scales of measurement.” (1946).</a> 논문을 참조한다.</p>
@@ -123,7 +154,7 @@ R도 프로그래밍 언어이기 때문에 다른 언어에서 갖고 있는 �
 <p>R에서 기본으로 사용하는 벡터 자료형은 <strong>원자 벡터(Atomic Vector)</strong> 와 <strong>리스트(List)</strong> 로 나눠진다.
 원자 벡터에는 6가지 자료형이 있고, logical, integer, double, character, complex, raw, 총 6 개가 있으며
 주로, 논리형, 정수형, 부동소수점형, 문자형, 4가지를 많이 사용한다. 리스트는 재귀 벡터(recursive vector)라고도
-불리는데 리스트는 다른 리스트를 포함할 수 있기 때문이다. <a href="references.html#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a></p>
+불리는데 리스트는 다른 리스트를 포함할 수 있기 때문이다. <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="http://r4ds.had.co.nz/"&gt;Garrett Grolemund &amp;amp; Hadley Wickham, R for Data Science&lt;/a&gt;&lt;/p&gt;'><sup>13</sup></a></p>
 <div class="inline-table"><table class="table table-sm">
 <thead><tr class="header">
 <th>자료형(Type)</th>
@@ -432,7 +463,7 @@ R 객체 구조 파악을 위해서는 간단한 자료의 경우 데이터 형�
 </div>
 <div id="fp-list-columns" class="section level2" number="12.8">
 <h2>
-<span class="header-section-number">12.8</span> 리스트 칼럼 <a href="references.html#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a> <a href="references.html#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a><a class="anchor" aria-label="anchor" href="#fp-list-columns"><i class="fas fa-link"></i></a>
+<span class="header-section-number">12.8</span> 리스트 칼럼 <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://jennybc.github.io/purrr-tutorial/ls13_list-columns.html"&gt;List columns&lt;/a&gt;&lt;/p&gt;'><sup>14</sup></a> <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://github.com/jennybc/lego-rstats"&gt;Photos that depict R data structures and operations via Lego&lt;/a&gt;&lt;/p&gt;'><sup>15</sup></a><a class="anchor" aria-label="anchor" href="#fp-list-columns"><i class="fas fa-link"></i></a>
 </h2>
 <p>레고를 통해 살펴본 R 자료구조는 계산가능한 원자 자료형(논리형, 숫자형, 요인형)으로 크게 볼 수 있다.
 R에서 정수형과 부동소수점은 그다지 크게 구분을 하지 않는다. 동일 길이를 갖는 벡터를 쭉 붙여넣으면 자료구조형이
@@ -461,6 +492,7 @@ R에서 정수형과 부동소수점은 그다지 크게 구분을 하지 않는
 </ul>
 </div>
 </div>
+
 
 
 
@@ -495,7 +527,7 @@ R에서 정수형과 부동소수점은 그다지 크게 구분을 하지 않는
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>데이터 과학 프로그래밍</strong>" was written by 한국 알(R) 사용자회. It was last built on 2022-05-20.</p>
+    <p>"<strong>데이터 과학 프로그래밍</strong>" was written by 한국 알(R) 사용자회. It was last built on 2022-05-24.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">

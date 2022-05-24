@@ -7,17 +7,48 @@
 <title>16 . 데이터베이스와 SQL | 데이터 과학 프로그래밍</title>
 <meta name="author" content="한국 알(R) 사용자회">
 <meta name="description" content="16.1 데이터베이스가 뭔가요? 데이터베이스(database)는 데이터를 저장하기 위한 목적으로 조직된 파일이다. 대부분의 데이터베이스는 키(key)와 값(value)를 매핑한다는 의미에서 딕셔너리처럼 조직되었다. 가장 큰 차이점은 데이터베이스는 디스크(혹은 다른 영구 저장소)에 위치하고 있어서, 프로그램 종료 후에도 정보가 계속 저장된다....">
-<meta name="generator" content="bookdown 0.24 with bs4_book()">
+<meta name="generator" content="bookdown 0.26 with bs4_book()">
 <meta property="og:title" content="16 . 데이터베이스와 SQL | 데이터 과학 프로그래밍">
 <meta property="og:type" content="book">
 <meta property="og:description" content="16.1 데이터베이스가 뭔가요? 데이터베이스(database)는 데이터를 저장하기 위한 목적으로 조직된 파일이다. 대부분의 데이터베이스는 키(key)와 값(value)를 매핑한다는 의미에서 딕셔너리처럼 조직되었다. 가장 큰 차이점은 데이터베이스는 디스크(혹은 다른 영구 저장소)에 위치하고 있어서, 프로그램 종료 후에도 정보가 계속 저장된다....">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="16 . 데이터베이스와 SQL | 데이터 과학 프로그래밍">
 <meta name="twitter:description" content="16.1 데이터베이스가 뭔가요? 데이터베이스(database)는 데이터를 저장하기 위한 목적으로 조직된 파일이다. 대부분의 데이터베이스는 키(key)와 값(value)를 매핑한다는 의미에서 딕셔너리처럼 조직되었다. 가장 큰 차이점은 데이터베이스는 디스크(혹은 다른 영구 저장소)에 위치하고 있어서, 프로그램 종료 후에도 정보가 계속 저장된다....">
-<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.11/header-attrs.js"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
 <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
-<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS -->
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-229551680-1"></script><script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-229551680-1');
+    </script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
 </head>
 <body data-spy="scroll" data-target="#toc">
 
@@ -132,7 +163,7 @@ Oracle, MySQL, Microsoft SQL Server, PostgreSQL, SQLite이 여기에 포함된�
 <h2>
 <span class="header-section-number">16.4</span> 데이터베이스 테이블 생성<a class="anchor" aria-label="anchor" href="#r-db-create-table"><i class="fas fa-link"></i></a>
 </h2>
-<p>데이터베이스는 R 리스트 혹은 딕셔너리보다 좀더 명확히 정의된 구조를 요구한다. <a href="references.html#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a></p>
+<p>데이터베이스는 R 리스트 혹은 딕셔너리보다 좀더 명확히 정의된 구조를 요구한다. <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content="&lt;p&gt;실질적으로 SQLite는 열에 저장되는 데이터 형식에 대해서 좀더 많은 유연성을 부여하지만, 이번 장에서는 데이터 형식을 엄격하게 적용해서 MySQL 같은 다른 관계형 데이터베이스 시스템에도 동일한 개념이 적용되게 한다.&lt;/p&gt;"><sup>16</sup></a></p>
 <p>데이터베이스에 테이블(table)을 생성할 때, 열(column)의 명칭과 각 열(column)에 저장하는 테이터 형식을 사전에 정의해야 한다.
 데이터베이스 소프트웨어가 각 열의 데이터 형식을 인식하게 되면, 데이터 형식에 따라 데이터를 저장하고 찾아오는 방법을 가장 효율적인 방식을 선택할 수 있다.</p>
 <p>다음 url에서 SQLite에서 지원되는 다양한 데이터 형식을 살펴볼 수 있다.</p>
@@ -391,13 +422,13 @@ dbSendQuery( conn, 'CREATE TABLE IF NOT EXISTS Follows (from_id INTEGER, to_id I
 </h2>
 <div id="about-postgreSQL" class="section level3" number="16.8.1">
 <h3>
-<span class="header-section-number">16.8.1</span> PostgreSQL <a href="references.html#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a> <a href="references.html#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a><a class="anchor" aria-label="anchor" href="#about-postgreSQL"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.8.1</span> PostgreSQL <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://ko.wikipedia.org/wiki/PostgreSQL"&gt;위키백과, “PostgreSQL”&lt;/a&gt;&lt;/p&gt;'><sup>17</sup></a> <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://d2.naver.com/helloworld/227936"&gt;NAVER D2 한눈에 살펴보는 PostgreSQL&lt;/a&gt;&lt;/p&gt;'><sup>18</sup></a><a class="anchor" aria-label="anchor" href="#about-postgreSQL"><i class="fas fa-link"></i></a>
 </h3>
 <p>PostgreSQL은 확장 가능성 및 표준 준수를 강조하는 객체-관계형 데이터베이스 관리 시스템(ORDBMS)의 하나로 BSD 라이선스로 배포되며 오픈소스 개발자 및 관련 회사들이 개발에 참여하고 있다. 소규모의 단일 머신 애플리케이션에서부터 수많은 동시 접속 사용자가 있는 대형의 인터넷 애플리케이션(또는 데이터 웨어하우스용)에 이르기까지 여러 부하를 관리할 수 있으며 macOS 서버의 경우 PostgreSQL은 기본 데이터베이스로 상용 오라클 데이터베이스를 대체하는 오픈소스 데이터베이스로 알려져 있다.</p>
 </div>
 <div id="install-postgreSQL" class="section level3" number="16.8.2">
 <h3>
-<span class="header-section-number">16.8.2</span> PostgreSQL 설치 <a href="references.html#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a><a class="anchor" aria-label="anchor" href="#install-postgreSQL"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.8.2</span> PostgreSQL 설치 <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="http://www.postgresqltutorial.com/install-postgresql/"&gt;Install PostgreSQL&lt;/a&gt;&lt;/p&gt;'><sup>19</sup></a><a class="anchor" aria-label="anchor" href="#install-postgreSQL"><i class="fas fa-link"></i></a>
 </h3>
 <p><a href="https://www.postgresql.org/">PostgreSQL: The World’s Most Advanced Open Source Relational Database</a> 웹사이트에서
 PostgreSQL <a href="https://www.postgresql.org/download/windows/">다운로드</a> 한다. 윈도우에 설치하는 경우 다음을 참고한다. 설치과정에서 나중에 도움이 될만한 정보는 다음과 같다.</p>
@@ -422,7 +453,7 @@ PostgreSQL <a href="https://www.postgresql.org/download/windows/">다운로드</
 </div>
 <div id="install-dvd-postgreSQL" class="section level3" number="16.8.3">
 <h3>
-<span class="header-section-number">16.8.3</span> 예제 데이터베이스 - <code>pagila</code> <a href="references.html#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a><a class="anchor" aria-label="anchor" href="#install-dvd-postgreSQL"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.8.3</span> 예제 데이터베이스 - <code>pagila</code> <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="http://www.postgresqltutorial.com/postgresql-sample-database/"&gt;PostgreSQL Sample Database&lt;/a&gt;&lt;/p&gt;'><sup>20</sup></a><a class="anchor" aria-label="anchor" href="#install-dvd-postgreSQL"><i class="fas fa-link"></i></a>
 </h3>
 <p><a href="https://github.com/devrimgunduz/pagila">PostgreSQL Sample Database</a>를 Github에서 구해서 설치하거나, <a href="http://www.postgresqltutorial.com/postgresql-sample-database/">PostgreSQL Sample Database</a>, <a href="http://www.postgresqltutorial.com/load-postgresql-sample-database/">Load PostgreSQL Sample Database</a>을 참조하여 DVD 대여 데이터베이스를 설치한다.</p>
 <ol style="list-style-type: decimal">
@@ -461,7 +492,7 @@ PostgreSQL <a href="https://www.postgresql.org/download/windows/">다운로드</
 </div>
 <div id="query-dvd-postgreSQL" class="section level3" number="16.8.4">
 <h3>
-<span class="header-section-number">16.8.4</span> DVD 대여 질의문 작성 <a href="references.html#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a><a class="anchor" aria-label="anchor" href="#query-dvd-postgreSQL"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.8.4</span> DVD 대여 질의문 작성 <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="http://www.postgresqltutorial.com/connect-to-postgresql-database/"&gt;Connect To a PostgreSQL Database Server&lt;/a&gt;&lt;/p&gt;'><sup>21</sup></a><a class="anchor" aria-label="anchor" href="#query-dvd-postgreSQL"><i class="fas fa-link"></i></a>
 </h3>
 <p><code>dvd</code> 데이터베이스가 설치되었기 때문에 쿼리를 던지기 위해서는 postgreSQL 데이터베이스에 접속을 해야한다. 이를 위해서 <code>pgAdmin 4</code>를 실행시키게 되면 웹브라우져에 웹인터페이스가 생기게 된다. 데이터베이스를 <code>dvd</code>로 지정하고 하고 나서, <code>Tools</code> → <code>Query Tool</code>을 클릭하게 되면 해당 데이터베이스 테이블에 쿼리를 던질 수가 있게 된다.</p>
 <div class="figure">
@@ -496,7 +527,7 @@ PostgreSQL <a href="https://www.postgresql.org/download/windows/">다운로드</
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dbi.r-dbi.org">DBI</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rpostgres.r-dbi.org">RPostgres</a></span><span class="op">)</span>
 
-<span class="va">con</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html">dbConnect</a></span><span class="op">(</span><span class="fu">RPostgres</span><span class="fu">::</span><span class="fu">Postgres</span><span class="op">(</span><span class="op">)</span>, dbname<span class="op">=</span><span class="st">"dvd"</span>, 
+<span class="va">con</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html">dbConnect</a></span><span class="op">(</span><span class="fu">RPostgres</span><span class="fu">::</span><span class="fu"><a href="https://rpostgres.r-dbi.org/reference/Postgres.html">Postgres</a></span><span class="op">(</span><span class="op">)</span>, dbname<span class="op">=</span><span class="st">"dvd"</span>, 
                  host<span class="op">=</span><span class="st">"localhost"</span>,
                  port<span class="op">=</span><span class="st">"5432"</span>, 
                  user<span class="op">=</span><span class="st">"postgres"</span>, 
@@ -592,13 +623,13 @@ PostgreSQL <a href="https://www.postgresql.org/download/windows/">다운로드</
 <p>DVT 대여 데이터베이스를 설치했다면 다음 단계로 다양한 SQL 쿼리문을 던져 뭔가 가치 있는 정보를 추출해야만 한다. <a href="https://statkclee.github.io/data-science/ds-postgreSQL.html">데이터 과학: “postgreSQL - DVD 대여 데이터베이스”</a>에서 데이터베이스 설치와 접속에 대한 사항은 확인한다.</p>
 <div id="dvd-rental-db-insight-sql" class="section level3" number="16.9.1">
 <h3>
-<span class="header-section-number">16.9.1</span> DB 접속 헬로월드 <a href="references.html#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a><a class="anchor" aria-label="anchor" href="#dvd-rental-db-insight-sql"><i class="fas fa-link"></i></a>
+<span class="header-section-number">16.9.1</span> DB 접속 헬로월드 <a class="footnote-ref" tabindex="0" data-toggle="popover" data-content='&lt;p&gt;&lt;a href="https://www.freecodecamp.org/news/project-1-analyzing-dvd-rentals-with-sql-fd12dd674a64/"&gt;Okoh Anita (2018-12-20), “How I analyzed DVD rental data with SQL”, freeCodeCamp&lt;/a&gt;&lt;/p&gt;'><sup>22</sup></a><a class="anchor" aria-label="anchor" href="#dvd-rental-db-insight-sql"><i class="fas fa-link"></i></a>
 </h3>
 <p>먼저 <code><a href="https://dbi.r-dbi.org/reference/dbConnect.html">DBI::dbConnect()</a></code>를 통해 접속하고 SQL 쿼리 헬로월드를 던져보자.</p>
 <div class="sourceCode" id="cb632"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rpostgres.r-dbi.org">RPostgres</a></span><span class="op">)</span>
 
-<span class="va">con</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html">dbConnect</a></span><span class="op">(</span><span class="fu">RPostgres</span><span class="fu">::</span><span class="fu">Postgres</span><span class="op">(</span><span class="op">)</span>, dbname<span class="op">=</span><span class="st">"dvd"</span>, 
+<span class="va">con</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html">dbConnect</a></span><span class="op">(</span><span class="fu">RPostgres</span><span class="fu">::</span><span class="fu"><a href="https://rpostgres.r-dbi.org/reference/Postgres.html">Postgres</a></span><span class="op">(</span><span class="op">)</span>, dbname<span class="op">=</span><span class="st">"dvd"</span>, 
                  host<span class="op">=</span><span class="st">"localhost"</span>,
                  port<span class="op">=</span><span class="st">"5432"</span>, 
                  user<span class="op">=</span><span class="st">"postgres"</span>, 
@@ -876,6 +907,7 @@ ORDER BY num_rentals DESC;"</span>
 </ul>
 </div>
 </div>
+
   <div class="chapter-nav">
 <div class="prev"><a href="r-webservice.html"><span class="header-section-number">15</span> 웹서비스 사용하기</a></div>
 <div class="next"><a href="r-automation.html"><span class="header-section-number">17</span> 작업 자동화</a></div>
@@ -927,7 +959,7 @@ ORDER BY num_rentals DESC;"</span>
 <footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
-    <p>"<strong>데이터 과학 프로그래밍</strong>" was written by 한국 알(R) 사용자회. It was last built on 2022-05-20.</p>
+    <p>"<strong>데이터 과학 프로그래밍</strong>" was written by 한국 알(R) 사용자회. It was last built on 2022-05-24.</p>
   </div>
 
   <div class="col-12 col-md-6 mt-3">
