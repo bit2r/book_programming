@@ -1,0 +1,25 @@
+project:
+  type: book
+
+book:
+  title: "데이터 과학 프로그래밍"
+  author: "한국 R 사용자회"
+  date: last-modified
+  search: true
+  repo-url: https://github.com/bit2r/book_programming
+  repo-actions: [edit]
+  downloads: [pdf]
+  sidebar:
+    style: docked
+    background: light
+  chapters:
+    - index.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+pdf:
+  documentclass: scrreport
