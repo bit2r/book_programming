@@ -505,7 +505,7 @@ bind_cols("word" = uniq_word, "freq"=res_v) %>% arrange(desc(freq))
 ```
 
 ```
-## # A tibble: 11 × 2
+## # A tibble: 11 x 2
 ##   word   freq
 ##   <chr> <dbl>
 ## 1 the       7
@@ -514,7 +514,7 @@ bind_cols("word" = uniq_word, "freq"=res_v) %>% arrange(desc(freq))
 ## 4 clown     2
 ## 5 ran       2
 ## 6 tent      2
-## # … with 5 more rows
+## # ... with 5 more rows
 ```
 
 ```r

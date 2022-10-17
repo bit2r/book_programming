@@ -91,7 +91,7 @@ $$x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}$$
 $f$를 미분한 $f'$ 빨간 선은  뉴턴방법을 활용하여 근을 구해가는 과정을 시각적으로 보여주고 있다.
 $x_{n-1}$ 보다 $x_n$이, $x_n$ 보다 $x_{n+1}$이 함수 $f$ 근에 더 가깝게 접근해 나가는 것이 확인된다.
 
-![뉴튼 방법 도식](assets/images/newton_method_ani.gif){width=100%}
+<!-- ![뉴튼 방법 도식](assets/images/newton_method_ani.gif){width=100%} -->
 
 ### 뉴튼 방법 R 코드 [^fp-book] {#functional-programming-newton-method}
 
@@ -398,12 +398,12 @@ iris_list %>%
 ```
 
 ```
-## # A tibble: 3 × 2
+## # A tibble: 3 x 2
 ##   name       value                 
 ##   <chr>      <list>                
-## 1 setosa     <spec_tbl_df [50 × 5]>
-## 2 versicolor <spec_tbl_df [50 × 5]>
-## 3 virginica  <spec_tbl_df [50 × 5]>
+## 1 setosa     <spec_tbl_df [50 x 5]>
+## 2 versicolor <spec_tbl_df [50 x 5]>
+## 3 virginica  <spec_tbl_df [50 x 5]>
 ```
 
 ## 사례: 데이터 분석 {#functional-programming-purrr-analysis}
@@ -496,12 +496,12 @@ gapminder_plot_tbl
 ```
 
 ```
-## # A tibble: 3 × 3
+## # A tibble: 3 x 3
 ##   country     data              graph 
 ##   <fct>       <list>            <list>
-## 1 China       <tibble [12 × 4]> <gg>  
-## 2 Japan       <tibble [12 × 4]> <gg>  
-## 3 Korea, Rep. <tibble [12 × 4]> <gg>
+## 1 China       <tibble [12 x 4]> <gg>  
+## 2 Japan       <tibble [12 x 4]> <gg>  
+## 3 Korea, Rep. <tibble [12 x 4]> <gg>
 ```
 
 ```r
@@ -517,7 +517,9 @@ gapminder_plot <- map2(gapminder_tbl$data , three_country,
 cowplot::plot_grid(plotlist = gapminder_plot)
 ```
 
-<img src="B-func-prog_files/figure-html/fp-iris-viz-1.png" width="576" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{B-func-prog_files/figure-latex/fp-iris-viz-1} \end{center}
 
 
 ## FP 이론과 실제 {#fp-theory-practice}
@@ -612,7 +614,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2022-05-24 17:29:58 KST"
+## [1] "2022-10-17 19:24:05 KST"
 ```
 
 ```r
@@ -680,7 +682,7 @@ fans_lst %>% enframe()
 ```
 
 ```
-## # A tibble: 3 × 2
+## # A tibble: 3 x 2
 ##   name      value      
 ##   <chr>     <list>     
 ## 1 ahn_fans  <dbl [114]>
@@ -856,7 +858,7 @@ map(test_lst, log_safe) %>%
 
 ```
 ## [[1]]
-## <simpleError in .Primitive("log")(x, base): non-numeric argument to mathematical function>
+## <simpleError in .Primitive("log")(x, base): 수학함수에 숫자가 아닌 인자가 전달되었습니다>
 ## 
 ## [[2]]
 ## NULL
@@ -1005,7 +1007,7 @@ clean_lm(mpg ~ hp + wt, data=mtcars)
 ```
 
 ```
-## # A tibble: 3 × 6
+## # A tibble: 3 x 6
 ##   term         df sumsq meansq statistic   p.value
 ##   <chr>     <int> <dbl>  <dbl>     <dbl>     <dbl>
 ## 1 hp            1  678. 678.       101.   5.99e-11
@@ -1044,12 +1046,12 @@ mtcars %>%
 ```
 
 ```
-## # A tibble: 2 × 4
+## # A tibble: 2 x 4
 ## # Groups:   am [2]
 ##      am data               lm_mod     r_squared
 ##   <dbl> <list>             <list>         <dbl>
-## 1     1 <tibble [13 × 10]> <smmry.lm>     0.837
-## 2     0 <tibble [19 × 10]> <smmry.lm>     0.768
+## 1     1 <tibble [13 x 10]> <smmry.lm>     0.837
+## 2     0 <tibble [19 x 10]> <smmry.lm>     0.768
 ```
 
 

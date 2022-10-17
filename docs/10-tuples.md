@@ -142,7 +142,7 @@ romeo_full_freq <- romeo_split %>% unlist() %>%
 
 
 ```
-## # A tibble: 10 × 2
+## # A tibble: 10 x 2
 ##   key    value
 ##   <chr>  <int>
 ## 1 i         61
@@ -151,7 +151,7 @@ romeo_full_freq <- romeo_split %>% unlist() %>%
 ## 4 the       34
 ## 5 to        34
 ## 6 juliet    32
-## # … with 4 more rows
+## # ... with 4 more rows
 ```
 
 

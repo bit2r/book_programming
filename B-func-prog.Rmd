@@ -93,7 +93,7 @@ $$x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}$$
 $f$를 미분한 $f'$ 빨간 선은  뉴턴방법을 활용하여 근을 구해가는 과정을 시각적으로 보여주고 있다.
 $x_{n-1}$ 보다 $x_n$이, $x_n$ 보다 $x_{n+1}$이 함수 $f$ 근에 더 가깝게 접근해 나가는 것이 확인된다.
 
-![뉴튼 방법 도식](assets/images/newton_method_ani.gif){width=100%}
+<!-- ![뉴튼 방법 도식](assets/images/newton_method_ani.gif){width=100%} -->
 
 ### 뉴튼 방법 R 코드 [^fp-book] {#functional-programming-newton-method}
 

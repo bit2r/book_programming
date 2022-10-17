@@ -107,8 +107,8 @@ Details: http://source.sakaiproject.org/viewsvn/?view=revrev=39772
 
 파일을 라인으로 쪼개기 위해서, 새줄(newline) 문자로 불리는 "줄의 끝(end of the line)"을 표시하는 특수 문자가 있다.
 
-R에서, 문자열 상수 역슬래쉬-n(\n)으로 새줄(newline) 문자를 표현한다.
-두 문자처럼 보이지만, 사실은 단일 문자다. 인터프리터에 "stuff"에 입력한 후 변수를 살펴보면, 문자열에 \n가 있다.
+R에서, 문자열 상수 역슬래쉬-n(`\n`)으로 새줄(newline) 문자를 표현한다.
+두 문자처럼 보이지만, 사실은 단일 문자다. 인터프리터에 "stuff"에 입력한 후 변수를 살펴보면, 문자열에 `\n`가 있다.
 하지만, `cat`문을 사용하여 문자열을 출력하면, 문자열이 새줄 문자에 의해서 두 줄로 쪼개지는 것을 볼 수 있다.
 
 ``` {r r-file-newline}
@@ -122,7 +122,7 @@ cat(stuff)
 str_length(stuff)
 ```
 
-문자열 'X\nY'의 길이는 `stringr::str_length("X\nY")` 명령어를 통해 확인이 가능한데 `r stringr::str_length("X\nY")` 이다. 왜냐하면 새줄(newline) 문자도 한 문자이기 때문이다.
+문자열 'X`\n`Y'의 길이는 `stringr::str_length("X\nY")` 명령어를 통해 확인이 가능한데 `r stringr::str_length("X\nY")` 이다. 왜냐하면 새줄(newline) 문자도 한 문자이기 때문이다.
 
 그래서, 파일 라인을 볼 때, 라인 끝을 표시하는 새줄(newline)로 불리는 눈에 보이지 않는 특수 문자가 각 줄의 끝에 있다고 상상할 필요가 있다.
 

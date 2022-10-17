@@ -320,7 +320,7 @@ httr::content(fhand, encoding = "UTF-8")
 
 
 ```
-## # A tibble: 3 × 2
+## # A tibble: 3 x 2
 ##   단어  빈도수
 ##   <chr>  <int>
 ## 1 and        3
